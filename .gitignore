@@ -25,3 +25,8 @@ manuscript/**/*.fls
 manuscript/**/*.fdb_latexmk
 manuscript/**/*.synctex.gz
 manuscript/main.pdf
+
+# code/ 下的 C++ 编译产物
+code/cpp/inst_dump
+code/cpp/rost5
+code/cpp/*.o
