@@ -1,0 +1,30 @@
+L1 [pad curdef] 0 13 cert [7, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 42 tot 0
+L1 [pad curdef] 1 13 cert [7, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 42 tot 0
+L1 [pad curdef] 2 13 cert [7, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 42 tot 0
+L1 [pad curdef] 3 13 cert [7, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 420 tot 0
+L1 [pad curdef] 4 13 cert [7, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 42 tot 0
+L1 [reset] 0 13 cert [7, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 42 tot 0
+L1 [reset] 1 13 cert [7, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 42 tot 0
+L1 [reset] 2 13 cert [7, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 42 tot 0
+L1 [reset] 3 13 cert [7, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 42 tot 0
+L1 [reset] 4 13 cert [7, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 42 tot 0
+L2 [pad curdef] 0 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [pad curdef] 1 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [pad curdef] 2 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [pad curdef] 3 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [pad curdef] 4 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [reset] 0 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [reset] 1 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [reset] 2 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [reset] 3 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L2 [reset] 4 11 cert [5, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 15 tot 0
+L3 [pad curdef] 0 12 cert [6, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 30 tot 0
+L3 [pad curdef] 1 12 cert [6, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 30 tot 0
+L3 [pad curdef] 2 12 cert [6, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 30 tot 0
+L3 [pad curdef] 3 12 cert [6, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 30 tot 0
+L3 [pad curdef] 4 12 cert [6, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 30 tot 0
+L3 [reset] 0 12 cert [6, 0, 0] [0, 1, 5, 0] vc 1 res 0 / 30 tot 0
+L3 [reset] 1 12 cert [6, 0, 0] [0, 1, 5, 0] vc 1 res 18 / 66 tot 20
+L3 [reset] 2 12 cert [6, 0, 0] [0, 2, 4, 0] vc 1 res 0 / 30 tot 0
+L3 [reset] 3 12 cert [6, 0, 0] [0, 1, 5, 0] vc 1 res 36 / 132 tot 39
+L3 [reset] 4 12 cert [6, 0, 0] [0, 1, 5, 0] vc 1 res 12 / 36 tot 14

@@ -1,0 +1,6 @@
+{"type": "L1-0", "L": 2, "S": 58, "steady_fluid": 5.73, "fresh4": 6.6364, "fresh8": 6.6364, "freshR4": 6.5, "freshR8": 6.5, "excess_pct": 15.8, "excessR_pct": 13.4}
+{"type": "L1-1", "L": 4, "S": 100, "steady_fluid": 8.0833, "fresh4": 9.449, "fresh8": 9.449, "freshR4": 9.0, "freshR8": 9.0, "excess_pct": 16.9, "excessR_pct": 11.3}
+{"type": "L1-2", "L": 3, "S": 97, "steady_fluid": 6.4, "fresh4": 7.2857, "fresh8": 7.2857, "freshR4": 7.0, "freshR8": 7.0, "excess_pct": 13.8, "excessR_pct": 9.4}
+{"type": "L3-0", "L": 5, "S": 130, "steady_fluid": 5.18, "fresh4": 5.875, "fresh8": 5.875, "freshR4": 5.2248, "freshR8": 5.2248, "excess_pct": 13.4, "excessR_pct": 0.9}
+{"type": "L3-1", "L": 7, "S": 160, "steady_fluid": 7.369, "fresh4": 9.3545, "fresh8": 9.3545, "freshR4": 8.2657, "freshR8": 8.284, "excess_pct": 26.9, "excessR_pct": 12.4}
+{"type": "L3-2", "L": 6, "S": 190, "steady_fluid": 6.3, "fresh4": 7.875, "fresh8": 7.875, "freshR4": 6.5904, "freshR8": 6.5997, "excess_pct": 25.0, "excessR_pct": 4.8}

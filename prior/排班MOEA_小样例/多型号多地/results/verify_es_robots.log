@@ -1,0 +1,6 @@
+{"inst": "m3-n6-s1", "es": 20, "gaps_300k": 0, "gap_sites": [0, 0, 0], "sec": 1}
+{"inst": "m3-n6-s2", "es": 22, "gaps_300k": 0, "gap_sites": [0, 0, 0], "sec": 1}
+{"inst": "m6-n6-s1", "es": 38, "gaps_300k": 0, "gap_sites": [0, 0, 0, 0, 0, 0], "sec": 3}
+{"inst": "m6-n6-s2", "es": 42, "gaps_300k": 0, "gap_sites": [0, 0, 0, 0, 0, 0], "sec": 3}
+{"inst": "m10-n6-s1", "es": 61, "gaps_300k": 0, "gap_sites": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "sec": 7}
+{"inst": "m10-n6-s2", "es": 66, "gaps_300k": 0, "gap_sites": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "sec": 6}

@@ -1,0 +1,1010 @@
+[
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 1,
+  "N": 7,
+  "excess": 0.5,
+  "ratio": 0.5
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 2,
+  "N": 13,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 4,
+  "N": 26,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 8,
+  "N": 52,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 16,
+  "N": 104,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 32,
+  "N": 208,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 64,
+  "N": 416,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 128,
+  "N": 832,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 1,
+  "N": 9,
+  "excess": 2.5,
+  "ratio": 2.5
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 2,
+  "N": 15,
+  "excess": 2.0,
+  "ratio": 1.41
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 4,
+  "N": 30,
+  "excess": 4.0,
+  "ratio": 2.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 8,
+  "N": 57,
+  "excess": 5.0,
+  "ratio": 1.77
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 16,
+  "N": 112,
+  "excess": 8.0,
+  "ratio": 2.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 32,
+  "N": 220,
+  "excess": 12.0,
+  "ratio": 2.12
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 64,
+  "N": 432,
+  "excess": 16.0,
+  "ratio": 2.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 128,
+  "N": 855,
+  "excess": 23.0,
+  "ratio": 2.03
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 1,
+  "N": 9,
+  "excess": 2.5,
+  "ratio": 2.5
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 2,
+  "N": 17,
+  "excess": 4.0,
+  "ratio": 2.83
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 4,
+  "N": 32,
+  "excess": 6.0,
+  "ratio": 3.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 8,
+  "N": 60,
+  "excess": 8.0,
+  "ratio": 2.83
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 16,
+  "N": 116,
+  "excess": 12.0,
+  "ratio": 3.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 32,
+  "N": 224,
+  "excess": 16.0,
+  "ratio": 2.83
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 64,
+  "N": 440,
+  "excess": 24.0,
+  "ratio": 3.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 4,
+  "policy": "PB",
+  "K": 128,
+  "N": 869,
+  "excess": 37.0,
+  "ratio": 3.27
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 1,
+  "N": 10,
+  "excess": 3.5,
+  "ratio": 3.5
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 2,
+  "N": 17,
+  "excess": 4.0,
+  "ratio": 2.83
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 4,
+  "N": 32,
+  "excess": 6.0,
+  "ratio": 3.0
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 8,
+  "N": 61,
+  "excess": 9.0,
+  "ratio": 3.18
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 16,
+  "N": 117,
+  "excess": 13.0,
+  "ratio": 3.25
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 32,
+  "N": 226,
+  "excess": 18.0,
+  "ratio": 3.18
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 64,
+  "N": 443,
+  "excess": 27.0,
+  "ratio": 3.38
+ },
+ {
+  "g": [
+   3,
+   10
+  ],
+  "spread": 6,
+  "policy": "PB",
+  "K": 128,
+  "N": 868,
+  "excess": 36.0,
+  "ratio": 3.18
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 1,
+  "N": 5,
+  "excess": 0.67,
+  "ratio": 0.67
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 2,
+  "N": 9,
+  "excess": 0.33,
+  "ratio": 0.24
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 4,
+  "N": 18,
+  "excess": 0.67,
+  "ratio": 0.33
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 8,
+  "N": 35,
+  "excess": 0.33,
+  "ratio": 0.12
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 16,
+  "N": 70,
+  "excess": 0.67,
+  "ratio": 0.17
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 32,
+  "N": 139,
+  "excess": 0.33,
+  "ratio": 0.06
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 64,
+  "N": 278,
+  "excess": 0.67,
+  "ratio": 0.08
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 128,
+  "N": 555,
+  "excess": 0.33,
+  "ratio": 0.03
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 1,
+  "N": 5,
+  "excess": 0.67,
+  "ratio": 0.67
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 2,
+  "N": 10,
+  "excess": 1.33,
+  "ratio": 0.94
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 4,
+  "N": 19,
+  "excess": 1.67,
+  "ratio": 0.83
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 8,
+  "N": 38,
+  "excess": 3.33,
+  "ratio": 1.18
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 16,
+  "N": 74,
+  "excess": 4.67,
+  "ratio": 1.17
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 32,
+  "N": 146,
+  "excess": 7.33,
+  "ratio": 1.3
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 64,
+  "N": 297,
+  "excess": 19.67,
+  "ratio": 2.46
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 128,
+  "N": 591,
+  "excess": 36.33,
+  "ratio": 3.21
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 1,
+  "N": 5,
+  "excess": 0.67,
+  "ratio": 0.67
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 2,
+  "N": 10,
+  "excess": 1.33,
+  "ratio": 0.94
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 4,
+  "N": 21,
+  "excess": 3.67,
+  "ratio": 1.83
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 8,
+  "N": 40,
+  "excess": 5.33,
+  "ratio": 1.89
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 16,
+  "N": 76,
+  "excess": 6.67,
+  "ratio": 1.67
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 32,
+  "N": 148,
+  "excess": 9.33,
+  "ratio": 1.65
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 64,
+  "N": 292,
+  "excess": 14.67,
+  "ratio": 1.83
+ },
+ {
+  "g": [
+   4,
+   4,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 128,
+  "N": 596,
+  "excess": 41.33,
+  "ratio": 3.65
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 1,
+  "N": 3,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 2,
+  "N": 6,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 4,
+  "N": 12,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 8,
+  "N": 24,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 16,
+  "N": 48,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 32,
+  "N": 96,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 64,
+  "N": 192,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 0,
+  "policy": "PB",
+  "K": 128,
+  "N": 384,
+  "excess": 0.0,
+  "ratio": 0.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 1,
+  "N": 4,
+  "excess": 1.0,
+  "ratio": 1.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 2,
+  "N": 7,
+  "excess": 1.0,
+  "ratio": 0.71
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 4,
+  "N": 14,
+  "excess": 2.0,
+  "ratio": 1.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 8,
+  "N": 27,
+  "excess": 3.0,
+  "ratio": 1.06
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 16,
+  "N": 53,
+  "excess": 5.0,
+  "ratio": 1.25
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 32,
+  "N": 103,
+  "excess": 7.0,
+  "ratio": 1.24
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 64,
+  "N": 203,
+  "excess": 11.0,
+  "ratio": 1.38
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 1,
+  "policy": "PB",
+  "K": 128,
+  "N": 401,
+  "excess": 17.0,
+  "ratio": 1.5
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 1,
+  "N": 4,
+  "excess": 1.0,
+  "ratio": 1.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 2,
+  "N": 8,
+  "excess": 2.0,
+  "ratio": 1.41
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 4,
+  "N": 16,
+  "excess": 4.0,
+  "ratio": 2.0
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 8,
+  "N": 29,
+  "excess": 5.0,
+  "ratio": 1.77
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 16,
+  "N": 55,
+  "excess": 7.0,
+  "ratio": 1.75
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 32,
+  "N": 106,
+  "excess": 10.0,
+  "ratio": 1.77
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 64,
+  "N": 206,
+  "excess": 14.0,
+  "ratio": 1.75
+ },
+ {
+  "g": [
+   2,
+   2,
+   5
+  ],
+  "spread": 2,
+  "policy": "PB",
+  "K": 128,
+  "N": 402,
+  "excess": 18.0,
+  "ratio": 1.59
+ }
+]

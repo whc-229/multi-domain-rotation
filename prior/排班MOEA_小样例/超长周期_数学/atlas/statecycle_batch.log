@@ -1,0 +1,22 @@
+{"g": [2, 6, 3], "N_lb": 4, "lb_feasible": false, "W": 1, "states": 1001}
+{"g": [6, 5, 3], "N_lb": 5, "lb_feasible": false, "W": 1, "states": 8568}
+{"g": [3, 6, 8], "N_lb": 6, "lb_feasible": false, "W": 1, "states": 74613}
+{"g": [3, 3, 8, 5], "N_lb": 5, "lb_feasible": false, "W": 1, "states": 33649}
+{"g": [4, 6, 5, 4], "N_lb": 5, "lb_feasible": false, "W": 1, "states": 33649}
+{"g": [2, 8, 5, 4], "N_lb": 5, "lb_feasible": false, "W": 1, "states": 33649}
+{"g": [3, 7, 5, 4], "N_lb": 5, "lb_feasible": false, "W": 1, "states": 33649}
+{"g": [2, 8, 3, 6], "N_lb": 5, "lb_feasible": false, "W": 1, "states": 33649}
+{"g": [5, 6, 9], "N_lb": 7, "lb_feasible": false, "W": 1, "states": 657800}
+{"g": [6, 11, 4, 2], "N_lb": 6, "lb_feasible": false, "W": 1, "states": 376740}
+{"g": [5, 2, 2, 11, 3], "N_lb": 5, "lb_feasible": false, "W": 2, "states": 80730}
+{"g": [4, 5, 7, 7], "N_lb": 6, "lb_feasible": false, "W": 1, "states": 376740}
+{"g": [6, 6, 7, 8], "skipped": true, "states": 4272048}
+{"g": [9, 3, 11, 4], "skipped": true, "states": 4272048}
+{"g": [3, 10, 10, 3, 3], "N_lb": 6, "lb_feasible": false, "W": 1, "states": 1344904}
+{"g": [8, 4, 12, 7], "skipped": true, "states": 48903492}
+{"g": [10, 2, 8, 2, 12], "skipped": true, "states": 18643560}
+{"g": [7, 8, 10, 2, 7], "skipped": true, "states": 18643560}
+{"g": [4, 11, 9, 11, 4], "skipped": true, "states": 260932815}
+{"g": [7, 10, 12, 6, 4], "skipped": true, "states": 260932815}
+{"g": [4, 10, 12, 8, 10], "skipped": true, "states": 3679075400}
+精确判定 13 例，其中下界不可行（c=1 得到严格确认）13 例；状态过多跳过 8 例

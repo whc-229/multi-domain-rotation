@@ -1,0 +1,27 @@
+# 密钥
+**/llm_config.json
+**/*.key
+
+# 版权 PDF
+paper/
+**/paper/
+
+# 编译产物
+**/rost
+**/rost2
+**/rost3
+**/rost4
+**/*.exe
+__pycache__/
+*.pyc
+
+# LaTeX（只在 manuscript/ 下忽略，prior/ 里的 .log 是实验结果，要保留）
+manuscript/**/*.aux
+manuscript/**/*.bbl
+manuscript/**/*.blg
+manuscript/**/*.log
+manuscript/**/*.out
+manuscript/**/*.fls
+manuscript/**/*.fdb_latexmk
+manuscript/**/*.synctex.gz
+manuscript/main.pdf

@@ -1,0 +1,35 @@
+{"g": [3, 10], "spread": 0, "K": 1, "N": 7, "Kabar": 6.5, "excess": 0.5, "sqrtK": 1.0}
+{"g": [3, 10], "spread": 0, "K": 2, "N": 13, "Kabar": 13.0, "excess": 0.0, "sqrtK": 1.41}
+{"g": [3, 10], "spread": 0, "K": 4, "N": 26, "Kabar": 26.0, "excess": 0.0, "sqrtK": 2.0}
+{"g": [3, 10], "spread": 0, "K": 8, "N": 52, "Kabar": 52.0, "excess": 0.0, "sqrtK": 2.83}
+{"g": [3, 10], "spread": 0, "K": 16, "N": 104, "Kabar": 104.0, "excess": 0.0, "sqrtK": 4.0}
+{"g": [3, 10], "spread": 0, "K": 32, "N": 208, "Kabar": 208.0, "excess": 0.0, "sqrtK": 5.66}
+{"g": [3, 10], "spread": 0, "K": 64, "N": 416, "Kabar": 416.0, "excess": 0.0, "sqrtK": 8.0}
+{"g": [3, 10], "spread": 3, "K": 1, "N": 9, "Kabar": 6.5, "excess": 2.5, "sqrtK": 1.0}
+{"g": [3, 10], "spread": 3, "K": 2, "N": 17, "Kabar": 13.0, "excess": 4.0, "sqrtK": 1.41}
+{"g": [3, 10], "spread": 3, "K": 4, "N": 31, "Kabar": 26.0, "excess": 5.0, "sqrtK": 2.0}
+{"g": [3, 10], "spread": 3, "K": 8, "N": 60, "Kabar": 52.0, "excess": 8.0, "sqrtK": 2.83}
+{"g": [3, 10], "spread": 3, "K": 16, "N": 115, "Kabar": 104.0, "excess": 11.0, "sqrtK": 4.0}
+{"g": [3, 10], "spread": 3, "K": 32, "N": 224, "Kabar": 208.0, "excess": 16.0, "sqrtK": 5.66}
+{"g": [3, 10], "spread": 3, "K": 64, "N": 439, "Kabar": 416.0, "excess": 23.0, "sqrtK": 8.0}
+{"g": [3, 10], "spread": 6, "K": 1, "N": 10, "Kabar": 6.5, "excess": 3.5, "sqrtK": 1.0}
+{"g": [3, 10], "spread": 6, "K": 2, "N": 18, "Kabar": 13.0, "excess": 5.0, "sqrtK": 1.41}
+{"g": [3, 10], "spread": 6, "K": 4, "N": 34, "Kabar": 26.0, "excess": 8.0, "sqrtK": 2.0}
+{"g": [3, 10], "spread": 6, "K": 8, "N": 63, "Kabar": 52.0, "excess": 11.0, "sqrtK": 2.83}
+{"g": [3, 10], "spread": 6, "K": 16, "N": 120, "Kabar": 104.0, "excess": 16.0, "sqrtK": 4.0}
+{"g": [3, 10], "spread": 6, "K": 32, "N": 230, "Kabar": 208.0, "excess": 22.0, "sqrtK": 5.66}
+{"g": [3, 10], "spread": 6, "K": 64, "N": 447, "Kabar": 416.0, "excess": 31.0, "sqrtK": 8.0}
+{"g": [4, 4, 5, 4, 9], "spread": 0, "K": 1, "N": 8, "Kabar": 5.2, "excess": 2.8, "sqrtK": 1.0}
+{"g": [4, 4, 5, 4, 9], "spread": 0, "K": 2, "N": 15, "Kabar": 10.4, "excess": 4.6, "sqrtK": 1.41}
+{"g": [4, 4, 5, 4, 9], "spread": 0, "K": 4, "N": 27, "Kabar": 20.8, "excess": 6.2, "sqrtK": 2.0}
+{"g": [4, 4, 5, 4, 9], "spread": 0, "K": 8, "N": 53, "Kabar": 41.6, "excess": 11.4, "sqrtK": 2.83}
+{"g": [4, 4, 5, 4, 9], "spread": 0, "K": 16, "N": 95, "Kabar": 83.2, "excess": 11.8, "sqrtK": 4.0}
+{"g": [4, 4, 5, 4, 9], "spread": 0, "K": 32, "N": 181, "Kabar": 166.4, "excess": 14.6, "sqrtK": 5.66}
+{"g": [4, 4, 5, 4, 9], "spread": 0, "K": 64, "N": 361, "Kabar": 332.8, "excess": 28.2, "sqrtK": 8.0}
+{"g": [4, 4, 5, 4, 9], "spread": 4, "K": 1, "N": 8, "Kabar": 5.2, "excess": 2.8, "sqrtK": 1.0}
+{"g": [4, 4, 5, 4, 9], "spread": 4, "K": 2, "N": 15, "Kabar": 10.4, "excess": 4.6, "sqrtK": 1.41}
+{"g": [4, 4, 5, 4, 9], "spread": 4, "K": 4, "N": 27, "Kabar": 20.8, "excess": 6.2, "sqrtK": 2.0}
+{"g": [4, 4, 5, 4, 9], "spread": 4, "K": 8, "N": 50, "Kabar": 41.6, "excess": 8.4, "sqrtK": 2.83}
+{"g": [4, 4, 5, 4, 9], "spread": 4, "K": 16, "N": 95, "Kabar": 83.2, "excess": 11.8, "sqrtK": 4.0}
+{"g": [4, 4, 5, 4, 9], "spread": 4, "K": 32, "N": 182, "Kabar": 166.4, "excess": 15.6, "sqrtK": 5.66}
+{"g": [4, 4, 5, 4, 9], "spread": 4, "K": 64, "N": 355, "Kabar": 332.8, "excess": 22.2, "sqrtK": 8.0}

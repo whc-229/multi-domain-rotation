@@ -1,0 +1,80 @@
+{"g": [2, 2], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [2, 2, 2], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true], "dfs": null}
+{"g": [2, 2, 2, 3], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0, 0, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [2, 2, 2, 5], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0, 0, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [2, 2, 2, 7], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0, 0, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [2, 2, 3], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 2, 5], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true], "dfs": null}
+{"g": [2, 2, 6], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 1, 0, 0, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 2, 3, 3], "gaps": [0, 1, 0, 0, 0, 1, 0, 0], "fixgaps": [0, 1, 0, 0, 0, 1, 0, 0], "tiling": [null, false, null, true, null, false, null, true], "dfs": null}
+{"g": [2, 3, 3, 4], "gaps": [1, 1, 1, 0, 1, 1, 1, 0], "fixgaps": [1, 1, 1, 0, 1, 1, 1, 0], "tiling": [false, false, false, true, false, false, false, true], "dfs": false}
+{"g": [2, 3, 3, 5], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [1, 1, 1, 0, 1, 1, 1, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [2, 4], "gaps": [1, 0, 1, 0], "fixgaps": [1, 0, 1, 0], "tiling": [false, true, false, true], "dfs": false}
+{"g": [2, 4, 3], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}
+{"g": [2, 4, 4], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 1, 0, 0, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 2, 6, 4], "gaps": [0, 1, 0, 0, 0, 1, 0, 0], "fixgaps": [2, 1, 1, 0, 2, 1, 1, 0], "tiling": [null, false, null, true, null, false, null, true], "dfs": null}
+{"g": [2, 4, 6, 3], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [1, 1, 0, 0, 1, 1, 0, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [2, 5], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [2, 5, 5], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true], "dfs": null}
+{"g": [2, 5, 2, 7], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true, true, true], "dfs": null}
+{"g": [2, 5, 6], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 5, 8], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true], "dfs": null}
+{"g": [2, 6], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [2, 6, 3], "gaps": [1, 0, 0, 1, 0, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": false}
+{"g": [2, 5, 5, 6], "gaps": [0, 1, 0, 0, 0, 1, 0, 0], "fixgaps": [1, 2, 1, 0, 1, 1, 1, 0], "tiling": [null, false, null, true, null, false, null, true], "dfs": null}
+{"g": [2, 6, 6], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [1, 0, 0, 1, 0, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 6, 7], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}
+{"g": [2, 6, 8, 6], "gaps": [0, 1, 0, 0, 0, 1, 0, 0], "fixgaps": [0, 1, 1, 0, 0, 1, 1, 0], "tiling": [null, false, null, true, null, false, null, true], "dfs": null}
+{"g": [2, 7], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [2, 7, 4, 5], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [1, 0, 1, 0, 1, 0, 1, 0], "tiling": [null, true, null, true, null, true, null, true], "dfs": null}
+{"g": [2, 7, 5], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [2, 1, 0, 2, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 7, 7], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 8, 3], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 8, 3, 6], "gaps": [1, 0, 0, 0, 1, 0, 0, 0], "fixgaps": [1, 1, 1, 0, 1, 1, 1, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": false}
+{"g": [2, 8, 4], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [1, 2, 0, 1, 2, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [2, 8, 5, 4], "gaps": [1, 0, 0, 0, 1, 0, 0, 0], "fixgaps": [1, 2, 2, 0, 1, 2, 2, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": false}
+{"g": [2, 8, 8], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true], "dfs": null}
+{"g": [3, 3], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [3, 3, 3, 7], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true, true, true], "dfs": null}
+{"g": [2, 6, 5, 7], "gaps": [1, 1, 1, 0, 1, 1, 1, 0], "fixgaps": [2, 2, 2, 0, 2, 2, 2, 0], "tiling": [false, false, false, true, false, false, false, true], "dfs": false}
+{"g": [3, 3, 8, 5], "gaps": [1, 0, 0, 0, 1, 0, 0, 0], "fixgaps": [2, 1, 1, 0, 2, 1, 1, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": false}
+{"g": [3, 4], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [3, 4, 3, 8], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [1, 0, 0, 0, 0, 0, 0, 0], "tiling": [null, true, null, true, null, true, null, true], "dfs": null}
+{"g": [3, 5], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [3, 5, 4], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}
+{"g": [3, 5, 4, 6], "gaps": [0, 1, 0, 0, 0, 1, 0, 0], "fixgaps": [1, 1, 1, 0, 1, 1, 1, 0], "tiling": [null, false, null, true, null, false, null, true], "dfs": null}
+{"g": [3, 6], "gaps": [0, 0, 0, 0], "fixgaps": [1, 0, 1, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [3, 6, 8], "gaps": [1, 0, 0, 1, 0, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": false}
+{"g": [3, 7, 5, 4], "gaps": [1, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [1, 1, 1, 0, 1, 1, 1, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": false}
+{"g": [3, 7, 6], "gaps": [0, 1, 0, 0, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [3, 7, 7, 6], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [1, 2, 1, 0, 1, 2, 1, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [3, 3, 8, 6], "gaps": [1, 1, 1, 0, 1, 1, 1, 0], "fixgaps": [2, 2, 1, 0, 2, 2, 1, 0], "tiling": [false, false, false, true, false, false, false, true], "dfs": false}
+{"g": [4, 4], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [4, 5], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [4, 5, 4, 8], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 1, 0, 0, 0, 1, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [4, 5, 6], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}
+{"g": [4, 5, 7, 7], "gaps": [1, 0, 0, 0, 1, 0, 0, 0], "fixgaps": [1, 1, 1, 0, 1, 1, 1, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": false}
+{"g": [4, 5, 8], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [4, 6], "gaps": [1, 0, 1, 0], "fixgaps": [1, 0, 1, 0], "tiling": [false, true, false, true], "dfs": false}
+{"g": [4, 6, 5], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}
+{"g": [4, 7], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [4, 7, 7], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [true, true, true, true, true, true], "dfs": null}
+{"g": [4, 8], "gaps": [1, 0, 1, 0], "fixgaps": [2, 0, 2, 0], "tiling": [false, true, false, true], "dfs": false}
+{"g": [4, 8, 8], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [1, 2, 0, 1, 2, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [5, 5, 5, 8], "gaps": [0, 0, 0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0, 0, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": null}
+{"g": [5, 5, 7], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [5, 6], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [5, 6, 8], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [5, 7], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [5, 7, 6], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}
+{"g": [3, 8, 4, 7], "gaps": [0, 1, 0, 0, 0, 1, 0, 0], "fixgaps": [2, 1, 2, 0, 2, 1, 2, 0], "tiling": [null, false, null, true, null, false, null, true], "dfs": null}
+{"g": [6, 6, 7, 7], "gaps": [0, 1, 0, 0, 0, 1, 0, 0], "fixgaps": [0, 1, 0, 0, 0, 1, 0, 0], "tiling": [null, false, null, true, null, false, null, true], "dfs": null}
+{"g": [6, 7], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [6, 7, 7], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 0, 0, 0, 0, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [6, 6, 7, 8], "gaps": [1, 0, 0, 0, 1, 0, 0, 0], "fixgaps": [1, 1, 0, 0, 1, 1, 0, 0], "tiling": [null, null, null, true, null, null, null, true], "dfs": false}
+{"g": [6, 7, 8], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}
+{"g": [6, 8, 8], "gaps": [0, 0, 0, 0, 0, 0], "fixgaps": [0, 1, 0, 0, 1, 0], "tiling": [null, null, true, null, null, true], "dfs": null}
+{"g": [7, 7], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [7, 8], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [null, true, null, true], "dfs": null}
+{"g": [8, 8], "gaps": [0, 0, 0, 0], "fixgaps": [0, 0, 0, 0], "tiling": [true, true, true, true], "dfs": null}
+{"g": [6, 8, 7], "gaps": [1, 1, 0, 1, 1, 0], "fixgaps": [1, 1, 0, 1, 1, 0], "tiling": [false, false, true, false, false, true], "dfs": false}

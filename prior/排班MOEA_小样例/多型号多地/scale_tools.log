@@ -1,0 +1,1 @@
+{"inst": "m3-n6-s1", "LB": 32.0, "fifo": 42, "fifo_verify": 19, "pb": 41, "pb_verify": 0, "es": 37, "es_robots": [9, 0, 10, 0, 0], "es_tools": [0, 4, 14, 0], "es_sec": 848, "es_verify": 0, "dedicated_es": 40, "ded_sec": 45}

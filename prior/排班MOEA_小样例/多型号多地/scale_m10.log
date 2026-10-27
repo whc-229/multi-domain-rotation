@@ -1,0 +1,2 @@
+{"inst": "m10-n6-s1", "intLB": 57, "fluid": 56.45, "dedicated_exact": null, "ded_sec": 673, "fifo": 68, "fifo_verify_gaps": 3, "pb": 78, "pb_verify_gaps": 9, "es": 61, "es_Nk": [19, 0, 42, 0, 0], "es_verify_gaps": 0, "es_sec": 1765, "es_w": [0.652, 0.063, -0.894, 0.205, -0.481, 0.145]}
+{"inst": "m10-n6-s2", "intLB": 61, "fluid": 60.64, "dedicated_exact": 77, "ded_sec": 542, "fifo": 90, "fifo_verify_gaps": 0, "pb": 76, "pb_verify_gaps": 18, "es": 66, "es_Nk": [25, 0, 0, 26, 0, 15], "es_verify_gaps": 0, "es_sec": 2058, "es_w": [0.121, 0.103, 1.215, 0.294, -0.189, 1.543]}
