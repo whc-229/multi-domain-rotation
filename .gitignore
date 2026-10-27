@@ -30,3 +30,7 @@ manuscript/main.pdf
 code/cpp/inst_dump
 code/cpp/rost5
 code/cpp/*.o
+code/cpp/libprice.so
+*.tmp
+results/**/logs*/
+results/T3/rlp/*.lock
