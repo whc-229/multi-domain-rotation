@@ -83,11 +83,12 @@ def write_rlp(path, I, H, steady, NLP, N0, M0, flows, y_by_site, noscale=False):
     return dict(Q=Qs, max_err=max(errs))
 
 
-def write_planf(path, H, N, flows):
-    """与 make_planf.py 相同：#N LP 台数；k i D 流量（提前大修弧、D < H/2，按 (k,i,D) 合并）。"""
-    agg = {}
+def write_planf(path, H, N, flows, cut=None):
+    """与 make_planf.py 相同：#N LP 台数；k i D 流量（提前大修弧、D < H/2，按 (k,i,D) 合并）。
+    cut 不为 None 时（T6 的 fresh_rlp_w）改为保留 D < cut 的提前大修流（启动窗口）。"""
+    agg = {}; cut = H // 2 if cut is None else cut
     for (k, i, s, D, r, x) in flows:
-        if int(r) == 1 and int(D) < H // 2:
+        if int(r) == 1 and int(D) < cut:
             key = (int(k), int(i), int(D)); agg[key] = agg.get(key, 0.0) + float(x)
     with open(path, "w") as f:
         f.write("#N " + " ".join(repr(float(v)) for v in N) + "\n")

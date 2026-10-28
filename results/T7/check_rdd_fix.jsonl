@@ -1,0 +1,1 @@
+{"inst": "m02-K1-00", "rule": "es", "g": 26, "rho": 0.1, "K": 32, "ndev": 126, "resetopt": 0, "n_active": 9, "eval_ok": 1, "size_ok": 1, "R_py": 28, "R_c": 28, "status": "cert", "bad": []}

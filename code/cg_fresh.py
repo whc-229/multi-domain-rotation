@@ -27,6 +27,12 @@ def _lib():
         os.system(f"g++ -O2 -shared -fPIC -o {LIB} {os.path.join(ROOT, 'code', 'cpp', 'price.cpp')}")
     lib = ctypes.CDLL(LIB)
     P = np.ctypeslib.ndpointer
+    lib.longest_path_w.restype = ctypes.c_int
+    lib.longest_path_w.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int,
+                                   P(np.int32, flags="C"), P(np.int32, flags="C"), P(np.int32, flags="C"), ctypes.c_int,
+                                   P(np.float64, flags="C"), P(np.float64, flags="C"),
+                                   P(np.int32, flags="C"), P(np.int32, flags="C"), P(np.int32, flags="C"), P(np.int32, flags="C"),
+                                   ctypes.c_int]
     lib.longest_path.restype = ctypes.c_int
     lib.longest_path.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int,
                                  P(np.int32, flags="C"), P(np.int32, flags="C"), ctypes.c_int,
@@ -37,10 +43,10 @@ def _lib():
 
 
 class FreshCG:
-    """一个 (实例, H, 是否允许提前大修) 的列生成。"""
+    """一个 (实例, H, 是否允许提前大修) 的列生成。W 不为 None 时（T6 的 LP_fr^Rw）提前大修弧只在值岗开始 D < W 时存在。"""
 
-    def __init__(self, I, H, reset=False):
-        self.I, self.H, self.reset = I, H, reset
+    def __init__(self, I, H, reset=False, W=None):
+        self.I, self.H, self.reset, self.W = I, H, reset, W
         TI = self.TI = ToolInst(I)
         nk, ns, nt = len(I.T), len(I.sites), TI.nt
         self.nk, self.ns, self.nt = nk, ns, nt
@@ -150,7 +156,11 @@ class FreshCG:
         mx = H + 2
         ov, oe, oi, orr = (np.zeros(mx, dtype=np.int32) for _ in range(4))
         best = np.zeros(1)
-        n = self.lib.longest_path(L, H, self.v0[k], len(el), nx, nxR, int(self.reset), W, best, ov, oe, oi, orr, mx)
+        if self.reset and self.W is not None:      # 窗口内才有提前大修弧
+            ld = np.array([self.lead[s] for s in el], dtype=np.int32)
+            n = self.lib.longest_path_w(L, H, self.v0[k], len(el), nx, nxR, ld, int(self.W), W, best, ov, oe, oi, orr, mx)
+        else:
+            n = self.lib.longest_path(L, H, self.v0[k], len(el), nx, nxR, int(self.reset), W, best, ov, oe, oi, orr, mx)
         assert n >= 0
         return best[0], [(int(ov[a]), el[oe[a]], int(oi[a]), int(orr[a])) for a in range(n)]
 

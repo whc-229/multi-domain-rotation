@@ -11,7 +11,7 @@ import scipy.optimize  # noqa: E402
 import highspy  # noqa: E402
 import freshlb  # noqa: E402
 
-_cfg = dict(solver="ipm", time_limit=3600.0, keep=None, perm=None, crossover="on")
+_cfg = dict(solver="ipm", time_limit=3600.0, keep=None, perm=None, crossover="on", drop=None)
 
 
 def highs_from_eq(c, A, b, solver, time_limit, perm=None, crossover="on"):
@@ -46,8 +46,16 @@ def highs_from_eq(c, A, b, solver, time_limit, perm=None, crossover="on"):
 
 
 def _solve(c, A_eq=None, b_eq=None, bounds=None, method=None, options=None):
-    """替换 scipy.optimize.linprog：只支持 fresh_lb 用到的形式（等式、x ≥ 0）。"""
-    h, st, xs, ys = highs_from_eq(c, A_eq, b_eq, _cfg["solver"], _cfg["time_limit"], _cfg["perm"], _cfg["crossover"])
+    """替换 scipy.optimize.linprog：只支持 fresh_lb 用到的形式（等式、x ≥ 0）。
+    _cfg["drop"] 不为 None 时（T6 的 LP_fr^Rw）先删去这些列再求解，解里被删的列记为 0；行与对偶不变。"""
+    if _cfg["drop"] is not None:
+        n = A_eq.shape[1]; keepc = np.ones(n, bool); keepc[_cfg["drop"]] = False
+        A2 = A_eq.tocsc()[:, keepc]; c2 = np.asarray(c, float)[keepc]
+        h, st, xs2, ys = highs_from_eq(c2, A2, b_eq, _cfg["solver"], _cfg["time_limit"], _cfg["perm"], _cfg["crossover"])
+        xs = np.zeros(n)
+        if len(xs2) == keepc.sum(): xs[keepc] = xs2
+    else:
+        h, st, xs, ys = highs_from_eq(c, A_eq, b_eq, _cfg["solver"], _cfg["time_limit"], _cfg["perm"], _cfg["crossover"])
     ok = st == "Optimal"
     x = xs if ok else None
     if _cfg["keep"] is not None:
@@ -55,10 +63,11 @@ def _solve(c, A_eq=None, b_eq=None, bounds=None, method=None, options=None):
     return types.SimpleNamespace(x=x, fun=h.getInfo().objective_function_value if ok else None, status=0 if ok else st)
 
 
-def fresh_full(I, H, reset=False, solver="ipm", time_limit=3600, keep=None, want_plan=False, perm=None, crossover="on"):
+def fresh_full(I, H, reset=False, solver="ipm", time_limit=3600, keep=None, want_plan=False, perm=None, crossover="on", drop=None):
     """调用 freshlb.fresh_lb（tools=True，LP），用 highspy 求解。keep 为 dict 时存下矩阵、对偶与解。
-    perm、crossover 见 highs_from_eq（默认与正式运行一致：不重排、做 crossover）。"""
-    _cfg.update(solver=solver, time_limit=time_limit, keep=keep, perm=perm, crossover=crossover)
+    perm、crossover 见 highs_from_eq（默认与正式运行一致：不重排、做 crossover）。
+    drop：要删去的列下标（T6 用来去掉启动窗口外的提前大修弧）；返回的 N、M 与目标值取自删列后的解。"""
+    _cfg.update(solver=solver, time_limit=time_limit, keep=keep, perm=perm, crossover=crossover, drop=drop)
     old = scipy.optimize.linprog
     scipy.optimize.linprog = _solve
     try:

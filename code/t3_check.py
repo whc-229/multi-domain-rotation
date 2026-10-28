@@ -80,13 +80,15 @@ def check_b(names, rdir, ngroups=6):
             for opts in optsets:
                 for Tmax, cert in [(3000, 0), (60000, 1)]:
                     a = c_eval(R4, txt, Tmax, cert, Nk, Mj, w, opts); b = c_eval(R5, txt, Tmax, cert, Nk, Mj, w, opts)
+                    b.pop("ndec_w", None)      # T7 起 rost5 eval 多输出窗口决策数（RDD 用），rost4 没有这一项
                     tot += 1; bad += (a != b)
                     if a != b: print("新旧不一致 eval", n, opts, a, b, flush=True)
     return tot, bad
 
 
 def check_b_es(names, rdir, seeds=(0, 1)):
-    """es：curdef 与 lpgplan（lpg 文件由 planf 同源生成），小代数，输出除 sec 外逐字段相同。"""
+    """es：curdef 与 lpgplan（lpg 文件由 planf 同源生成），小代数，输出除 sec 外逐字段相同。
+    T6 起 rost5 的证书阶段补台默认改了，与 rost4 比时给 rost5 加 certadd=why（旧做法）。"""
     tot = bad = 0
     for n in names:
         _, txt = inst_paths(n, "train")
@@ -97,7 +99,7 @@ def check_b_es(names, rdir, seeds=(0, 1)):
             for opts in cfgs:
                 args = ["es", txt, "certs", "365", "3", "4", "12", str(sd), "60000", "600000"] + opts
                 a = json.loads(subprocess.run([R4] + args, capture_output=True, text=True).stdout)
-                b = json.loads(subprocess.run([R5] + args, capture_output=True, text=True).stdout)
+                b = json.loads(subprocess.run([R5] + args + ["certadd=why"], capture_output=True, text=True).stdout)
                 a.pop("sec"); b.pop("sec")
                 tot += 1; bad += (a != b)
                 if a != b: print("新旧不一致 es", n, opts, sd, a, b, flush=True)

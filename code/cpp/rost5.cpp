@@ -6,6 +6,15 @@
 //   用法补充：rost5 rlp <inst> <rlp文件> <H定台数> <Tcert> <Tverify> [planf=文件]
 //            规则文件带 noscale 1 时（T3b 的 _u 变体）三种计划都不按台数缩放。
 //            rost5 replay <inst> <排班文件> <Tmax>（T4：独立重放上界解的显式排班，检查每班合法、每格覆盖）
+//   T6：定台数循环证书阶段的补台默认改为"试加每种资源各 1，取 Tcert 格内缺岗最少的"（同缺岗时取缺岗归因信号大的，再同取下标小的）；
+//       当前台数的 Tcert 格缺岗连续 5 次补台没有刷新最低值时，判本起点失败（不再空转补到 60 次）。
+//       旧做法（直接加归因信号最大的）用选项 certadd=why 保留；不带停止条件的试加用 certadd=trial60。rlp、es、size、rdd 命令都接受这两个选项。
+//   T7：规则偏离解码 RDD（Policy::rdd）。窗口 [0, W) 内每一次交接（按处理顺序编号）是一个决策；
+//       基因型给出若干 (决策序号, u)；该决策上把默认规则的排序里除第一名以外可行的机器人依次排成备选表
+//       （允许时再加"本班后提前大修"一项），选第 ⌊u·|A|⌋ 项。全部槽关闭时与默认规则逐位相同。
+//       新命令：rost5 size <inst> <H> <Tcert> <Tverify> <规则选项…>    给定规则（可带 rdd=文件）定台数 + 复核
+//               rost5 rdd  <inst> <H> <Tcert> <Tverify> <gens> <mu> <lam> <seed> <rho> <qon> <规则选项…>   RDD 的 (μ+λ) 进化
+//       规则选项：rlp=<文件> | w=<逗号分隔权重> [lpg=<文件>] [curdef] [planf=<文件>] [facloop]，以及 W=<格>、resetopt、certadd=why。
 // 以下为 rost4 原注释。
 // rost4：在 rost3 基础上加"提前大修"决策（reset）和"按当前相位人数"的相位特征（curdef）。
 // 两个开关都关闭时与 rost3 完全相同。
@@ -65,6 +74,9 @@ struct RLP {
     vector<int> N0, M0;
 };
 
+// RDD 解码数据（T7）：dev[c] = 第 c 个窗口决策上的 u ∈ [0, 1)，−1 表示不偏离；maxpos = 最后一个偏离决策的序号（无偏离为 −1）
+struct RDD { ll W = 0; int ndev = 0; vector<double> dev; int maxpos = -1; bool reset_opt = false; };
+
 // ---------------- 策略：线性打分（6 维机器人 + 2 维工具）或 GP 树（机器人打分）+ 线性工具打分 ----------------
 struct GPNode { int op; double c; int a, b; };   // op: 0..5 特征, 6 常数, 7 +, 8 -, 9 *, 10 保护除, 11 max, 12 min
 struct Policy {
@@ -74,6 +86,7 @@ struct Policy {
     vector<vector<int>> quota; vector<vector<ll>> qfrom;
     vector<vector<vector<pair<ll,double>>>> planf; vector<double> planN;
     const RLP* rlp = nullptr;
+    const RDD* rdd = nullptr;     // T7：规则偏离解码（nullptr 时与原规则完全相同）
     vector<vector<double>> lpz;   // lpz[k][s]：LP 解里 k 型承担 s 站值岗的比例（LP 引导派工，权重 w13）   // 按比例的计划：LP 流量与 LP 台数，运行时按实际台数换算
     vector<vector<vector<pair<ll,int>>>> plan;   // plan[k][i] = [(t0, c)...] 按 t0 排序：t ≥ t0 后还有余量就提前大修   // quota[k][i]：k 型在相位 i 值岗后提前大修的总次数（来自全新启动 LP/ILP），只在启动期用
     double eval_tree(int n, const double* f) const {
@@ -89,7 +102,7 @@ struct Policy {
 };
 
 struct Res { ll gaps; int cert; ll period, t_end; vector<ll> why_r, why_t; ll enter = -1;
-             ll resets = 0, duties = 0, cyc_resets = -1, cyc_duties = -1; };
+             ll resets = 0, duties = 0, cyc_resets = -1, cyc_duties = -1; ll ndec_w = 0; };   // ndec_w：窗口 [0, W) 内的决策数（RDD）
 static inline pair<ull,ull> hsh(const vector<ll>& v) { ull a = 1469598103934665603ULL, b = 0x9E3779B97F4A7C15ULL;
   for (ll x : v) { ull y = (ull)x; a ^= y + 0x9e3779b97f4a7c15ULL + (a << 6) + (a >> 2); a *= 1099511628211ULL; b = (b ^ (y * 0xff51afd7ed558ccdULL)) * 0xc4ceb9fe1a85ec53ULL; b ^= b >> 33; }
   return {a, b}; }
@@ -100,7 +113,9 @@ static inline int postu(const Inst& I, int k, int s, int j, double unin) {
     return (int)ceil((t.post_h + t.back_h + I.S[s].delta + unin + I.TT[j].maint) / 2.0 - 1e-9);
 }
 
-Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Policy& P, ll Tmax, bool certify, ll stop_at = -1, vector<ll>* snap = nullptr) {
+// gap_cap（T7 加速）：不判环的运行里，缺岗数一旦超过 gap_cap 就提前返回（此时只保证返回的 gaps > gap_cap）。
+// 定台数循环里"试加取缺岗最少"只需要知道候选是否可能胜出，超过当前最好值的候选不可能被选中，所以选择结果与不设上限时逐位相同。
+Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Policy& P, ll Tmax, bool certify, ll stop_at = -1, vector<ll>* snap = nullptr, ll gap_cap = LLONG_MAX) {
     int nk = I.nk, ns = I.ns, nt = I.nt;
     vector<int> rk, rph; vector<ll> rv;
     vector<int> grp; vector<char> firstc; vector<vector<int>> qleft = P.quota; auto pl = P.plan;
@@ -171,6 +186,26 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
     vector<int> due; vector<pair<double,int>> cand; vector<tuple<double,ll,int,int>> opts;
     ll t = *min_element(fr.begin(), fr.end());
     const bool lin = P.tree.empty();
+    const RDD* DV = P.rdd;
+    // 机器人 r 此刻去 s 站是否有足够的空闲适配工具（与派工时的工具检查相同，但不改状态；RDD 构造备选表用）
+    auto tool_ok = [&](int r, int s) -> bool {
+        if (!use_tools) return true;
+        int k = rk[r], e = I.eidx[k][s]; const Type& T = I.T[k]; ll need = t - T.pre[e]; int c = 0;
+        for (int j : T.C) for (ll f : tf[j]) if (f <= need) c++;
+        return c >= T.q;
+    };
+    // RDD：在按默认规则排好序的候选里取可行者 fe（第一名即默认选择），按 u 选备选项。
+    // 返回 −1 = 不偏离；≥ 0 = 改派的机器人编号；−2 = 仍派默认机器人，但本班后提前大修
+    auto pick_dev = [&](const vector<int>& order, int s, double u) -> int {
+        vector<int> fe; for (int r : order) if (tool_ok(r, s)) fe.push_back(r);
+        if (fe.empty()) return -1;
+        int r0 = fe[0]; bool ro = DV->reset_opt && rph[r0] != I.T[rk[r0]].L - 1;
+        int nA = (int)fe.size() - 1 + (ro ? 1 : 0);
+        if (nA <= 0) return -1;
+        int a = (int)floor(u * (double)nA); if (a >= nA) a = nA - 1;
+        if (a < (int)fe.size() - 1) return fe[a + 1];
+        return -2;
+    };
     while (t < Tmax) {
         if (RL) {   // 计划增量计入 lag（截断）
             for (int k = 0; k < nk; k++) {
@@ -193,7 +228,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
                 sort(cur.begin() + st0, cur.end());
             }
             if (stop_at >= 0) { if (t >= stop_at) { *snap = cur; R.t_end = t; return R; } }
-            else if ((!use_tw || t >= P.Tw) && t >= qmax) {
+            else if ((!use_tw || t >= P.Tw) && t >= qmax && (!DV || t >= DV->W || R.ndec_w > DV->maxpos)) {   // RDD：最后一个偏离决策之后才判环
                 auto h = hsh(cur);
                 auto it = seen.find(h);
                 if (it != seen.end()) {
@@ -211,6 +246,8 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
         stable_sort(due.begin(), due.end(), [&](int a, int b) { return I.nelig[I.psite[a]] < I.nelig[I.psite[b]]; });
         for (int pq : due) {
             const int s = I.psite[pq];
+            double dv = -1; bool force_reset = false;      // RDD：本决策的 u（−1 不偏离）、是否强制本班后提前大修
+            if (DV && t < DV->W) { ll c = R.ndec_w++; if (c < DV->ndev) dv = DV->dev[c]; }
             if (RL) {   // ---------- R_LP 派工 ----------
                 vector<tuple<ll,int,ll,ll,int>> rc;   // (−lag_{k,s}, k, −相位 lag, 截断就绪, 编号)
                 for (int r = 0; r < nr; r++) {
@@ -219,6 +256,12 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
                     rc.emplace_back(-lag[k][s], k, -phl[k][rph[r]], max(rv[r] - t, (ll)-CL), r);
                 }
                 sort(rc.begin(), rc.end());
+                if (dv >= 0) {
+                    vector<int> order; for (auto& cr : rc) order.push_back(get<4>(cr));
+                    int pk = pick_dev(order, s, dv);
+                    if (pk == -2) force_reset = true;
+                    else if (pk >= 0) { auto it = find_if(rc.begin(), rc.end(), [&](const tuple<ll,int,ll,ll,int>& x) { return get<4>(x) == pk; }); rotate(rc.begin(), it, it + 1); }
+                }
                 bool done = false;
                 for (auto& cr : rc) {
                     int r = get<4>(cr), k = rk[r], i = rph[r], e = I.eidx[k][s]; const Type& T = I.T[k];
@@ -240,6 +283,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
                         for (auto& e2 : pl[k][i]) { if (e2.first > t) break; if (e2.second > 0) { e2.second--; planned = true; break; } }
                     }
                     if (planned) { nx = T.step[T.L - 1][e].second; nph = 0; R.resets++; }
+                    if (force_reset && nph != 0) { nx = T.step[T.L - 1][e].second; nph = 0; R.resets++; }
                     rv[r] = t - ld + nx; rph[r] = nph;
                     cnt[k][i]--; cnt[k][nph]++; R.duties++;
                     D[k][i]++; tot[k]++;
@@ -254,6 +298,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
                     if (!rc.empty()) { for (int j : I.T[rk[get<4>(rc[0])]].C) R.why_t[j]++; }
                     else { for (int k = 0; k < nk; k++) if (I.eidx[k][s] >= 0) R.why_r[k]++; }
                     fr[pq] = t + 1;
+                    if (!certify && R.gaps > gap_cap) { R.t_end = t; return R; }
                 }
                 continue;
             }
@@ -283,6 +328,12 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
                 cand.push_back({sc, r});
             }
             sort(cand.begin(), cand.end());
+            if (dv >= 0) {
+                vector<int> order; for (auto& cr : cand) order.push_back(cr.second);
+                int pk = pick_dev(order, s, dv);
+                if (pk == -2) force_reset = true;
+                else if (pk >= 0) { auto it = find_if(cand.begin(), cand.end(), [&](const pair<double,int>& x) { return x.second == pk; }); rotate(cand.begin(), it, it + 1); }
+            }
             bool done = false;
             for (auto& cr : cand) {
                 int r = cr.second, k = rk[r], i = rph[r], e = I.eidx[k][s]; const Type& T = I.T[k];
@@ -318,6 +369,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
                               + P.w[11] * (double)i / (double)(T.L - 1) + P.w[12] * (P.Tw > 0 ? min((double)t / (double)P.Tw, 1.0) : 1.0);
                     if (sc > 0) { nx = T.step[T.L - 1][e].second; nph = 0; R.resets++; }
                 }
+                if (force_reset && nph != 0) { nx = T.step[T.L - 1][e].second; nph = 0; R.resets++; }
                 rv[r] = t - ld + nx; rph[r] = nph;
                 cnt[k][i]--; cnt[k][nph]++; R.duties++;
                 D[k][i]++; tot[k]++;
@@ -328,6 +380,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
                 if (!cand.empty()) { for (int j : I.T[rk[cand[0].second]].C) R.why_t[j]++; }
                 else { for (int k = 0; k < nk; k++) if (I.eidx[k][s] >= 0) R.why_r[k]++; }
                 fr[pq] = t + 1;
+                if (!certify && R.gaps > gap_cap) { R.t_end = t; return R; }
             }
         }
         t = *min_element(fr.begin(), fr.end());
@@ -345,6 +398,9 @@ bool exact_check(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, co
 struct SizeRes { int R; vector<int> Nk, Mj; string status; ll period; };
 
 vector<int> g_N0, g_M0;   // LP 引导时的定台数起点
+// 证书阶段补台：1 = 试加每种资源取 Tcert 格内缺岗最少；当前台数的 Tcert 格缺岗连续 CERT_PATIENCE 次补台都没有刷新最低值时判本起点失败（T6 起的默认）；
+//               2 = 试加但不设停止条件，最多补 max_add 次（certadd=trial60，T6 开发中间版本，只为复现用）；0 = 直接加归因信号最大的（旧做法，certadd=why）
+int g_certadd = 1; const int CERT_PATIENCE = 5;
 SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tcert, int max_add = 60) {
     vector<int> Nk = g_N0.empty() ? I.N0 : g_N0, Mj = g_M0.empty() ? I.M0 : g_M0; int nk = I.nk, nt = I.nt, nres = nk + nt;
     auto bump = [&](int idx, int d) { if (idx < nk) Nk[idx] += d; else Mj[idx - nk] += d; };
@@ -354,7 +410,7 @@ SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tc
         vector<ll> sig = r.why_r; sig.insert(sig.end(), r.why_t.begin(), r.why_t.end());
         ll bg = LLONG_MAX, bsig = 0; int bi = -1;
         for (int idx = 0; idx < nres; idx++) {
-            bump(idx, 1); ll g = run(I, Nk, Mj, P, H, false).gaps; bump(idx, -1);
+            bump(idx, 1); ll g = run(I, Nk, Mj, P, H, false, -1, nullptr, bg).gaps; bump(idx, -1);   // 超过当前最好值即停（不影响选择）
             if (bi < 0 || g < bg || (g == bg && sig[idx] > bsig)) { bg = g; bi = idx; bsig = sig[idx]; }
         }
         bump(bi, 1); added++; r = run(I, Nk, Mj, P, H, false);
@@ -367,19 +423,32 @@ SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tc
             int& v = idx < nk ? Nk[idx] : Mj[idx - nk];
             if (v == 0) continue;
             v--;
-            if (run(I, Nk, Mj, P, H, false).gaps == 0) { improved = true; break; }
+            if (run(I, Nk, Mj, P, H, false, -1, nullptr, 0).gaps == 0) { improved = true; break; }   // 出现第 1 个缺岗即停
             v++;
         }
     }
     if (mode == "finite") return {tot(), Nk, Mj, "finite", -1};
     bool strict = (mode == "certs");
+    ll best_g0 = LLONG_MAX; int stall = 0;      // g_certadd = 1 的停止条件：缺岗最低值与连续未刷新的次数
     for (int a = 0; a < max_add; a++) {
         Res c = run(I, Nk, Mj, P, Tcert, true);
         if (strict && c.cert == -1 && c.gaps == 0) c = run(I, Nk, Mj, P, 4 * Tcert, true);   // 判不出循环：加长到 4 倍再判
         if (c.cert == 1) return {tot(), Nk, Mj, "cert", c.period};
         if (c.cert == -1 && c.gaps == 0) return {tot(), Nk, Mj, "uncert", -1};
         vector<ll> sig = c.why_r; sig.insert(sig.end(), c.why_t.begin(), c.why_t.end());
-        int bi = max_element(sig.begin(), sig.end()) - sig.begin(); bump(bi, 1);
+        if (g_certadd == 0) { int bi = max_element(sig.begin(), sig.end()) - sig.begin(); bump(bi, 1); continue; }
+        // 试加：每种资源各加 1，跑满 Tcert 格（不判环）数缺岗，取最少的；同缺岗取归因信号大的，再同取下标小的（与补足阶段相同）。
+        // 默认（g_certadd = 1）：记当前台数的 Tcert 格缺岗 g0；连续 CERT_PATIENCE 次补台 g0 都没有低于此前最低值，判本起点失败（继续补多半是空转）。
+        if (g_certadd == 1) {
+            ll g0 = run(I, Nk, Mj, P, Tcert, false).gaps;
+            if (g0 < best_g0) { best_g0 = g0; stall = 0; } else if (++stall >= CERT_PATIENCE) return {-1, Nk, Mj, "fail", -1};
+        }
+        ll bg = LLONG_MAX, bsig = 0; int bi = -1;
+        for (int idx = 0; idx < nres; idx++) {
+            bump(idx, 1); ll g = run(I, Nk, Mj, P, Tcert, false, -1, nullptr, bg).gaps; bump(idx, -1);   // 超过当前最好值即停（不影响选择）
+            if (bi < 0 || g < bg || (g == bg && sig[idx] > bsig)) { bg = g; bi = idx; bsig = sig[idx]; }
+        }
+        bump(bi, 1);
     }
     return {-1, Nk, Mj, "fail", -1};
 }
@@ -502,6 +571,82 @@ RLP parse_rlp(const Inst& I, const string& fn) {
     return R;
 }
 
+
+// ---------------- T7：RDD 基因型文件、规则选项、定台数 ----------------
+// 基因型文件：行 "W 格"、"ndev n"、"qon x"、"resetopt 0/1"，其余每行 "slot p a"（按槽的顺序）
+struct Geno { ll W = 0; int ndev = 0; double qon = 0.4; bool reset_opt = false; vector<double> g; };   // g = p0 a0 p1 a1 …
+Geno read_geno(const string& fn) {
+    Geno G; ifstream f(fn); if (!f) { fprintf(stderr, "cannot open %s\n", fn.c_str()); exit(1); }
+    string tag; while (f >> tag) {
+        if (tag == "W") f >> G.W; else if (tag == "ndev") f >> G.ndev; else if (tag == "qon") f >> G.qon;
+        else if (tag == "resetopt") { int x; f >> x; G.reset_opt = x; }
+        else if (tag == "slot") { double p, a; f >> p >> a; G.g.push_back(p); G.g.push_back(a); }
+        else { fprintf(stderr, "bad geno tag %s\n", tag.c_str()); exit(1); }
+    }
+    return G;
+}
+// 解码：槽 (p, a) 在 a ≥ 1 − q_on 时激活，作用于第 ⌊p·N_dev⌋ 个窗口决策，u = (a − 1 + q_on)/q_on；同一决策上后一个槽生效
+RDD decode_geno(const vector<double>& g, ll W, int ndev, double qon, bool reset_opt) {
+    RDD D; D.W = W; D.ndev = ndev; D.reset_opt = reset_opt; D.dev.assign(max(ndev, 0), -1.0); D.maxpos = -1;
+    const double thr = 1.0 - qon;
+    for (size_t a = 0; a + 1 < g.size(); a += 2) {
+        double p = g[a], x = g[a + 1];
+        if (ndev <= 0 || x < thr) continue;
+        int pos = (int)floor(p * (double)ndev); if (pos >= ndev) pos = ndev - 1;
+        D.dev[pos] = (x - 1.0 + qon) / qon; D.maxpos = max(D.maxpos, pos);
+    }
+    return D;
+}
+// 规则选项：rlp=文件（R_LP）| w=逗号分隔权重 [lpg=文件] [curdef] [planf=文件]；另有 W=格、resetopt、certadd=why、rdd=基因型文件
+struct Rule { Policy P; bool is_rlp = false, facloop = false; ll W = 0; bool reset_opt = false; string geno; };
+static RLP g_RR;
+Rule parse_rule(const Inst& I, int argc, char** argv, int a0) {
+    Rule U; U.P.w.assign(13, 0);
+    for (int a = a0; a < argc; a++) {
+        string s = argv[a];
+        if (s.rfind("rlp=", 0) == 0) { g_RR = parse_rlp(I, s.substr(4)); U.P.rlp = &g_RR; U.P.curdef = true; U.is_rlp = true; }
+        else if (s.rfind("w=", 0) == 0) { U.P.w.clear(); stringstream ss(s.substr(2)); string x; while (getline(ss, x, ',')) U.P.w.push_back(atof(x.c_str())); }
+        else if (s.rfind("lpg=", 0) == 0) U.P.lpz = parse_lpz(I, s.substr(4), g_N0, g_M0);
+        else if (s == "curdef") U.P.curdef = true;
+        else if (s.rfind("planf=", 0) == 0) { U.P.planf = parse_planf(I, s.substr(6)); U.P.planN = g_planN; U.P.curdef = true; }
+        else if (s.rfind("W=", 0) == 0) U.W = atoll(s.c_str() + 2);
+        else if (s == "resetopt") U.reset_opt = true;
+        else if (s == "facloop") U.facloop = true;
+        else if (s == "certadd=why") g_certadd = 0;
+        else if (s == "certadd=trial60") g_certadd = 2;
+        else if (s.rfind("rdd=", 0) == 0) U.geno = s.substr(4);
+        else { fprintf(stderr, "bad rule option %s\n", s.c_str()); exit(1); }
+    }
+    while (U.P.w.size() < (U.P.lpz.empty() ? 13u : 14u)) U.P.w.push_back(0);
+    return U;
+}
+// 按规则定台数：R_LP 与 rlp 命令相同（起点 LP 取整 × 1.00 / 1.15 / 1.30 / 1.50，取第一个成功的）；线性规则与 es 命令相同（起点 g_N0 或实例默认）。
+// facloop：线性规则也用放大起点循环（起点基数为 g_N0 / g_M0，未设时用实例默认 N0 / M0）。调用后 g_N0 / g_M0 可能被改写，由调用方恢复。
+SizeRes size_rule(const Inst& I, const Policy& P, bool is_rlp, ll Hs, ll Tcert, int* fac_used = nullptr, bool facloop = false) {
+    if (!is_rlp && !facloop) { if (fac_used) *fac_used = 100; return size_res(I, P, Hs, "certs", Tcert); }
+    vector<int> bN = is_rlp ? P.rlp->N0 : (g_N0.empty() ? I.N0 : g_N0), bM = is_rlp ? P.rlp->M0 : (g_M0.empty() ? I.M0 : g_M0);
+    const int facs[4] = {100, 115, 130, 150}; SizeRes sr;
+    for (int fi = 0; fi < 4; fi++) {
+        g_N0.assign(I.nk, 0); g_M0.assign(I.nt, 0);
+        for (int k = 0; k < I.nk; k++) g_N0[k] = (bN[k] * facs[fi] + 99) / 100;
+        for (int j = 0; j < I.nt; j++) g_M0[j] = (bM[j] * facs[fi] + 99) / 100;
+        sr = size_res(I, P, Hs, "certs", Tcert);
+        if (sr.R >= 0) { if (fac_used) *fac_used = facs[fi]; return sr; }
+    }
+    if (fac_used) *fac_used = -1;
+    return sr;
+}
+// 同资源数时的次级比较：从最终台数里任减 1 个资源后，Hs 格内缺岗数的最小值（越小越接近再省一个资源）
+ll near_miss(const Inst& I, const Policy& P, const SizeRes& sr, ll Hs) {
+    vector<int> Nk = sr.Nk, Mj = sr.Mj; ll best = LLONG_MAX;
+    for (int idx = 0; idx < I.nk + I.nt; idx++) {
+        int& v = idx < I.nk ? Nk[idx] : Mj[idx - I.nk];
+        if (v == 0) continue;
+        v--; best = min(best, run(I, Nk, Mj, P, Hs, false, -1, nullptr, best).gaps); v++;
+    }
+    return best == LLONG_MAX ? 0 : best;
+}
+
 string vec_s(const vector<int>& v) { string s = "["; for (size_t i = 0; i < v.size(); i++) s += (i ? "," : "") + to_string(v[i]); return s + "]"; }
 string dvec_s(const vector<double>& v) { string s = "["; char b[32]; for (size_t i = 0; i < v.size(); i++) { snprintf(b, 32, "%s%.4f", i ? "," : "", v[i]); s += b; } return s + "]"; }
 
@@ -516,15 +661,17 @@ int main(int argc, char** argv) {
             if (part == 0) Nk.push_back(atoi(s.c_str())); else if (part == 1) Mj.push_back(atoi(s.c_str()));
             else if (part == 2) w.push_back(atof(s.c_str()));
             else { if (s.rfind("rlp=", 0) == 0) { static RLP RR; RR = parse_rlp(I, s.substr(4)); P.rlp = &RR; P.curdef = true; continue; }
-                   if (s == "reset") P.reset = true; else if (s == "curdef") P.curdef = true; else if (s == "hard") P.hard = true; else if (s == "stagger") { P.stagger = true; P.curdef = true; } else if (s.rfind("quota=", 0) == 0) { P.curdef = true; P.quota = parse_quota(I, s.substr(6)); P.qfrom = g_qfrom; } else if (s.rfind("plan=", 0) == 0) { P.curdef = true; P.plan = parse_plan(I, s.substr(5)); } else if (s.rfind("planf=", 0) == 0) { P.curdef = true; P.planf = parse_planf(I, s.substr(6)); P.planN = g_planN; } else if (s.rfind("Tw=", 0) == 0) P.Tw = atoll(s.c_str() + 3); }
+                   if (s == "reset") P.reset = true; else if (s == "curdef") P.curdef = true; else if (s == "hard") P.hard = true; else if (s == "stagger") { P.stagger = true; P.curdef = true; } else if (s.rfind("quota=", 0) == 0) { P.curdef = true; P.quota = parse_quota(I, s.substr(6)); P.qfrom = g_qfrom; } else if (s.rfind("plan=", 0) == 0) { P.curdef = true; P.plan = parse_plan(I, s.substr(5)); } else if (s.rfind("planf=", 0) == 0) { P.curdef = true; P.planf = parse_planf(I, s.substr(6)); P.planN = g_planN; } else if (s.rfind("Tw=", 0) == 0) P.Tw = atoll(s.c_str() + 3);
+                   else if (s.rfind("lpg=", 0) == 0) { static vector<int> n0, m0; P.lpz = parse_lpz(I, s.substr(4), n0, m0); }
+                   else if (s.rfind("rdd=", 0) == 0) { static RDD DD; Geno G = read_geno(s.substr(4)); DD = decode_geno(G.g, G.W, G.ndev, G.qon, G.reset_opt); P.rdd = &DD; } }
         }
         if (P.reset) P.curdef = true;
-        while (w.size() < 13) w.push_back(0);
+        while (w.size() < (P.lpz.empty() ? 13u : 14u)) w.push_back(0);
         P.w = w;
         Res r = run(I, Nk, Mj, P, Tmax, cert);
         int exact = (r.cert == 1) ? (exact_check(I, Nk, Mj, P, r.enter, r.period) ? 1 : 0) : -1;
-        printf("{\"gaps\": %lld, \"cert\": %d, \"period\": %lld, \"t_end\": %lld, \"exact\": %d, \"resets\": %lld, \"duties\": %lld, \"cyc_resets\": %lld, \"cyc_duties\": %lld}\n",
-               r.gaps, r.cert, r.period, r.t_end, exact, r.resets, r.duties, r.cyc_resets, r.cyc_duties);
+        printf("{\"gaps\": %lld, \"cert\": %d, \"period\": %lld, \"t_end\": %lld, \"exact\": %d, \"resets\": %lld, \"duties\": %lld, \"cyc_resets\": %lld, \"cyc_duties\": %lld, \"ndec_w\": %lld}\n",
+               r.gaps, r.cert, r.period, r.t_end, exact, r.resets, r.duties, r.cyc_resets, r.cyc_duties, r.ndec_w);
         return 0;
     }
     if (cmd == "replay") {   // T4：独立重放显式排班。文件：首行 "N …"、次行 "M …"，其余每行 "t s 机器人 提前大修 q j1 u1 … jq uq"，按 t 排序
@@ -579,7 +726,7 @@ int main(int argc, char** argv) {
     if (cmd == "rlp") {   // R_LP：定台数 + 复核
         RLP RR = parse_rlp(I, argv[3]); ll Hs = atoll(argv[4]), Tcert = atoll(argv[5]), Tver = atoll(argv[6]);
         Policy P; P.w.assign(13, 0); P.rlp = &RR; P.curdef = true;
-        for (int a = 7; a < argc; a++) { string s = argv[a]; if (s.rfind("planf=", 0) == 0) { P.planf = parse_planf(I, s.substr(6)); P.planN = g_planN; } }
+        for (int a = 7; a < argc; a++) { string s = argv[a]; if (s.rfind("planf=", 0) == 0) { P.planf = parse_planf(I, s.substr(6)); P.planN = g_planN; } else if (s == "certadd=why") g_certadd = 0; else if (s == "certadd=trial60") g_certadd = 2; }
         auto t0 = chrono::steady_clock::now();
         // 定台数：从 LP 取整出发跑 rost4 的"补足 / 回删 + 证书"循环；失败（加 60 次仍有缺岗）时把起点放大到 1.15、1.3、1.5 倍再跑，取第一个成功的
         const int facs[4] = {100, 115, 130, 150}; int fac_used = -1; SizeRes sr;
@@ -601,13 +748,96 @@ int main(int argc, char** argv) {
                v.gaps, v.cert, v.period, v.enter, v.t_end, exact, v.resets, v.duties, v.cyc_resets, fac_used, sec_size, sec);
         return 0;
     }
+    if (cmd == "size") {   // T7：给定规则（可带 rdd=基因型文件）定台数 + Tverify 格复核
+        ll Hs = atoll(argv[3]), Tcert = atoll(argv[4]), Tver = atoll(argv[5]);
+        Rule U = parse_rule(I, argc, argv, 6); RDD DD;
+        if (!U.geno.empty()) { Geno G = read_geno(U.geno); DD = decode_geno(G.g, G.W, G.ndev, G.qon, G.reset_opt); U.P.rdd = &DD; }
+        auto t0 = chrono::steady_clock::now(); int fac = 0;
+        SizeRes sr = size_rule(I, U.P, U.is_rlp, Hs, Tcert, &fac, U.facloop);
+        Res v = (sr.R < 0) ? Res{-1, -2, -1, -1, {}, {}} : run(I, sr.Nk, sr.Mj, U.P, Tver, true);
+        int exact = (v.cert == 1) ? (exact_check(I, sr.Nk, sr.Mj, U.P, v.enter, v.period) ? 1 : 0) : -1;
+        ll nm = sr.R < 0 ? -1 : near_miss(I, U.P, sr, Hs);
+        double sec = chrono::duration<double>(chrono::steady_clock::now() - t0).count();
+        printf("{\"R\": %d, \"status\": \"%s\", \"Nk\": %s, \"Mj\": %s, \"start_factor\": %d, \"near_miss\": %lld, \"verify_gaps\": %lld, \"verify_cert\": %d, \"verify_period\": %lld, \"exact\": %d, \"resets\": %lld, \"ndec_w\": %lld, \"sec\": %.2f}\n",
+               sr.R, sr.status.c_str(), vec_s(sr.Nk).c_str(), vec_s(sr.Mj).c_str(), fac, nm, v.gaps, v.cert, v.period, exact, v.resets, v.ndec_w, sec);
+        return 0;
+    }
+    if (cmd == "rdd") {    // T7/T8：RDD 的 (μ + λ) 进化。基因型 K 个槽 (p, a)，每个基因以 1/(2K) 的概率重抽
+        ll Hs = atoll(argv[3]), Tcert = atoll(argv[4]), Tver = atoll(argv[5]);
+        int gens = atoi(argv[6]), mu = atoi(argv[7]), lam = atoi(argv[8]); ull seed = strtoull(argv[9], 0, 10);
+        double rho = atof(argv[10]), qon = atof(argv[11]);
+        Rule U = parse_rule(I, argc, argv, 12);
+        vector<int> N0s = g_N0, M0s = g_M0;     // 线性规则的定台数起点（size_rule 对 R_LP 会改写 g_N0，这里线性规则不受影响）
+        auto t0 = chrono::steady_clock::now();
+        // 1) 默认规则本身：定台数 + 复核；N_dev = 默认规则在其台数下窗口 [0, W) 内的决策数
+        int fac0 = 0; SizeRes s0 = size_rule(I, U.P, U.is_rlp, Hs, Tcert, &fac0, U.facloop);
+        g_N0 = N0s; g_M0 = M0s;
+        Res v0 = (s0.R < 0) ? Res{-1, -2, -1, -1, {}, {}} : run(I, s0.Nk, s0.Mj, U.P, Tver, true);
+        int ex0 = (v0.cert == 1) ? (exact_check(I, s0.Nk, s0.Mj, U.P, v0.enter, v0.period) ? 1 : 0) : -1;
+        RDD E; E.W = U.W; E.ndev = 0; E.maxpos = -1; Policy Pc = U.P; Pc.rdd = &E;
+        int ndev = (int)run(I, s0.Nk, s0.Mj, Pc, U.W, false).ndec_w;
+        int K = max(1, (int)ceil(rho * (double)ndev / qon - 1e-9));
+        double sec0 = chrono::duration<double>(chrono::steady_clock::now() - t0).count();
+        // 2) 进化
+        mt19937_64 rng(seed); uniform_real_distribution<double> U01(0, 1);
+        struct Ind { vector<double> g; double f1; ll f2; SizeRes s; };
+        long long ndec_run = 0;
+        auto fit = [&](Ind& x) {
+            RDD D = decode_geno(x.g, U.W, ndev, qon, U.reset_opt); Policy P = U.P; P.rdd = &D;
+            g_N0 = N0s; g_M0 = M0s;
+            x.s = size_rule(I, P, U.is_rlp, Hs, Tcert, nullptr, U.facloop); ndec_run++;
+            x.f1 = x.s.R < 0 ? 999 : x.s.R + (x.s.status == "uncert" ? 3.0 : 0.0);
+            x.f2 = x.s.R < 0 ? LLONG_MAX : near_miss(I, P, x.s, Hs);
+        };
+        auto better = [](const Ind& a, const Ind& b) { return a.f1 < b.f1 || (a.f1 == b.f1 && a.f2 < b.f2); };
+        vector<Ind> pop;
+        for (int a = 0; a < mu + lam; a++) {
+            Ind x; x.g.assign(2 * K, 0.0);
+            if (a > 0) for (auto& v : x.g) v = U01(rng);      // 个体 0：全部槽关闭（即默认规则）
+            fit(x); pop.push_back(x);
+        }
+        stable_sort(pop.begin(), pop.end(), better); pop.resize(mu);
+        vector<double> hist = {pop[0].f1}; long long nsame = 0;
+        const double pm = 1.0 / (2.0 * K);
+        for (int gi = 0; gi < gens; gi++) {
+            vector<Ind> kids;
+            for (int c = 0; c < lam; c++) {
+                const Ind& pa = pop[uniform_int_distribution<int>(0, mu - 1)(rng)];
+                Ind x; x.g = pa.g; bool ch = false;
+                for (auto& v : x.g) if (U01(rng) < pm) { v = U01(rng); ch = true; }
+                if (!ch) { x.f1 = pa.f1; x.f2 = pa.f2; x.s = pa.s; nsame++; }   // 没有基因变化：解码结果相同，直接沿用
+                else fit(x);
+                kids.push_back(x);
+            }
+            for (auto& k : kids) pop.push_back(k);
+            stable_sort(pop.begin(), pop.end(), better); pop.resize(mu);
+            hist.push_back(pop[0].f1);
+        }
+        const Ind& b = pop[0];
+        RDD Db = decode_geno(b.g, U.W, ndev, qon, U.reset_opt); Policy Pb = U.P; Pb.rdd = &Db;
+        Res v = (b.s.R < 0) ? Res{-1, -2, -1, -1, {}, {}} : run(I, b.s.Nk, b.s.Mj, Pb, Tver, true);
+        int exact = (v.cert == 1) ? (exact_check(I, b.s.Nk, b.s.Mj, Pb, v.enter, v.period) ? 1 : 0) : -1;
+        int nact = 0; for (double u : Db.dev) if (u >= 0) nact++;
+        double sec = chrono::duration<double>(chrono::steady_clock::now() - t0).count();
+        string hs = "["; char buf[40]; for (size_t i = 0; i < hist.size(); i++) { snprintf(buf, 40, "%s%.1f", i ? "," : "", hist[i]); hs += buf; } hs += "]";
+        string gs = "["; for (size_t i = 0; i < b.g.size(); i++) { snprintf(buf, 40, "%s%.17g", i ? "," : "", b.g[i]); gs += buf; } gs += "]";
+        printf("{\"base_R\": %d, \"base_status\": \"%s\", \"base_Nk\": %s, \"base_Mj\": %s, \"base_factor\": %d, \"base_verify_gaps\": %lld, \"base_verify_cert\": %d, \"base_exact\": %d, \"base_sec\": %.2f, "
+               "\"W\": %lld, \"ndev\": %d, \"K\": %d, \"rho\": %g, \"qon\": %g, \"seed\": %llu, "
+               "\"R\": %d, \"status\": \"%s\", \"Nk\": %s, \"Mj\": %s, \"near_miss\": %lld, \"verify_gaps\": %lld, \"verify_cert\": %d, \"verify_period\": %lld, \"exact\": %d, \"resets\": %lld, "
+               "\"n_active\": %d, \"decodes\": %lld, \"reused\": %lld, \"sec\": %.1f, \"hist\": %s, \"genes\": %s}\n",
+               s0.R, s0.status.c_str(), vec_s(s0.Nk).c_str(), vec_s(s0.Mj).c_str(), fac0, v0.gaps, v0.cert, ex0, sec0,
+               U.W, ndev, K, rho, qon, seed,
+               b.s.R, b.s.status.c_str(), vec_s(b.s.Nk).c_str(), vec_s(b.s.Mj).c_str(), b.f2 == LLONG_MAX ? -1 : b.f2, v.gaps, v.cert, v.period, exact, v.resets,
+               nact, ndec_run, nsame, sec, hs.c_str(), gs.c_str());
+        return 0;
+    }
     if (cmd == "es") {
         string mode = argv[3]; ll H = atoll(argv[4]); int gens = atoi(argv[5]), mu = atoi(argv[6]), lam = atoi(argv[7]);
         ull seed = strtoull(argv[8], 0, 10); ll Tcert = atoll(argv[9]), Tver = atoll(argv[10]);
         bool gp = false, o_reset = false, o_curdef = false, o_hard = false, o_pad = false, o_stag = false; ll o_Tw = 0; vector<vector<int>> o_quota; vector<vector<vector<pair<ll,int>>>> o_plan; vector<vector<vector<pair<ll,double>>>> o_planf; vector<vector<double>> o_lpz;
         for (int a = 11; a < argc; a++) { string s = argv[a];
             if (s == "gp") gp = true; else if (s == "reset") o_reset = true; else if (s == "curdef") o_curdef = true; else if (s == "hard") o_hard = true; else if (s == "pad") o_pad = true; else if (s == "stagger") o_stag = true; else if (s.rfind("quota=", 0) == 0) o_quota = parse_quota(I, s.substr(6)); else if (s.rfind("plan=", 0) == 0) o_plan = parse_plan(I, s.substr(5)); else if (s.rfind("planf=", 0) == 0) o_planf = parse_planf(I, s.substr(6)); else if (s.rfind("lpg=", 0) == 0) o_lpz = parse_lpz(I, s.substr(4), g_N0, g_M0);
-            else if (s.rfind("Tw=", 0) == 0) o_Tw = atoll(s.c_str() + 3); }
+            else if (s.rfind("Tw=", 0) == 0) o_Tw = atoll(s.c_str() + 3); else if (s == "certadd=why") g_certadd = 0; else if (s == "certadd=trial60") g_certadd = 2; }
         if (o_reset || o_stag || !o_quota.empty() || !o_plan.empty() || !o_planf.empty()) o_curdef = true;
         const int NW = !o_lpz.empty() ? 14 : ((o_reset || o_pad) ? 13 : 8);   // pad：维度和随机数流与 reset 相同，但从不提前大修（对照组）
         mt19937_64 rng(seed); normal_distribution<double> N01(0, 1); GP G(rng);

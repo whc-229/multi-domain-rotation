@@ -37,3 +37,5 @@ results/T3/rlp/*.lock
 .venv_cpsat/
 results/**/*.lock
 results/T3/rlp/
+results/T6/rules/
+results/T7/geno/
