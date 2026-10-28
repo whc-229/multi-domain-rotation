@@ -1,0 +1,3 @@
+/home/hk/多域轮转/results/T2/jobs/m08-K1-03__fr__m4__retry1.json	23400	cd /home/hk/多域轮转 && python3 code/t2_job.py m08-K1-03 fr 4 --tag retry1 --perm 2 --crossover off --tl 21600
+/home/hk/多域轮转/results/T2/jobs/m08-K1-03__frR__m4__retry1.json	23400	cd /home/hk/多域轮转 && python3 code/t2_job.py m08-K1-03 frR 4 --tag retry1 --perm 2 --crossover off --tl 21600
+/home/hk/多域轮转/results/T2/jobs/m10-K12-03__frR__m4__retry1.json	23400	cd /home/hk/多域轮转 && python3 code/t2_job.py m10-K12-03 frR 4 --tag retry1 --perm 2 --crossover off --tl 21600

@@ -1,0 +1,1 @@
+/home/hk/多域轮转/results/T2/jobs/m10-K12-01__frR__m4__retry1.json	23400	cd /home/hk/多域轮转 && python3 code/t2_job.py m10-K12-01 frR 4 --tag retry1 --crossover off --tl 21600

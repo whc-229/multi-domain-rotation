@@ -1,5 +1,6 @@
 """T2 汇总：合并 results/T2/jobs/*.json → results/T2_bounds.jsonl（每个 (实例, H 倍数) 一行），并按 (m, 族) 打印 Markdown 表。
-每行：实例、m、族、H 倍数、H、R_rate、R_rate_int、LP_fr、LP_fr^R、用时、是否解到最优、对偶证书最大违反量；
+每行：实例、m、族、H 倍数、H、R_rate、R_rate_int、LP_fr、LP_fr^R、用时、是否解到最优、对偶证书最大违反量、
+是否做了 crossover（{fr,frR}_crossover：1 = 顶点解；0 = 关 crossover 的重跑，内点解）；
 4S 行另有 "收敛" 字段 = LP(4S) − LP(2S)（两者都解出时）。
 用法：python3 code/t2_summary.py [结果目录] [输出 jsonl]"""
 import os, sys, json, glob, math
@@ -14,6 +15,7 @@ def solved(d):
 
 
 FAILED = []      # 原始运行失败的作业：(实例, 种类, 倍数, 状态, 是否已由重跑补上)
+ATTEMPTS = []    # 重跑过的作业两次尝试的对照：dict(key, 第一次状态 / 用时, 重跑状态 / 用时 / 设置)
 
 
 def load(jdir):
@@ -24,6 +26,16 @@ def load(jdir):
         old = rec.get(key)
         if old is None or (not solved(old) and solved(d)) or (not solved(old) and not d.get("tag")): rec[key] = d
         if d["kind"] != "rate" and not d.get("tag") and not solved(d): FAILED.append(key + (d.get("lp_status"),))
+    # 正式运行没有留下结果文件（进程异常退出，例如段错误）但有重跑记录的，也算原始运行失败
+    allp = [json.loads(open(p).read()) for p in sorted(glob.glob(os.path.join(jdir, "*.json")))]
+    orig = {(d["inst"], d["kind"], d["mult"]): d for d in allp if not d.get("tag")}
+    for d in allp:
+        if not d.get("tag"): continue
+        key = (d["inst"], d["kind"], d["mult"]); o = orig.get(key)
+        if o is None: FAILED.append(key + ("无结果文件（进程异常退出）",))
+        ATTEMPTS.append(dict(key=key, first_status=o.get("lp_status") if o else "无结果文件（进程异常退出）", first_sec=o.get("wall") if o else None,
+                             retry_status=d.get("lp_status"), retry_sec=d.get("wall"), perm=d.get("perm"), crossover=d.get("crossover"),
+                             retry_tl=d.get("tl"), obj=d.get("obj_full"), dual_obj=d.get("dual_obj")))
     FAILED[:] = [f + (solved(rec[f[:3]]),) for f in FAILED]
     return rec
 
@@ -45,6 +57,7 @@ def merge(rec):
                 # LP 值取原始目标与证书对偶目标中较小的一个（关 crossover 的重跑两者差 ~1e-7，正式运行两者相同到 1e-11）
                 row[f"LP_{tag}"] = min(d["obj_full"], d.get("dual_obj", d["obj_full"])) if ok else None
                 row[f"{tag}_rerun"] = d.get("tag")
+                row[f"{tag}_crossover"] = 0 if d.get("crossover") == "off" else 1
                 row[f"{tag}_done"] = ok
                 row[f"{tag}_sec"] = d.get("wall")
                 row[f"{tag}_cert_viol"] = max(d.get("path_viol", math.nan), d.get("tool_viol", math.nan), d.get("wait_viol", math.nan), d.get("M_viol", math.nan)) if ok else None
@@ -128,6 +141,16 @@ def check_table(rows):
             f"- 正式运行失败：{len(FAILED)} 个" + "".join(f"\n  - {a} {b} {c:g}S：{st}；{'已由重跑补上' if ok else '未补上'}" for a, b, c, st, ok in FAILED)) if v else "- 尚无结果"
 
 
+def attempts_table():
+    """重跑过的 LP：两次尝试的状态与用时。"""
+    L = ["| 实例 | 种类 | H | 第一次 | 用时 (秒) | 重跑设置 | 重跑结果 | 用时 (秒) | 原始目标 − 证书对偶目标 |", "|---|---|---|---|---|---|---|---|---|"]
+    for a in sorted(ATTEMPTS, key=lambda a: a["key"]):
+        n, k, m = a["key"]; fs = "—" if a["first_sec"] is None else f"{a['first_sec']:.0f}"
+        gap = "—" if a["obj"] is None or a["dual_obj"] is None else f"{a['obj'] - a['dual_obj']:.1e}"
+        L.append(f"| {n} | {k} | {m:g}S | {a['first_status']} | {fs} | 重排种子 {a['perm']}，crossover {a['crossover']} | {a['retry_status']} | {a['retry_sec']:.0f} | {gap} |")
+    return "\n".join(L)
+
+
 if __name__ == "__main__":
     jdir = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "results", "T2", "jobs")
     outp = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, "results", "T2_bounds.jsonl")
@@ -135,4 +158,4 @@ if __name__ == "__main__":
     with open(outp + ".tmp", "w") as fo:
         for r in rows: fo.write(json.dumps(r, ensure_ascii=False) + "\n")
     os.replace(outp + ".tmp", outp)
-    print(tables(rows, 4.0)); print(); print(tables(rows, 2.0)); print(); print(conv_table(rows)); print(); print(time_table(rows)); print(); print(check_table(rows))
+    print(tables(rows, 4.0)); print(); print(tables(rows, 2.0)); print(); print(conv_table(rows)); print(); print(time_table(rows)); print(); print(check_table(rows)); print(); print(attempts_table())
