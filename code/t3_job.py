@@ -20,8 +20,8 @@ RLP_KINDS = ["fresh_rlp", "fresh_noreset", "steady", "fresh_rlp_c", "fresh_nores
 def deps_ok(name):
     j = t3_make_rlp.T2J; d = t3_make_rlp.T2D
     need = [os.path.join(j, f"{name}__rate__m0.json")] + \
-           [os.path.join(d, f"{name}__{k}__m4.npz") for k in ("fr", "frR")]
-    return all(os.path.exists(p) for p in need)
+           [t3_make_rlp.dual_path(name, k, 4, d) for k in ("fr", "frR")]
+    return all(p is not None and os.path.exists(p) for p in need)
 
 
 def ensure_rules(name):

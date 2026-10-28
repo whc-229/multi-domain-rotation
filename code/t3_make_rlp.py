@@ -11,7 +11,7 @@
 planf：与 prior 的 make_planf.py 相同的格式与口径（#N LP 台数；k i D 流量，只保留 D < H/2 的提前大修流）。
 诊断变体 *_c：缩放分母用 ⌈N_LP⌉（NLPq = 1e6·⌈N_LP⌉，planf 的 #N 同样取整），其余相同。
 用法：python3 code/t3_make_rlp.py <实例名>    → results/T3/rlp/<实例名>__{fresh_rlp, fresh_noreset, steady, fresh_rlp_c, fresh_noreset_c}.rlp 与 .planf"""
-import os, sys, json, math
+import os, glob, sys, json, math
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import ROOT, load_train  # noqa: E402
@@ -104,6 +104,15 @@ def write_lpg(path, H, N, M, flows):
         for (k, s), x in dz.items(): f.write(f"z {k} {s} {x / tot[s]:.4f}\n")
 
 
+def dual_path(name, kind, mult=4, t2d=T2D):
+    """T2 对偶文件路径：优先正式运行的 <名>__<kind>__m4.npz；没有时用失败后重跑（--tag）得到的 <名>__<kind>__m4__<tag>.npz。
+    npz 只在 LP 解到最优时才写出，所以存在即可用。都没有时返回 None。"""
+    base = os.path.join(t2d, f"{name}__{kind}__m{mult:g}.npz")
+    if os.path.exists(base): return base
+    alt = sorted(glob.glob(os.path.join(t2d, f"{name}__{kind}__m{mult:g}__*.npz")))
+    return alt[0] if alt else None
+
+
 def make(name, out=OUT, t2j=T2J, t2d=T2D, mult=4):
     """生成三份规则文件和一份 planf。"""
     os.makedirs(out, exist_ok=True)
@@ -115,7 +124,7 @@ def make(name, out=OUT, t2j=T2J, t2d=T2D, mult=4):
     ceil = lambda v: int(math.ceil(v - 1e-6))
     info = {}
     for tag, kind in [("fresh_rlp", "frR"), ("fresh_noreset", "fr")]:
-        d = np.load(os.path.join(t2d, f"{name}__{kind}__m{mult:g}.npz"))
+        d = np.load(dual_path(name, kind, mult, t2d))
         H = int(d["H"]); N = d["N"]; M = d["M"]; fl = d["duty_flow"]
         info[tag] = write_rlp(os.path.join(out, f"{name}__{tag}.rlp"), I, H, False, N, [ceil(v) for v in N], [ceil(v) for v in M], fl, y)
         if kind == "frR":

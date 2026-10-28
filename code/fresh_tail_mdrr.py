@@ -17,7 +17,6 @@ import numpy as np
 from scipy.sparse import coo_matrix
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import U, ToolInst, load_train  # noqa: E402
-import highspy  # noqa: E402
 
 
 def combos(TI, k):
@@ -131,6 +130,7 @@ def build(I, T, P, reset):
 
 def solve(I, T, P, reset, time_limit, integer=True, opts=None):
     """求解；返回结果 dict（含非零流）。"""
+    import highspy      # 放在函数内：code/t4_cpsat.py 只用 build()，而 OR-Tools 与 highspy 不能在同一进程里同时加载
     t0 = time.time()
     M = build(I, T, P, reset)
     A = M["A"]; n, m = A.shape[1], A.shape[0]

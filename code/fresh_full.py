@@ -11,43 +11,54 @@ import scipy.optimize  # noqa: E402
 import highspy  # noqa: E402
 import freshlb  # noqa: E402
 
-_cfg = dict(solver="ipm", time_limit=3600.0, keep=None)
+_cfg = dict(solver="ipm", time_limit=3600.0, keep=None, perm=None, crossover="on")
 
 
-def highs_from_eq(c, A, b, solver, time_limit):
-    """min c·x，A x = b，x ≥ 0。返回 (Highs 对象, 状态字符串)。"""
-    A = A.tocsc()
+def highs_from_eq(c, A, b, solver, time_limit, perm=None, crossover="on"):
+    """min c·x，A x = b，x ≥ 0。返回 (Highs 对象, 状态字符串, 原顺序的 x, 原顺序的行对偶)。
+    perm 为整数时先把行、列按该种子随机重排再求解（LP 不变，只改变 IPX 分解的主元次序；m15-K1-00 的 frR 4S
+    在原顺序下 IPX 稳定地数值失败，重排后可解），解和对偶再按原顺序放回。crossover 对应 HiGHS 的 run_crossover。"""
+    A = A.tocsc(); c = np.asarray(c, float); b = np.asarray(b, float)
+    n, m = A.shape[1], A.shape[0]
+    if perm is not None:
+        rng = np.random.default_rng(perm); pc = rng.permutation(n); pr = rng.permutation(m)
+        A = A[pr][:, pc].tocsc(); c = c[pc]; b = b[pr]
     h = highspy.Highs(); h.setOptionValue("output_flag", False)
     h.setOptionValue("threads", 1)
     h.setOptionValue("solver", solver)
     h.setOptionValue("time_limit", float(time_limit))
+    h.setOptionValue("run_crossover", crossover)
     lp = highspy.HighsLp()
-    n, m = A.shape[1], A.shape[0]
     lp.num_col_ = n; lp.num_row_ = m
-    lp.col_cost_ = np.asarray(c, float); lp.col_lower_ = np.zeros(n); lp.col_upper_ = np.full(n, highspy.kHighsInf)
-    lp.row_lower_ = np.asarray(b, float); lp.row_upper_ = np.asarray(b, float)
+    lp.col_cost_ = c; lp.col_lower_ = np.zeros(n); lp.col_upper_ = np.full(n, highspy.kHighsInf)
+    lp.row_lower_ = b; lp.row_upper_ = b
     lp.a_matrix_.format_ = highspy.MatrixFormat.kColwise
     lp.a_matrix_.start_ = A.indptr; lp.a_matrix_.index_ = A.indices; lp.a_matrix_.value_ = A.data
     lp.a_matrix_.num_col_ = n; lp.a_matrix_.num_row_ = m
     h.passModel(lp)
     h.run()
-    return h, h.modelStatusToString(h.getModelStatus())
+    st = h.modelStatusToString(h.getModelStatus())
+    sol = h.getSolution()
+    x = np.array(sol.col_value); y = np.array(sol.row_dual)
+    if perm is not None and len(x) == n and len(y) == m:
+        xo = np.empty(n); xo[pc] = x; yo = np.empty(m); yo[pr] = y; x, y = xo, yo
+    return h, st, x, y
 
 
 def _solve(c, A_eq=None, b_eq=None, bounds=None, method=None, options=None):
     """替换 scipy.optimize.linprog：只支持 fresh_lb 用到的形式（等式、x ≥ 0）。"""
-    h, st = highs_from_eq(c, A_eq, b_eq, _cfg["solver"], _cfg["time_limit"])
+    h, st, xs, ys = highs_from_eq(c, A_eq, b_eq, _cfg["solver"], _cfg["time_limit"], _cfg["perm"], _cfg["crossover"])
     ok = st == "Optimal"
-    sol = h.getSolution()
-    x = np.array(sol.col_value) if ok else None
+    x = xs if ok else None
     if _cfg["keep"] is not None:
-        _cfg["keep"].update(c=c, A=A_eq, b=b_eq, status=st, row_dual=np.array(sol.row_dual) if ok else None, x=x)
+        _cfg["keep"].update(c=c, A=A_eq, b=b_eq, status=st, row_dual=ys if ok else None, x=x)
     return types.SimpleNamespace(x=x, fun=h.getInfo().objective_function_value if ok else None, status=0 if ok else st)
 
 
-def fresh_full(I, H, reset=False, solver="ipm", time_limit=3600, keep=None, want_plan=False):
-    """调用 freshlb.fresh_lb（tools=True，LP），用 highspy 求解。keep 为 dict 时存下矩阵、对偶与解。"""
-    _cfg.update(solver=solver, time_limit=time_limit, keep=keep)
+def fresh_full(I, H, reset=False, solver="ipm", time_limit=3600, keep=None, want_plan=False, perm=None, crossover="on"):
+    """调用 freshlb.fresh_lb（tools=True，LP），用 highspy 求解。keep 为 dict 时存下矩阵、对偶与解。
+    perm、crossover 见 highs_from_eq（默认与正式运行一致：不重排、做 crossover）。"""
+    _cfg.update(solver=solver, time_limit=time_limit, keep=keep, perm=perm, crossover=crossover)
     old = scipy.optimize.linprog
     scipy.optimize.linprog = _solve
     try:

@@ -8,10 +8,23 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import ROOT  # noqa: E402
 
 
+def solved(d):
+    """该条 LP 结果是否解到最优。"""
+    return d.get("obj") is not None and d.get("lp_status") == "Optimal"
+
+
+FAILED = []      # 原始运行失败的作业：(实例, 种类, 倍数, 状态, 是否已由重跑补上)
+
+
 def load(jdir):
+    """读入全部结果。同一 (实例, 种类, 倍数) 有正式运行和重跑（--tag）两份时，取解到最优的那份；都成功时取正式运行。"""
     rec = {}
-    for p in glob.glob(os.path.join(jdir, "*.json")):
-        d = json.loads(open(p).read()); rec[(d["inst"], d["kind"], d["mult"])] = d
+    for p in sorted(glob.glob(os.path.join(jdir, "*.json"))):
+        d = json.loads(open(p).read()); key = (d["inst"], d["kind"], d["mult"])
+        old = rec.get(key)
+        if old is None or (not solved(old) and solved(d)) or (not solved(old) and not d.get("tag")): rec[key] = d
+        if d["kind"] != "rate" and not d.get("tag") and not solved(d): FAILED.append(key + (d.get("lp_status"),))
+    FAILED[:] = [f + (solved(rec[f[:3]]),) for f in FAILED]
     return rec
 
 
@@ -28,8 +41,10 @@ def merge(rec):
                        R_rate=rate and rate["R_rate"], R_rate_int=rate and rate["R_rate_int"])
             for tag, d in (("fr", fr), ("frR", frR)):
                 if d is None: row[f"LP_{tag}"] = None; row[f"{tag}_done"] = False; continue
-                ok = d.get("obj") is not None and d.get("lp_status") == "Optimal"
-                row[f"LP_{tag}"] = d.get("obj_full") if ok else None
+                ok = solved(d)
+                # LP 值取原始目标与证书对偶目标中较小的一个（关 crossover 的重跑两者差 ~1e-7，正式运行两者相同到 1e-11）
+                row[f"LP_{tag}"] = min(d["obj_full"], d.get("dual_obj", d["obj_full"])) if ok else None
+                row[f"{tag}_rerun"] = d.get("tag")
                 row[f"{tag}_done"] = ok
                 row[f"{tag}_sec"] = d.get("wall")
                 row[f"{tag}_cert_viol"] = max(d.get("path_viol", math.nan), d.get("tool_viol", math.nan), d.get("wait_viol", math.nan), d.get("M_viol", math.nan)) if ok else None
@@ -109,7 +124,8 @@ def check_table(rows):
     v = [r.get(f"{t}_cert_viol") for r in rows for t in ("fr", "frR") if r.get(f"{t}_cert_viol") is not None]
     im = [r.get(f"{t}_index_mismatch") for r in rows for t in ("fr", "frR") if r.get(f"{t}_index_mismatch") is not None]
     return (f"- 对偶证书：{len(v)} 个 LP，最大违反量 {max(v):.1e}；超过 1e-6 的 {sum(x > 1e-6 for x in v)} 个。\n"
-            f"- 索引重建比对：{len(im)} 个 LP，不一致非零元合计 {sum(im)}。") if v else "- 尚无结果"
+            f"- 索引重建比对：{len(im)} 个 LP，不一致非零元合计 {sum(im)}。\n"
+            f"- 正式运行失败：{len(FAILED)} 个" + "".join(f"\n  - {a} {b} {c:g}S：{st}；{'已由重跑补上' if ok else '未补上'}" for a, b, c, st, ok in FAILED)) if v else "- 尚无结果"
 
 
 if __name__ == "__main__":

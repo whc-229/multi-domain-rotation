@@ -118,11 +118,12 @@ def certificate(I, H, reset, idx, y_full, obj):
                 dual_obj=dual_obj, dual_gap=dual_obj - obj, pi=pi, mu=mu, cg=cg)
 
 
-def fresh_job(I, H, reset, dual_path):
+def fresh_job(I, H, reset, dual_path, perm=None, crossover="on", tl=6 * 3600):
+    """整体 LP + 对偶证书 + 保存对偶与值岗流。perm / crossover / tl 只在重跑（--tag）时改动，见 main。"""
     from fresh_full import fresh_full
     keep = {}
     t0 = time.time()
-    r = fresh_full(I, H, reset=reset, solver="ipm", time_limit=6 * 3600, keep=keep)
+    r = fresh_full(I, H, reset=reset, solver="ipm", time_limit=tl, keep=keep, perm=perm, crossover=crossover)
     sec = time.time() - t0
     out = dict(obj=r["obj"], N=r.get("N"), M=r.get("M"), lp_status=keep.get("status"), n=r.get("n"), sec=round(sec, 1))
     if r["obj"] is None or keep.get("row_dual") is None: return out
@@ -152,9 +153,17 @@ def fresh_job(I, H, reset, dual_path):
 
 
 def main():
-    inst, kind, mult = sys.argv[1], sys.argv[2], float(sys.argv[3])
+    """用法：t2_job.py <实例> <rate|fr|frR> <倍数> [--tag 名 --perm 种子 --crossover on|off --tl 秒]。
+    --tag 用于失败作业的重跑：结果写到 <原名>__<tag>.json（不覆盖原结果），汇总时取求解成功的那一份。"""
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("inst"); ap.add_argument("kind"); ap.add_argument("mult", type=float)
+    ap.add_argument("--tag"); ap.add_argument("--perm", type=int); ap.add_argument("--crossover", default="on")
+    ap.add_argument("--tl", type=float, default=6 * 3600)
+    a = ap.parse_args()
+    inst, kind, mult = a.inst, a.kind, a.mult
     os.makedirs(OUT, exist_ok=True); os.makedirs(DUAL, exist_ok=True)
-    name = job_name(inst, kind, mult)
+    name = job_name(inst, kind, mult) + (f"__{a.tag}" if a.tag else "")
     path = os.path.join(OUT, name + ".json")
     if os.path.exists(path):
         print("已完成，跳过", name); return
@@ -165,7 +174,8 @@ def main():
     if kind == "rate":
         rec.update(rate_job(I))
     else:
-        rec.update(fresh_job(I, H, kind == "frR", os.path.join(DUAL, name + ".npz")))
+        rec.update(fresh_job(I, H, kind == "frR", os.path.join(DUAL, name + ".npz"), a.perm, a.crossover, a.tl))
+        if a.tag: rec.update(tag=a.tag, perm=a.perm, crossover=a.crossover, tl=a.tl)
     rec["wall"] = round(time.time() - t0, 1)
     tmp = path + ".tmp"
     with open(tmp, "w") as f: f.write(json.dumps(rec, ensure_ascii=False) + "\n")
