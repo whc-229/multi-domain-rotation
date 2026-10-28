@@ -1,11 +1,12 @@
-"""T4 汇总：m ∈ {2, 3} 训练实例上的上下界与差距拆分。输出 results/T4_gap.jsonl 和 markdown 表。
+"""T4 汇总：m ∈ {2, 3} 训练实例上的上下界与差距拆分。输出 results/T4_exact.jsonl 和 markdown 表。
 
 两个场景分开算（全新启动）：
 - 不允许提前大修：上界只取 resets == 0 的已证明解；下界 = max(⌈LP_fr(4S)⌉, ILP 下界 r0)。R_LP 取 fresh_noreset。
 - 允许提前大修：上界取全部已证明解；下界 = max(⌈LP_fr^R(4S)⌉, ILP 下界 r1)。R_LP 取 fresh_rlp。
-已证明 = 仿真器判出循环（环内无缺岗）且精确重放通过（proven == 1）。稳态场景（steady）的解不是全新启动的解，不参与。
+可行解 = 严格证明（仿真器判出循环、环内无缺岗、精确重放通过，proven == 1）或 60 万格复核 0 缺岗（verify_gaps == 0），与规矩 6 一致。稳态场景（steady）的解不是全新启动的解，不参与。
 上界来源：T3 的 R_LP 各变体与 ES（10 代 × 3 种子），T4 的 esub（30 代 × 3 种子）。
 差距拆分：R_LP − 下界 = (R_LP − 最好上界) + (最好上界 − 下界)；前一项是规则相对已知最好排班的损失，后一项是上下界之间尚未确定的部分。
+表中两项都在 R_LP、上界、下界齐全的实例上平均；百分比分别相对上界、下界；规则损失占比 = 前一项 / (前一项 + 后一项)。
 用法：python3 code/t4_summary.py"""
 import os, sys, json, glob, math
 from collections import defaultdict
@@ -29,19 +30,22 @@ def lp_bounds():
 
 
 def ilp_bounds():
-    """T4 的 ILP 下界：{实例: {0: (LB, 状态, 用时), 1: …}}。"""
+    """T4 的 ILP 下界：{实例: {0: (LB, 状态, 用时), 1: …}}。
+    限时内连根节点 LP 都没解完时 HiGHS 的对偶界是 0，这种情况记 LB = None、状态"根节点未解完"，不当作下界 0 参与平均。"""
     b = defaultdict(dict)
     for d in load_jobs(os.path.join(ROOT, "results", "T4", "jobs", "*__lb__*.json")):
-        b[d["inst"]][d["reset"]] = (d.get("LB"), d.get("status"), d.get("wall"))
+        bad = d.get("bound") is None or d["bound"] <= 0
+        b[d["inst"]][d["reset"]] = (None if bad else d.get("LB"), "根节点未解完" if bad else d.get("status"), d.get("wall"))
     return b
 
 
 def solutions():
-    """所有全新启动的已证明解：{实例: [(方法, R, resets)]}。"""
+    """所有全新启动的可行解（严格证明或 60 万格复核 0 缺岗）：{实例: [(方法, R, resets)]}。"""
     s = defaultdict(list)
     for pat in [("T3", "m0[23]-*.json"), ("T4", "m0[23]-*__esub_*.json")]:
         for d in load_jobs(os.path.join(ROOT, "results", pat[0], "jobs", pat[1])):
-            if d.get("kind") not in FRESH_KINDS or d.get("proven") != 1 or d.get("R") is None: continue
+            if d.get("kind") not in FRESH_KINDS or d.get("R") is None or d["R"] < 0: continue
+            if not (d.get("proven") == 1 or d.get("verify_gaps") == 0): continue
             s[d["inst"]].append((d["kind"], d["R"], d.get("resets", 0)))
     return s
 
@@ -80,16 +84,21 @@ def table(rows):
     g = defaultdict(list)
     for r in rows: g[(r["m"], r["family"], r["reset"])].append(r)
     fm = lambda x, nd=2: "—" if x is None else f"{x:.{nd}f}"
-    L = ["| m | 族 | 提前大修 | 实例数 | ⌈LP⌉ | ILP 下界 | 下界 | 最好上界 | R_LP | R_LP−上界 | 上界−下界 | 上界−下界=0 的实例 | ILP 证到最优 |",
-         "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    L = ["| m | 族 | 提前大修 | 实例数 | ⌈LP⌉ | ILP 下界（有值的实例上平均） | 下界 | 最好上界 | R_LP | R_LP−上界 | % | 上界−下界 | % | 规则损失占比 | 上界−下界=0 的实例 | ILP 有值 / 高于 ⌈LP⌉ |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for key in sorted(g):
         rs = g[key]
         z = sum(1 for r in rs if r["ub_minus_lb"] == 0)
-        opt = sum(1 for r in rs if r["ILP_status"] == "Optimal")
+        v = [r for r in rs if None not in (r["R_LP"], r["UB"], r["LB"])]
+        a = mean([r["R_LP"] - r["UB"] for r in v]); b = mean([r["UB"] - r["LB"] for r in v])
+        ap = mean([100 * (r["R_LP"] - r["UB"]) / r["UB"] for r in v]); bp = mean([100 * (r["UB"] - r["LB"]) / r["LB"] for r in v])
+        share = None if a is None or a + b == 0 else 100 * a / (a + b)
+        nil = sum(1 for r in rs if r["ILP_LB"] is not None)
+        up = sum(1 for r in rs if r["ILP_LB"] is not None and r["LP_ceil"] is not None and r["ILP_LB"] > r["LP_ceil"])
         L.append(f"| {key[0]} | {key[1]} | {'允许' if key[2] else '不允许'} | {len(rs)} | {fm(mean([r['LP_ceil'] for r in rs]))} | "
                  f"{fm(mean([r['ILP_LB'] for r in rs]))} | {fm(mean([r['LB'] for r in rs]))} | {fm(mean([r['UB'] for r in rs]))} | "
-                 f"{fm(mean([r['R_LP'] for r in rs]))} | {fm(mean([r['rlp_minus_ub'] for r in rs]))} | {fm(mean([r['ub_minus_lb'] for r in rs]))} | "
-                 f"{z} | {opt} |")
+                 f"{fm(mean([r['R_LP'] for r in rs]))} | {fm(a)} | {fm(ap, 1)} | {fm(b)} | {fm(bp, 1)} | {fm(share, 0)}% | "
+                 f"{z} | {nil} / {up} |")
     return "\n".join(L)
 
 
@@ -105,7 +114,7 @@ def detail(rows):
 
 if __name__ == "__main__":
     rows = per_instance()
-    p = os.path.join(ROOT, "results", "T4_gap.jsonl")
+    p = os.path.join(ROOT, "results", "T4_exact.jsonl")
     with open(p + ".tmp", "w") as f:
         for r in rows: f.write(json.dumps(r, ensure_ascii=False) + "\n")
     os.replace(p + ".tmp", p)

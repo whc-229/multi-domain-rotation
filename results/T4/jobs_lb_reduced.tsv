@@ -1,0 +1,6 @@
+/home/hk/多域轮转/results/T4/jobs/m03-K1-00__lb__r0__m2.json	5400	cd /home/hk/多域轮转 && python3 code/t4_job.py lb m03-K1-00 0 2 3600
+/home/hk/多域轮转/results/T4/jobs/m03-K12-00__lb__r0__m2.json	5400	cd /home/hk/多域轮转 && python3 code/t4_job.py lb m03-K12-00 0 2 3600
+/home/hk/多域轮转/results/T4/jobs/m02-K1-00__lb__r1__m2.json	5400	cd /home/hk/多域轮转 && python3 code/t4_job.py lb m02-K1-00 1 2 3600
+/home/hk/多域轮转/results/T4/jobs/m02-K12-00__lb__r1__m2.json	5400	cd /home/hk/多域轮转 && python3 code/t4_job.py lb m02-K12-00 1 2 3600
+/home/hk/多域轮转/results/T4/jobs/m03-K1-00__lb__r1__m2.json	5400	cd /home/hk/多域轮转 && python3 code/t4_job.py lb m03-K1-00 1 2 3600
+/home/hk/多域轮转/results/T4/jobs/m03-K12-00__lb__r1__m2.json	5400	cd /home/hk/多域轮转 && python3 code/t4_job.py lb m03-K12-00 1 2 3600

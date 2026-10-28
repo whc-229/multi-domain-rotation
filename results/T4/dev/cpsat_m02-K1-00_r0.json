@@ -1,0 +1,1 @@
+{"T": 160, "P": 165, "reset": 0, "Hx": 404, "G": 79, "ncol": 26748, "nrow": 17284, "status": "UNKNOWN", "solver": "cpsat", "build_sec": 1.4, "sec": 1801.4, "bound": 20.0, "obj": null, "inst": "m02-K1-00", "m": 2, "family": "K1", "kind": "ub"}

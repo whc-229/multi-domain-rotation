@@ -1,0 +1,1 @@
+{"inst": "m03-K12-00", "m": 3, "family": "K12", "kind": "lb", "reset": 1, "S": 160, "H": 320, "obj": null, "bound": 0.0, "LB": 0, "status": "Time limit reached", "N": null, "M": null, "n": 29362, "sec": 3600.4, "mult": 2.0, "wall": 3600.4}

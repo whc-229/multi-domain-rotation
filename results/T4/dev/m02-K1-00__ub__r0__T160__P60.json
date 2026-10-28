@@ -1,0 +1,1 @@
+{"inst": "m02-K1-00", "m": 2, "family": "K1", "kind": "ub", "reset": 0, "S": 160, "T": 160, "P": 60, "Hx": 299, "G": 79, "back": 73, "fwd": 5, "ncol": 19713, "nrow": 14134, "status": "Time limit reached", "build_sec": 0.2, "sec": 601.7, "obj": null, "bound": 28.0, "wall": 601.7}
