@@ -2,7 +2,8 @@
 (a) rost5 vs Python 参考实现（code/rost5_ref.py）：R_LP 规则，(实例, 变体, 场景) × 若干台数，比较缺岗数、是否判出循环、周期长度；
     另加基础打分策略在 K12 实例上的比对（检查岗位化的代码路径）。
 (b) rost5 vs rost4（新旧版本）：K1 实例上 eval（多组权重与选项）和 es（同参数、同种子）输出逐字段相同。
-用法：python3 code/t3_check.py <a|b> <规则文件目录> <实例名,...> [组数]"""
+(u) T3b：同 (a)，变体换成 fresh_rlp_u、fresh_noreset_u、steady_u（不缩放）。环境变量 R5_EXE 可指定被核对的 C++ 程序。
+用法：python3 code/t3_check.py <a|u|b> <规则文件目录> <实例名,...> [组数]"""
 import os, sys, json, random, subprocess
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -19,12 +20,13 @@ def c_eval(exe, txt, Tmax, cert, Nk, Mj, w, opts):
     return json.loads(out.stdout)
 
 
-def check_a(rdir, names, ngroups, Tc=60000):
-    """R_LP：每个 (实例, 变体, 场景) 取 ngroups 组台数（LP 取整 + 0..2 的随机增量）。"""
+def check_a(rdir, names, ngroups, Tc=60000, tags=("fresh_rlp", "fresh_noreset", "steady", "fresh_rlp_c", "fresh_noreset_c"), exe=None):
+    """R_LP：每个 (实例, 变体, 场景) 取 ngroups 组台数（LP 取整 + 0..2 的随机增量）。tags 指定变体；exe 指定被核对的 C++ 程序（默认 rost5）。"""
+    exe = exe or R5
     rng = random.Random(7); tot = bad = 0
     for n in names:
         I = load_train(n); _, txt = inst_paths(n, "train")
-        for tag in ["fresh_rlp", "fresh_noreset", "steady", "fresh_rlp_c", "fresh_noreset_c"]:
+        for tag in tags:
             rf = os.path.join(rdir, f"{n}__{tag}.rlp"); R = ref.parse_rlp(I, rf)
             pf = os.path.join(rdir, f"{n}__{tag}.planf") if tag.startswith("fresh_rlp") else None
             planf = ref.parse_planf(I, pf) if pf else None
@@ -32,7 +34,7 @@ def check_a(rdir, names, ngroups, Tc=60000):
                 Nk = [x + rng.randint(0, 2) for x in R["N0"]]; Mj = [x + rng.randint(0, 2) for x in R["M0"]]
                 for Tmax, cert in [(3000, False), (Tc, True)]:
                     py = ref.run(I, Nk, Mj, Tmax, cert, rlp=R, planf=planf)
-                    cc = c_eval(R5, txt, Tmax, cert, Nk, Mj, [0] * 8, [f"rlp={rf}"] + ([f"planf={pf}"] if pf else []))
+                    cc = c_eval(exe, txt, Tmax, cert, Nk, Mj, [0] * 8, [f"rlp={rf}"] + ([f"planf={pf}"] if pf else []))
                     ok = py["gaps"] == cc["gaps"] and (not cert or (py["cert"] == cc["cert"] and py["period"] == cc["period"]
                                                                      and (py["cert"] != 1 or cc["exact"] == 1)))
                     ok = ok and (py["resets"] == cc["resets"] or py["cert"] == -1)
@@ -105,8 +107,11 @@ def check_b_es(names, rdir, seeds=(0, 1)):
 if __name__ == "__main__":
     mode, rdir, names = sys.argv[1], sys.argv[2], sys.argv[3].split(",")
     ng = int(sys.argv[4]) if len(sys.argv) > 4 else 3
+    ex = os.environ.get("R5_EXE")
     if mode == "a":
-        print(json.dumps(dict(check="rlp_vs_ref", groups_mismatch=check_a(rdir, names, ng))), flush=True)
+        print(json.dumps(dict(check="rlp_vs_ref", groups_mismatch=check_a(rdir, names, ng, exe=ex))), flush=True)
+    elif mode == "u":
+        print(json.dumps(dict(check="rlp_u_vs_ref", groups_mismatch=check_a(rdir, names, ng, tags=("fresh_rlp_u", "fresh_noreset_u", "steady_u"), exe=ex))), flush=True)
     elif mode == "ascore":
         print(json.dumps(dict(check="score_vs_ref", groups_mismatch=check_a_score(names, ng))), flush=True)
     elif mode == "b":

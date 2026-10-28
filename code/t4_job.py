@@ -4,8 +4,11 @@
 - ub：code/fresh_tail_mdrr.py 的周期尾整数模型，参数 (T, P)；最优值（或限时内的最好可行解）是无限期全新启动问题的上界。
 - esub：上界的替代来源（HiGHS / CP-SAT 在周期尾模型上找不到可行解，见报告）：更长的 ES（30 代），
   rost5 es <实例> certs 365 30 4 12 <种子> 60000 600000 <curdef | lpg+planf>；解由仿真器的严格证书与精确重放判定。
+- es100（T4b）：同 esub，但 100 代、种子 0–4，结果写进 results/T4b/jobs/<实例>__es100_<配置>__s<种子>.json。
+  同一种子下 ES 的随机数流与代数无关，所以前 30 代与 esub 相同（汇总时核对），逐代最好值（hist）给出 10 / 30 / 100 代曲线。
 用法：python3 code/t4_job.py lb <实例> <reset 0/1> <mult> <限时秒>
       python3 code/t4_job.py esub <实例> <curdef|lpgplan> <种子>
+      python3 code/t4_job.py es100 <实例> <curdef|lpgplan> <种子>
       python3 code/t4_job.py ub <实例> <reset 0/1> <T> <P> <限时秒> [mip_lp_solver]"""
 import os, sys, json, time, types
 import numpy as np
@@ -57,23 +60,32 @@ def lb_job(I, reset, mult, tl):
                 status=r.get("status"), N=r.get("N"), M=r.get("M"), n=r.get("n"), sec=round(sec, 1))
 
 
-def esub_job(name, cfg, seed):
-    """长 ES 上界（30 代）。规则文件 / lpg 由 T3 的 ensure_rules 生成（加锁）。"""
+OUT_B = os.path.join(ROOT, "results", "T4b", "jobs")
+
+
+def esub_job(name, cfg, seed, gens=30, out=None, prefix="esub"):
+    """长 ES 上界（默认 30 代；T4b 用 gens=100、prefix="es100"、out=OUT_B）。规则文件 / lpg 由 T3 的 ensure_rules 生成（加锁）。"""
+    out = out or OUT
     import subprocess
     import t3_job
     from mdrr import inst_paths
-    os.makedirs(OUT, exist_ok=True)
-    path = os.path.join(OUT, f"{name}__esub_{cfg}__s{seed}.json")
+    os.makedirs(out, exist_ok=True)
+    path = os.path.join(out, f"{name}__{prefix}_{cfg}__s{seed}.json")
     if os.path.exists(path): print("已完成，跳过", path); return
     if not t3_job.deps_ok(name): print("T2 依赖未齐"); sys.exit(3)
+    import fcntl
+    lk = open(path + ".lock", "w")      # 两个调度器从两头跑同一张作业表时，保证同一作业只有一个进程在写
+    try: fcntl.flock(lk, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError: print("另一进程正在跑这个作业，退出", path); sys.exit(4)
+    if os.path.exists(path): print("已完成，跳过", path); return
     t3_job.ensure_rules(name)
     _, txt = inst_paths(name, "train"); R = t3_job.RDIR
     opts = ["curdef"] if cfg == "curdef" else ["lpg=" + os.path.join(R, f"{name}.lpg.txt"), "planf=" + os.path.join(R, f"{name}__fresh_rlp.planf")]
-    args = [t3_job.R5, "es", txt, "certs", "365", "30", "4", "12", str(seed), "60000", "600000"] + opts
+    args = [t3_job.R5, "es", txt, "certs", "365", str(gens), "4", "12", str(seed), "60000", "600000"] + opts
     t0 = time.time(); r = subprocess.run(args, capture_output=True, text=True)
     d = json.loads(r.stdout)
     I = load_train(name)
-    d.update(inst=name, m=I.meta["m"], family=I.meta["family"], kind="esub_" + cfg, seed=seed, wall=round(time.time() - t0, 1), cmd=" ".join(args))
+    d.update(inst=name, m=I.meta["m"], family=I.meta["family"], kind=f"{prefix}_{cfg}", gens=gens, seed=seed, wall=round(time.time() - t0, 1), cmd=" ".join(args))
     d["proven"] = int(d.get("verify_cert") == 1 and d.get("exact") == 1)
     with open(path + ".tmp", "w") as f: f.write(json.dumps(d) + "\n")
     os.replace(path + ".tmp", path)
@@ -82,6 +94,7 @@ def esub_job(name, cfg, seed):
 
 def main():
     if sys.argv[1] == "esub": return esub_job(sys.argv[2], sys.argv[3], int(sys.argv[4]))
+    if sys.argv[1] == "es100": return esub_job(sys.argv[2], sys.argv[3], int(sys.argv[4]), gens=100, out=OUT_B, prefix="es100")
     kind, name, rs = sys.argv[1], sys.argv[2], int(sys.argv[3])
     os.makedirs(OUT, exist_ok=True)
     if kind == "lb":

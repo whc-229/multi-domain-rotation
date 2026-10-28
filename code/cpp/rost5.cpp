@@ -4,6 +4,7 @@
 //      文件里带 steady 标记时用稳态初值（各相位台数按权重分配、就绪时刻均匀错开）。
 //   3) 新命令 rlp：从 LP 取整台数出发，沿用 rost4 的"补足 / 回删 + 证书"定台数循环，然后 Tverify 格复核。
 //   用法补充：rost5 rlp <inst> <rlp文件> <H定台数> <Tcert> <Tverify> [planf=文件]
+//            规则文件带 noscale 1 时（T3b 的 _u 变体）三种计划都不按台数缩放。
 //            rost5 replay <inst> <排班文件> <Tmax>（T4：独立重放上界解的显式排班，检查每班合法、每格覆盖）
 // 以下为 rost4 原注释。
 // rost4：在 rost3 基础上加"提前大修"决策（reset）和"按当前相位人数"的相位特征（curdef）。
@@ -55,6 +56,7 @@ struct Inst {
 // R_LP 规则数据（由 code/t3_make_rlp.py 生成，全部整数，保证与 Python 参考实现逐位一致）
 struct RLP {
     bool on = false, steady = false; int H = 0;
+    bool noscale = false;               // T3b（_u 变体）：值岗计划、相位计划、提前大修计划都不按 Nk/N_LP 缩放，直接用 LP 累计流
     vector<ll> NLPq;                    // LP 台数 × 1e6（四舍五入）
     vector<int> Q, CP;                  // 每站 lag 单位 1/Q_s；每型相位 lag 截断 ±CP_k（单位 1/L_k）
     vector<vector<int>> p, CQ;          // p[k][s]：t ≥ H 后每格计划增量（单位 1/Q_s）；CQ[k][s]：lag 截断
@@ -107,6 +109,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
         for (int k = 0; k < nk; k++) {
             pl[k].assign(I.T[k].L, {});
             double sc = (P.planN[k] > 1e-9) ? (double)Nk[k] / P.planN[k] : 0.0;
+            if (P.rlp && P.rlp->on && P.rlp->noscale) sc = 1.0;   // _u：LP 累计流直接四舍五入成整数次
             for (int i = 0; i < I.T[k].L; i++) { double F = 0; int prev = 0;
                 for (auto& e2 : P.planf[k][i]) { F += e2.second * sc; int c = (int)llround(F) - prev; if (c > 0) { pl[k][i].push_back({e2.first, c}); prev += c; } } }
         }
@@ -139,7 +142,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
     auto planQ = [&](int k, int s, ll t) -> ll {   // 计划累计班数（单位 1/Q_s）
         if (t < 0) return 0;
         const RLP& R = *RL; ll Hh = R.H;
-        auto tab = [&](ll tt) -> ll { if (R.NLPq[k] <= 0 || R.F[k][s].empty()) return 0; return (ll)R.Q[s] * Nk[k] * R.F[k][s][tt] / R.NLPq[k]; };
+        auto tab = [&](ll tt) -> ll { if (R.F[k][s].empty()) return 0; if (R.noscale) return (ll)R.Q[s] * R.F[k][s][tt] / 1000000; if (R.NLPq[k] <= 0) return 0; return (ll)R.Q[s] * Nk[k] * R.F[k][s][tt] / R.NLPq[k]; };
         if (t < Hh) return tab(t);
         ll B = Hh > 0 ? tab(Hh - 1) : 0;
         return B + (ll)R.p[k][s] * (t - Hh + 1);
@@ -148,6 +151,7 @@ Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Polic
         const RLP& R = *RL; ll Hh = R.H;
         if (t < 0 || Hh == 0) return 0;
         ll tt = min(t, Hh - 1);
+        if (R.noscale) return (ll)I.T[k].L * R.FP[k][i][tt] / 1000000;
         if (R.NLPq[k] <= 0) return 0;
         return (ll)I.T[k].L * Nk[k] * R.FP[k][i][tt] / R.NLPq[k];
     };
@@ -482,6 +486,7 @@ RLP parse_rlp(const Inst& I, const string& fn) {
     while (f >> tag) {
         if (tag == "H") f >> R.H;
         else if (tag == "steady") { int x; f >> x; R.steady = x; }
+        else if (tag == "noscale") { int x; f >> x; R.noscale = x; }
         else if (tag == "NLPq") { R.NLPq.resize(nk); for (auto& x : R.NLPq) f >> x; }
         else if (tag == "N0") { R.N0.resize(nk); for (auto& x : R.N0) f >> x; }
         else if (tag == "M0") { R.M0.resize(I.nt); for (auto& x : R.M0) f >> x; }

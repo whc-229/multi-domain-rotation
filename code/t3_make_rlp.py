@@ -10,7 +10,10 @@
 - W[k][i]（稳态初值）：相位 i 的就绪窗口 = 进入相位 i 的上一段（相位 i−1）在各允许站的平均步长，取整（≥ 1）。
 planf：与 prior 的 make_planf.py 相同的格式与口径（#N LP 台数；k i D 流量，只保留 D < H/2 的提前大修流）。
 诊断变体 *_c：缩放分母用 ⌈N_LP⌉（NLPq = 1e6·⌈N_LP⌉，planf 的 #N 同样取整），其余相同。
-用法：python3 code/t3_make_rlp.py <实例名>    → results/T3/rlp/<实例名>__{fresh_rlp, fresh_noreset, steady, fresh_rlp_c, fresh_noreset_c}.rlp 与 .planf"""
+T3b 变体 *_u（make_u）：规则文件多一行 noscale 1，值岗计划 F、相位计划 FP、提前大修计划都不按台数缩放，直接用 LP 累计流；
+  提前大修计划按 LP 累计流四舍五入成整数次。其余（Q、p、CQ、CP、W、N0、M0）与原版相同。
+用法：python3 code/t3_make_rlp.py <实例名>    → results/T3/rlp/<实例名>__{fresh_rlp, fresh_noreset, steady, fresh_rlp_c, fresh_noreset_c}.rlp 与 .planf
+      python3 code/t3_make_rlp.py -u <实例名> → results/T3/rlp/<实例名>__{fresh_rlp_u, fresh_noreset_u, steady_u}.rlp 与 fresh_rlp_u.planf"""
 import os, glob, sys, json, math
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -46,10 +49,11 @@ def rationalize(I, s, y):
     return best[1], best[2], best[3]
 
 
-def write_rlp(path, I, H, steady, NLP, N0, M0, flows, y_by_site):
-    """写规则文件。flows: (k, i, s, D, r, x) 数组（稳态时为空）；y_by_site: {s: {k: 速率 LP 班率}}。返回有理近似的诊断。"""
+def write_rlp(path, I, H, steady, NLP, N0, M0, flows, y_by_site, noscale=False):
+    """写规则文件。flows: (k, i, s, D, r, x) 数组（稳态时为空）；y_by_site: {s: {k: 速率 LP 班率}}。返回有理近似的诊断。
+    noscale=True 时多写一行 noscale 1（T3b 的 _u 变体）。"""
     nk, ns = len(I.T), len(I.sites)
-    lines = [f"H {H}", f"steady {int(steady)}",
+    lines = [f"H {H}", f"steady {int(steady)}"] + (["noscale 1"] if noscale else []) + [
              "NLPq " + " ".join(str(int(round(1e6 * v))) for v in NLP),
              "N0 " + " ".join(map(str, N0)), "M0 " + " ".join(map(str, M0))]
     Qs, P, errs = [], {}, []
@@ -139,6 +143,30 @@ def make(name, out=OUT, t2j=T2J, t2d=T2D, mult=4):
     return info
 
 
+def make_u(name, out=OUT, t2j=T2J, t2d=T2D, mult=4):
+    """T3b：生成不缩放的 _u 规则文件（fresh_rlp_u、fresh_noreset_u、steady_u）和 fresh_rlp_u.planf。
+    输入与 make() 相同（同一份 T2 对偶文件、同一份速率 LP），只多 noscale 标记。"""
+    os.makedirs(out, exist_ok=True)
+    I = load_train(name)
+    rate = json.load(open(os.path.join(t2j, f"{name}__rate__m0.json")))
+    y = {}
+    for key, v in rate["y"].items():
+        k, s = map(int, key.split(",")); y.setdefault(s, {})[k] = v
+    ceil = lambda v: int(math.ceil(v - 1e-6))
+    info = {}
+    for tag, kind in [("fresh_rlp_u", "frR"), ("fresh_noreset_u", "fr")]:
+        dp = dual_path(name, kind, mult, t2d); d = np.load(dp)
+        H = int(d["H"]); N = d["N"]; M = d["M"]; fl = d["duty_flow"]
+        info[tag] = write_rlp(os.path.join(out, f"{name}__{tag}.rlp"), I, H, False, N, [ceil(v) for v in N], [ceil(v) for v in M], fl, y, noscale=True)
+        info[tag]["dual"] = os.path.basename(dp)
+        if kind == "frR": info["planf_entries"] = write_planf(os.path.join(out, f"{name}__fresh_rlp_u.planf"), H, N, fl)
+    info["steady_u"] = write_rlp(os.path.join(out, f"{name}__steady_u.rlp"), I, 0, True, rate["N"],
+                                 [ceil(v) for v in rate["N"]], [ceil(v) for v in rate["M"]], np.zeros((0, 6)), y, noscale=True)
+    return info
+
+
 if __name__ == "__main__":
-    for n in sys.argv[1:]:
-        print(n, json.dumps(make(n)))
+    if sys.argv[1] == "-u":
+        for n in sys.argv[2:]: print(n, json.dumps(make_u(n)))
+    else:
+        for n in sys.argv[1:]: print(n, json.dumps(make(n)))

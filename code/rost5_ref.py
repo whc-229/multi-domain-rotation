@@ -20,7 +20,7 @@ def llround(x):
 def parse_rlp(I, path):
     """读规则文件，结构与 C++ parse_rlp 相同。"""
     nk, ns = len(I.T), len(I.sites)
-    R = dict(H=0, steady=0, NLPq=None, N0=None, M0=None, Q=None, CP=None,
+    R = dict(H=0, steady=0, noscale=0, NLPq=None, N0=None, M0=None, Q=None, CP=None,
              p=[[0] * ns for _ in range(nk)], CQ=[[0] * ns for _ in range(nk)],
              F={}, FP={}, W={})
     for line in open(path):
@@ -29,6 +29,7 @@ def parse_rlp(I, path):
         tag = a[0]
         if tag == "H": R["H"] = int(a[1])
         elif tag == "steady": R["steady"] = int(a[1])
+        elif tag == "noscale": R["noscale"] = int(a[1])      # T3b 的 _u 变体：三种计划都不按台数缩放
         elif tag in ("NLPq", "N0", "M0", "Q", "CP"): R[tag] = [int(x) for x in a[1:]]
         elif tag == "p": k, s, p, c = map(int, a[1:5]); R["p"][k][s] = p; R["CQ"][k][s] = c
         elif tag == "W": R["W"][int(a[1])] = [int(x) for x in a[2:]]
@@ -55,7 +56,12 @@ def parse_planf(I, path):
     return planN, pf
 
 
-def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None):
+def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None):
+    """仿真一次。trace 不为 None 时（T3c 诊断用，dict）只做记录、不改变任何决策：
+    trace["plan"] = 换算后的提前大修计划 {(k, i): [[t0, 次数], …]}；trace["disp"] = 每次派工
+    (t, 站, 岗位, 机器人, 型, 相位, 是否按计划提前大修, 新的就绪基准 rv, 值岗结束时刻)；
+    trace["gaps"] = 每次缺岗 (t, 站, 就绪的候选数, 归因：("r", 可在该站值岗的各型) 或 ("t", 首个候选型所需工具))，与 C++ 的 why_r / why_t 口径相同；
+    trace["robots"] = 各机器人的型。trace["light"] 为真时不记派工（长时域判环时省内存）。"""
     TI = ToolInst(I)
     nk, ns, nt = len(I.T), len(I.sites), TI.nt
     v0 = [math.ceil(t["off_h"] / U - 1e-9) for t in I.T]; c0 = max(v0)
@@ -73,6 +79,7 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
         for k in range(nk):
             row = []
             sc = Nk[k] / planN[k] if planN[k] > 1e-9 else 0.0
+            if R is not None and R["noscale"]: sc = 1.0      # _u：LP 累计流直接四舍五入成整数次
             for i in range(I.L[k]):
                 F = 0.0; prev = 0; lst = []
                 for (t0, x) in pf[k][i]:
@@ -80,6 +87,9 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                     if c > 0: lst.append([t0, c]); prev += c
                 row.append(lst)
             pl.append(row)
+    if trace is not None:
+        trace["plan"] = {(k, i): [list(e) for e in pl[k][i]] for k in range(len(pl)) for i in range(len(pl[k])) if pl[k][i]}
+        trace["disp"] = []; trace["gaps"] = []
     # 机器人
     rk, rph, rv = [], [], []
     if R is not None and R["steady"]:
@@ -95,6 +105,7 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
         for k in range(nk):
             for _ in range(Nk[k]): rk.append(k); rph.append(0); rv.append(v0[k])
     nr = len(rk)
+    if trace is not None: trace["robots"] = list(rk); trace["rv0"] = list(rv)
     tf = [[-1000000] * Mj[j] for j in range(nt)]
     psite = [s for s in range(ns) for _ in range(I.sites[s]["K"])]
     np_ = len(psite)
@@ -110,7 +121,10 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
     if R is not None: qmax = max(qmax, H)
 
     def tab(k, s, tt):
-        if R["NLPq"][k] <= 0 or (k, s) not in R["F"]: return 0
+        """t < H 时 k 型在 s 站的计划累计班数（单位 1/Q_s）；默认按 Nk/N_LP 缩放，noscale 时不缩放。"""
+        if (k, s) not in R["F"]: return 0
+        if R["noscale"]: return R["Q"][s] * R["F"][(k, s)][tt] // 1000000
+        if R["NLPq"][k] <= 0: return 0
         return R["Q"][s] * Nk[k] * R["F"][(k, s)][tt] // R["NLPq"][k]
 
     def planQ(k, s, t):
@@ -122,6 +136,7 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
     def phplanQ(k, i, t):
         if t < 0 or H == 0: return 0
         tt = min(t, H - 1)
+        if R["noscale"]: return I.L[k] * R["FP"][(k, i)][tt] // 1000000
         if R["NLPq"][k] <= 0: return 0
         return I.L[k] * Nk[k] * R["FP"][(k, i)][tt] // R["NLPq"][k]
 
@@ -199,6 +214,7 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                         if e[1] > 0: e[1] -= 1; planned = True; break
                 if planned: nx = st[(k, I.L[k] - 1, s)][1]; nph = 0; resets += 1
                 rv[r] = t - ld + nx; rph[r] = nph
+                if trace is not None and not trace.get("light"): trace["disp"].append((t, s, q, r, k, i, planned, rv[r], t + I.d[k]))
                 D[k][i] += 1; tot[k] += 1
                 if R is not None:
                     lag[k][s] = clip(lag[k][s] - R["Q"][s], R["CQ"][k][s])
@@ -209,6 +225,9 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                 fr[q] = t + I.d[k]; done = True; break
             if not done:
                 gaps += 1; fr[q] = t + 1
+                if trace is not None:
+                    why = ("t", list(TI.R[rk[order[0]]]["C"])) if order else ("r", [k for k in range(nk) if s in elig[k]])
+                    trace["gaps"].append((t, s, len(order), why))
                 if gap_log is not None and len(gap_log) < 50:
                     gap_log.append(dict(t=t, s=s, cand=len(order), lag={k: lag[k][s] for k in range(nk) if s in elig[k]}))
         t = min(fr)

@@ -35,3 +35,5 @@ code/cpp/libprice.so
 results/**/logs*/
 results/T3/rlp/*.lock
 .venv_cpsat/
+results/**/*.lock
+results/T3/rlp/

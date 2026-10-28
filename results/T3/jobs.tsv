@@ -1,0 +1,912 @@
+/home/hk/多域轮转/results/T3/jobs/m20-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m20-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m20-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m20-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m20-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m20-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m15-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m15-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m15-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m15-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m15-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__fresh_rlp.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 fresh_rlp
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__fresh_noreset.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 fresh_noreset
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__steady.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 steady
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__fresh_rlp_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 fresh_rlp_c
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__fresh_noreset_c.json	14400	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 fresh_noreset_c
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K1-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K1-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m02-K12-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m02-K12-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K1-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K1-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m03-K12-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m03-K12-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K1-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K1-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m04-K12-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m04-K12-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K1-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K1-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m06-K12-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m06-K12-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K1-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K1-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m08-K12-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m08-K12-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K1-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K1-05 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-00__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-00 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-01__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-01 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-02__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-02 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-03__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-03 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-04__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-04 es_lpgplan 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__es_curdef__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 es_curdef 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__es_lpgplan__s0.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 es_lpgplan 0
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__es_curdef__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 es_curdef 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__es_lpgplan__s1.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 es_lpgplan 1
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__es_curdef__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 es_curdef 2
+/home/hk/多域轮转/results/T3/jobs/m10-K12-05__es_lpgplan__s2.json	28800	cd /home/hk/多域轮转 && python3 code/t3_job.py m10-K12-05 es_lpgplan 2

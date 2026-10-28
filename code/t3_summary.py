@@ -21,9 +21,11 @@ def load_bounds():
     return b
 
 
-def rows():
+def rows(jdir=None):
+    """读入一个作业目录（默认 results/T3/jobs）的全部结果，每个作业一行。"""
     out = []
-    for p in sorted(glob.glob(os.path.join(ROOT, "results", "T3", "jobs", "*.json"))):
+    jdir = jdir or os.path.join(ROOT, "results", "T3", "jobs")
+    for p in sorted(glob.glob(os.path.join(jdir, "*.json"))):
         d = json.loads(open(p).read())
         ok = d.get("R", -1) is not None and d.get("R", -1) >= 0
         vc = d.get("verify_cert")
