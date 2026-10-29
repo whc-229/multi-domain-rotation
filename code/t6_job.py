@@ -161,15 +161,16 @@ def rate_job(I):
     return out
 
 
-def frRw_job(I, H, W, dual_path):
-    """LP_fr^Rw：删去 D ≥ W 的提前大修弧后求解，其余与 t2_job.fresh_job 相同（索引核对、对偶证书、保存流量）。"""
+def frRw_job(I, H, W, dual_path, perm=None, crossover="on"):
+    """LP_fr^Rw：删去 D ≥ W 的提前大修弧后求解，其余与 t2_job.fresh_job 相同（索引核对、对偶证书、保存流量）。
+    perm / crossover 只在失败作业的重跑时改动（与 T2 的重跑设置相同：行列随机重排 + 关 crossover）。"""
     import t2_job
     from fresh_full import fresh_full
     idx = t2_job.fresh_index(I, H, True)
     drop = [col for (col, k, i, v, s, r) in idx["arcs"] if r == 1 and v + I.lead(s) >= W]
     keep = {}
     t0 = time.time()
-    r = fresh_full(I, H, reset=True, solver="ipm", time_limit=6 * 3600, keep=keep, drop=drop)
+    r = fresh_full(I, H, reset=True, solver="ipm", time_limit=6 * 3600, keep=keep, drop=drop, perm=perm, crossover=crossover)
     out = dict(obj=r["obj"], N=r.get("N"), M=r.get("M"), lp_status=keep.get("status"), n=r.get("n"), n_drop=len(drop), sec=round(time.time() - t0, 1))
     if r["obj"] is None or keep.get("row_dual") is None: return out
     x = keep["x"]; obj = float(keep["c"] @ x); out["obj_full"] = obj
@@ -203,10 +204,15 @@ def frRw_job(I, H, W, dual_path):
 
 
 def main():
-    inst, kind = sys.argv[1], sys.argv[2]
-    mult = float(sys.argv[3]) if len(sys.argv) > 3 else 0
+    """用法：t6_job.py <实例> rate | frRw <倍数> [--tag 名 --perm 种子 --crossover on|off]。
+    --tag 用于失败作业的重跑：结果写到 <原名>__<tag>.json（不覆盖原结果），汇总时取求解成功的那一份。"""
+    import argparse
+    ap = argparse.ArgumentParser(); ap.add_argument("inst"); ap.add_argument("kind"); ap.add_argument("mult", nargs="?", type=float, default=0)
+    ap.add_argument("--tag"); ap.add_argument("--perm", type=int); ap.add_argument("--crossover", default="on")
+    a = ap.parse_args()
+    inst, kind, mult = a.inst, a.kind, a.mult
     os.makedirs(OUT, exist_ok=True); os.makedirs(DUAL, exist_ok=True)
-    name = f"{inst}__{kind}" + (f"__m{mult:g}" if kind != "rate" else "")
+    name = f"{inst}__{kind}" + (f"__m{mult:g}" if kind != "rate" else "") + (f"__{a.tag}" if a.tag else "")
     path = os.path.join(OUT, name + ".json")
     if os.path.exists(path): print("已完成，跳过", name); return
     I = load_train(inst); S = S_max(I)
@@ -217,7 +223,8 @@ def main():
     elif kind == "frRw":
         H = int(mult * S); W = 2 * S
         rec.update(mult=mult, H=H, W=W)
-        rec.update(frRw_job(I, H, W, os.path.join(DUAL, name + ".npz")))
+        rec.update(frRw_job(I, H, W, os.path.join(DUAL, name + ".npz"), a.perm, a.crossover))
+        if a.tag: rec.update(tag=a.tag, perm=a.perm, crossover=a.crossover)
     else:
         sys.exit(f"未知种类 {kind}")
     rec["wall"] = round(time.time() - t0, 1)

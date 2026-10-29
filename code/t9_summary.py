@@ -54,10 +54,12 @@ def rows():
             if rs == 0:
                 b8 = t8_best(n)
                 if b8 is not None: ub = b8 if ub is None else min(ub, b8)
-            lb_i = d.get("LB")
+            lb_raw = d.get("LB")
+            # MIP 的松弛就是同一个 LP，所以有效下界 = max(MIP 对偶界, ⌈LP(2S)⌉)；对偶界低于 LP 说明限时内根节点 LP 都没解完
+            lb_i = max(x for x in (lb_raw, ceil(lp2["obj"]) if lp2 else None) if x is not None) if (lb_raw is not None or lp2) else None
             new_lb = max(x for x in (old_lb, lb_i) if x is not None) if (old_lb is not None or lb_i is not None) else None
             rec = dict(inst=n, m=d["m"], family=d["family"], reset=rs, LP2=lp2["obj"] if lp2 else None, LP2_ceil=ceil(lp2["obj"]) if lp2 else None,
-                       IFR_LB=lb_i, IFR_bound=d.get("bound"), IFR_obj=d.get("obj"), IFR_status=d.get("status"), IFR_sec=d.get("sec"),
+                       IFR_LB=lb_i, IFR_LB_raw=lb_raw, root_unsolved=int(lb_raw is not None and lp2 is not None and d.get("bound") is not None and d["bound"] < lp2["obj"] - 1e-6), IFR_bound=d.get("bound"), IFR_obj=d.get("obj"), IFR_status=d.get("status"), IFR_sec=d.get("sec"),
                        old_LB=old_lb, new_LB=new_lb, UB=ub, IFR_N=d.get("N"), IFR_M=d.get("M"),
                        LP2_N=lp2.get("N") if lp2 else None, LP2_M=lp2.get("M") if lp2 else None)
             out.append(rec)
@@ -80,14 +82,14 @@ def main():
     with open(os.path.join(ROOT, "results", "T9_intfleet.jsonl.tmp"), "w") as f:
         for r in rs: f.write(json.dumps(r, ensure_ascii=False) + "\n")
     os.replace(os.path.join(ROOT, "results", "T9_intfleet.jsonl.tmp"), os.path.join(ROOT, "results", "T9_intfleet.jsonl"))
-    L = ["| m | 族 | 场景 | 实例 | ⌈LP(2S)⌉ | IFR 下界 | IFR > ⌈LP(2S)⌉ 的实例 | 原最好下界 | 新下界 | IFR 抬高原下界的实例 | 上界 | 原差距 | 新差距 | 解到最优 | 有整数可行解 | 平均用时 s |",
-         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+    L = ["| m | 族 | 场景 | 实例 | ⌈LP(2S)⌉ | IFR 有效下界 | IFR > ⌈LP(2S)⌉ 的实例 | 根节点未解完 | 原最好下界 | 新下界 | IFR 抬高原下界的实例 | 上界 | 原差距 | 新差距 | 解到最优 | 有整数可行解 | 平均用时 s |",
+         "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     by = defaultdict(list)
     for r in rs: by[(r["m"], r["family"], r["reset"])].append(r)
     for (m, f, s), xs in sorted(by.items()):
         ok = [x for x in xs if x["UB"] is not None and x["new_LB"] is not None and x["old_LB"] is not None]
         L.append(f"| {m} | {f} | {'启动期提前大修' if s else '不提前大修'} | {len(xs)} | {fm(mean([x['LP2_ceil'] for x in xs]))} | {fm(mean([x['IFR_LB'] for x in xs]))} | "
-                 f"{sum((x['IFR_LB'] or 0) > (x['LP2_ceil'] or 0) for x in xs)} | {fm(mean([x['old_LB'] for x in xs]))} | {fm(mean([x['new_LB'] for x in xs]))} | "
+                 f"{sum((x['IFR_LB'] or 0) > (x['LP2_ceil'] or 0) for x in xs)} | {sum(x['root_unsolved'] for x in xs)} | {fm(mean([x['old_LB'] for x in xs]))} | {fm(mean([x['new_LB'] for x in xs]))} | "
                  f"{sum((x['IFR_LB'] or 0) > (x['old_LB'] or 0) for x in xs)} | {fm(mean([x['UB'] for x in ok]))} | {fm(mean([x['UB'] - x['old_LB'] for x in ok]))} | "
                  f"{fm(mean([x['UB'] - x['new_LB'] for x in ok]))} | {sum(x['IFR_status'] == 'Optimal' for x in xs)} | {sum(x['IFR_N'] is not None for x in xs)} | "
                  f"{fm(mean([x['IFR_sec'] for x in xs]), 0)} |")

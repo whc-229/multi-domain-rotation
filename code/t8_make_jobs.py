@@ -1,7 +1,7 @@
 """T8 作业文件。
 - sweep：m = 2 的 12 个实例 × {rlp, es, hand} × ρ ∈ {0.02, 0.1, 0.4} × 种子 0–2（按种子、实例交错，先拿到每个 ρ 的完整一轮）；
 - full <ρ>：m ∈ {2, 3, 4, 6} 的 48 个实例 × 3 种规则 × 种子 0–4，在选定的 ρ 下；m = 2 的种子 0–2 已在扫描里做过（同名文件存在即跳过）。
-  按 m 从小到大、同 m 内按种子排，先拿到 m ≤ 3（回答"能否低于 ES 饱和值"）。
+  先跑每个 m 的种子 0–2（m 从小到大），再补种子 3–4。
 用法：python3 code/t8_make_jobs.py sweep > results/T8/jobs_sweep.tsv
       python3 code/t8_make_jobs.py full 0.1 > results/T8/jobs_full.tsv"""
 import os, sys
@@ -25,7 +25,8 @@ if __name__ == "__main__":
                     for rho in (0.02, 0.1, 0.4): print(line(n, rule, rho, sd))
     else:
         rho = float(sys.argv[2])
-        for m in (2, 3, 4, 6):
-            for sd in range(5):
-                for n in sorted(train_names(m_list=[m])):
-                    for rule in ("rlp", "es", "hand"): print(line(n, rule, rho, sd))
+        for seeds in ((0, 1, 2), (3, 4)):        # 先把每个 m 的种子 0–2 跑齐，再补种子 3–4（m = 6 的 R_LP 每个作业约 4 小时，是瓶颈）
+            for m in (2, 3, 4, 6):
+                for sd in seeds:
+                    for n in sorted(train_names(m_list=[m])):
+                        for rule in ("rlp", "es", "hand"): print(line(n, rule, rho, sd))

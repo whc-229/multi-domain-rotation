@@ -6,7 +6,7 @@
     * t ≥ H 后的外推比例：网格口径速率 LP R_rate_g（不提前大修）的班率 y[k,s]；
     * 定台数起点：LP_fr^Rw 的台数向上取整。
 - es_lpgplan：用新补台规则重跑 T3 的 ES lpgplan（10 代，种子 0–2），参数与 T3 相同。
-缺依赖（T6 的 frRw 或 rate 结果）时退出码 3、不写结果。
+缺依赖（T6 的 frRw 或 rate 结果）时退出码 3、不写结果。作业运行时对结果文件加 fcntl 锁，拿不到锁以返回码 4 退出。
 - rlp_u（诊断，不在任务书里）：T3b 的 fresh_rlp_u 只换新补台规则重跑，用来拆分 fresh_rlp_w 的改善来自补台规则还是来自窗口 LP 与新外推。
 用法：python3 code/t6_rerun.py noreset_u <实例> | rlp_w <实例> | rlp_u <实例> | es_lpgplan <实例> <种子>"""
 import os, sys, json, time, fcntl, shutil, subprocess, tempfile, math
@@ -77,6 +77,10 @@ def main():
     else:
         sys.exit(f"未知种类 {kind}")
     os.makedirs(d, exist_ok=True); path = os.path.join(d, jn + ".json")
+    if os.path.exists(path): print("已完成，跳过", jn); return
+    lk = open(path + ".lock", "w")      # 两个调度器从作业表两头跑时，同一作业只让一个进程做（单写入者）
+    try: fcntl.flock(lk, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError: print("另一个进程正在做", jn); sys.exit(4)
     if os.path.exists(path): print("已完成，跳过", jn); return
     t0 = time.time()
     r = subprocess.run(args, capture_output=True, text=True)

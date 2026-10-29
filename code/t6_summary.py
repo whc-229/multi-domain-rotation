@@ -49,7 +49,10 @@ def bounds():
     """逐实例的下界口径表。"""
     rows = []
     for n in sorted(train_names(), key=lambda n: (int(n[1:3]), n)):
-        r = jl(os.path.join(T6J, f"{n}__rate.json")); w = jl(os.path.join(T6J, f"{n}__frRw__m4.json"))
+        r = jl(os.path.join(T6J, f"{n}__rate.json")); w = jl(os.path.join(T6J, f"{n}__frRw__m4.json")); retry = 0
+        if (w is None or w.get("obj") is None) and jl(os.path.join(T6J, f"{n}__frRw__m4__retry1.json")):   # 正式运行失败时取重跑那一份
+            w2 = jl(os.path.join(T6J, f"{n}__frRw__m4__retry1.json"))
+            if w2.get("obj") is not None: w, retry = w2, 1
         old = jl(os.path.join(T2J, f"{n}__rate__m0.json")); fr = t2_obj(n, "fr"); frR = t2_obj(n, "frR")
         if r is None: continue
         rec = dict(inst=n, m=int(n[1:3]), family=n.split("-")[1], has_L3_2=r["has_L3_2"],
@@ -60,7 +63,7 @@ def bounds():
         if w and w.get("obj") is not None:
             rec.update(frRw_viol=max(w["path_viol"], w["tool_viol"], w["wait_viol"], w["M_viol"]), frRw_gap=w["dual_gap"],
                        frRw_index=w["index_mismatch"], frRw_late=w["resets_flow_late"], frRw_sec=w["sec"], frRw_cert_sec=w["cert_sec"],
-                       frRw_status=w["lp_status"], frR_sec=frR.get("sec") if frR else None)
+                       frRw_status=w["lp_status"], frR_sec=frR.get("sec") if frR else None, frRw_retry=retry)
         elif w: rec.update(frRw_status=w.get("lp_status"))
         g = rec["R_rate_g"]
         if rec["LP_fr"]: rec["start_fr"] = 100 * (rec["LP_fr"] - g) / g; rec["start_fr_old"] = 100 * (rec["LP_fr"] - rec["R_rate"]) / rec["R_rate"]
@@ -105,10 +108,11 @@ def rlp_rows():
         old_u = jl(os.path.join(ROOT, "results", "T3b", "jobs", f"{n}__fresh_noreset_u.json"))
         rlpw = jl(os.path.join(ROOT, "results", "T6", "rlp", f"{n}__fresh_rlp_w.json"))
         old_rlpu = jl(os.path.join(ROOT, "results", "T3b", "jobs", f"{n}__fresh_rlp_u.json"))
+        new_rlpu = jl(os.path.join(ROOT, "results", "T6", "rlp", f"{n}__fresh_rlp_u.json"))     # 诊断：旧 fresh_rlp_u 换新补台规则
         es_new = [jl(os.path.join(ROOT, "results", "T6", "es", f"{n}__es_lpgplan__s{s}.json")) for s in range(3)]
         es_old = [jl(os.path.join(ROOT, "results", "T3", "jobs", f"{n}__es_lpgplan__s{s}.json")) for s in range(3)]
         rec = dict(inst=n, m=int(n[1:3]), family=n.split("-")[1],
-                   noreset_u_new=feas(new_u), noreset_u_old=feas(old_u), rlp_w=feas(rlpw), rlp_u_old=feas(old_rlpu),
+                   noreset_u_new=feas(new_u), noreset_u_old=feas(old_u), rlp_w=feas(rlpw), rlp_u_old=feas(old_rlpu), rlp_u_new=feas(new_rlpu),
                    has_noreset_u_new=int(new_u is not None), has_rlp_w=int(rlpw is not None),
                    noreset_u_new_status=new_u and new_u["status"], rlp_w_status=rlpw and rlpw["status"],
                    rlp_w_resets=rlpw and rlpw.get("resets"), rlp_w_sec=rlpw and rlpw.get("sec"), noreset_u_new_sec=new_u and new_u.get("sec"),
@@ -140,6 +144,14 @@ def table_rlp(rows):
         L.append(f"| {m} | {f} | {fmt(wtl(a))} | {fmt(wtl(b))} | {fmt(wtl(c))} | {sum(r['has_rlp_w'] and r['rlp_w'] is None for r in rs)} | {sum(r['has_noreset_u_new'] and r['noreset_u_new'] is None for r in rs)} |")
     fmt = lambda t: f"{t[0]} / {t[1]} / {t[2]}，{fm(t[3], 2)}"
     L.append(f"| 全部 | | {fmt(wtl(tot['a']))} | {fmt(wtl(tot['b']))} | {fmt(wtl(tot['c']))} | {sum(r['has_rlp_w'] and r['rlp_w'] is None for r in rows)} | {sum(r['has_noreset_u_new'] and r['noreset_u_new'] is None for r in rows)} |")
+    L += ["", "### fresh_rlp_w 的改善从哪来（诊断：旧 fresh_rlp_u 只换新补台规则）\n",
+          "| 比较 | 少 / 同 / 多，平均差 | 实例 |", "|---|---|---|"]
+    for lab, a, b in (("fresh_rlp_u：新补台 对 旧补台（补台规则的作用）", "rlp_u_new", "rlp_u_old"),
+                      ("新补台下：fresh_rlp_u 对 fresh_noreset_u", "rlp_u_new", "noreset_u_new"),
+                      ("新补台下：fresh_rlp_w 对 fresh_rlp_u（窗口 LP + R_rate_g 外推的作用）", "rlp_w", "rlp_u_new"),
+                      ("新补台下：fresh_rlp_w 对 fresh_noreset_u", "rlp_w", "noreset_u_new")):
+        t = wtl([(r[a], r[b]) for r in rows])
+        L.append(f"| {lab} | {t[0]} / {t[1]} / {t[2]}，{fm(t[3], 2)} | {t[4]} |")
     return L
 
 
