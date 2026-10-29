@@ -21,6 +21,13 @@ RULES = os.path.join(OUT, "rules")      # fresh_rlp_w 的规则文件（可由�
 T6J = os.path.join(OUT, "jobs"); T6D = os.path.join(ROOT, "results", "T6_duals")
 
 
+def frrw_npz(name):
+    """LP_fr^Rw(4S) 的对偶与流量文件；正式运行数值失败、由重跑（__retry1）解出的实例取重跑那一份。"""
+    p = os.path.join(T6D, f"{name}__frRw__m4.npz")
+    q = os.path.join(T6D, f"{name}__frRw__m4__retry1.npz")
+    return p if os.path.exists(p) or not os.path.exists(q) else q
+
+
 def make_w(name, out):
     """生成 fresh_rlp_w 的规则文件与 planf（见文件头）。返回诊断信息。"""
     I = load_train(name)
@@ -28,7 +35,7 @@ def make_w(name, out):
     y = {}
     for key, v in rate["y_g"].items():
         k, s = map(int, key.split(",")); y.setdefault(s, {})[k] = v
-    d = np.load(os.path.join(T6D, f"{name}__frRw__m4.npz"))
+    d = np.load(frrw_npz(name))
     H, W = int(d["H"]), int(d["W"]); N, Mv, fl = d["N"], d["M"], d["duty_flow"]
     ceil = lambda v: int(math.ceil(v - 1e-6))
     info = M.write_rlp(os.path.join(out, f"{name}__fresh_rlp_w.rlp"), I, H, False, N, [ceil(v) for v in N], [ceil(v) for v in Mv], fl, y, noscale=True)
@@ -65,7 +72,7 @@ def main():
                 "planf=" + os.path.join(M.OUT, f"{name}__fresh_rlp_u.planf")]
     elif kind == "rlp_w":
         d = os.path.join(OUT, "rlp"); jn = f"{name}__fresh_rlp_w"
-        if not (os.path.exists(os.path.join(T6D, f"{name}__frRw__m4.npz")) and os.path.exists(os.path.join(T6J, f"{name}__rate.json"))):
+        if not (os.path.exists(frrw_npz(name)) and os.path.exists(os.path.join(T6J, f"{name}__rate.json"))):
             print("T6 依赖未齐", name); sys.exit(3)
         ensure_w(name)
         args = [R5, "rlp", txt, os.path.join(RULES, f"{name}__fresh_rlp_w.rlp"), "365", "60000", "600000",
