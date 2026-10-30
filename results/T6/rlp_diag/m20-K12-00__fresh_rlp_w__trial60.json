@@ -1,0 +1,1 @@
+{"inst": "m20-K12-00", "R": -1, "robots": 222, "tools": 271, "status": "fail", "Nk": [88,3,23,80,2,26], "Mj": [53,12,53,153], "N0": [84,2,14,77,2,23], "M0": [1,17,67,102], "verify_gaps": -1, "verify_cert": -2, "verify_period": -1, "verify_enter": -1, "verify_t_end": -1, "exact": -1, "resets": 0, "duties": 0, "cyc_resets": -1, "start_factor": -1, "sec_size": 902.26, "sec": 902.26}

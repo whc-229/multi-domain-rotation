@@ -1,0 +1,1 @@
+{"inst": "m20-K1-01", "R": -1, "robots": 200, "tools": 148, "status": "fail", "Nk": [15,0,90,48,11,36], "Mj": [0,24,28,96], "N0": [19,1,21,47,9,33], "M0": [0,18,43,64], "verify_gaps": -1, "verify_cert": -2, "verify_period": -1, "verify_enter": -1, "verify_t_end": -1, "exact": -1, "resets": 0, "duties": 0, "cyc_resets": -1, "start_factor": -1, "sec_size": 670.04, "sec": 670.04}
