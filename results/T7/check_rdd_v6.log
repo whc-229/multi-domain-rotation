@@ -1,0 +1,7 @@
+{'inst': 'm02-K1-00', 'rule': 'rlp', 'alloff_ok': 1, 'R': 31}
+{'inst': 'm02-K1-00', 'rule': 'es', 'alloff_ok': 1, 'R': 28}
+{'inst': 'm02-K1-00', 'rule': 'hand', 'alloff_ok': 1, 'R': 28}
+{'inst': 'm02-K12-00', 'rule': 'rlp', 'alloff_ok': 1, 'R': 48}
+{'inst': 'm02-K12-00', 'rule': 'es', 'alloff_ok': 1, 'R': 48}
+{'inst': 'm02-K12-00', 'rule': 'hand', 'alloff_ok': 1, 'R': 50}
+{"alloff": [6, 6], "eval_mismatch": 0, "size_mismatch": 0, "cases": 300, "skipped": 0}

@@ -1,0 +1,5 @@
+/home/hk/多域轮转/results/T14_gphh/run0/best.tree	90000	cd /home/hk/多域轮转 && python3 code/t14_gphh.py 0 1000000 86400 300
+/home/hk/多域轮转/results/T14_gphh/run1/best.tree	90000	cd /home/hk/多域轮转 && python3 code/t14_gphh.py 1 1000000 86400 300
+/home/hk/多域轮转/results/T14_gphh/run2/best.tree	90000	cd /home/hk/多域轮转 && python3 code/t14_gphh.py 2 1000000 86400 300
+/home/hk/多域轮转/results/T14_gphh/run3/best.tree	90000	cd /home/hk/多域轮转 && python3 code/t14_gphh.py 3 1000000 86400 300
+/home/hk/多域轮转/results/T14_gphh/run4/best.tree	90000	cd /home/hk/多域轮转 && python3 code/t14_gphh.py 4 1000000 86400 300

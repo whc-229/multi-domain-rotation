@@ -1,0 +1,43 @@
+notools m02-K1-00 rlp 0 相同
+notools m02-K1-00 rlp 1 相同
+notools m02-K1-00 rlp 2 相同
+notools m02-K1-00 rlp 3 相同
+notools m02-K1-00 rlp 4 相同
+notools m02-K1-00 es 0 相同
+notools m02-K1-00 es 1 相同
+notools m02-K1-00 es 2 相同
+notools m02-K1-00 es 3 相同
+notools m02-K1-00 es 4 相同
+notools m02-K1-00 hand 0 相同
+notools m02-K1-00 hand 1 相同
+notools m02-K1-00 hand 2 相同
+notools m02-K1-00 hand 3 相同
+notools m02-K1-00 hand 4 相同
+notools m03-K12-00 rlp 0 相同
+notools m03-K12-00 rlp 1 相同
+notools m03-K12-00 rlp 2 相同
+notools m03-K12-00 rlp 3 相同
+notools m03-K12-00 rlp 4 相同
+notools m03-K12-00 es 0 相同
+notools m03-K12-00 es 1 相同
+notools m03-K12-00 es 2 相同
+notools m03-K12-00 es 3 相同
+notools m03-K12-00 es 4 相同
+notools m03-K12-00 hand 0 相同
+notools m03-K12-00 hand 1 相同
+notools m03-K12-00 hand 2 相同
+notools m03-K12-00 hand 3 相同
+notools m03-K12-00 hand 4 相同
+判环 rk 0 一致 {'gaps': 2514, 'cert': -1, 'period': -1}
+判环 rk 1 一致 {'gaps': 2222, 'cert': 0, 'period': 47880}
+判环 rk 2 一致 {'gaps': 0, 'cert': -1, 'period': -1}
+判环 d5 0 一致 {'gaps': 8343, 'cert': 0, 'period': 33741}
+判环 d5 1 一致 {'gaps': 8241, 'cert': 0, 'period': 34731}
+判环 d5 2 一致 {'gaps': 8339, 'cert': 0, 'period': 33741}
+判环 gphh 0 一致 {'gaps': 64, 'cert': 0, 'period': 600}
+判环 gphh 1 一致 {'gaps': 7797, 'cert': 0, 'period': 34731}
+判环 gphh 2 一致 {'gaps': 2, 'cert': 0, 'period': 10800}
+判环 rhmip 0 一致 {'gaps': 0, 'cert': 1, 'period': 5400}
+判环 rhmip 1 一致 {'gaps': 0, 'cert': 1, 'period': 1800}
+判环 rhmip 2 一致 {'gaps': 2, 'cert': 0, 'period': 600}
+{"cases": 42, "mismatch": 0}

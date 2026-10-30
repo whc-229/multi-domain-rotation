@@ -1,0 +1,42 @@
+{"part": "notools", "inst": "m02-K1-00", "rule": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "rlp", "case": 2, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "rlp", "case": 3, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "rlp", "case": 4, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "es", "case": 0, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "es", "case": 1, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "es", "case": 2, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "es", "case": 3, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "es", "case": 4, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "hand", "case": 0, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "hand", "case": 1, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "hand", "case": 2, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "hand", "case": 3, "same": 1, "diff": []}
+{"part": "notools", "inst": "m02-K1-00", "rule": "hand", "case": 4, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "rlp", "case": 2, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "rlp", "case": 3, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "rlp", "case": 4, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "es", "case": 0, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "es", "case": 1, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "es", "case": 2, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "es", "case": 3, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "es", "case": 4, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "hand", "case": 0, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "hand", "case": 1, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "hand", "case": 2, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "hand", "case": 3, "same": 1, "diff": []}
+{"part": "notools", "inst": "m03-K12-00", "rule": "hand", "case": 4, "same": 1, "diff": []}
+{"part": "cert", "method": "rk", "case": 0, "cpp": {"gaps": 2514, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "cert", "method": "rk", "case": 1, "cpp": {"gaps": 2222, "cert": 0, "period": 47880}, "same": 1, "diff": []}
+{"part": "cert", "method": "rk", "case": 2, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "cert", "method": "d5", "case": 0, "cpp": {"gaps": 8343, "cert": 0, "period": 33741}, "same": 1, "diff": []}
+{"part": "cert", "method": "d5", "case": 1, "cpp": {"gaps": 8241, "cert": 0, "period": 34731}, "same": 1, "diff": []}
+{"part": "cert", "method": "d5", "case": 2, "cpp": {"gaps": 8339, "cert": 0, "period": 33741}, "same": 1, "diff": []}
+{"part": "cert", "method": "gphh", "case": 0, "cpp": {"gaps": 64, "cert": 0, "period": 600}, "same": 1, "diff": []}
+{"part": "cert", "method": "gphh", "case": 1, "cpp": {"gaps": 7797, "cert": 0, "period": 34731}, "same": 1, "diff": []}
+{"part": "cert", "method": "gphh", "case": 2, "cpp": {"gaps": 2, "cert": 0, "period": 10800}, "same": 1, "diff": []}
+{"part": "cert", "method": "rhmip", "case": 0, "cpp": {"gaps": 0, "cert": 1, "period": 5400}, "same": 1, "diff": []}
+{"part": "cert", "method": "rhmip", "case": 1, "cpp": {"gaps": 0, "cert": 1, "period": 1800}, "same": 1, "diff": []}
+{"part": "cert", "method": "rhmip", "case": 2, "cpp": {"gaps": 2, "cert": 0, "period": 600}, "same": 1, "diff": []}
