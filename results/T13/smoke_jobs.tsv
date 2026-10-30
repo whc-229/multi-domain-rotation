@@ -1,40 +1,40 @@
-/home/hk/多域轮转/results/T13/smoke/fifo__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py fifo m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/pb__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py pb m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/esdw__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py esdw m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/eslp__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py eslp m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/gphh__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py gphh m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
-/home/hk/多域轮转/results/T13/smoke/rk__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rk m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/d5__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py d5 m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rddhand__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rddhand m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rhmip__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rhmip m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/ours__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py ours m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/fifo__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py fifo m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/pb__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py pb m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/esdw__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py esdw m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/eslp__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py eslp m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/gphh__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py gphh m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
-/home/hk/多域轮转/results/T13/smoke/rk__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rk m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/d5__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py d5 m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rddhand__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rddhand m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rhmip__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rhmip m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/ours__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py ours m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/fifo__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py fifo m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/pb__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py pb m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/esdw__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py esdw m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/eslp__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py eslp m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/gphh__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py gphh m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
-/home/hk/多域轮转/results/T13/smoke/rk__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rk m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/d5__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py d5 m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rddhand__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rddhand m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rhmip__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rhmip m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/ours__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py ours m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/fifo__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py fifo m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/pb__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py pb m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/esdw__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py esdw m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/eslp__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py eslp m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/gphh__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py gphh m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
-/home/hk/多域轮转/results/T13/smoke/rk__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rk m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/d5__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py d5 m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rddhand__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rddhand m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/rhmip__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py rhmip m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
-/home/hk/多域轮转/results/T13/smoke/ours__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && python3 code/t13_job.py ours m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/fifo__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py fifo m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/pb__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py pb m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/esdw__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py esdw m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/eslp__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py eslp m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/gphh__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py gphh m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
+/home/hk/多域轮转/results/T13/smoke/rk__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rk m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/d5__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py d5 m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rddhand__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rddhand m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rhmip__m02-K1-00__s0.json	2400	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rhmip m02-K1-00 0 960 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/ours__m02-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py ours m02-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/fifo__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py fifo m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/pb__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py pb m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/esdw__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py esdw m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/eslp__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py eslp m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/gphh__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py gphh m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
+/home/hk/多域轮转/results/T13/smoke/rk__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rk m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/d5__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py d5 m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rddhand__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rddhand m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rhmip__m02-K12-00__s0.json	2400	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rhmip m02-K12-00 0 960 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/ours__m02-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py ours m02-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/fifo__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py fifo m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/pb__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py pb m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/esdw__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py esdw m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/eslp__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py eslp m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/gphh__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py gphh m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
+/home/hk/多域轮转/results/T13/smoke/rk__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rk m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/d5__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py d5 m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rddhand__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rddhand m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rhmip__m04-K1-00__s0.json	2400	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rhmip m04-K1-00 0 960 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/ours__m04-K1-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py ours m04-K1-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/fifo__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py fifo m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/pb__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py pb m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/esdw__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py esdw m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/eslp__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py eslp m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/gphh__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py gphh m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke /home/hk/多域轮转/results/T13/smoke/pb_like.tree
+/home/hk/多域轮转/results/T13/smoke/rk__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rk m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/d5__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py d5 m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rddhand__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rddhand m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/rhmip__m04-K12-00__s0.json	2400	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py rhmip m04-K12-00 0 960 /home/hk/多域轮转/results/T13/smoke
+/home/hk/多域轮转/results/T13/smoke/ours__m04-K12-00__s0.json	1500	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t13_job.py ours m04-K12-00 0 600 /home/hk/多域轮转/results/T13/smoke

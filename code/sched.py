@@ -6,6 +6,7 @@
 - "检查名额 + 启动"在全局文件锁里做（与 t9_sched 同一把锁），多个调度器同时运行也不会超过上限；某个作业的命令已经有进程在跑就跳过。
 停调度器时连子进程一起停：调度器把每个作业放进自己的进程组（start_new_session），日志里记下 PID = 进程组号，
 需要停时 kill -- -<PGID>（只停记录过的组），再停调度器本身。
+作业命令里写 ana 环境 python 的绝对路径（/home/hk/miniconda3/envs/ana/bin/python3）；启动时先检查它能 import numpy / scipy / highspy。
 用法：nohup python3 code/sched.py <日志目录> <hi|lo> <cap> [lo_cap] -- <作业文件>... > <调度日志> 2>&1 &"""
 import os, sys, subprocess, time, fcntl
 
@@ -41,6 +42,13 @@ def main():
     a = sys.argv[1:]; sep = a.index("--")
     logdir, prio, cap = a[0], a[1], int(a[2]); lo_cap = int(a[3]) if sep > 3 else cap; files = a[sep + 1:]
     assert prio in ("hi", "lo")
+    # 环境检查（10-30 晚审核）：作业命令里的 python 必须能 import numpy / scipy / highspy，否则不启动（会话重启后 PATH 可能换成别的解释器）
+    for jf in files:
+        for line in open(jf):
+            py = line.rstrip("\n").split("\t")[2].split("&& ")[-1].split()[0]
+            r = subprocess.run(["bash", "-c", f"{py} -c 'import numpy, scipy, highspy'"], env=ENV, capture_output=True)
+            if r.returncode != 0: sys.exit(f"作业文件 {jf} 里的解释器 {py} 不能 import numpy / scipy / highspy，调度器不启动")
+            break
     os.makedirs(logdir, exist_ok=True); os.makedirs(WAIT, exist_ok=True)
     me = os.path.join(WAIT, str(os.getpid()))
     procs = []; k = 0
@@ -49,7 +57,7 @@ def main():
             done, tlim, cmd = line.rstrip("\n").split("\t")
             k += 1
             if os.path.exists(done): continue
-            tail = cmd.split("&& ")[-1].replace("python3 ", "", 1).strip()
+            tail = cmd.split("&& ")[-1].split(None, 1)[1].strip()     # 去掉解释器（可能是绝对路径），与 /proc 里 python3 之后的部分比
             lk = open(LOCK, "a")
             while True:
                 fcntl.flock(lk, fcntl.LOCK_EX)

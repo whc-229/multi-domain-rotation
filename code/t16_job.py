@@ -3,7 +3,7 @@ fresh_rlp_w（严格窗口 planW、后备补足时域 hsfb）+ resetopt，ρ = 0
 位置分布：β > 0 时，决策 i（站 s、值岗覆盖 [t, t + d)）的权重 w_i = Σ_{u∈[t, t+d)} max(π_{s,u}, 0)，π 取 LP_fr^Rw(4S) 的覆盖对偶
 （results/T6_duals/<实例>__frRw__m4[__retry1].npz）；q_i = (1 − β)/N_dev + β·w_i/Σw；槽的位置基因 p 映射到第一个累积 q > p 的决策。
 β = 0 时不传对偶文件，与原 RDD 逐位相同。
-限时（墙钟）：m = 8、10 与 T12 相同（2 小时）；m = 4、6 按 T11 的实测定：T11 跑 1000 代在 m = 4 最长 50 秒、m = 6 最长 128 秒，取 300 秒、600 秒。
+限时（墙钟）：m = 8、10 按 T12 的收敛曲线定（results/T16/tlim.json，没有时为 2 小时）；m = 4、6 按 T11 的实测定：T11 跑 1000 代在 m = 4 最长 50 秒、m = 6 最长 128 秒，取 300 秒、600 秒。
 作业内核对（同 T12）：最终解用 rost5 judge（带同一个位置分布 cdf=）重新判定逐字段相同；抽样 T_eval 缺岗与 rost5 eval 相同。
 结果写进 results/T16/jobs/<实例>__b<β>__s<种子>.json（原子写入，已存在就跳过；运行时加 fcntl 锁）。
 用法：python3 code/t16_job.py <实例> <β> <种子>"""
@@ -20,6 +20,9 @@ R5 = os.environ.get("ROST5_BIN", os.path.join(ROOT, "code", "cpp", "rost5"))
 OUT = os.environ.get("T16_OUT", os.path.join(ROOT, "results", "T16", "jobs"))
 DW = os.path.join(ROOT, "results", "T16", "dualw")
 TLIM = {4: 300, 6: 600, 8: 7200, 10: 7200}
+# m = 8、10 的限时按 T12 的收敛曲线定（10-30 晚审核），定下后写进 results/T16/tlim.json（{"8": 秒, "10": 秒}），作业启动时读
+_tl = os.path.join(ROOT, "results", "T16", "tlim.json")
+if os.path.exists(_tl): TLIM.update({int(k): float(v) for k, v in json.load(open(_tl)).items()})
 if os.environ.get("T16_TLIM"): TLIM = {k: float(os.environ["T16_TLIM"]) for k in TLIM}   # 只用于开发期试算
 
 

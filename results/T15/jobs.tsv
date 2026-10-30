@@ -1,216 +1,216 @@
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K1-00
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K1-01
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K1-02
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K1-03
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K1-04
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K1-05
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K12-00
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K12-01
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K12-02
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K12-03
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K12-04
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m02-K12-05
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K1-00
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K1-01
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K1-02
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K1-03
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K1-04
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K1-05
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K12-00
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K12-01
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K12-02
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K12-03
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K12-04
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__lp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py lp m03-K12-05
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K1-00
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K1-01
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K1-02
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K1-03
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K1-04
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K1-05
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K12-00
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K12-01
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K12-02
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K12-03
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K12-04
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m02-K12-05
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K1-00
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K1-01
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K1-02
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K1-03
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K1-04
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K1-05
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K12-00
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K12-01
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K12-02
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K12-03
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K12-04
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_rlp m03-K12-05
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-00 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-00 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-00 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-01 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-01 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-01 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-02 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-02 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-02 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-03 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-03 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-03 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-04 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-04 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-04 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-05 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-05 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K1-05 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-00 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-00 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-00 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-01 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-01 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-01 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-02 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-02 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-02 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-03 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-03 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-03 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-04 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-04 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-04 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-05 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-05 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m02-K12-05 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-00 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-00 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-00 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-01 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-01 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-01 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-02 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-02 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-02 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-03 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-03 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-03 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-04 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-04 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-04 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-05 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-05 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K1-05 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-00 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-00 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-00 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-01 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-01 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-01 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-02 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-02 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-02 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-03 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-03 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-03 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-04 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-04 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-04 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-05 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-05 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_fd m03-K12-05 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-00 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-00 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-00 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-01 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-01 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-01 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-02 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-02 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-02 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-03 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-03 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-03 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-04 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-04 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-04 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-05 0
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-05 1
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K1-05 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-00 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-00 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-00 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-01 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-01 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-01 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-02 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-02 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-02 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-03 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-03 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-03 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-04 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-04 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-04 2
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-05 0
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-05 1
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m02-K12-05 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-00 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-00 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-00 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-01 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-01 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-01 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-02 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-02 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-02 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-03 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-03 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-03 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-04 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-04 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-04 2
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-05 0
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-05 1
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K1-05 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-00 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-00 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-00 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-01 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-01 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-01 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-02 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-02 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-02 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-03 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-03 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-03 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-04 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-04 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-04 2
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-05 0
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-05 1
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && python3 code/t15_job.py ub_es m03-K12-05 2
-/home/hk/多域轮转/results/T15/jobs/m02-K1-00__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K1-00 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K1-01__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K1-01 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K1-02__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K1-02 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K1-03__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K1-03 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K1-04__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K1-04 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K1-05__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K1-05 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K12-00__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K12-00 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K12-01__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K12-01 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K12-02__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K12-02 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K12-03__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K12-03 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K12-04__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K12-04 7200
-/home/hk/多域轮转/results/T15/jobs/m02-K12-05__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m02-K12-05 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K1-00__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K1-00 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K1-01__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K1-01 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K1-02__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K1-02 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K1-03__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K1-03 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K1-04__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K1-04 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K1-05__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K1-05 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K12-00__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K12-00 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K12-01__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K12-01 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K12-02__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K12-02 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K12-03__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K12-03 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K12-04__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K12-04 7200
-/home/hk/多域轮转/results/T15/jobs/m03-K12-05__mip.json	9000	cd /home/hk/多域轮转 && python3 code/t15_job.py mip m03-K12-05 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K1-00
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K1-01
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K1-02
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K1-03
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K1-04
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K1-05
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K12-00
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K12-01
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K12-02
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K12-03
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K12-04
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m02-K12-05
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-00
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-01
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-02
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-03
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-04
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-05
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-00
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-01
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-02
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-03
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-04
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__lp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-05
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-00
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-01
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-02
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-03
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-04
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-05
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-00
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-01
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-02
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-03
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-04
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-05
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-00
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-01
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-02
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-03
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-04
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-05
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-00
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-01
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-02
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-03
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-04
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_rlp.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-05
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-00 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-00 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-00 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-01 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-01 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-01 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-02 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-02 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-02 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-03 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-03 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-03 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-04 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-04 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-04 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-05 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-05 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-05 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-00 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-00 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-00 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-01 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-01 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-01 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-02 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-02 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-02 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-03 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-03 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-03 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-04 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-04 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-04 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-05 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-05 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-05 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-00 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-00 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-00 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-01 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-01 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-01 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-02 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-02 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-02 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-03 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-03 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-03 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-04 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-04 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-04 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-05 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-05 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-05 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-00 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-00 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-00 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-01 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-01 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-01 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-02 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-02 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-02 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-03 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-03 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-03 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-04 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-04 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-04 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_fd__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-05 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_fd__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-05 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_fd__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-05 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-00 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-00 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-00 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-01 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-01 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-01 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-02 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-02 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-02 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-03 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-03 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-03 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-04 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-04 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-04 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-05 0
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-05 1
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-05 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-00 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-00 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-00 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-01 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-01 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-01 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-02 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-02 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-02 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-03 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-03 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-03 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-04 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-04 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-04 2
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-05 0
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-05 1
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-05 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-00 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-00 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-00 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-01 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-01 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-01 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-02 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-02 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-02 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-03 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-03 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-03 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-04 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-04 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-04 2
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-05 0
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-05 1
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-05 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-00 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-00 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-00 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-01 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-01 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-01 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-02 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-02 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-02 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-03 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-03 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-03 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-04 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-04 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-04 2
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_es__s0.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-05 0
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_es__s1.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-05 1
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__ub_es__s2.json	7200	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-05 2
+/home/hk/多域轮转/results/T15/jobs/m02-K1-00__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-00 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K1-01__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-01 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K1-02__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-02 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K1-03__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-03 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K1-04__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-04 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K1-05__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-05 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K12-00__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-00 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K12-01__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-01 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K12-02__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-02 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K12-03__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-03 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K12-04__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-04 7200
+/home/hk/多域轮转/results/T15/jobs/m02-K12-05__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-05 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K1-00__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-00 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K1-01__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-01 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K1-02__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-02 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K1-03__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-03 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K1-04__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-04 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K1-05__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-05 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K12-00__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-00 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K12-01__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-01 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K12-02__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-02 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K12-03__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-03 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K12-04__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-04 7200
+/home/hk/多域轮转/results/T15/jobs/m03-K12-05__mip.json	9000	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-05 7200
