@@ -10,7 +10,7 @@
 import os, sys, subprocess, time, fcntl
 
 JOBS = (b"t6_job.py", b"t6_rerun.py", b"t8_job.py", b"t9_job.py", b"t10_variants.py", b"t11_job.py", b"t12_job.py",
-        b"t13_job.py", b"t14_job.py", b"t14_train.py")
+        b"t13_job.py", b"t13_rhmip.py", b"t14_gphh.py", b"t15_job.py", b"t16_job.py")
 LOCK = "/tmp/mdrr_idle_sched.lock"
 WAIT = "/tmp/mdrr_sched_wait"
 ENV = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")

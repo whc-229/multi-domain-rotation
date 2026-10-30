@@ -1,0 +1,24 @@
+{"inst": "m04-K1-00", "part": "weights", "same": 1, "ndev": 253, "n_pos": 253, "max_abs_diff": 0.0}
+{"inst": "m04-K1-00", "part": "decode", "case": 0, "n_active": 17, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 1, "n_active": 27, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 2, "n_active": 22, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 3, "n_active": 25, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 4, "n_active": 20, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 5, "n_active": 21, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 6, "n_active": 23, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 7, "n_active": 19, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 8, "n_active": 19, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "decode", "case": 9, "n_active": 29, "same": 1, "diff": []}
+{"inst": "m04-K1-00", "part": "beta0", "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "weights", "same": 1, "ndev": 677, "n_pos": 677, "max_abs_diff": 0.0}
+{"inst": "m06-K12-04", "part": "decode", "case": 0, "n_active": 59, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 1, "n_active": 61, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 2, "n_active": 65, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 3, "n_active": 67, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 4, "n_active": 64, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 5, "n_active": 67, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 6, "n_active": 65, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 7, "n_active": 68, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 8, "n_active": 70, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "decode", "case": 9, "n_active": 73, "same": 1, "diff": []}
+{"inst": "m06-K12-04", "part": "beta0", "same": 1, "diff": []}

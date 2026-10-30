@@ -6,7 +6,7 @@
 状态里的整数与 C++ 相同，浮点运算的顺序也与 C++ 相同。
 T7 补充：线性打分支持 curdef（相位缺额 = 当前相位人数 − N_k/L）和 LP 引导项（w13·lpz[k][s]）；RDD 解码（rdd 参数，见 decode_geno）；
 返回缺岗归因 why_r / why_t（与 C++ 相同口径）和窗口内决策数 ndec_w；size_res / size_rule / near_miss 逐步对应 C++ 的定台数循环。"""
-import os, sys, math
+import os, sys, math, bisect
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import U, ToolInst  # noqa: E402
 
@@ -58,25 +58,28 @@ def parse_planf(I, path):
     return planN, pf
 
 
-def decode_geno(g, W, ndev, qon, reset_opt):
-    """与 C++ decode_geno 相同：槽 (p, a) 在 a ≥ 1 − q_on 时激活，作用于第 ⌊p·N_dev⌋ 个窗口决策，u = (a − 1 + q_on)/q_on；后一个槽覆盖前一个。"""
+def decode_geno(g, W, ndev, qon, reset_opt, cdf=None):
+    """与 C++ decode_geno 相同：槽 (p, a) 在 a ≥ 1 − q_on 时激活，作用于第 ⌊p·N_dev⌋ 个窗口决策，u = (a − 1 + q_on)/q_on；后一个槽覆盖前一个。
+    cdf 不为空时（T16 对偶引导），位置改为第一个 cdf[i] > p 的 i（与 C++ 的 upper_bound 相同）。"""
     dev = [-1.0] * max(ndev, 0); maxpos = -1; thr = 1.0 - qon
     for a in range(0, len(g) - 1, 2):
         p, x = g[a], g[a + 1]
         if ndev <= 0 or x < thr: continue
-        pos = int(math.floor(p * ndev))
+        pos = bisect.bisect_right(cdf, p) if cdf else int(math.floor(p * ndev))
         if pos >= ndev: pos = ndev - 1
         dev[pos] = (x - 1.0 + qon) / qon; maxpos = max(maxpos, pos)
     return dict(W=W, ndev=ndev, dev=dev, maxpos=maxpos, reset_opt=reset_opt)
 
 
-def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None, plan_until=None):
+def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None, plan_until=None, pd=None, tree=None, planx=None):
     """仿真一次。trace 不为 None 时（T3c 诊断用，dict）只做记录、不改变任何决策：
     trace["plan"] = 换算后的提前大修计划 {(k, i): [[t0, 次数], …]}；trace["disp"] = 每次派工
     (t, 站, 岗位, 机器人, 型, 相位, 是否按计划提前大修, 新的就绪基准 rv, 值岗结束时刻)；
     trace["gaps"] = 每次缺岗 (t, 站, 就绪的候选数, 归因：("r", 可在该站值岗的各型) 或 ("t", 首个候选型所需工具))，与 C++ 的 why_r / why_t 口径相同；
     trace["robots"] = 各机器人的型。trace["light"] 为真时不记派工（长时域判环时省内存）。
-    plan_until（T12，对应 C++ 的 planW=）：计划提前大修只在 t < plan_until 时执行；None 不限。"""
+    plan_until（T12，对应 C++ 的 planW=）：计划提前大修只在 t < plan_until 时执行；None 不限。
+    pd（T13，对应 C++ 的逐决策编码）：dict(mode = 1 RK / 2 D5, W, g = 每个窗口决策的基因, f = 强制选择表, stop_dec, stop_wgap, wgap_from)；
+    返回值另有 stop_ncand（停在第 stop_dec 个窗口决策时的可行候选数）与 gap_dec（停在第一个窗口缺岗的决策序号）。"""
     TI = ToolInst(I)
     nk, ns, nt = len(I.T), len(I.sites), TI.nt
     v0 = [math.ceil(t["off_h"] / U - 1e-9) for t in I.T]; c0 = max(v0)
@@ -161,6 +164,8 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
     cnt = [[0] * I.L[k] for k in range(nk)]
     for k in range(nk): cnt[k][0] = Nk[k]
     why_r = [0] * nk; why_t = [0] * nt; ndec = 0
+    att = [0] * nr      # T13 D5：每台机器人的出勤次数
+    pxm = {key: [list(e) for e in v] for key, v in planx["e"].items()} if planx is not None else {}   # T13 RH-MIP：还没用掉的计划条目
 
     def tool_ok(r, s):
         """机器人 r 此刻去 s 站是否有足够的空闲适配工具（不改状态）。"""
@@ -181,15 +186,18 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
 
     def out(**kw):
         """返回值：附上归因与窗口决策数。"""
+        kw.setdefault("stop_ncand", -1); kw.setdefault("gap_dec", -1)
         kw.update(why_r=why_r, why_t=why_t, ndec_w=ndec); return kw
     t = min(fr)
     while t < Tmax:
+        if trace is not None and trace.get("snap_at") is not None and "snap" not in trace and t >= trace["snap_at"]:   # T13：第一次到达 snap_at 时的状态（只记录）
+            trace["snap"] = dict(t=t, rph=list(rph), rv=list(rv), tf=[list(x) for x in tf], fr=list(fr), psite=list(psite))
         if R is not None:
             for k in range(nk):
                 for s in I.elig[k]: lag[k][s] = clip(lag[k][s] + planQ(k, s, t) - planQ(k, s, tprev), R["CQ"][k][s])
                 for i in range(I.L[k]): phl[k][i] = clip(phl[k][i] + phplanQ(k, i, t) - phplanQ(k, i, tprev), R["CP"][k])
             tprev = t
-        if certify and t >= qmax and (rdd is None or t >= rdd["W"] or ndec > rdd["maxpos"]):
+        if certify and t >= qmax and (rdd is None or t >= rdd["W"] or ndec > rdd["maxpos"]) and (pd is None or t >= pd["W"]) and (planx is None or t >= planx["end"]):
             cur = []
             for r in range(nr): cur += [rk[r], rph[r], max(rv[r] - t, -CL)]
             for row in pl:
@@ -204,6 +212,8 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                 for k in range(nk):
                     for i in range(I.L[k]): cur.append(tot[k] - I.L[k] * D[k][i])
             for j in range(nt): cur += sorted(max(f - t, -CL) for f in tf[j])
+            if pd is not None and pd["mode"] == 2 and nr > 0:
+                mn = min(att); cur += [min(a - mn, CL) for a in att]
             key = tuple(cur)
             if key in seen:
                 t1 = seen[key]
@@ -216,7 +226,10 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
             dv = -1.0; force = False
             if rdd is not None and t < rdd["W"]:
                 c = ndec; ndec += 1
+                if trace is not None: trace.setdefault("decs", []).append([s, t, 1])     # T16：窗口决策 (站, 时刻, 值岗时长；缺岗为 1)
                 if c < rdd["ndev"]: dv = rdd["dev"][c]
+            pdc = -1
+            if pd is not None and t < pd["W"]: pdc = ndec; ndec += 1
             if R is not None:
                 cand = sorted((-lag[rk[r]][s], rk[r], -phl[rk[r]][rph[r]], max(rv[r] - t, -CL), r)
                               for r in range(nr) if s in elig[rk[r]] and rv[r] + lead[s] <= t)
@@ -224,6 +237,11 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
             else:
                 def score(r):
                     k, i = rk[r], rph[r]
+                    if tree is not None:     # T13 / T14：GP 树打分（与 C++ eval_tree 相同的特征与运算）
+                        deficit = (cnt[k][i] - Nk[k] / I.L[k]) if curdef else (tot[k] / I.L[k] - D[k][i])
+                        fe = [float(max(rv[r] - t, -CL)), st[(k, i, s)][1] / I.d[k], float(flex[k]), deficit, float(I.d[k]), i / I.L[k]]
+                        sc = eval_tree(tree, 0, fe)
+                        return (sc if math.isfinite(sc) else 1e18, r)
                     sc = w[0] * max(rv[r] - t, -CL)
                     sc = sc + w[1] * st[(k, i, s)][1] / I.d[k]
                     sc = sc + w[2] * flex[k]
@@ -239,6 +257,30 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                 pk = pick_dev(order, s, dv)
                 if pk == -2: force = True
                 elif pk >= 0: order.remove(pk); order.insert(0, pk)
+            if planx is not None and t < planx["end"]:     # T13 RH-MIP：与 C++ 相同的按计划派
+                lst = pxm.get((s, t))
+                if lst:
+                    for ei, (k2, i2, r2) in enumerate(lst):
+                        pk = next((r for r in order if rk[r] == k2 and rph[r] == i2 and tool_ok(r, s)), -1)
+                        if pk < 0: continue
+                        order.remove(pk); order.insert(0, pk); force = (r2 == 1) and (plan_until is None or t < plan_until)
+                        del lst[ei]; break
+            if pd is not None:     # T13：与 C++ 相同的重排与按基因取候选
+                if pd["mode"] == 1: order = sorted(order)
+                else:
+                    mn = min(att); order = sorted(order, key=lambda r: (min(att[r] - mn, CL), rph[r], r))
+                if pdc >= 0:
+                    fe = [r for r in order if tool_ok(r, s)]
+                    if pdc == pd.get("stop_dec", -1): return out(gaps=gaps, cert=-1, period=-1, enter=-1, resets=resets, stop_ncand=len(fe))
+                    if not fe:
+                        if pd.get("stop_wgap") and pdc >= pd.get("wgap_from", 0): return out(gaps=gaps, cert=-1, period=-1, enter=-1, resets=resets, gap_dec=pdc)
+                    else:
+                        n = len(fe); f = pd.get("f"); fc = f[pdc] if f is not None and pdc < len(f) else -1
+                        if fc >= 0: idx = min(fc, n - 1)
+                        else:
+                            g = pd.get("g"); x = g[pdc] if g is not None and pdc < len(g) else 0.0
+                            idx = min(max(int(math.floor(x * n)), 0), n - 1)
+                        pk = fe[idx]; order.remove(pk); order.insert(0, pk)
             done = False
             for r in order:
                 k, i = rk[r], rph[r]
@@ -263,8 +305,9 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                         if e[1] > 0: e[1] -= 1; planned = True; break
                 if planned: nx = st[(k, I.L[k] - 1, s)][1]; nph = 0; resets += 1
                 if force and nph != 0: nx = st[(k, I.L[k] - 1, s)][1]; nph = 0; resets += 1
-                rv[r] = t - ld + nx; rph[r] = nph; cnt[k][i] -= 1; cnt[k][nph] += 1
-                if trace is not None and not trace.get("light"): trace["disp"].append((t, s, q, r, k, i, planned, rv[r], t + I.d[k]))
+                rv[r] = t - ld + nx; rph[r] = nph; cnt[k][i] -= 1; cnt[k][nph] += 1; att[r] += 1
+                if trace is not None and not trace.get("light"):    # T13 起多记 3 项：尾节点虚拟时刻 v = t − 前置、所用工具 [(类, 编号)]、本班后是否提前大修
+                    trace["disp"].append((t, s, q, r, k, i, planned, rv[r], t + I.d[k], t - ld, [(c[2], c[3]) for c in ch], int(nph == 0 and i != I.L[k] - 1)))
                 D[k][i] += 1; tot[k] += 1
                 if R is not None:
                     lag[k][s] = clip(lag[k][s] - R["Q"][s], R["CQ"][k][s])
@@ -272,7 +315,9 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                     if t >= H:
                         for i2 in range(I.L[k]): phl[k][i2] += 1
                     for i2 in range(I.L[k]): phl[k][i2] = clip(phl[k][i2], R["CP"][k])
-                fr[q] = t + I.d[k]; done = True; break
+                fr[q] = t + I.d[k]; done = True
+                if trace is not None and rdd is not None and t < rdd["W"]: trace["decs"][-1][2] = I.d[k]
+                break
             if not done:
                 gaps += 1; fr[q] = t + 1
                 if order:
@@ -287,6 +332,78 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                     gap_log.append(dict(t=t, s=s, cand=len(order), lag={k: lag[k][s] for k in range(nk) if s in elig[k]}))
         t = min(fr)
     return out(gaps=gaps, cert=-1, period=-1, enter=-1, resets=resets)
+
+
+def parse_planx(path):
+    """与 C++ parse_planx 相同：首行 "end T"，其余每行 "s D k i r"（一行一台），同一 (s, D) 内保持文件顺序。"""
+    lines = open(path).read().split("\n"); end = int(lines[0].split()[1]); e = {}
+    for line in lines[1:]:
+        a = line.split()
+        if len(a) == 5: s, D, k, i, r = map(int, a); e.setdefault((s, D), []).append((k, i, r))
+    return dict(end=end, e=e)
+
+
+def parse_tree(src):
+    """与 C++ tree_parse 相同的前缀式 GP 树：返回节点表 [(op, c, a, b)]，根是 0。"""
+    tok = src.replace("(", " ( ").replace(")", " ) ").split(); nodes = []; p = [0]
+    names = ["wait", "nextocc", "flex", "deficit", "duty", "phase"]; ops = {"+": 7, "-": 8, "*": 9, "/": 10, "max": 11, "min": 12}
+
+    def rec():
+        a = tok[p[0]]; p[0] += 1; nid = len(nodes); nodes.append(None)
+        if a == "(":
+            o = ops[tok[p[0]]]; p[0] += 1; l = rec(); r = rec(); assert tok[p[0]] == ")"; p[0] += 1
+            nodes[nid] = (o, 0.0, l, r)
+        else:
+            nodes[nid] = (names.index(a), 0.0, -1, -1) if a in names else (6, float(a), -1, -1)
+        return nid
+    rec(); return nodes
+
+
+def eval_tree(t, n, f):
+    """与 C++ Policy::eval_tree 相同：特征、常数、+ − ×、保护除（|分母| < 1e-9 时为 1）、max、min。"""
+    op, c, a, b = t[n]
+    if op < 6: return f[op]
+    if op == 6: return c
+    x, y = eval_tree(t, a, f), eval_tree(t, b, f)
+    if op == 7: return x + y
+    if op == 8: return x - y
+    if op == 9: return x * y
+    if op == 10: return 1.0 if abs(y) < 1e-9 else x / y
+    if op == 11: return max(x, y)
+    return min(x, y)
+
+
+def d5_repair(I, Nk, Mj, pd, **kw):
+    """与 C++ d5_repair 相同：窗口内缺岗决策 c，从 c−1 往回到 c−12 试别的候选，[tt, c) 无缺岗且 c 有可行候选就采用。返回强制选择表。"""
+    BT = 12; f = []; frm = 0
+    while True:
+        q = dict(pd, f=f, stop_dec=-1, stop_wgap=True, wgap_from=frm)
+        r = run_core(I, Nk, Mj, pd["W"], False, pd=q, **kw)
+        if r["gap_dec"] < 0: break
+        c = r["gap_dec"]; fixed = False
+        tt = c - 1
+        while tt >= max(0, c - BT) and not fixed:
+            f2 = list(f) + [-1] * max(0, c + 1 - len(f))
+            for j in range(tt, len(f2)): f2[j] = -1
+            r2 = run_core(I, Nk, Mj, pd["W"], False, pd=dict(pd, f=f2, stop_dec=tt, stop_wgap=False), **kw)
+            if r2["stop_ncand"] > 0:
+                n = r2["stop_ncand"]; cur = f[tt] if tt < len(f) else -1
+                for alt in range(n):
+                    if alt == cur: continue
+                    f2[tt] = alt
+                    r3 = run_core(I, Nk, Mj, pd["W"], False, pd=dict(pd, f=f2, stop_dec=c, stop_wgap=False), **kw)
+                    if r3["stop_ncand"] > 0 and r3["gaps"] == r2["gaps"]: f = list(f2); fixed = True; break
+            tt -= 1
+        frm = c + 1
+    return f
+
+
+def run(I, Nk, Mj, Tmax, certify=True, pd=None, **kw):
+    """仿真入口（与 C++ run 相同）：pd 为 D5 且 repair 为真时先算强制选择表，再仿真；其余就是 run_core。"""
+    if pd is not None and pd["mode"] == 2 and pd.get("repair"):
+        f = d5_repair(I, Nk, Mj, dict(pd, repair=False), **kw)
+        return run_core(I, Nk, Mj, Tmax, certify, pd=dict(pd, repair=False, f=f), **kw)
+    return run_core(I, Nk, Mj, Tmax, certify, pd=pd, **kw)
 
 
 CERT_PATIENCE = 5

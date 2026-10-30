@@ -74,6 +74,8 @@ struct RLP {
     vector<int> N0, M0;
 };
 
+// T13 RH-MIP 的排班计划：e[(站, 值岗开始时刻)] = 若干个 (机型, 相位, 本班后提前大修)，每个是一台；end = 计划覆盖到的时刻（之后按默认规则）
+struct PlanX { ll end = 0; map<pair<int,ll>, vector<array<int,3>>> e; };
 // RDD 解码数据（T7）：dev[c] = 第 c 个窗口决策上的 u ∈ [0, 1)，−1 表示不偏离；maxpos = 最后一个偏离决策的序号（无偏离为 −1）
 struct RDD { ll W = 0; int ndev = 0; vector<double> dev; int maxpos = -1; bool reset_opt = false; };
 
@@ -86,6 +88,7 @@ struct Policy {
     // T13：逐决策编码。pd_mode = 1：RK（原排班软件的随机键，可用机器人按编号）；2：D5（上一篇的 dec5，按出勤少、相位低、编号排序，带回溯修复）。
     // 窗口 [0, pdW) 内第 c 个决策取第 ⌊pdg[c]·n⌋ 个可行候选（n = 工具也够用的候选数；缺基因按 0）；pdf[c] ≥ 0 时改取第 pdf[c] 个（D5 修复的强制选择）。
     // 窗口之后按该解码器自己的排序取第一个（相当于基因取 0），不再修复。stop_dec / stop_wgap / wgap_from 只供修复的内部推演用。
+    const PlanX* planx = nullptr;   // T13 RH-MIP：t < planx->end 时，站 s 在 t 的岗位优先派计划里的 (机型, 相位)（就绪、工具够的第一个），没有匹配的按默认规则
     int pd_mode = 0; ll pdW = 0; const vector<double>* pdg = nullptr; const vector<int>* pdf = nullptr; bool repair = false;
     ll stop_dec = -1; bool stop_wgap = false; ll wgap_from = 0;
     ll plan_until = -1;          // T12：planW=，计划提前大修只在 t < plan_until 时执行（−1 不限；严格的"只在启动窗口内提前大修"）
@@ -122,6 +125,9 @@ static inline int postu(const Inst& I, int k, int s, int j, double unin) {
 // T10 诊断：g_gaplog 非空时，每个缺岗写一行 "t 站 就绪候选数 归因（1 = 工具，0 = 机器人）"；g_sizelog 非空时，定台数循环每一步写一行。
 // 两者只写文件，不改变任何决策。
 static FILE* g_gaplog = nullptr; static FILE* g_sizelog = nullptr;
+// T16：g_decrec 非空时，run 记录每个 RDD 窗口决策的 (站, 时刻, 派出机器人的值岗时长；缺岗为 1)，只记录、不改决策。
+// g_cdf 非空时，RDD 槽的位置基因 p 按这个累积分布映射到决策下标（第一个 cdf[i] > p 的 i），见 decode_geno；空时与原来相同（⌊p·N_dev⌋）。
+static vector<array<ll,3>>* g_decrec = nullptr; static vector<double> g_cdf;
 // gap_cap（T7 加速）：不判环的运行里，缺岗数一旦超过 gap_cap 就提前返回（此时只保证返回的 gaps > gap_cap）。
 // 定台数循环里"试加取缺岗最少"只需要知道候选是否可能胜出，超过当前最好值的候选不可能被选中，所以选择结果与不设上限时逐位相同。
 Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Policy& P, ll Tmax, bool certify, ll stop_at = -1, vector<ll>* snap = nullptr, ll gap_cap = LLONG_MAX) {
@@ -198,6 +204,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
     ll t = *min_element(fr.begin(), fr.end());
     const bool lin = P.tree.empty();
     const RDD* DV = P.rdd;
+    map<pair<int,ll>, vector<array<int,3>>> pxm; if (P.planx) pxm = P.planx->e;   // T13：本次运行里还没用掉的计划条目
     // 机器人 r 此刻去 s 站是否有足够的空闲适配工具（与派工时的工具检查相同，但不改状态；RDD 构造备选表用）
     auto tool_ok = [&](int r, int s) -> bool {
         if (!use_tools) return true;
@@ -240,7 +247,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                 sort(cur.begin() + st0, cur.end());
             }
             if (stop_at >= 0) { if (t >= stop_at) { *snap = cur; R.t_end = t; return R; } }
-            else if ((!use_tw || t >= P.Tw) && t >= qmax && (!DV || t >= DV->W || R.ndec_w > DV->maxpos) && (!P.pd_mode || t >= P.pdW)) {   // RDD：最后一个偏离决策之后才判环
+            else if ((!use_tw || t >= P.Tw) && t >= qmax && (!DV || t >= DV->W || R.ndec_w > DV->maxpos) && (!P.pd_mode || t >= P.pdW) && (!P.planx || t >= P.planx->end)) {   // RDD：最后一个偏离决策之后才判环
                 auto h = hsh(cur);
                 auto it = seen.find(h);
                 if (it != seen.end()) {
@@ -259,7 +266,8 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
         for (int pq : due) {
             const int s = I.psite[pq];
             double dv = -1; bool force_reset = false;      // RDD：本决策的 u（−1 不偏离）、是否强制本班后提前大修
-            if (DV && t < DV->W) { ll c = R.ndec_w++; if (c < DV->ndev) dv = DV->dev[c]; }
+            ll recj = -1;
+            if (DV && t < DV->W) { ll c = R.ndec_w++; if (c < DV->ndev) dv = DV->dev[c]; if (g_decrec) { recj = g_decrec->size(); g_decrec->push_back({s, t, 1}); } }
             ll pdc = -1; if (P.pd_mode && t < P.pdW) pdc = R.ndec_w++;   // T13：逐决策编码的窗口决策序号
             if (RL) {   // ---------- R_LP 派工 ----------
                 vector<tuple<ll,int,ll,ll,int>> rc;   // (−lag_{k,s}, k, −相位 lag, 截断就绪, 编号)
@@ -305,7 +313,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                     phl[k][i] -= T.L;
                     if (t >= RL->H) for (int i2 = 0; i2 < T.L; i2++) phl[k][i2] += 1;
                     for (int i2 = 0; i2 < T.L; i2++) phl[k][i2] = clip(phl[k][i2], RL->CP[k]);
-                    fr[pq] = t + T.d; done = true; break;
+                    fr[pq] = t + T.d; done = true; if (recj >= 0) (*g_decrec)[recj][2] = T.d; break;
                 }
                 if (!done) {
                     R.gaps++;
@@ -348,6 +356,19 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                 int pk = pick_dev(order, s, dv);
                 if (pk == -2) force_reset = true;
                 else if (pk >= 0) { auto it = find_if(cand.begin(), cand.end(), [&](const pair<double,int>& x) { return x.second == pk; }); rotate(cand.begin(), it, it + 1); }
+            }
+            if (P.planx && t < P.planx->end) {   // T13 RH-MIP：按计划派
+                auto it = pxm.find({s, t});
+                if (it != pxm.end()) {
+                    for (size_t e = 0; e < it->second.size(); e++) {
+                        int k = it->second[e][0], i = it->second[e][1], pk = -1;
+                        for (auto& cr : cand) { int r = cr.second; if (rk[r] == k && rph[r] == i && tool_ok(r, s)) { pk = r; break; } }
+                        if (pk < 0) continue;
+                        auto jt = find_if(cand.begin(), cand.end(), [&](const pair<double,int>& x) { return x.second == pk; }); rotate(cand.begin(), jt, jt + 1);
+                        force_reset = it->second[e][2] == 1 && (P.plan_until < 0 || t < P.plan_until);
+                        it->second.erase(it->second.begin() + e); break;
+                    }
+                }
             }
             if (P.pd_mode) {   // T13：按解码器自己的顺序重排候选，窗口内按基因（或修复的强制选择）取一个可行候选
                 if (P.pd_mode == 1) sort(cand.begin(), cand.end(), [](const pair<double,int>& a, const pair<double,int>& b) { return a.second < b.second; });
@@ -410,7 +431,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                 rv[r] = t - ld + nx; rph[r] = nph; att[r]++;
                 cnt[k][i]--; cnt[k][nph]++; R.duties++;
                 D[k][i]++; tot[k]++;
-                fr[pq] = t + T.d; done = true; break;
+                fr[pq] = t + T.d; done = true; if (recj >= 0) (*g_decrec)[recj][2] = T.d; break;
             }
             if (!done) {
                 R.gaps++;
@@ -590,6 +611,44 @@ struct GP {
     }
 };
 
+// T13 / T14：GP 树的全精度文本（前缀式）。叶子：wait nextocc flex deficit duty phase 或常数（%.17g）；内部："(op a b)"，op ∈ + - * / max min。
+string tree_ser(const vector<GPNode>& t, int n) {
+    static const char* nm[6] = {"wait", "nextocc", "flex", "deficit", "duty", "phase"};
+    static const char* on[6] = {"+", "-", "*", "/", "max", "min"};
+    const GPNode& g = t[n];
+    if (g.op < 6) return nm[g.op];
+    if (g.op == 6) { char b[40]; snprintf(b, 40, "%.17g", g.c); return b; }
+    return string("(") + on[g.op - 7] + " " + tree_ser(t, g.a) + " " + tree_ser(t, g.b) + ")";
+}
+vector<GPNode> tree_parse(const string& src) {
+    string x; for (char c : src) { if (c == '(' || c == ')') { x += ' '; x += c; x += ' '; } else x += c; }
+    stringstream ss(x); vector<string> tok; string w; while (ss >> w) tok.push_back(w);
+    vector<GPNode> t; size_t p = 0;
+    function<int()> rec = [&]() -> int {
+        if (p >= tok.size()) { fprintf(stderr, "bad tree\n"); exit(1); }
+        string a = tok[p++]; int id = t.size(); t.push_back({0, 0, -1, -1});
+        if (a == "(") {
+            string op = tok[p++]; int o = op == "+" ? 7 : op == "-" ? 8 : op == "*" ? 9 : op == "/" ? 10 : op == "max" ? 11 : op == "min" ? 12 : -1;
+            if (o < 0) { fprintf(stderr, "bad tree op %s\n", op.c_str()); exit(1); }
+            int l = rec(); int r = rec(); if (p >= tok.size() || tok[p++] != ")") { fprintf(stderr, "bad tree paren\n"); exit(1); }
+            t[id] = {o, 0, l, r};
+        } else {
+            static const char* nm[6] = {"wait", "nextocc", "flex", "deficit", "duty", "phase"};
+            int f = -1; for (int q = 0; q < 6; q++) if (a == nm[q]) f = q;
+            t[id] = f >= 0 ? GPNode{f, 0, -1, -1} : GPNode{6, strtod(a.c_str(), nullptr), -1, -1};
+        }
+        return id;
+    };
+    rec(); return t;
+}
+PlanX parse_planx(const string& fn) {   // 首行 "end T"，其余每行 "s D k i r"（一行一台）
+    PlanX X; ifstream f(fn); if (!f) { fprintf(stderr, "cannot open %s\n", fn.c_str()); exit(1); }
+    string tag; f >> tag >> X.end; int s, k, i, r; ll D;
+    while (f >> s >> D >> k >> i >> r) X.e[{s, D}].push_back({k, i, r});
+    return X;
+}
+string tree_arg(const string& v) { if (!v.empty() && v[0] == '@') { ifstream f(v.substr(1)); stringstream b; b << f.rdbuf(); return b.str(); } return v; }
+
 vector<vector<ll>> g_qfrom; vector<double> g_planN;
 vector<vector<double>> parse_lpz(const Inst& I, const string& fn, vector<int>& N0, vector<int>& M0) {   // 行 "z k s 比例"；"#N0 …"；"#M0 …"
     vector<vector<double>> z(I.nk, vector<double>(I.ns, 0)); ifstream f(fn); string line;
@@ -637,7 +696,7 @@ RLP parse_rlp(const Inst& I, const string& fn) {
         else if (tag == "noscale") { int x; f >> x; R.noscale = x; }
         else if (tag == "NLPq") { R.NLPq.resize(nk); for (auto& x : R.NLPq) f >> x; }
         else if (tag == "N0") { R.N0.resize(nk); for (auto& x : R.N0) f >> x; }
-        else if (tag == "M0") { R.M0.resize(I.nt); for (auto& x : R.M0) f >> x; }
+        else if (tag == "M0") { string ln; getline(f, ln); stringstream ss(ln); R.M0.clear(); int x; while (ss >> x) R.M0.push_back(x); if (I.nt == 0) R.M0.clear(); }   // T15：notools 时丢掉工具台数
         else if (tag == "Q") { R.Q.resize(ns); for (auto& x : R.Q) f >> x; }
         else if (tag == "CP") { R.CP.resize(nk); for (auto& x : R.CP) f >> x; }
         else if (tag == "p") { int k, s; f >> k >> s; f >> R.p[k][s] >> R.CQ[k][s]; }
@@ -671,7 +730,9 @@ RDD decode_geno(const vector<double>& g, ll W, int ndev, double qon, bool reset_
     for (size_t a = 0; a + 1 < g.size(); a += 2) {
         double p = g[a], x = g[a + 1];
         if (ndev <= 0 || x < thr) continue;
-        int pos = (int)floor(p * (double)ndev); if (pos >= ndev) pos = ndev - 1;
+        int pos;
+        if (g_cdf.empty()) { pos = (int)floor(p * (double)ndev); if (pos >= ndev) pos = ndev - 1; }
+        else { pos = (int)(upper_bound(g_cdf.begin(), g_cdf.end(), p) - g_cdf.begin()); if (pos >= ndev) pos = ndev - 1; }   // T16
         D.dev[pos] = (x - 1.0 + qon) / qon; D.maxpos = max(D.maxpos, pos);
     }
     return D;
@@ -681,6 +742,7 @@ struct Rule { Policy P; bool is_rlp = false, facloop = false; ll W = 0; bool res
 extern ll g_hsfb;
 // T11 定台数下降（rddfd）的选项：fdsel = 选减哪个资源时用的基因型（best = 最近一个判定可行的个体，base = 默认规则）；
 // stall = 当前目标台数下连续多少代没有判定可行的解就换一个资源去减；fddump = 抽样记录（台数, 基因型, T_eval 缺岗）的文件，供核对
+string g_dualw; double g_beta = 0;   // T16：对偶权重文件（每行 "s t π"）与混合系数 β；β > 0 时 rddfd 用 F0 下默认规则的窗口决策算位置分布
 string g_fdsel = "best", g_fddump; int g_stall = 30; double g_swap = 0.5;   // swap：子代以此概率做一次台数互换（某资源 −1、另一资源 +1，总数不变）
 static RLP g_RR;
 Rule parse_rule(const Inst& I, int argc, char** argv, int a0) {
@@ -705,7 +767,16 @@ Rule parse_rule(const Inst& I, int argc, char** argv, int a0) {
         else if (s.rfind("sizelog=", 0) == 0) g_sizelog = fopen(s.substr(8).c_str(), "w");
         else if (s.rfind("gaplog=", 0) == 0) g_gaplog = fopen(s.substr(7).c_str(), "w");
         else if (s.rfind("hsfb=", 0) == 0) g_hsfb = atoll(s.c_str() + 5);
+        else if (s.rfind("cdf=", 0) == 0) { g_cdf.clear(); ifstream f(s.substr(4)); double x; while (f >> x) g_cdf.push_back(x); }
+        else if (s == "notools") {}
+        else if (s.rfind("dualw=", 0) == 0) g_dualw = s.substr(6);
+        else if (s.rfind("beta=", 0) == 0) g_beta = atof(s.c_str() + 5);
         else if (s.rfind("planW=", 0) == 0) U.P.plan_until = atoll(s.c_str() + 6);
+        else if (s.rfind("tree=", 0) == 0) U.P.tree = tree_parse(tree_arg(s.substr(5)));
+        else if (s.rfind("planx=", 0) == 0) { static PlanX X; X = parse_planx(s.substr(6)); U.P.planx = &X; }
+        else if (s.rfind("N0=", 0) == 0 || s.rfind("M0=", 0) == 0) {   // T13：定台数起点（RH-MIP 用 MIP 的机队）
+            vector<int> v; stringstream ss(s.substr(3)); string x; while (getline(ss, x, ',')) v.push_back(atoi(x.c_str()));
+            if (s[0] == 'N') g_N0 = v; else g_M0 = v; }
         else if (s == "pd=rk") { U.P.pd_mode = 1; U.P.curdef = true; }
         else if (s == "pd=d5") { U.P.pd_mode = 2; U.P.repair = true; U.P.curdef = true; }
         else if (s == "pd=d5norepair") { U.P.pd_mode = 2; U.P.curdef = true; }
@@ -774,11 +845,14 @@ Judge judge_fleet(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, c
 }
 
 string vec_s(const vector<int>& v) { string s = "["; for (size_t i = 0; i < v.size(); i++) s += (i ? "," : "") + to_string(v[i]); return s + "]"; }
+string dvec17(const vector<double>& v) { string s = "["; char b[40]; for (size_t i = 0; i < v.size(); i++) { snprintf(b, 40, "%s%.17g", i ? "," : "", v[i]); s += b; } return s + "]"; }
 string dvec_s(const vector<double>& v) { string s = "["; char b[32]; for (size_t i = 0; i < v.size(); i++) { snprintf(b, 32, "%s%.4f", i ? "," : "", v[i]); s += b; } return s + "]"; }
 
 int main(int argc, char** argv) {
     if (argc < 3) { fprintf(stderr, "usage\n"); return 1; }
     string cmd = argv[1]; Inst I; I.load(argv[2]);
+    // T15：notools = 只看机器人（工具不计数、不占用）：去掉实例里的工具，仿真时工具检查恒成立，定台数只调机器人
+    for (int a = 3; a < argc; a++) if (string(argv[a]) == "notools") { I.nt = 0; I.TT.clear(); I.M0.clear(); for (auto& T : I.T) { T.C.clear(); T.q = 0; } }
     if (cmd == "eval") {
         ll Tmax = atoll(argv[3]); bool cert = atoi(argv[4]);
         vector<int> Nk, Mj; vector<double> w; int part = 0; Policy P;
@@ -791,9 +865,12 @@ int main(int argc, char** argv) {
                    else if (s.rfind("lpg=", 0) == 0) { static vector<int> n0, m0; P.lpz = parse_lpz(I, s.substr(4), n0, m0); }
                    else if (s.rfind("gaplog=", 0) == 0) g_gaplog = fopen(s.substr(7).c_str(), "w");
                    else if (s.rfind("planW=", 0) == 0) P.plan_until = atoll(s.c_str() + 6);
+                   else if (s.rfind("tree=", 0) == 0) P.tree = tree_parse(tree_arg(s.substr(5)));
+                   else if (s.rfind("planx=", 0) == 0) { static PlanX X; X = parse_planx(s.substr(6)); P.planx = &X; }
                    else if (s == "pd=rk") { P.pd_mode = 1; P.curdef = true; } else if (s == "pd=d5") { P.pd_mode = 2; P.repair = true; P.curdef = true; }
                    else if (s.rfind("pdW=", 0) == 0) P.pdW = atoll(s.c_str() + 4);
                    else if (s.rfind("pdg=", 0) == 0) { static vector<double> G; G.clear(); stringstream ss(s.substr(4)); string x; while (getline(ss, x, ',')) G.push_back(atof(x.c_str())); P.pdg = &G; }
+                   else if (s.rfind("cdf=", 0) == 0) { g_cdf.clear(); ifstream f(s.substr(4)); double x; while (f >> x) g_cdf.push_back(x); }
                    else if (s.rfind("rdd=", 0) == 0) { static RDD DD; Geno G = read_geno(s.substr(4)); DD = decode_geno(G.g, G.W, G.ndev, G.qon, G.reset_opt); P.rdd = &DD; } }
         }
         if (P.reset) P.curdef = true;
@@ -1119,6 +1196,18 @@ int main(int argc, char** argv) {
         RDD E; E.W = U.W; E.ndev = 0; E.maxpos = -1; Policy Pc = U.P; Pc.rdd = &E;
         int ndev = s0.Nk.empty() ? 0 : (int)run(I, s0.Nk, s0.Mj, Pc, U.W, false).ndec_w;   // 与 rdd 命令相同（默认规则定不出台数时用它最后试的台数）
         int K = max(1, (int)ceil(rho * (double)ndev / qon - 1e-9));
+        // T16：β > 0 时，按默认规则在 F0 下的窗口决策 (站 s, 时刻 t, 值岗时长 d) 算权重 w_i = Σ_{u∈[t, t+d)} max(π_{s,u}, 0)，
+        // q_i = (1 − β)/N_dev + β·w_i/Σw，位置基因按 q 的累积分布映射（g_cdf）。β = 0 或没有对偶文件时不映射，与原 RDD 逐位相同。
+        vector<double> dw_used;
+        if (g_beta > 0 && !g_dualw.empty() && ndev > 0) {
+            map<pair<int,ll>, double> pi; { ifstream f(g_dualw); int ss; ll tt; double v; while (f >> ss >> tt >> v) pi[{ss, tt}] = v; }
+            vector<array<ll,3>> rec; g_decrec = &rec; run(I, s0.Nk, s0.Mj, Pc, U.W, false); g_decrec = nullptr;
+            vector<double> w(ndev, 0.0); double sw = 0;
+            for (int c = 0; c < ndev && c < (int)rec.size(); c++) { for (ll u = rec[c][1]; u < rec[c][1] + rec[c][2]; u++) { auto it = pi.find({(int)rec[c][0], u}); if (it != pi.end()) w[c] += max(it->second, 0.0); } sw += w[c]; }
+            g_cdf.assign(ndev, 0.0); double acc = 0;
+            for (int c = 0; c < ndev; c++) { acc += (1.0 - g_beta) / ndev + (sw > 0 ? g_beta * w[c] / sw : g_beta / ndev); g_cdf[c] = acc; }
+            dw_used = w;
+        }
         double sec0 = el();
         const int nres = I.nk + I.nt;
         // 当前目标台数 F 与最近一个判定可行的解
@@ -1259,11 +1348,11 @@ int main(int argc, char** argv) {
                "\"W\": %lld, \"ndev\": %d, \"K\": %d, \"rho\": %g, \"qon\": %g, \"seed\": %llu, \"Teval\": %lld, \"fdsel\": \"%s\", \"stall\": %d, \"swap\": %g, "
                "\"R\": %d, \"status\": \"%s\", \"Nk\": %s, \"Mj\": %s, \"verify_gaps\": %lld, \"verify_cert\": %d, \"verify_period\": %lld, \"exact\": %d, \"resets\": %lld, \"last_reset\": %lld, \"base_resets\": %lld, \"base_last_reset\": %lld, "
                "\"f0_src\": %d, \"sec_f0\": %.2f, \"n_active\": %d, \"gens\": %lld, \"evals\": %lld, \"reused\": %lld, \"judges\": %lld, \"judge_fail\": %lld, \"judge_quick\": %lld, \"dec_steps\": %lld, \"backtracks\": %lld, "
-               "\"sec_eval\": %.2f, \"sec_judge\": %.2f, \"sec_dec\": %.2f, \"sec\": %.2f, \"traj\": %s, \"genes\": %s}\n",
+               "\"sec_eval\": %.2f, \"sec_judge\": %.2f, \"sec_dec\": %.2f, \"sec\": %.2f, \"traj\": %s, \"genes\": %s, \"beta\": %g, \"cdf\": %s, \"dualw\": %s}\n",
                s0.R, s0.status.c_str(), vec_s(s0.Nk).c_str(), vec_s(s0.Mj).c_str(), fac0, base_hsfb, v0.gaps, v0.cert, ex0, sec0,
                U.W, ndev, K, rho, qon, seed, Teval, g_fdsel.c_str(), g_stall, g_swap,
                bestR, best_status.c_str(), vec_s(bN).c_str(), vec_s(bM).c_str(), bestJ.vgaps, bestJ.vcert, bestJ.vperiod, bestJ.exact, bestJ.resets, bestJ.last_reset, v0.resets, v0.last_reset,
-               f0_src, sec_f0, nact, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str());
+               f0_src, sec_f0, nact, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str(), g_beta, dvec17(g_cdf).c_str(), dvec17(dw_used).c_str());
         return 0;
     }
     if (cmd == "rdd") {    // T7/T8：RDD 的 (μ + λ) 进化。基因型 K 个槽 (p, a)，每个基因以 1/(2K) 的概率重抽
