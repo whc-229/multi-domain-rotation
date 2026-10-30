@@ -1,0 +1,15 @@
+/home/hk/多域轮转/results/T10/variants/m20-K1-01__clip2.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-01 clip2
+/home/hk/多域轮转/results/T10/variants/m20-K1-02__clip2.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-02 clip2
+/home/hk/多域轮转/results/T10/variants/m20-K12-00__clip2.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K12-00 clip2
+/home/hk/多域轮转/results/T10/variants/m20-K1-01__clip4.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-01 clip4
+/home/hk/多域轮转/results/T10/variants/m20-K1-02__clip4.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-02 clip4
+/home/hk/多域轮转/results/T10/variants/m20-K12-00__clip4.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K12-00 clip4
+/home/hk/多域轮转/results/T10/variants/m20-K1-01__hs1520.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-01 hs1520
+/home/hk/多域轮转/results/T10/variants/m20-K1-02__hs1520.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-02 hs1520
+/home/hk/多域轮转/results/T10/variants/m20-K12-00__hs1520.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K12-00 hs1520
+/home/hk/多域轮转/results/T10/variants/m20-K1-01__why.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-01 why
+/home/hk/多域轮转/results/T10/variants/m20-K1-02__why.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-02 why
+/home/hk/多域轮转/results/T10/variants/m20-K12-00__why.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K12-00 why
+/home/hk/多域轮转/results/T10/variants/m20-K1-01__cut570.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-01 cut570
+/home/hk/多域轮转/results/T10/variants/m20-K1-02__cut570.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K1-02 cut570
+/home/hk/多域轮转/results/T10/variants/m20-K12-00__cut570.json	14400	cd /home/hk/多域轮转 && python3 code/t10_variants.py m20-K12-00 cut570

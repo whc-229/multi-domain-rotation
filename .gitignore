@@ -38,4 +38,7 @@ results/T3/rlp/*.lock
 results/**/*.lock
 results/T3/rlp/
 results/T6/rules/
+results/T10/rules/
+code/cpp/rost5.tmp
+code/cpp/rost5.next
 results/T7/geno/

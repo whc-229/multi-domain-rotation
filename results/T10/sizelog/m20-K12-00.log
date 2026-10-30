@@ -1,0 +1,146 @@
+fill add=8 gaps=550 Nk=[84,2,14,77,2,23] Mj=[1,17,68,102]
+fill add=8 gaps=506 Nk=[84,2,14,77,2,23] Mj=[1,17,69,102]
+fill add=7 gaps=435 Nk=[84,2,14,77,2,23] Mj=[1,18,69,102]
+fill add=8 gaps=443 Nk=[84,2,14,77,2,23] Mj=[1,18,70,102]
+fill add=6 gaps=392 Nk=[84,2,14,77,2,23] Mj=[2,18,70,102]
+fill add=0 gaps=380 Nk=[85,2,14,77,2,23] Mj=[2,18,70,102]
+fill add=6 gaps=348 Nk=[85,2,14,77,2,23] Mj=[3,18,70,102]
+fill add=0 gaps=352 Nk=[86,2,14,77,2,23] Mj=[3,18,70,102]
+fill add=8 gaps=357 Nk=[86,2,14,77,2,23] Mj=[3,18,71,102]
+fill add=8 gaps=322 Nk=[86,2,14,77,2,23] Mj=[3,18,72,102]
+fill add=9 gaps=275 Nk=[86,2,14,77,2,23] Mj=[3,18,72,103]
+fill add=7 gaps=261 Nk=[86,2,14,77,2,23] Mj=[3,19,72,103]
+fill add=6 gaps=224 Nk=[86,2,14,77,2,23] Mj=[4,19,72,103]
+fill add=8 gaps=225 Nk=[86,2,14,77,2,23] Mj=[4,19,73,103]
+fill add=8 gaps=191 Nk=[86,2,14,77,2,23] Mj=[4,19,74,103]
+fill add=9 gaps=166 Nk=[86,2,14,77,2,23] Mj=[4,19,74,104]
+fill add=8 gaps=134 Nk=[86,2,14,77,2,23] Mj=[4,19,75,104]
+fill add=8 gaps=130 Nk=[86,2,14,77,2,23] Mj=[4,19,76,104]
+fill add=4 gaps=116 Nk=[86,2,14,77,3,23] Mj=[4,19,76,104]
+fill add=7 gaps=99 Nk=[86,2,14,77,3,23] Mj=[4,20,76,104]
+fill add=5 gaps=93 Nk=[86,2,14,77,3,24] Mj=[4,20,76,104]
+fill add=5 gaps=82 Nk=[86,2,14,77,3,25] Mj=[4,20,76,104]
+fill add=6 gaps=78 Nk=[86,2,14,77,3,25] Mj=[5,20,76,104]
+fill add=3 gaps=73 Nk=[86,2,14,78,3,25] Mj=[5,20,76,104]
+fill add=0 gaps=55 Nk=[87,2,14,78,3,25] Mj=[5,20,76,104]
+fill add=5 gaps=49 Nk=[87,2,14,78,3,26] Mj=[5,20,76,104]
+fill add=3 gaps=59 Nk=[87,2,14,79,3,26] Mj=[5,20,76,104]
+fill add=0 gaps=54 Nk=[88,2,14,79,3,26] Mj=[5,20,76,104]
+fill add=8 gaps=47 Nk=[88,2,14,79,3,26] Mj=[5,20,77,104]
+fill add=8 gaps=34 Nk=[88,2,14,79,3,26] Mj=[5,20,78,104]
+fill add=2 gaps=34 Nk=[88,2,15,79,3,26] Mj=[5,20,78,104]
+fill add=8 gaps=35 Nk=[88,2,15,79,3,26] Mj=[5,20,79,104]
+fill add=7 gaps=18 Nk=[88,2,15,79,3,26] Mj=[5,21,79,104]
+fill add=4 gaps=15 Nk=[88,2,15,79,4,26] Mj=[5,21,79,104]
+fill add=0 gaps=13 Nk=[89,2,15,79,4,26] Mj=[5,21,79,104]
+fill add=0 gaps=13 Nk=[90,2,15,79,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,16,79,4,26] Mj=[5,21,79,104]
+fill add=3 gaps=12 Nk=[90,2,16,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,17,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,18,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,19,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,20,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,21,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,22,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,23,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,24,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,25,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,26,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,27,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,28,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,29,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,30,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,31,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,32,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,33,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,34,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,35,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,36,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,37,80,4,26] Mj=[5,21,79,104]
+fill add=2 gaps=12 Nk=[90,2,38,80,4,26] Mj=[5,21,79,104]
+fail_fill
+filled Nk=[97,3,17,89,3,27] Mj=[2,20,78,118]
+pruned Nk=[87,3,17,79,3,24] Mj=[1,20,78,118]
+cert a=0 gaps=2561 cert=-1 period=-1 t_end=60000 Nk=[87,3,17,79,3,24] Mj=[1,20,78,118]
+cert_g0 a=0 g0=2561
+cert a=1 gaps=1460 cert=-1 period=-1 t_end=60000 Nk=[87,3,17,79,4,24] Mj=[1,20,78,118]
+cert_g0 a=1 g0=1460
+cert a=2 gaps=867 cert=-1 period=-1 t_end=60000 Nk=[87,3,18,79,4,24] Mj=[1,20,78,118]
+cert_g0 a=2 g0=867
+cert a=3 gaps=488 cert=-1 period=-1 t_end=60000 Nk=[88,3,18,79,4,24] Mj=[1,20,78,118]
+cert_g0 a=3 g0=488
+cert a=4 gaps=269 cert=-1 period=-1 t_end=60000 Nk=[88,3,19,79,4,24] Mj=[1,20,78,118]
+cert_g0 a=4 g0=269
+cert a=5 gaps=183 cert=-1 period=-1 t_end=60000 Nk=[88,3,20,79,4,24] Mj=[1,20,78,118]
+cert_g0 a=5 g0=183
+cert a=6 gaps=19 cert=-1 period=-1 t_end=60000 Nk=[88,3,20,79,5,24] Mj=[1,20,78,118]
+cert_g0 a=6 g0=19
+cert a=7 gaps=19 cert=-1 period=-1 t_end=60000 Nk=[88,3,20,79,5,24] Mj=[2,20,78,118]
+cert_g0 a=7 g0=19
+cert a=8 gaps=19 cert=-1 period=-1 t_end=60000 Nk=[88,3,20,79,5,24] Mj=[2,20,79,118]
+cert_g0 a=8 g0=19
+cert a=9 gaps=20 cert=-1 period=-1 t_end=60000 Nk=[88,3,20,79,5,25] Mj=[2,20,79,118]
+cert_g0 a=9 g0=20
+cert a=10 gaps=20 cert=-1 period=-1 t_end=60000 Nk=[88,3,20,79,6,25] Mj=[2,20,79,118]
+cert_g0 a=10 g0=20
+cert a=11 gaps=20 cert=-1 period=-1 t_end=60000 Nk=[88,3,20,79,7,25] Mj=[2,20,79,118]
+cert_g0 a=11 g0=20
+fail_cert_stall
+filled Nk=[110,3,19,101,3,30] Mj=[2,23,88,133]
+pruned Nk=[86,3,19,80,3,23] Mj=[0,15,73,133]
+cert a=0 gaps=1627 cert=-1 period=-1 t_end=60000 Nk=[86,3,19,80,3,23] Mj=[0,15,73,133]
+cert_g0 a=0 g0=1627
+cert a=1 gaps=388 cert=-1 period=-1 t_end=60000 Nk=[86,3,20,80,3,23] Mj=[0,15,73,133]
+cert_g0 a=1 g0=388
+cert a=2 gaps=42 cert=-1 period=-1 t_end=60000 Nk=[86,3,20,81,3,23] Mj=[0,15,73,133]
+cert_g0 a=2 g0=42
+cert a=3 gaps=21 cert=-1 period=-1 t_end=60000 Nk=[86,3,20,81,4,23] Mj=[0,15,73,133]
+cert_g0 a=3 g0=21
+cert a=4 gaps=19 cert=-1 period=-1 t_end=60000 Nk=[86,3,20,81,4,24] Mj=[0,15,73,133]
+cert_g0 a=4 g0=19
+cert a=5 gaps=9 cert=-1 period=-1 t_end=60000 Nk=[86,3,20,82,4,24] Mj=[0,15,73,133]
+cert_g0 a=5 g0=9
+cert a=6 gaps=4 cert=-1 period=-1 t_end=60000 Nk=[86,3,21,82,4,24] Mj=[0,15,73,133]
+cert_g0 a=6 g0=4
+cert a=7 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[86,4,21,82,4,24] Mj=[0,15,73,133]
+cert_g0 a=7 g0=2
+cert a=8 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[86,4,21,82,4,24] Mj=[1,15,73,133]
+cert_g0 a=8 g0=2
+cert a=9 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[86,4,21,82,4,24] Mj=[2,15,73,133]
+cert_g0 a=9 g0=2
+cert a=10 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[86,4,21,82,4,24] Mj=[2,15,74,133]
+cert_g0 a=10 g0=2
+cert a=11 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[86,4,21,82,4,24] Mj=[2,15,75,133]
+cert_g0 a=11 g0=2
+cert a=12 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[86,4,21,82,4,24] Mj=[2,15,76,133]
+cert_g0 a=12 g0=2
+fail_cert_stall
+filled Nk=[126,3,21,116,3,35] Mj=[2,26,101,153]
+pruned Nk=[84,3,21,80,2,25] Mj=[0,12,53,153]
+cert a=0 gaps=597 cert=-1 period=-1 t_end=60000 Nk=[84,3,21,80,2,25] Mj=[0,12,53,153]
+cert_g0 a=0 g0=597
+cert a=1 gaps=159 cert=-1 period=-1 t_end=60000 Nk=[85,3,21,80,2,25] Mj=[0,12,53,153]
+cert_g0 a=1 g0=159
+cert a=2 gaps=60 cert=-1 period=-1 t_end=60000 Nk=[85,3,21,80,2,26] Mj=[0,12,53,153]
+cert_g0 a=2 g0=60
+cert a=3 gaps=9 cert=-1 period=-1 t_end=60000 Nk=[85,3,22,80,2,26] Mj=[0,12,53,153]
+cert_g0 a=3 g0=9
+cert a=4 gaps=6 cert=-1 period=-1 t_end=60000 Nk=[86,3,22,80,2,26] Mj=[0,12,53,153]
+cert_g0 a=4 g0=6
+cert a=5 gaps=5 cert=-1 period=-1 t_end=60000 Nk=[87,3,22,80,2,26] Mj=[0,12,53,153]
+cert_g0 a=5 g0=5
+cert a=6 gaps=4 cert=-1 period=-1 t_end=60000 Nk=[88,3,22,80,2,26] Mj=[0,12,53,153]
+cert_g0 a=6 g0=4
+cert a=7 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[88,3,23,80,2,26] Mj=[0,12,53,153]
+cert_g0 a=7 g0=2
+cert a=8 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[88,3,23,80,2,26] Mj=[1,12,53,153]
+cert_g0 a=8 g0=2
+cert a=9 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[88,3,23,80,2,26] Mj=[2,12,53,153]
+cert_g0 a=9 g0=2
+cert a=10 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[88,3,23,80,2,26] Mj=[3,12,53,153]
+cert_g0 a=10 g0=2
+cert a=11 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[88,3,23,80,2,26] Mj=[4,12,53,153]
+cert_g0 a=11 g0=2
+cert a=12 gaps=2 cert=-1 period=-1 t_end=60000 Nk=[88,3,23,80,2,26] Mj=[5,12,53,153]
+cert_g0 a=12 g0=2
+fail_cert_stall
