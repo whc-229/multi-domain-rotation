@@ -1,0 +1,6 @@
+/home/hk/多域轮转/results/T11/jobs/m06-K12-05__es__s0__main.json	7200	cd /home/hk/多域轮转 && python3 code/t11_job.py m06-K12-05 es 0 main
+/home/hk/多域轮转/results/T11/jobs/m06-K12-05__es__s1__main.json	7200	cd /home/hk/多域轮转 && python3 code/t11_job.py m06-K12-05 es 1 main
+/home/hk/多域轮转/results/T11/jobs/m06-K12-05__es__s2__main.json	7200	cd /home/hk/多域轮转 && python3 code/t11_job.py m06-K12-05 es 2 main
+/home/hk/多域轮转/results/T11/jobs/m06-K12-05__es__s0__te4.json	7200	cd /home/hk/多域轮转 && python3 code/t11_job.py m06-K12-05 es 0 te4
+/home/hk/多域轮转/results/T11/jobs/m06-K12-05__es__s1__te4.json	7200	cd /home/hk/多域轮转 && python3 code/t11_job.py m06-K12-05 es 1 te4
+/home/hk/多域轮转/results/T11/jobs/m06-K12-05__es__s2__te4.json	7200	cd /home/hk/多域轮转 && python3 code/t11_job.py m06-K12-05 es 2 te4

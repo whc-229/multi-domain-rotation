@@ -1,0 +1,21 @@
+m04-K1-00 0 一致 {'gaps': 11, 'resets': 26, 'ndec': 262, 'cgaps': 11, 'cert': 0, 'period': 6000} 
+m04-K1-00 1 一致 {'gaps': 0, 'resets': 14, 'ndec': 253, 'cgaps': 0, 'cert': 1, 'period': 10500} 
+m04-K1-00 2 一致 {'gaps': 0, 'resets': 14, 'ndec': 253, 'cgaps': 0, 'cert': 1, 'period': 10500} 
+m04-K1-00 3 一致 {'gaps': 32, 'resets': 19, 'ndec': 256, 'cgaps': 203, 'cert': 0, 'period': 960} 
+m04-K1-00 4 一致 {'gaps': 0, 'resets': 13, 'ndec': 253, 'cgaps': 0, 'cert': 1, 'period': 6000} 
+m04-K1-00 5 一致 {'gaps': 206, 'resets': 24, 'ndec': 271, 'cgaps': 1220, 'cert': -1, 'period': -1} 
+m04-K1-00 6 一致 {'gaps': 165, 'resets': 21, 'ndec': 264, 'cgaps': 1024, 'cert': -1, 'period': -1} 
+m04-K1-00 7 一致 {'gaps': 127, 'resets': 44, 'ndec': 283, 'cgaps': 253, 'cert': -1, 'period': -1} 
+m04-K1-00 8 一致 {'gaps': 0, 'resets': 13, 'ndec': 253, 'cgaps': 0, 'cert': 1, 'period': 6000} 
+m04-K1-00 9 一致 {'gaps': 0, 'resets': 13, 'ndec': 253, 'cgaps': 0, 'cert': 1, 'period': 6000} 
+m06-K12-04 0 一致 {'gaps': 1, 'resets': 61, 'ndec': 677, 'cgaps': 2, 'cert': -1, 'period': -1} 
+m06-K12-04 1 一致 {'gaps': 8, 'resets': 93, 'ndec': 686, 'cgaps': 9, 'cert': -1, 'period': -1} 
+m06-K12-04 2 一致 {'gaps': 14, 'resets': 94, 'ndec': 687, 'cgaps': 15, 'cert': -1, 'period': -1} 
+m06-K12-04 3 一致 {'gaps': 13, 'resets': 87, 'ndec': 688, 'cgaps': 13, 'cert': -1, 'period': -1} 
+m06-K12-04 4 一致 {'gaps': 19, 'resets': 79, 'ndec': 697, 'cgaps': 26, 'cert': -1, 'period': -1} 
+m06-K12-04 5 一致 {'gaps': 3, 'resets': 68, 'ndec': 678, 'cgaps': 4, 'cert': -1, 'period': -1} 
+m06-K12-04 6 一致 {'gaps': 0, 'resets': 62, 'ndec': 677, 'cgaps': 0, 'cert': -1, 'period': -1} 
+m06-K12-04 7 一致 {'gaps': 34, 'resets': 88, 'ndec': 708, 'cgaps': 37, 'cert': -1, 'period': -1} 
+m06-K12-04 8 一致 {'gaps': 9, 'resets': 74, 'ndec': 683, 'cgaps': 9, 'cert': -1, 'period': -1} 
+m06-K12-04 9 一致 {'gaps': 0, 'resets': 61, 'ndec': 677, 'cgaps': 0, 'cert': -1, 'period': -1} 
+{"cases": 20, "mismatch": 0}

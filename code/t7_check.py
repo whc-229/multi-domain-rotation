@@ -17,7 +17,7 @@ import rost5_ref as ref  # noqa: E402
 import t8_rules  # noqa: E402
 from freshlb import S_max  # noqa: E402
 
-R5 = os.path.join(ROOT, "code", "cpp", "rost5")
+R5 = os.environ.get("ROST5_BIN", os.path.join(ROOT, "code", "cpp", "rost5"))   # 环境变量只用于安装新程序前先核对
 OUT = os.path.join(ROOT, "results", "T7")
 HS, TC = 365, 60000
 

@@ -1,0 +1,7 @@
+10-30 15:36:37 启动 1 PGID 3351450 python3 code/t11_job.py m06-K12-05 es 0 main
+10-30 15:36:43 启动 2 PGID 3351634 python3 code/t11_job.py m06-K12-05 es 1 main
+10-30 15:36:49 启动 3 PGID 3351703 python3 code/t11_job.py m06-K12-05 es 2 main
+10-30 15:36:55 启动 4 PGID 3351789 python3 code/t11_job.py m06-K12-05 es 0 te4
+10-30 15:36:58 启动 5 PGID 3351814 python3 code/t11_job.py m06-K12-05 es 1 te4
+10-30 15:37:07 启动 6 PGID 3351906 python3 code/t11_job.py m06-K12-05 es 2 te4
+10-30 15:38:35 全部结束

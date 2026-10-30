@@ -70,12 +70,13 @@ def decode_geno(g, W, ndev, qon, reset_opt):
     return dict(W=W, ndev=ndev, dev=dev, maxpos=maxpos, reset_opt=reset_opt)
 
 
-def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None):
+def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None, plan_until=None):
     """仿真一次。trace 不为 None 时（T3c 诊断用，dict）只做记录、不改变任何决策：
     trace["plan"] = 换算后的提前大修计划 {(k, i): [[t0, 次数], …]}；trace["disp"] = 每次派工
     (t, 站, 岗位, 机器人, 型, 相位, 是否按计划提前大修, 新的就绪基准 rv, 值岗结束时刻)；
     trace["gaps"] = 每次缺岗 (t, 站, 就绪的候选数, 归因：("r", 可在该站值岗的各型) 或 ("t", 首个候选型所需工具))，与 C++ 的 why_r / why_t 口径相同；
-    trace["robots"] = 各机器人的型。trace["light"] 为真时不记派工（长时域判环时省内存）。"""
+    trace["robots"] = 各机器人的型。trace["light"] 为真时不记派工（长时域判环时省内存）。
+    plan_until（T12，对应 C++ 的 planW=）：计划提前大修只在 t < plan_until 时执行；None 不限。"""
     TI = ToolInst(I)
     nk, ns, nt = len(I.T), len(I.sites), TI.nt
     v0 = [math.ceil(t["off_h"] / U - 1e-9) for t in I.T]; c0 = max(v0)
@@ -256,7 +257,7 @@ def run(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=Non
                 for c in ch: tf[c[2]][c[3]] = t + I.d[k] + TI.post(k, s, c[2], unin)
                 ld, nx = st[(k, i, s)]; nph = (i + 1) % I.L[k]
                 planned = False
-                if pl and i != I.L[k] - 1:
+                if pl and i != I.L[k] - 1 and (plan_until is None or t < plan_until):     # T12：planW= 时计划提前大修只在 t < plan_until 执行
                     for e in pl[k][i]:
                         if e[0] > t: break
                         if e[1] > 0: e[1] -= 1; planned = True; break
