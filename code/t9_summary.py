@@ -2,7 +2,10 @@
 对照：
 - ⌈LP(2S)⌉：同一模型的 LP 松弛（T2 的 fr m2、frR m2；H = 2S 时 LP_fr^Rw = LP_fr^R，见 t9_job.py）；
 - 原最好下界：不提前大修 = max(⌈LP_fr(4S)⌉, T4 的 ILP 下界)；启动期提前大修 = ⌈LP_fr^Rw(4S)⌉（T6，新口径的主下界）；
-- 已知最好上界：不提前大修 = T4 / T4b 的最好上界与 T8 的 RDD 可行解中的最小者；启动期提前大修 = T4 / T4b 的最好上界（见报告的口径说明）。
+- 已知最好上界：
+  * 不提前大修 = T4 / T4b 的最好上界、T8 的 RDD 与默认规则可行解、T6 的 fresh_noreset_u 中的最小者；
+  * 启动期提前大修 = 上一行（不提前大修的解在这个场景下也可行）与 T6 / T6b 的 fresh_rlp_w（只在窗口内提前大修）中的最小者。
+    T4 / T4b 的"允许提前大修"上界来自提前大修不限时刻的解，在"只许启动期提前大修"的场景下不一定可行，只作参照列 UB_any，不进差距。
 新下界 = max(原最好下界, IFR 下界)。差距 = 上界 − 下界。
 整数台数对比：IFR 有可行解时，逐型比较 IFR 解的 N_k、M_j 与 LP(2S) 的小数值。
 用法：python3 code/t9_summary.py"""
@@ -35,6 +38,21 @@ def t8_best(n):
     return best
 
 
+def feas_json(p):
+    """规则结果文件可行（严格证明或 60 万格复核 0 缺岗）时返回资源数，否则 None。"""
+    d = jl(p)
+    if not d or d.get("R") is None or d["R"] < 0: return None
+    return d["R"] if (d.get("proven") == 1 or d.get("verify_gaps") == 0) else None
+
+
+def ub_noreset(n, T4b):
+    """不提前大修场景的已知最好上界（见文件头）。"""
+    c = [T4b[(n, 0)]["UB_new"] if (n, 0) in T4b else None, t8_best(n),
+         feas_json(os.path.join(ROOT, "results", "T6", "rlp", f"{n}__fresh_noreset_u.json"))]
+    c = [x for x in c if x is not None]
+    return min(c) if c else None
+
+
 def rows():
     """逐 (实例, 场景) 的记录。"""
     T4 = {(r["inst"], r["reset"]): r for r in map(json.loads, open(os.path.join(ROOT, "results", "T4_exact.jsonl")))}
@@ -50,17 +68,18 @@ def rows():
             else:
                 w = jl(os.path.join(ROOT, "results", "T6", "jobs", f"{n}__frRw__m4.json"))
                 old_lb = ceil(w["obj"]) if w and w.get("obj") is not None else None
-            ub = T4b[(n, rs)]["UB_new"] if (n, rs) in T4b else None
-            if rs == 0:
-                b8 = t8_best(n)
-                if b8 is not None: ub = b8 if ub is None else min(ub, b8)
+            ub = ub_noreset(n, T4b)
+            ub_any = T4b[(n, 1)]["UB_new"] if rs == 1 and (n, 1) in T4b else None
+            if rs == 1:
+                w = feas_json(os.path.join(ROOT, "results", "T6", "rlp", f"{n}__fresh_rlp_w.json"))
+                if w is not None: ub = w if ub is None else min(ub, w)
             lb_raw = d.get("LB")
             # MIP 的松弛就是同一个 LP，所以有效下界 = max(MIP 对偶界, ⌈LP(2S)⌉)；对偶界低于 LP 说明限时内根节点 LP 都没解完
             lb_i = max(x for x in (lb_raw, ceil(lp2["obj"]) if lp2 else None) if x is not None) if (lb_raw is not None or lp2) else None
             new_lb = max(x for x in (old_lb, lb_i) if x is not None) if (old_lb is not None or lb_i is not None) else None
             rec = dict(inst=n, m=d["m"], family=d["family"], reset=rs, LP2=lp2["obj"] if lp2 else None, LP2_ceil=ceil(lp2["obj"]) if lp2 else None,
                        IFR_LB=lb_i, IFR_LB_raw=lb_raw, root_unsolved=int(lb_raw is not None and lp2 is not None and d.get("bound") is not None and d["bound"] < lp2["obj"] - 1e-6), IFR_bound=d.get("bound"), IFR_obj=d.get("obj"), IFR_status=d.get("status"), IFR_sec=d.get("sec"),
-                       old_LB=old_lb, new_LB=new_lb, UB=ub, IFR_N=d.get("N"), IFR_M=d.get("M"),
+                       old_LB=old_lb, new_LB=new_lb, UB=ub, UB_any=ub_any, IFR_N=d.get("N"), IFR_M=d.get("M"),
                        LP2_N=lp2.get("N") if lp2 else None, LP2_M=lp2.get("M") if lp2 else None)
             out.append(rec)
     return out
