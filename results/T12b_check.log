@@ -1,0 +1,25 @@
+es 不加 planW m02-K1-03 0 相同 27
+es 加 planW 后复判 m02-K1-03 0 27 last_reset 356 W 380 一致
+es 不加 planW m02-K1-03 1 相同 27
+es 加 planW 后复判 m02-K1-03 1 27 last_reset 371 W 380 一致
+es 不加 planW m03-K12-00 0 相同 79
+es 加 planW 后复判 m03-K12-00 0 79 last_reset 85 W 320 一致
+es 不加 planW m03-K12-00 1 相同 78
+es 加 planW 后复判 m03-K12-00 1 78 last_reset 100 W 320 一致
+ES 路径 m02-K1-03 0 一致 {'gaps': 0, 'resets': 19, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m02-K1-03 1 一致 {'gaps': 0, 'resets': 17, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m02-K1-03 2 一致 {'gaps': 0, 'resets': 17, 'cgaps': 0, 'cert': 1, 'period': 4725} 
+ES 路径 m02-K1-03 3 一致 {'gaps': 3, 'resets': 17, 'cgaps': 3, 'cert': 0, 'period': 3150} 
+ES 路径 m03-K12-00 0 一致 {'gaps': 10, 'resets': 22, 'cgaps': 28, 'cert': -1, 'period': -1} 
+ES 路径 m03-K12-00 1 一致 {'gaps': 3, 'resets': 22, 'cgaps': 19, 'cert': -1, 'period': -1} 
+ES 路径 m03-K12-00 2 一致 {'gaps': 1, 'resets': 23, 'cgaps': 13, 'cert': -1, 'period': -1} 
+ES 路径 m03-K12-00 3 一致 {'gaps': 18, 'resets': 24, 'cgaps': 22, 'cert': -1, 'period': -1} 
+ES 路径 m04-K1-01 0 一致 {'gaps': 0, 'resets': 35, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m04-K1-01 1 一致 {'gaps': 0, 'resets': 35, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m04-K1-01 2 一致 {'gaps': 0, 'resets': 36, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m04-K1-01 3 一致 {'gaps': 0, 'resets': 34, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m06-K12-02 0 一致 {'gaps': 0, 'resets': 71, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m06-K12-02 1 一致 {'gaps': 0, 'resets': 70, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m06-K12-02 2 一致 {'gaps': 0, 'resets': 72, 'cgaps': 0, 'cert': -1, 'period': -1} 
+ES 路径 m06-K12-02 3 一致 {'gaps': 1, 'resets': 72, 'cgaps': 1, 'cert': -1, 'period': -1} 
+{"cases": 24, "mismatch": 0}

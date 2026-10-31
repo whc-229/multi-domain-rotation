@@ -217,7 +217,8 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
     auto pick_dev = [&](const vector<int>& order, int s, double u) -> int {
         vector<int> fe; for (int r : order) if (tool_ok(r, s)) fe.push_back(r);
         if (fe.empty()) return -1;
-        int r0 = fe[0]; bool ro = DV->reset_opt && rph[r0] != I.T[rk[r0]].L - 1;
+        // T18：偏离窗口可以比提前大修窗口长；"本班后提前大修"这个备选项只在 t < planW 时提供（planW 未设时不限），提前大修仍只落在启动窗口内
+        int r0 = fe[0]; bool ro = DV->reset_opt && rph[r0] != I.T[rk[r0]].L - 1 && (P.plan_until < 0 || t < P.plan_until);
         int nA = (int)fe.size() - 1 + (ro ? 1 : 0);
         if (nA <= 0) return -1;
         int a = (int)floor(u * (double)nA); if (a >= nA) a = nA - 1;
@@ -1427,9 +1428,9 @@ int main(int argc, char** argv) {
     if (cmd == "es") {
         string mode = argv[3]; ll H = atoll(argv[4]); int gens = atoi(argv[5]), mu = atoi(argv[6]), lam = atoi(argv[7]);
         ull seed = strtoull(argv[8], 0, 10); ll Tcert = atoll(argv[9]), Tver = atoll(argv[10]);
-        bool gp = false, o_reset = false, o_curdef = false, o_hard = false, o_pad = false, o_stag = false; ll o_Tw = 0; vector<vector<int>> o_quota; vector<vector<vector<pair<ll,int>>>> o_plan; vector<vector<vector<pair<ll,double>>>> o_planf; vector<vector<double>> o_lpz;
+        bool gp = false, o_reset = false, o_curdef = false, o_hard = false, o_pad = false, o_stag = false; ll o_Tw = 0; ll o_planW = -1;   /* T12b：planW=，计划提前大修只在 t < planW 时执行（−1 不限） */ vector<vector<int>> o_quota; vector<vector<vector<pair<ll,int>>>> o_plan; vector<vector<vector<pair<ll,double>>>> o_planf; vector<vector<double>> o_lpz;
         for (int a = 11; a < argc; a++) { string s = argv[a];
-            if (s == "gp") gp = true; else if (s == "reset") o_reset = true; else if (s == "curdef") o_curdef = true; else if (s == "hard") o_hard = true; else if (s == "pad") o_pad = true; else if (s == "stagger") o_stag = true; else if (s.rfind("quota=", 0) == 0) o_quota = parse_quota(I, s.substr(6)); else if (s.rfind("plan=", 0) == 0) o_plan = parse_plan(I, s.substr(5)); else if (s.rfind("planf=", 0) == 0) o_planf = parse_planf(I, s.substr(6)); else if (s.rfind("lpg=", 0) == 0) o_lpz = parse_lpz(I, s.substr(4), g_N0, g_M0);
+            if (s == "gp") gp = true; else if (s == "reset") o_reset = true; else if (s == "curdef") o_curdef = true; else if (s == "hard") o_hard = true; else if (s == "pad") o_pad = true; else if (s == "stagger") o_stag = true; else if (s.rfind("quota=", 0) == 0) o_quota = parse_quota(I, s.substr(6)); else if (s.rfind("plan=", 0) == 0) o_plan = parse_plan(I, s.substr(5)); else if (s.rfind("planf=", 0) == 0) o_planf = parse_planf(I, s.substr(6)); else if (s.rfind("planW=", 0) == 0) o_planW = atoll(s.c_str() + 6); else if (s.rfind("lpg=", 0) == 0) o_lpz = parse_lpz(I, s.substr(4), g_N0, g_M0);
             else if (s.rfind("Tw=", 0) == 0) o_Tw = atoll(s.c_str() + 3); else if (s == "certadd=why") g_certadd = 0; else if (s == "certadd=trial60") g_certadd = 2; }
         if (o_reset || o_stag || !o_quota.empty() || !o_plan.empty() || !o_planf.empty()) o_curdef = true;
         const int NW = !o_lpz.empty() ? 14 : ((o_reset || o_pad) ? 13 : 8);   // pad：维度和随机数流与 reset 相同，但从不提前大修（对照组）
@@ -1441,7 +1442,7 @@ int main(int argc, char** argv) {
         vector<Ind> pop;
         vector<vector<double>> base = {{1, 0, 0, 0, 0, 0, 1, 0}, {0.1, 0, 10, 1, 0, 0, 1, 0.1}, {1, 0.5, 1, 0.5, 0, 0, 1, -0.1}};
         for (int a = 0; a < mu + lam; a++) {
-            Policy P; P.w.assign(NW, 0); P.reset = o_reset; P.curdef = o_curdef; P.Tw = o_Tw; P.hard = o_hard; P.stagger = o_stag; P.quota = o_quota; P.qfrom = g_qfrom; P.plan = o_plan; P.planf = o_planf; P.planN = g_planN; P.lpz = o_lpz;
+            Policy P; P.w.assign(NW, 0); P.reset = o_reset; P.curdef = o_curdef; P.Tw = o_Tw; P.hard = o_hard; P.stagger = o_stag; P.quota = o_quota; P.qfrom = g_qfrom; P.plan = o_plan; P.planf = o_planf; P.plan_until = o_planW; P.planN = g_planN; P.lpz = o_lpz;
             if (a < 3) { for (int q = 0; q < 8; q++) P.w[q] = base[a][q]; if (o_reset || o_pad || !o_lpz.empty()) P.w[8] = -1; if (!o_lpz.empty()) P.w[13] = 1.0; }   // 基础个体：从不提前大修
             else for (auto& x : P.w) x = N01(rng);
             if (gp) {

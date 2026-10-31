@@ -1,0 +1,51 @@
+新路径 m04-K1-00 W=0.5S 0 一致 {'gaps': 4, 'resets': 15, 'ndec': 64, 'cgaps': 4, 'cert': 0, 'period': 10500} last_reset 101 旧程序 101 
+新路径 m04-K1-00 W=0.5S 1 一致 {'gaps': 4, 'resets': 14, 'ndec': 61, 'cgaps': 4, 'cert': -1, 'period': -1} last_reset 102 旧程序 102 
+新路径 m04-K1-00 W=1S 0 一致 {'gaps': 0, 'resets': 14, 'ndec': 125, 'cgaps': 0, 'cert': 1, 'period': 10500} last_reset 99 旧程序 99 
+新路径 m04-K1-00 W=1S 1 一致 {'gaps': 34, 'resets': 23, 'ndec': 127, 'cgaps': 118, 'cert': -1, 'period': -1} last_reset 144 旧程序 144 
+新路径 m04-K1-00 W=3S 0 一致 {'gaps': 0, 'resets': 16, 'ndec': 382, 'cgaps': 0, 'cert': 1, 'period': 6000} last_reset 272 旧程序 446 
+新路径 m04-K1-00 W=3S 1 一致 {'gaps': 120, 'resets': 42, 'ndec': 415, 'cgaps': 685, 'cert': -1, 'period': -1} last_reset 312 旧程序 427 
+新路径 m04-K1-00 W=4S 0 一致 {'gaps': 211, 'resets': 39, 'ndec': 569, 'cgaps': 371, 'cert': 0, 'period': 1162} last_reset 317 旧程序 546 
+新路径 m04-K1-00 W=4S 1 一致 {'gaps': 29, 'resets': 17, 'ndec': 516, 'cgaps': 59, 'cert': 0, 'period': 1980} last_reset 299 旧程序 578 
+旧路径 T12 m04-K1-00 0 相同
+旧路径 T12 m04-K1-00 1 相同
+旧路径 T12 m04-K1-00 2 相同
+旧路径 T11 m04-K1-00 0 相同
+旧路径 T11 m04-K1-00 1 相同
+旧路径 T11 m04-K1-00 2 相同
+新路径 m06-K12-01 W=0.5S 0 一致 {'gaps': 40, 'resets': 34, 'ndec': 131, 'cgaps': 239, 'cert': -1, 'period': -1} last_reset 374 旧程序 374 
+新路径 m06-K12-01 W=0.5S 1 一致 {'gaps': 0, 'resets': 31, 'ndec': 130, 'cgaps': 0, 'cert': -1, 'period': -1} last_reset 372 旧程序 372 
+新路径 m06-K12-01 W=1S 0 一致 {'gaps': 5, 'resets': 36, 'ndec': 270, 'cgaps': 92, 'cert': -1, 'period': -1} last_reset 376 旧程序 376 
+新路径 m06-K12-01 W=1S 1 一致 {'gaps': 0, 'resets': 27, 'ndec': 264, 'cgaps': 0, 'cert': -1, 'period': -1} last_reset 378 旧程序 378 
+新路径 m06-K12-01 W=3S 0 一致 {'gaps': 39, 'resets': 48, 'ndec': 829, 'cgaps': 46, 'cert': -1, 'period': -1} last_reset 374 旧程序 545 
+新路径 m06-K12-01 W=3S 1 一致 {'gaps': 51, 'resets': 71, 'ndec': 838, 'cgaps': 240, 'cert': -1, 'period': -1} last_reset 375 旧程序 530 
+新路径 m06-K12-01 W=4S 0 一致 {'gaps': 22, 'resets': 56, 'ndec': 1099, 'cgaps': 126, 'cert': -1, 'period': -1} last_reset 378 旧程序 714 
+新路径 m06-K12-01 W=4S 1 一致 {'gaps': 2, 'resets': 35, 'ndec': 1076, 'cgaps': 2, 'cert': -1, 'period': -1} last_reset 372 旧程序 736 
+旧路径 T12 m06-K12-01 0 相同
+旧路径 T12 m06-K12-01 1 相同
+旧路径 T12 m06-K12-01 2 相同
+旧路径 T11 m06-K12-01 0 相同
+旧路径 T11 m06-K12-01 1 相同
+旧路径 T11 m06-K12-01 2 相同
+新路径 m08-K1-02 W=0.5S 0 一致 {'gaps': 3, 'resets': 27, 'ndec': 146, 'cgaps': 3, 'cert': -1, 'period': -1} last_reset 94 旧程序 94 
+新路径 m08-K1-02 W=0.5S 1 一致 {'gaps': 0, 'resets': 22, 'ndec': 147, 'cgaps': 1, 'cert': -1, 'period': -1} last_reset 85 旧程序 85 
+新路径 m08-K1-02 W=1S 0 一致 {'gaps': 1, 'resets': 24, 'ndec': 299, 'cgaps': 1, 'cert': -1, 'period': -1} last_reset 165 旧程序 165 
+新路径 m08-K1-02 W=1S 1 一致 {'gaps': 1, 'resets': 25, 'ndec': 299, 'cgaps': 1, 'cert': -1, 'period': -1} last_reset 185 旧程序 185 
+新路径 m08-K1-02 W=3S 0 一致 {'gaps': 2, 'resets': 29, 'ndec': 909, 'cgaps': 2, 'cert': -1, 'period': -1} last_reset 367 旧程序 557 
+新路径 m08-K1-02 W=3S 1 一致 {'gaps': 5, 'resets': 43, 'ndec': 924, 'cgaps': 5, 'cert': -1, 'period': -1} last_reset 355 旧程序 514 
+新路径 m08-K1-02 W=4S 0 一致 {'gaps': 4, 'resets': 53, 'ndec': 1233, 'cgaps': 4, 'cert': -1, 'period': -1} last_reset 365 旧程序 745 
+新路径 m08-K1-02 W=4S 1 一致 {'gaps': 2, 'resets': 28, 'ndec': 1218, 'cgaps': 2, 'cert': -1, 'period': -1} last_reset 344 旧程序 665 
+旧路径 T12 m08-K1-02 0 相同
+旧路径 T12 m08-K1-02 1 相同
+旧路径 T12 m08-K1-02 2 相同
+新路径 m10-K12-03 W=0.5S 0 一致 {'gaps': 6, 'resets': 104, 'ndec': 306, 'cgaps': 8, 'cert': -1, 'period': -1} last_reset 366 旧程序 366 
+新路径 m10-K12-03 W=0.5S 1 一致 {'gaps': 5, 'resets': 100, 'ndec': 299, 'cgaps': 5, 'cert': -1, 'period': -1} last_reset 376 旧程序 376 
+新路径 m10-K12-03 W=1S 0 一致 {'gaps': 105, 'resets': 126, 'ndec': 654, 'cgaps': 605, 'cert': -1, 'period': -1} last_reset 377 旧程序 377 
+新路径 m10-K12-03 W=1S 1 一致 {'gaps': 9, 'resets': 102, 'ndec': 622, 'cgaps': 9, 'cert': -1, 'period': -1} last_reset 376 旧程序 376 
+新路径 m10-K12-03 W=3S 0 一致 {'gaps': 16, 'resets': 116, 'ndec': 1876, 'cgaps': 37, 'cert': -1, 'period': -1} last_reset 369 旧程序 553 
+新路径 m10-K12-03 W=3S 1 一致 {'gaps': 79, 'resets': 149, 'ndec': 1941, 'cgaps': 79, 'cert': -1, 'period': -1} last_reset 375 旧程序 539 
+新路径 m10-K12-03 W=4S 0 一致 {'gaps': 12, 'resets': 118, 'ndec': 2505, 'cgaps': 19, 'cert': -1, 'period': -1} last_reset 376 旧程序 740 
+新路径 m10-K12-03 W=4S 1 一致 {'gaps': 91, 'resets': 125, 'ndec': 2553, 'cgaps': 121, 'cert': -1, 'period': -1} last_reset 377 旧程序 707 
+旧路径 T12 m10-K12-03 0 相同
+旧路径 T12 m10-K12-03 1 相同
+旧路径 T12 m10-K12-03 2 相同
+{"cases": 50, "mismatch": 0}

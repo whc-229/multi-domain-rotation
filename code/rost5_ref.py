@@ -177,7 +177,8 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
         """与 C++ pick_dev 相同：−1 不偏离；≥ 0 改派的机器人；−2 默认机器人本班后提前大修。"""
         fe = [r for r in order if tool_ok(r, s)]
         if not fe: return -1
-        r0 = fe[0]; ro = rdd["reset_opt"] and rph[r0] != I.L[rk[r0]] - 1
+        # T18：偏离窗口可以比提前大修窗口长；"本班后提前大修"备选项只在 t < plan_until 时提供（None 不限）
+        r0 = fe[0]; ro = rdd["reset_opt"] and rph[r0] != I.L[rk[r0]] - 1 and (plan_until is None or t < plan_until)
         nA = len(fe) - 1 + (1 if ro else 0)
         if nA <= 0: return -1
         a = int(math.floor(u * nA))

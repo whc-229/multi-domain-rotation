@@ -1,0 +1,24 @@
+{"part": "es_no_planW", "inst": "m02-K1-03", "seed": 0, "same": 1, "R": 27}
+{"part": "es_planW_recheck", "inst": "m02-K1-03", "seed": 0, "R": 27, "last_reset": 356, "W": 380, "same": 1}
+{"part": "es_no_planW", "inst": "m02-K1-03", "seed": 1, "same": 1, "R": 27}
+{"part": "es_planW_recheck", "inst": "m02-K1-03", "seed": 1, "R": 27, "last_reset": 371, "W": 380, "same": 1}
+{"part": "es_no_planW", "inst": "m03-K12-00", "seed": 0, "same": 1, "R": 79}
+{"part": "es_planW_recheck", "inst": "m03-K12-00", "seed": 0, "R": 79, "last_reset": 85, "W": 320, "same": 1}
+{"part": "es_no_planW", "inst": "m03-K12-00", "seed": 1, "same": 1, "R": 78}
+{"part": "es_planW_recheck", "inst": "m03-K12-00", "seed": 1, "R": 78, "last_reset": 100, "W": 320, "same": 1}
+{"part": "es_path_py", "inst": "m02-K1-03", "case": 0, "cpp": {"gaps": 0, "resets": 19, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 19, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 366, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m02-K1-03", "case": 1, "cpp": {"gaps": 0, "resets": 17, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 17, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 346, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m02-K1-03", "case": 2, "cpp": {"gaps": 0, "resets": 17, "cgaps": 0, "cert": 1, "period": 4725}, "py": {"gaps": 0, "resets": 17, "cgaps": 0, "cert": 1, "period": 4725}, "last_reset": 361, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m02-K1-03", "case": 3, "cpp": {"gaps": 3, "resets": 17, "cgaps": 3, "cert": 0, "period": 3150}, "py": {"gaps": 3, "resets": 17, "cgaps": 3, "cert": 0, "period": 3150}, "last_reset": 356, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m03-K12-00", "case": 0, "cpp": {"gaps": 10, "resets": 22, "cgaps": 28, "cert": -1, "period": -1}, "py": {"gaps": 10, "resets": 22, "cgaps": 28, "cert": -1, "period": -1}, "last_reset": 218, "W": 320, "same": 1}
+{"part": "es_path_py", "inst": "m03-K12-00", "case": 1, "cpp": {"gaps": 3, "resets": 22, "cgaps": 19, "cert": -1, "period": -1}, "py": {"gaps": 3, "resets": 22, "cgaps": 19, "cert": -1, "period": -1}, "last_reset": 216, "W": 320, "same": 1}
+{"part": "es_path_py", "inst": "m03-K12-00", "case": 2, "cpp": {"gaps": 1, "resets": 23, "cgaps": 13, "cert": -1, "period": -1}, "py": {"gaps": 1, "resets": 23, "cgaps": 13, "cert": -1, "period": -1}, "last_reset": 102, "W": 320, "same": 1}
+{"part": "es_path_py", "inst": "m03-K12-00", "case": 3, "cpp": {"gaps": 18, "resets": 24, "cgaps": 22, "cert": -1, "period": -1}, "py": {"gaps": 18, "resets": 24, "cgaps": 22, "cert": -1, "period": -1}, "last_reset": 289, "W": 320, "same": 1}
+{"part": "es_path_py", "inst": "m04-K1-01", "case": 0, "cpp": {"gaps": 0, "resets": 35, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 35, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 367, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m04-K1-01", "case": 1, "cpp": {"gaps": 0, "resets": 35, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 35, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 377, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m04-K1-01", "case": 2, "cpp": {"gaps": 0, "resets": 36, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 36, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 377, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m04-K1-01", "case": 3, "cpp": {"gaps": 0, "resets": 34, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 34, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 370, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m06-K12-02", "case": 0, "cpp": {"gaps": 0, "resets": 71, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 71, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 371, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m06-K12-02", "case": 1, "cpp": {"gaps": 0, "resets": 70, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 70, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 375, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m06-K12-02", "case": 2, "cpp": {"gaps": 0, "resets": 72, "cgaps": 0, "cert": -1, "period": -1}, "py": {"gaps": 0, "resets": 72, "cgaps": 0, "cert": -1, "period": -1}, "last_reset": 376, "W": 380, "same": 1}
+{"part": "es_path_py", "inst": "m06-K12-02", "case": 3, "cpp": {"gaps": 1, "resets": 72, "cgaps": 1, "cert": -1, "period": -1}, "py": {"gaps": 1, "resets": 72, "cgaps": 1, "cert": -1, "period": -1}, "last_reset": 370, "W": 380, "same": 1}
