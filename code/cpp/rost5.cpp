@@ -1481,9 +1481,9 @@ int main(int argc, char** argv) {
         string hs = "["; char buf[32]; for (size_t i = 0; i < hist.size(); i++) { snprintf(buf, 32, "%s%.1f", i ? "," : "", hist[i]); hs += buf; } hs += "]";
         printf("{\"inst\": \"%s\", \"mode\": \"%s\", \"H\": %lld, \"gp\": %d, \"reset\": %d, \"curdef\": %d, \"Tw\": %lld, \"hard\": %d, \"stagger\": %d, \"seed\": %llu, \"R\": %d, \"status\": \"%s\", \"Nk\": %s, \"Mj\": %s, "
                "\"verify_gaps\": %lld, \"verify_cert\": %d, \"verify_period\": %lld, \"exact\": %d, \"resets\": %lld, \"duties\": %lld, \"cyc_resets\": %lld, \"cyc_duties\": %lld, "
-               "\"sec\": %.1f, \"hist\": %s, \"w\": %s, \"tree\": \"%s\"}\n",
+               "\"sec\": %.1f, \"hist\": %s, \"w\": %s, \"w17\": %s, \"tree\": \"%s\"}\n",
                I.name.c_str(), mode.c_str(), H, gp ? 1 : 0, o_reset ? 1 : 0, o_curdef ? 1 : 0, o_Tw, o_hard ? 1 : 0, o_stag ? 1 : 0, seed, b.s.R, b.s.status.c_str(), vec_s(b.s.Nk).c_str(), vec_s(b.s.Mj).c_str(),
-               v.gaps, v.cert, v.period, exact, v.resets, v.duties, v.cyc_resets, v.cyc_duties, sec, hs.c_str(), dvec_s(b.P.w).c_str(), gp ? G.str(b.P.tree, 0).c_str() : "");
+               v.gaps, v.cert, v.period, exact, v.resets, v.duties, v.cyc_resets, v.cyc_duties, sec, hs.c_str(), dvec_s(b.P.w).c_str(), dvec17(b.P.w).c_str(), gp ? G.str(b.P.tree, 0).c_str() : "");   // w17：全精度权重（11-01 加；w 只保留 4 位小数，复现不出同一个解）
         return 0;
     }
     return 1;

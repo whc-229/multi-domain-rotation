@@ -1,0 +1,193 @@
+10-30 16:07:13 启动 1 PGID 3374553 python3 code/t12_job.py base m20-K1-00
+10-30 16:07:16 启动 2 PGID 3374589 python3 code/t12_job.py base m20-K1-01
+10-30 16:07:19 启动 3 PGID 3374593 python3 code/t12_job.py base m20-K1-02
+10-30 16:07:22 启动 4 PGID 3374612 python3 code/t12_job.py base m20-K1-03
+10-30 16:07:25 启动 5 PGID 3374668 python3 code/t12_job.py base m20-K1-04
+10-30 16:07:28 启动 6 PGID 3374682 python3 code/t12_job.py base m20-K1-05
+10-30 16:07:31 启动 7 PGID 3374729 python3 code/t12_job.py base m20-K12-00
+10-30 16:07:34 启动 8 PGID 3374735 python3 code/t12_job.py base m20-K12-01
+10-30 16:07:37 启动 9 PGID 3374787 python3 code/t12_job.py base m20-K12-02
+10-30 16:07:40 启动 10 PGID 3374812 python3 code/t12_job.py base m20-K12-03
+10-30 16:07:43 启动 11 PGID 3374819 python3 code/t12_job.py base m20-K12-04
+10-30 16:07:46 启动 12 PGID 3374837 python3 code/t12_job.py base m20-K12-05
+10-30 16:07:49 启动 13 PGID 3374842 python3 code/t12_job.py base m15-K1-00
+10-30 16:08:22 启动 14 PGID 3374969 python3 code/t12_job.py base m15-K1-01
+10-30 16:08:25 启动 15 PGID 3374989 python3 code/t12_job.py base m15-K1-02
+10-30 16:08:28 启动 16 PGID 3375007 python3 code/t12_job.py base m15-K1-03
+10-30 16:08:31 启动 17 PGID 3375081 python3 code/t12_job.py base m15-K1-04
+10-30 16:09:04 启动 18 PGID 3375477 python3 code/t12_job.py base m15-K1-05
+10-30 16:09:07 启动 19 PGID 3375506 python3 code/t12_job.py base m15-K12-00
+10-30 16:09:10 启动 20 PGID 3375510 python3 code/t12_job.py base m15-K12-01
+10-30 16:09:14 启动 21 PGID 3375531 python3 code/t12_job.py base m15-K12-02
+10-30 16:09:17 启动 22 PGID 3375536 python3 code/t12_job.py base m15-K12-03
+10-30 16:09:20 启动 23 PGID 3375563 python3 code/t12_job.py base m15-K12-04
+10-30 16:09:23 启动 24 PGID 3375580 python3 code/t12_job.py base m15-K12-05
+10-30 16:09:26 启动 25 PGID 3375603 python3 code/t12_job.py base m10-K1-00
+10-30 16:09:29 启动 26 PGID 3375641 python3 code/t12_job.py base m10-K1-01
+10-30 16:10:02 启动 27 PGID 3375767 python3 code/t12_job.py base m10-K1-02
+10-30 16:10:05 启动 28 PGID 3375788 python3 code/t12_job.py base m10-K1-03
+10-30 16:10:08 启动 29 PGID 3375794 python3 code/t12_job.py base m10-K1-04
+10-30 16:10:11 启动 30 PGID 3375815 python3 code/t12_job.py base m10-K1-05
+10-30 16:10:14 启动 31 PGID 3375823 python3 code/t12_job.py base m10-K12-00
+10-30 16:10:17 启动 32 PGID 3375858 python3 code/t12_job.py base m10-K12-01
+10-30 16:10:20 启动 33 PGID 3375881 python3 code/t12_job.py base m10-K12-02
+10-30 16:10:23 启动 34 PGID 3375900 python3 code/t12_job.py base m10-K12-03
+10-30 16:10:26 启动 35 PGID 3375920 python3 code/t12_job.py base m10-K12-04
+10-30 16:10:29 启动 36 PGID 3375951 python3 code/t12_job.py base m10-K12-05
+10-30 16:11:02 启动 37 PGID 3376140 python3 code/t12_job.py base m08-K1-00
+10-30 16:11:05 启动 38 PGID 3376165 python3 code/t12_job.py base m08-K1-01
+10-30 16:11:08 启动 39 PGID 3376183 python3 code/t12_job.py base m08-K1-02
+10-30 16:11:11 启动 40 PGID 3376203 python3 code/t12_job.py base m08-K1-03
+10-30 16:11:14 启动 41 PGID 3376224 python3 code/t12_job.py base m08-K1-04
+10-30 16:11:17 启动 42 PGID 3376237 python3 code/t12_job.py base m08-K1-05
+10-30 16:11:20 启动 43 PGID 3376267 python3 code/t12_job.py base m08-K12-00
+10-30 16:11:23 启动 44 PGID 3376278 python3 code/t12_job.py base m08-K12-01
+10-30 16:11:26 启动 45 PGID 3376297 python3 code/t12_job.py base m08-K12-02
+10-30 16:11:30 启动 46 PGID 3376309 python3 code/t12_job.py base m08-K12-03
+10-30 16:11:33 启动 47 PGID 3376329 python3 code/t12_job.py base m08-K12-04
+10-30 16:11:36 启动 48 PGID 3376355 python3 code/t12_job.py base m08-K12-05
+10-30 16:11:39 启动 49 PGID 3376365 python3 code/t12_job.py rdd m20-K1-00 0
+10-30 16:11:42 启动 50 PGID 3376388 python3 code/t12_job.py rdd m20-K1-00 1
+10-30 16:11:45 启动 51 PGID 3376403 python3 code/t12_job.py rdd m20-K1-00 2
+10-30 16:11:48 启动 52 PGID 3376423 python3 code/t12_job.py rdd m20-K1-01 0
+10-30 16:11:51 启动 53 PGID 3376443 python3 code/t12_job.py rdd m20-K1-01 1
+10-30 16:11:54 启动 54 PGID 3376449 python3 code/t12_job.py rdd m20-K1-01 2
+10-30 16:11:57 启动 55 PGID 3376469 python3 code/t12_job.py rdd m20-K1-02 0
+10-30 16:12:00 启动 56 PGID 3376482 python3 code/t12_job.py rdd m20-K1-02 1
+10-30 16:12:03 启动 57 PGID 3376504 python3 code/t12_job.py rdd m20-K1-02 2
+10-30 16:12:06 启动 58 PGID 3376525 python3 code/t12_job.py rdd m20-K1-03 0
+10-30 16:13:39 启动 59 PGID 3377116 python3 code/t12_job.py rdd m20-K1-03 1
+10-30 16:13:42 启动 60 PGID 3377143 python3 code/t12_job.py rdd m20-K1-03 2
+10-30 20:12:05 启动 61 PGID 3441538 python3 code/t12_job.py rdd m20-K1-04 0
+10-30 20:12:17 启动 62 PGID 3441770 python3 code/t12_job.py rdd m20-K1-04 1
+10-30 20:12:26 启动 63 PGID 3441871 python3 code/t12_job.py rdd m20-K1-04 2
+10-30 20:12:29 启动 64 PGID 3441884 python3 code/t12_job.py rdd m20-K1-05 0
+10-30 20:12:35 启动 65 PGID 3441908 python3 code/t12_job.py rdd m20-K1-05 1
+10-30 20:12:38 启动 66 PGID 3441912 python3 code/t12_job.py rdd m20-K1-05 2
+10-30 20:12:41 启动 67 PGID 3441917 python3 code/t12_job.py rdd m20-K12-00 0
+10-30 20:12:44 启动 68 PGID 3441922 python3 code/t12_job.py rdd m20-K12-00 1
+10-30 20:12:47 启动 69 PGID 3441934 python3 code/t12_job.py rdd m20-K12-00 2
+10-30 20:12:50 启动 70 PGID 3441940 python3 code/t12_job.py rdd m20-K12-01 0
+10-30 20:14:23 启动 71 PGID 3442115 python3 code/t12_job.py rdd m20-K12-01 1
+10-30 20:14:26 启动 72 PGID 3442127 python3 code/t12_job.py rdd m20-K12-01 2
+10-31 00:12:48 启动 73 PGID 3464566 python3 code/t12_job.py rdd m20-K12-02 0
+10-31 00:12:51 启动 74 PGID 3464611 python3 code/t12_job.py rdd m20-K12-02 1
+10-31 00:12:57 启动 75 PGID 3464620 python3 code/t12_job.py rdd m20-K12-02 2
+10-31 00:13:06 启动 76 PGID 3464747 python3 code/t12_job.py rdd m20-K12-03 0
+10-31 00:13:15 启动 77 PGID 3464823 python3 code/t12_job.py rdd m20-K12-03 1
+10-31 00:13:18 启动 78 PGID 3464827 python3 code/t12_job.py rdd m20-K12-03 2
+10-31 00:13:21 启动 79 PGID 3464833 python3 code/t12_job.py rdd m20-K12-04 0
+10-31 00:13:24 启动 80 PGID 3464839 python3 code/t12_job.py rdd m20-K12-04 1
+10-31 00:13:27 启动 81 PGID 3464843 python3 code/t12_job.py rdd m20-K12-04 2
+10-31 00:13:30 启动 82 PGID 3464849 python3 code/t12_job.py rdd m20-K12-05 0
+10-31 00:15:04 启动 83 PGID 3464965 python3 code/t12_job.py rdd m20-K12-05 1
+10-31 00:15:07 启动 84 PGID 3464971 python3 code/t12_job.py rdd m20-K12-05 2
+10-31 04:13:27 启动 85 PGID 3470191 python3 code/t12_job.py rdd m15-K1-00 0
+10-31 04:13:30 启动 86 PGID 3470197 python3 code/t12_job.py rdd m15-K1-00 1
+10-31 04:13:33 启动 87 PGID 3470202 python3 code/t12_job.py rdd m15-K1-00 2
+10-31 04:13:42 启动 88 PGID 3470383 python3 code/t12_job.py rdd m15-K1-01 0
+10-31 04:13:51 启动 89 PGID 3470485 python3 code/t12_job.py rdd m15-K1-01 1
+10-31 04:13:54 启动 90 PGID 3470489 python3 code/t12_job.py rdd m15-K1-01 2
+10-31 04:13:57 启动 91 PGID 3470496 python3 code/t12_job.py rdd m15-K1-02 0
+10-31 04:14:00 启动 92 PGID 3470501 python3 code/t12_job.py rdd m15-K1-02 1
+10-31 04:14:03 启动 93 PGID 3470505 python3 code/t12_job.py rdd m15-K1-02 2
+10-31 04:14:06 启动 94 PGID 3470511 python3 code/t12_job.py rdd m15-K1-03 0
+10-31 04:15:39 启动 95 PGID 3470626 python3 code/t12_job.py rdd m15-K1-03 1
+10-31 04:15:42 启动 96 PGID 3470631 python3 code/t12_job.py rdd m15-K1-03 2
+10-31 08:14:02 启动 97 PGID 3478911 python3 code/t12_job.py rdd m15-K1-04 0
+10-31 08:14:05 启动 98 PGID 3478956 python3 code/t12_job.py rdd m15-K1-04 1
+10-31 08:14:08 启动 99 PGID 3479003 python3 code/t12_job.py rdd m15-K1-04 2
+10-31 08:14:11 启动 100 PGID 3479048 python3 code/t12_job.py rdd m15-K1-05 0
+10-31 08:14:17 启动 101 PGID 3479104 python3 code/t12_job.py rdd m15-K1-05 1
+10-31 08:14:26 启动 102 PGID 3479123 python3 code/t12_job.py rdd m15-K1-05 2
+10-31 08:14:32 启动 103 PGID 3479134 python3 code/t12_job.py rdd m15-K12-00 0
+10-31 08:14:35 启动 104 PGID 3479138 python3 code/t12_job.py rdd m15-K12-00 1
+10-31 08:14:38 启动 105 PGID 3479144 python3 code/t12_job.py rdd m15-K12-00 2
+10-31 08:14:41 启动 106 PGID 3479148 python3 code/t12_job.py rdd m15-K12-01 0
+10-31 08:16:14 启动 107 PGID 3479261 python3 code/t12_job.py rdd m15-K12-01 1
+10-31 08:16:17 启动 108 PGID 3479268 python3 code/t12_job.py rdd m15-K12-01 2
+10-31 12:14:37 启动 109 PGID 3491673 python3 code/t12_job.py rdd m15-K12-02 0
+10-31 12:14:40 启动 110 PGID 3491678 python3 code/t12_job.py rdd m15-K12-02 1
+10-31 12:14:43 启动 111 PGID 3491724 python3 code/t12_job.py rdd m15-K12-02 2
+10-31 12:14:46 启动 112 PGID 3491769 python3 code/t12_job.py rdd m15-K12-03 0
+10-31 12:14:55 启动 113 PGID 3491869 python3 code/t12_job.py rdd m15-K12-03 1
+10-31 12:15:04 启动 114 PGID 3491892 python3 code/t12_job.py rdd m15-K12-03 2
+10-31 12:15:07 启动 115 PGID 3491898 python3 code/t12_job.py rdd m15-K12-04 0
+10-31 12:15:10 启动 116 PGID 3491902 python3 code/t12_job.py rdd m15-K12-04 1
+10-31 12:15:13 启动 117 PGID 3491907 python3 code/t12_job.py rdd m15-K12-04 2
+10-31 12:15:16 启动 118 PGID 3491911 python3 code/t12_job.py rdd m15-K12-05 0
+10-31 12:16:49 启动 119 PGID 3492023 python3 code/t12_job.py rdd m15-K12-05 1
+10-31 12:16:52 启动 120 PGID 3492028 python3 code/t12_job.py rdd m15-K12-05 2
+10-31 16:15:12 启动 121 PGID 3502083 python3 code/t12_job.py rdd m10-K1-00 0
+10-31 16:15:15 启动 122 PGID 3502130 python3 code/t12_job.py rdd m10-K1-00 1
+10-31 16:15:18 启动 123 PGID 3502175 python3 code/t12_job.py rdd m10-K1-00 2
+10-31 16:15:21 启动 124 PGID 3502220 python3 code/t12_job.py rdd m10-K1-01 0
+10-31 16:15:30 启动 125 PGID 3502319 python3 code/t12_job.py rdd m10-K1-01 1
+10-31 16:15:42 启动 126 PGID 3502344 python3 code/t12_job.py rdd m10-K1-01 2
+10-31 16:15:45 启动 127 PGID 3502348 python3 code/t12_job.py rdd m10-K1-02 0
+10-31 16:15:49 启动 128 PGID 3502353 python3 code/t12_job.py rdd m10-K1-02 1
+10-31 16:15:52 启动 129 PGID 3502357 python3 code/t12_job.py rdd m10-K1-02 2
+10-31 16:15:55 启动 130 PGID 3502363 python3 code/t12_job.py rdd m10-K1-03 0
+10-31 16:17:28 启动 131 PGID 3502478 python3 code/t12_job.py rdd m10-K1-03 1
+10-31 16:17:31 启动 132 PGID 3502482 python3 code/t12_job.py rdd m10-K1-03 2
+10-31 18:15:42 启动 133 PGID 3524260 python3 code/t12_job.py rdd m10-K1-04 0
+10-31 18:15:45 启动 134 PGID 3524309 python3 code/t12_job.py rdd m10-K1-04 1
+10-31 18:15:49 启动 135 PGID 3524314 python3 code/t12_job.py rdd m10-K1-04 2
+10-31 18:15:52 启动 136 PGID 3524322 python3 code/t12_job.py rdd m10-K1-05 0
+10-31 18:15:55 启动 137 PGID 3524379 python3 code/t12_job.py rdd m10-K1-05 1
+10-31 18:15:58 启动 138 PGID 3524465 python3 code/t12_job.py rdd m10-K1-05 2
+10-31 18:16:01 启动 139 PGID 3524511 python3 code/t12_job.py rdd m10-K12-00 0
+10-31 18:16:04 启动 140 PGID 3524517 python3 code/t12_job.py rdd m10-K12-00 1
+10-31 18:16:07 启动 141 PGID 3524525 python3 code/t12_job.py rdd m10-K12-00 2
+10-31 18:16:10 启动 142 PGID 3524529 python3 code/t12_job.py rdd m10-K12-01 0
+10-31 18:17:43 启动 143 PGID 3524737 python3 code/t12_job.py rdd m10-K12-01 1
+10-31 18:17:46 启动 144 PGID 3524744 python3 code/t12_job.py rdd m10-K12-01 2
+10-31 20:16:00 启动 145 PGID 3539048 python3 code/t12_job.py rdd m10-K12-02 0
+10-31 20:16:03 启动 146 PGID 3539095 python3 code/t12_job.py rdd m10-K12-02 1
+10-31 20:16:06 启动 147 PGID 3539102 python3 code/t12_job.py rdd m10-K12-02 2
+10-31 20:16:09 启动 148 PGID 3539149 python3 code/t12_job.py rdd m10-K12-03 0
+10-31 20:16:12 启动 149 PGID 3539196 python3 code/t12_job.py rdd m10-K12-03 1
+10-31 20:16:15 启动 150 PGID 3539248 python3 code/t12_job.py rdd m10-K12-03 2
+10-31 20:16:18 启动 151 PGID 3539254 python3 code/t12_job.py rdd m10-K12-04 0
+10-31 20:16:22 启动 152 PGID 3539303 python3 code/t12_job.py rdd m10-K12-04 1
+10-31 20:16:25 启动 153 PGID 3539319 python3 code/t12_job.py rdd m10-K12-04 2
+10-31 20:16:28 启动 154 PGID 3539323 python3 code/t12_job.py rdd m10-K12-05 0
+10-31 20:18:01 启动 155 PGID 3539506 python3 code/t12_job.py rdd m10-K12-05 1
+10-31 20:18:04 启动 156 PGID 3539511 python3 code/t12_job.py rdd m10-K12-05 2
+10-31 22:16:18 启动 157 PGID 3562637 python3 code/t12_job.py rdd m08-K1-00 0
+10-31 22:16:21 启动 158 PGID 3562699 python3 code/t12_job.py rdd m08-K1-00 1
+10-31 22:16:24 启动 159 PGID 3562799 python3 code/t12_job.py rdd m08-K1-00 2
+10-31 22:16:27 启动 160 PGID 3562834 python3 code/t12_job.py rdd m08-K1-01 0
+10-31 22:16:30 启动 161 PGID 3562888 python3 code/t12_job.py rdd m08-K1-01 1
+10-31 22:16:33 启动 162 PGID 3562954 python3 code/t12_job.py rdd m08-K1-01 2
+10-31 22:16:36 启动 163 PGID 3562963 python3 code/t12_job.py rdd m08-K1-02 0
+10-31 22:16:39 启动 164 PGID 3563034 python3 code/t12_job.py rdd m08-K1-02 1
+10-31 22:16:42 启动 165 PGID 3563042 python3 code/t12_job.py rdd m08-K1-02 2
+10-31 22:16:45 启动 166 PGID 3563063 python3 code/t12_job.py rdd m08-K1-03 0
+10-31 22:18:18 启动 167 PGID 3563475 python3 code/t12_job.py rdd m08-K1-03 1
+10-31 22:18:21 启动 168 PGID 3563482 python3 code/t12_job.py rdd m08-K1-03 2
+11-01 00:16:33 启动 169 PGID 3575750 python3 code/t12_job.py rdd m08-K1-04 0
+11-01 00:16:36 启动 170 PGID 3575764 python3 code/t12_job.py rdd m08-K1-04 1
+11-01 00:16:39 启动 171 PGID 3575859 python3 code/t12_job.py rdd m08-K1-04 2
+11-01 00:16:42 启动 172 PGID 3575906 python3 code/t12_job.py rdd m08-K1-05 0
+11-01 00:16:45 启动 173 PGID 3575954 python3 code/t12_job.py rdd m08-K1-05 1
+11-01 00:16:48 启动 174 PGID 3575961 python3 code/t12_job.py rdd m08-K1-05 2
+11-01 00:16:51 启动 175 PGID 3576006 python3 code/t12_job.py rdd m08-K12-00 0
+11-01 00:16:54 启动 176 PGID 3576013 python3 code/t12_job.py rdd m08-K12-00 1
+11-01 00:16:57 启动 177 PGID 3576057 python3 code/t12_job.py rdd m08-K12-00 2
+11-01 00:17:00 启动 178 PGID 3576151 python3 code/t12_job.py rdd m08-K12-01 0
+11-01 00:18:33 启动 179 PGID 3576428 python3 code/t12_job.py rdd m08-K12-01 1
+11-01 00:18:36 启动 180 PGID 3576436 python3 code/t12_job.py rdd m08-K12-01 2
+11-01 02:16:48 启动 181 PGID 3584933 python3 code/t12_job.py rdd m08-K12-02 0
+11-01 02:16:51 启动 182 PGID 3584986 python3 code/t12_job.py rdd m08-K12-02 1
+11-01 02:16:54 启动 183 PGID 3584993 python3 code/t12_job.py rdd m08-K12-02 2
+11-01 02:16:57 启动 184 PGID 3585040 python3 code/t12_job.py rdd m08-K12-03 0
+11-01 02:17:00 启动 185 PGID 3585086 python3 code/t12_job.py rdd m08-K12-03 1
+11-01 02:17:03 启动 186 PGID 3585136 python3 code/t12_job.py rdd m08-K12-03 2
+11-01 02:17:06 启动 187 PGID 3585187 python3 code/t12_job.py rdd m08-K12-04 0
+11-01 02:17:09 启动 188 PGID 3585203 python3 code/t12_job.py rdd m08-K12-04 1
+11-01 02:17:12 启动 189 PGID 3585209 python3 code/t12_job.py rdd m08-K12-04 2
+11-01 02:17:15 启动 190 PGID 3585215 python3 code/t12_job.py rdd m08-K12-05 0
+11-01 02:18:48 启动 191 PGID 3585405 python3 code/t12_job.py rdd m08-K12-05 1
+11-01 02:18:51 启动 192 PGID 3585415 python3 code/t12_job.py rdd m08-K12-05 2
+11-01 04:18:55 全部结束

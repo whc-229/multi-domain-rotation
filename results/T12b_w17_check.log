@@ -1,0 +1,10 @@
+{"inst": "m02-K1-03", "seed": 0, "R": 27, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 356, "W": 380, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m02-K1-03", "seed": 1, "R": 27, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 371, "W": 380, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m02-K1-03", "seed": 2, "R": 27, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 356, "W": 380, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m03-K12-00", "seed": 0, "R": 79, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 85, "W": 320, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m03-K12-00", "seed": 1, "R": 78, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 100, "W": 320, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m03-K12-00", "seed": 2, "R": 78, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 215, "W": 320, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m04-K1-01", "seed": 0, "R": 60, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 372, "W": 380, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m04-K1-01", "seed": 1, "R": 59, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 377, "W": 380, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"inst": "m04-K1-01", "seed": 2, "R": 60, "same_old_new": 1, "rejudge_w17": 1, "last_reset": 372, "W": 380, "rejudge_w4": 1, "gaps_es": 0, "gaps_w17": 0, "gaps_w4": 0, "ok": 1}
+{"cases": 9, "mismatch": 0}
