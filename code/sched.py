@@ -2,17 +2,19 @@
 作业文件格式同 run_jobs.py：每行 "<完成标志文件>\t<超时秒>\t<命令>"；完成标志已存在就跳过，中断后重跑同一条命令即可续跑。
 - 全机上限：正在运行的作业进程（python3 code/<JOBS 里的脚本>）总数 < cap 才启动；
 - hi：从启动到全部作业派出，在 /tmp/mdrr_sched_wait/ 下挂一个 "<自己的 PID>" 文件；
+- hihold：同 hi，但标记一直挂到自己的作业全部结束（11-01 加：已在运行的 lo 调度器按启动时的 JOBS 计数，看不见新脚本的进程，
+  标记早撤的话 lo 会多派作业、超过全机上限）；
 - lo：只要有活着的 hi 在等名额就不启动；另外 lo 自己同时运行的作业数不超过 lo_cap（默认 = cap），长作业不会把核全占住；
 - "检查名额 + 启动"在全局文件锁里做（与 t9_sched 同一把锁），多个调度器同时运行也不会超过上限；某个作业的命令已经有进程在跑就跳过。
 停调度器时连子进程一起停：调度器把每个作业放进自己的进程组（start_new_session），日志里记下 PID = 进程组号，
 需要停时 kill -- -<PGID>（只停记录过的组），再停调度器本身。
 作业命令里写 ana 环境 python 的绝对路径（/home/hk/miniconda3/envs/ana/bin/python3）；启动时先检查它能 import numpy / scipy / highspy。
-用法：nohup python3 code/sched.py <日志目录> <hi|lo> <cap> [lo_cap] -- <作业文件>... > <调度日志> 2>&1 &"""
+用法：nohup python3 code/sched.py <日志目录> <hi|hihold|lo> <cap> [lo_cap] -- <作业文件>... > <调度日志> 2>&1 &"""
 import os, sys, subprocess, time, fcntl
 
 JOBS = (b"t6_job.py", b"t6_rerun.py", b"t8_job.py", b"t9_job.py", b"t10_variants.py", b"t11_job.py", b"t12_job.py",
         b"t13_job.py", b"t13_rhmip.py", b"t14_gphh.py", b"t15_job.py", b"t16_job.py",
-        b"t17_job.py", b"t18_job.py", b"t12b_es_job.py")
+        b"t17_job.py", b"t18_job.py", b"t12b_es_job.py", b"t12c_job.py")
 LOCK = "/tmp/mdrr_idle_sched.lock"
 WAIT = "/tmp/mdrr_sched_wait"
 ENV = dict(os.environ, OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")
@@ -42,7 +44,9 @@ def main():
     """逐个作业：等到有名额再启动（后台运行）；全部启动后等它们结束。"""
     a = sys.argv[1:]; sep = a.index("--")
     logdir, prio, cap = a[0], a[1], int(a[2]); lo_cap = int(a[3]) if sep > 3 else cap; files = a[sep + 1:]
-    assert prio in ("hi", "lo")
+    assert prio in ("hi", "hihold", "lo")
+    hold = prio == "hihold"
+    if hold: prio = "hi"
     # 环境检查（10-30 晚审核）：作业命令里的 python 必须能 import numpy / scipy / highspy，否则不启动（会话重启后 PATH 可能换成别的解释器）
     for jf in files:
         for line in open(jf):
@@ -76,8 +80,9 @@ def main():
             print(time.strftime("%m-%d %H:%M:%S"), "启动", k, "PGID", p.pid, cmd.split("&& ")[-1], flush=True)
             time.sleep(3)      # 等子进程出现在 /proc 里再放锁、数下一次
             fcntl.flock(lk, fcntl.LOCK_UN); lk.close()
-    if os.path.exists(me): os.remove(me)
+    if os.path.exists(me) and not hold: os.remove(me)
     for p in procs: p.wait()
+    if os.path.exists(me): os.remove(me)
     print(time.strftime("%m-%d %H:%M:%S"), "全部结束", flush=True)
 
 
