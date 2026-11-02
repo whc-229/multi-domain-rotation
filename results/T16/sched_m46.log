@@ -1,0 +1,15 @@
+10-30 20:12:11 启动 1 PGID 3441697 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 0 0
+10-30 20:12:14 启动 2 PGID 3441737 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 0 1
+10-30 20:12:23 启动 3 PGID 3441839 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 0 2
+10-31 00:12:54 启动 4 PGID 3464616 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 0.5 0
+10-31 00:13:03 启动 5 PGID 3464677 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 0.5 1
+10-31 00:13:12 启动 6 PGID 3464817 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 0.5 2
+10-31 04:13:39 启动 7 PGID 3470339 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 1 0
+10-31 04:13:48 启动 8 PGID 3470479 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 1 1
+10-31 08:14:20 启动 9 PGID 3479108 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-00 1 2
+10-31 08:14:29 启动 10 PGID 3479129 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-01 0 0
+10-31 12:14:49 启动 11 PGID 3491814 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-01 0 1
+10-31 12:14:58 启动 12 PGID 3491876 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-01 0 2
+10-31 16:15:27 启动 13 PGID 3502292 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-01 0.5 0
+10-31 16:15:36 启动 14 PGID 3502335 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-01 0.5 1
+10-31 16:15:39 启动 15 PGID 3502339 /home/hk/miniconda3/envs/ana/bin/python3 code/t16_job.py m04-K1-01 0.5 2
