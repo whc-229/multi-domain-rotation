@@ -1,0 +1,48 @@
+{"part": "new_path", "inst": "m02-K1-00", "rule": "pb", "case": 0, "late": 1, "cpp": {"gaps": 0, "cert": 1, "period": 1200}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m02-K1-00", "rule": "pb", "case": 1, "late": 0, "cpp": {"gaps": 0, "cert": 1, "period": 1800}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m02-K1-00", "rule": "pb", "case": 2, "late": 1, "cpp": {"gaps": 3, "cert": 0, "period": 3600}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m02-K1-00", "rule": "pb", "case": 3, "late": 0, "cpp": {"gaps": 0, "cert": 1, "period": 1200}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m02-K1-00", "rule": "rlp", "case": 0, "late": 1, "cpp": {"gaps": 0, "cert": 1, "period": 9450}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m02-K1-00", "rule": "rlp", "case": 1, "late": 0, "cpp": {"gaps": 0, "cert": 1, "period": 600}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m02-K1-00", "rule": "rlp", "case": 2, "late": 1, "cpp": {"gaps": 0, "cert": 1, "period": 1800}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m02-K1-00", "rule": "rlp", "case": 3, "late": 0, "cpp": {"gaps": 2, "cert": 0, "period": 9450}, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "pb", "case": 0, "late": 1, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "pb", "case": 1, "late": 0, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "pb", "case": 2, "late": 1, "cpp": {"gaps": 5, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "pb", "case": 3, "late": 0, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "rlp", "case": 0, "late": 1, "cpp": {"gaps": 2, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "rlp", "case": 1, "late": 0, "cpp": {"gaps": 8, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "rlp", "case": 2, "late": 1, "cpp": {"gaps": 1, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m03-K12-00", "rule": "rlp", "case": 3, "late": 0, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "pb", "case": 0, "late": 1, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "pb", "case": 1, "late": 0, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "pb", "case": 2, "late": 1, "cpp": {"gaps": 2, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "pb", "case": 3, "late": 0, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "rlp", "case": 0, "late": 1, "cpp": {"gaps": 4, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "rlp", "case": 1, "late": 0, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "rlp", "case": 2, "late": 1, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-01", "rule": "rlp", "case": 3, "late": 0, "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "notools", "case": 1, "same": 1, "diff": []}

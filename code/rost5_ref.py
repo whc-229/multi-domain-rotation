@@ -262,7 +262,11 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
                 lst = pxm.get((s, t))
                 if lst:
                     for ei, (k2, i2, r2) in enumerate(lst):
-                        pk = next((r for r in order if rk[r] == k2 and rph[r] == i2 and tool_ok(r, s)), -1)
+                        if planx.get("late"):     # T15 小检查：与 C++ planxlate 相同，同型同相位里取就绪最晚的（相同时取原顺序靠前的）
+                            pk = -1
+                            for r in order:
+                                if rk[r] == k2 and rph[r] == i2 and tool_ok(r, s) and (pk < 0 or rv[r] > rv[pk]): pk = r
+                        else: pk = next((r for r in order if rk[r] == k2 and rph[r] == i2 and tool_ok(r, s)), -1)
                         if pk < 0: continue
                         order.remove(pk); order.insert(0, pk); force = (r2 == 1) and (plan_until is None or t < plan_until)
                         del lst[ei]; break

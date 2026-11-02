@@ -6,8 +6,10 @@ LP / MIP 用 freshlb.fresh_lb(tools=False)。
 - mip：只算机器人的完整整数模型（所有流量取整数，freshlb full_int=True），H = 2·S_max，HiGHS 单线程、限时（默认 7200 秒），记最优值或对偶界；
 - ub_rlp：fresh_noreset_u 规则（T3b 的规则文件）+ notools，rost5 rlp 定台数 + 60 万格复核；
 - ub_fd <种子>：T11 的 RDD-FD（默认规则 rlp，main 设置：T_eval = 6·S_max、1000 代、互换 0.5）+ notools；
-- ub_es <种子>：ES curdef（certs 模式，100 代，(4 + 12)，与 T4b 相同）+ notools。
-用法：python3 code/t15_job.py lp|mip|ub_rlp <实例> [限时]  |  python3 code/t15_job.py ub_fd|ub_es <实例> <种子>"""
+- ub_es <种子>：ES curdef（certs 模式，100 代，(4 + 12)，与 T4b 相同）+ notools；
+- plan [MIP 限时]：小检查 2，转调 code/t15b_plan.py（经由本脚本启动，正在运行的调度器才数得到这个进程），结果在 results/T15/plan/；
+- ub_fdl <种子>：长预算 RDD-FD（11-02 审核加的小检查）：与 ub_fd 相同，只把"1000 代"换成墙钟 10 分钟（代数不限），种子 0–4。
+用法：python3 code/t15_job.py lp|mip|ub_rlp <实例> [限时]  |  python3 code/t15_job.py ub_fd|ub_fdl|ub_es <实例> <种子>"""
 import os, sys, json, time, subprocess, math
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -22,10 +24,14 @@ OUT = os.path.join(ROOT, "results", "T15", "jobs")
 
 
 def main():
+    """按种类运行一个作业，原子写入。"""
     kind, name = sys.argv[1], sys.argv[2]
+    if kind == "plan":
+        import t15b_plan
+        sys.argv = ["t15b_plan.py", name] + sys.argv[3:4]; t15b_plan.main(); return
     arg = sys.argv[3] if len(sys.argv) > 3 else None
     os.makedirs(OUT, exist_ok=True)
-    jn = f"{name}__{kind}" + (f"__s{arg}" if kind in ("ub_fd", "ub_es") else "")
+    jn = f"{name}__{kind}" + (f"__s{arg}" if kind in ("ub_fd", "ub_fdl", "ub_es") else "")
     path = os.path.join(OUT, jn + ".json")
     if os.path.exists(path): print("已完成，跳过", jn); return
     I = load_train(name); S = S_max(I); _, txt = inst_paths(name, "train")
@@ -47,8 +53,9 @@ def main():
     elif kind == "ub_rlp":
         args = [R5, "rlp", txt, os.path.join(ROOT, "results", "T3", "rlp", f"{name}__fresh_noreset_u.rlp"), "365", "60000", "600000", "notools"]
         rec.update(json.loads(subprocess.run(args, capture_output=True, text=True, check=True).stdout)); rec["cmd"] = " ".join(args)
-    elif kind == "ub_fd":
-        args = [R5, "rddfd", txt, "365", "60000", "600000", str(6 * S), "1000", "36000", "4", "12", arg, "0.1", "0.4"] + t8_rules.rule_opts(name, "rlp") + \
+    elif kind in ("ub_fd", "ub_fdl"):
+        gens, tl = ("1000", "36000") if kind == "ub_fd" else (str(10 ** 9), "600")
+        args = [R5, "rddfd", txt, "365", "60000", "600000", str(6 * S), gens, tl, "4", "12", arg, "0.1", "0.4"] + t8_rules.rule_opts(name, "rlp") + \
                [f"W={2 * S}", "stall=30", "swap=0.5", "fdsel=best", "notools"]
         d = json.loads(subprocess.run(args, capture_output=True, text=True, check=True).stdout); d.pop("genes", None); d.pop("cdf", None); d.pop("dualw", None)
         rec.update(d); rec["cmd"] = " ".join(args)
