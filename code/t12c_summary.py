@@ -92,7 +92,7 @@ def main():
         r = next((x for x in rows if x["inst"] == n and x["reset"] == 0), None)
         if r is None: continue    # 该实例还没跑完
         src = r["T4b_src"] or {}
-        L.append(f"| {n} | {rule} | {rb} | {r['T4b_UB_old']} | {r['T4b_UB_new']} | {src.get('kind')} {src.get('src')} s{src.get('seed', '')} | {'是' if rb < r['T4b_UB_new'] else '否'} |")
+        L.append(f"| {n} | {rule} | {rb} | {r['T4b_UB_old']} | {r['T4b_UB_new']} | {src.get('kind')} {src.get('src')}{' s' + str(src['seed']) if 'seed' in src else ''} | {'是' if rb < r['T4b_UB_new'] else '否'} |")
     L += ["", f"核对：旧上界与 T4 / T4b / T9 汇总相同，不一致 {len(bad)} 处" + (f"：{bad}" if bad else "") + f"；实例 {len(J)} / 24。"]
     print("\n".join(L))
 

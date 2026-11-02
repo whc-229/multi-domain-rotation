@@ -1,0 +1,25 @@
+11-02 08:33:23 T16 已全部派出，启动 T12c
+11-02 08:39:23 启动 1 PGID 3786783 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K1-00
+11-02 08:39:26 启动 2 PGID 3786791 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K1-01
+11-02 08:40:59 启动 3 PGID 3786907 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K1-02
+11-02 08:42:02 启动 4 PGID 3786990 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K1-03
+11-02 08:42:05 启动 5 PGID 3786995 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K1-04
+11-02 08:42:08 启动 6 PGID 3787000 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K1-05
+11-02 08:42:42 启动 7 PGID 3787049 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K12-00
+11-02 08:44:45 启动 8 PGID 3787250 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K12-01
+11-02 08:45:18 启动 9 PGID 3787289 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K12-02
+11-02 08:45:51 启动 10 PGID 3787331 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K12-03
+11-02 08:46:54 启动 11 PGID 3787416 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K12-04
+11-02 08:46:57 启动 12 PGID 3787422 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m03-K12-05
+11-02 08:48:00 启动 13 PGID 3787540 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K1-00
+11-02 08:49:03 启动 15 PGID 3787622 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K1-02
+11-02 08:49:06 启动 16 PGID 3787626 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K1-03
+11-02 08:50:09 启动 17 PGID 3787705 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K1-04
+11-02 08:50:42 启动 18 PGID 3787757 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K1-05
+11-02 08:51:15 启动 19 PGID 3787811 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K12-00
+11-02 08:51:18 启动 20 PGID 3787857 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K12-01
+11-02 08:51:21 启动 21 PGID 3787861 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K12-02
+11-02 08:52:24 启动 22 PGID 3787943 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K12-03
+11-02 08:53:28 启动 23 PGID 3788027 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K12-04
+11-02 08:53:31 启动 24 PGID 3788033 /home/hk/miniconda3/envs/ana/bin/python3 code/t12c_job.py m02-K12-05
+11-02 09:13:48 全部结束
