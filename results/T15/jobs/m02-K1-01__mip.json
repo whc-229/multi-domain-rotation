@@ -1,0 +1,1 @@
+{"inst": "m02-K1-01", "m": 2, "family": "K1", "kind": "mip", "S": 190, "H": 380, "tl": 7200.0, "obj": 20.0, "bound": 13.0, "LB_int": 13, "status": "Time limit reached", "N": [1.0, 7.0, 8.0, 4.0], "n": 16910, "sec": 7204.6, "wall": 7204.7}
