@@ -7,7 +7,8 @@
 3. W₀ 与 T17 的 H₀（LP_fr^Rw 达到 4S 值 99.5% 的最小 H）逐实例对照；
 4. 偏离落点：最终解里激活的偏离的时刻 t，按每 0.5·S_max 一段统计占比（W = 2S 的 T16 作业没有记，这里用 t18_job.dev_positions 补算）。
 输出 results/T18_window.jsonl（逐作业）与 markdown 表（打印）。
-用法：python3 code/t18_summary.py"""
+可以只汇总部分 m（中间汇总用，例如 m = 4、6 先跑完时），此时 T18_window.jsonl 里也只有这些 m。
+用法：python3 code/t18_summary.py [m ...]（默认 4 6 8 10）"""
 import os, sys, json
 from collections import defaultdict, Counter
 import numpy as np
@@ -39,11 +40,13 @@ def job(n, mult, seed):
 
 
 def main():
+    """逐作业汇总、写 jsonl、打印各表。"""
+    MS = [int(a) for a in sys.argv[1:]] or [4, 6, 8, 10]
     H0 = {}
     if os.path.exists(os.path.join(ROOT, "results", "T17_horizon.jsonl")):
         H0 = {r["inst"]: r.get("frRw_H0") for r in map(json.loads, open(os.path.join(ROOT, "results", "T17_horizon.jsonl")))}
     rows = []; inst_rows = []
-    for n in sorted(train_names([4, 6, 8, 10]), key=lambda n: (int(n[1:3]), n)):
+    for n in sorted(train_names(MS), key=lambda n: (int(n[1:3]), n)):
         I = load_train(n); S = S_max(I)
         best = {}
         for mult in MULTS:
@@ -64,9 +67,10 @@ def main():
             best[mult] = min(Rs) if Rs else None
         vals = {m: r for m, r in best.items() if r is not None}
         w0 = w0_1 = None
-        if len(vals) == len(MULTS):
+        # W = 0（规则本身）不可行时当作无穷大；W > 0 的各档都要有可行解才算完整
+        if all(m in vals for m in MULTS[1:]):
             lo = min(vals.values())
-            w0 = min(m for m in MULTS if vals[m] == lo); w0_1 = min(m for m in MULTS if vals[m] <= lo + 1)
+            w0 = min(m for m in vals if vals[m] == lo); w0_1 = min(m for m in vals if vals[m] <= lo + 1)
         inst_rows.append(dict(inst=n, m=I.meta["m"], family=I.meta["family"], best={f"{m:g}": best[m] for m in MULTS}, W0=w0, W0_1=w0_1, H0=H0.get(n)))
     tmp = os.path.join(ROOT, "results", "T18_window.jsonl.tmp")
     with open(tmp, "w") as f:
@@ -92,7 +96,7 @@ def main():
         d0 = Counter(f"{x['W0']:g}S" for x in ok); d1 = Counter(f"{x['W0_1']:g}S" for x in ok)
         imp = []
         for mm in MULTS[1:]:
-            v = [x["best"]["0"] - x["best"][f"{mm:g}"] for x in ok]
+            v = [x["best"]["0"] - x["best"][f"{mm:g}"] for x in ok if x["best"]["0"] is not None]
             imp.append(f"{mm:g}S: {np.mean(v):.1f}" if v else "—")
         L.append(f"| {m} | {fam} | {len(ok)}/{len(xs)} | " + ", ".join(f"{k} ×{v}" for k, v in sorted(d0.items(), key=lambda kv: float(kv[0][:-1]))) + " | "
                  + ", ".join(f"{k} ×{v}" for k, v in sorted(d1.items(), key=lambda kv: float(kv[0][:-1]))) + " | " + "；".join(imp) + " |")
@@ -106,7 +110,7 @@ def main():
                  f"{sum(x['W0_1'] <= x['H0'] for x in inst_rows if x['W0'] is not None and x['H0'] is not None)} / {len(pairs)}。")
     L += ["", "### 偏离落点：激活的偏离按时刻每 0.5·S_max 一段的占比（全部作业合并，按 m、W）\n",
           "| m | W | 偏离数 | " + " | ".join(f"[{a / 2:g}, {(a + 1) / 2:g})S" for a in range(8)) + " |", "|---|---|---|" + "---|" * 8]
-    for m in (4, 6, 8, 10):
+    for m in MS:
         for mm in MULTS[2:]:
             ts = [t / x["S"] for x in rows if x["m"] == m and x["mult"] == mm for t in x["dev_t"]]
             if not ts: continue
@@ -114,7 +118,7 @@ def main():
             L.append(f"| {m} | {mm:g}S | {len(ts)} | " + " | ".join(f"{100 * c / len(ts):.0f}%" if a < 2 * mm else "" for a, c in enumerate(h)) + " |")
     t18 = [r for r in rows if r["mult"] not in (0.0, 2.0)]
     cj = [r["check_judge"] for r in t18 if r["check_judge"] is not None]
-    L += ["", f"核对（T18 作业）：最终解重新判定逐字段相同 {sum(cj)} / {len(cj)}；抽样缺岗与 eval 相同 {sum(r['check_dump'][0] or 0 for r in t18)} / {sum(r['check_dump'][1] or 0 for r in t18)}；"
+    L += ["", f"m = {', '.join(map(str, MS))}；T18 作业 {len(t18)} / {len(MS) * 12 * 4 * 3}。", "", f"核对（T18 作业）：最终解重新判定逐字段相同 {sum(cj)} / {len(cj)}；抽样缺岗与 eval 相同 {sum(r['check_dump'][0] or 0 for r in t18)} / {sum(r['check_dump'][1] or 0 for r in t18)}；"
           f"参考实现数出的窗口决策数与 eval 相同 {sum(r['check_ndec'] == 1 for r in t18)} / {sum(r['check_ndec'] is not None for r in t18)}；"
           f"提前大修都在 [0, 2S) 内 {sum(r['window_ok'] for r in rows if r['R'] is not None)} / {sum(r['R'] is not None for r in rows)}。"]
     print("\n".join(L))
