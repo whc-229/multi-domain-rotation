@@ -6,7 +6,9 @@
 H = ⌊倍数 · S_max⌋（与 T2、T6 的取整相同）。倍数 2、4 不在这里算：fr 复用 T2 的 fr__m2 / fr__m4；
 frRw 的 4S 复用 T6 的 frRw__m4，2S 复用 T2 的 frR__m2（H = 2·S_max 时窗口覆盖整个时域，两者是同一个 LP）。
 结果写进 results/T17/jobs/<实例>__<种类>__m<倍数>.json（原子写入，已存在就跳过），对偶写进 results/T17_duals/。
-用法：python3 code/t17_job.py <实例> <fr|frRw> <倍数>"""
+正式运行数值失败或超时时，按 T2 / T6 已获同意的做法只换求解设置重跑一次：加第 4 个参数 retry，
+行列随机重排（种子 2）+ 关 crossover，结果写到 <名>__retry1.json，原结果不动；汇总在正式结果没有解时取它。
+用法：python3 code/t17_job.py <实例> <fr|frRw> <倍数> [retry]"""
 import os, sys, json, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import ROOT, load_train  # noqa: E402
@@ -21,15 +23,18 @@ DUAL = os.environ.get("T17_DUAL", os.path.join(ROOT, "results", "T17_duals"))
 def main():
     """解析参数，调用 T2 / T6 的求解函数，原子写入结果。"""
     inst, kind, mult = sys.argv[1], sys.argv[2], float(sys.argv[3])
+    retry = len(sys.argv) > 4 and sys.argv[4] == "retry"
+    perm, cross = (2, "off") if retry else (None, "on")
     assert kind in ("fr", "frRw") and mult not in (2.0, 4.0)
     os.makedirs(OUT, exist_ok=True); os.makedirs(DUAL, exist_ok=True)
-    name = f"{inst}__{kind}__m{mult:g}"; path = os.path.join(OUT, name + ".json")
+    name = f"{inst}__{kind}__m{mult:g}" + ("__retry1" if retry else ""); path = os.path.join(OUT, name + ".json")
     if os.path.exists(path): print("已完成，跳过", name); return
     I = load_train(inst); S = S_max(I); H = int(mult * S); W = 2 * S
     rec = dict(inst=inst, m=I.meta["m"], family=I.meta["family"], kind=kind, mult=mult, S=S, H=H, W=min(W, H))
     t0 = time.time()
     dp = os.path.join(DUAL, name + ".npz")
-    rec.update(t2_job.fresh_job(I, H, False, dp) if kind == "fr" else t6_job.frRw_job(I, H, W, dp))
+    rec.update(t2_job.fresh_job(I, H, False, dp, perm, cross) if kind == "fr" else t6_job.frRw_job(I, H, W, dp, perm, cross))
+    if retry: rec.update(tag="retry1", perm=perm, crossover=cross)
     rec["wall"] = round(time.time() - t0, 1)
     tmp = path + ".tmp"
     with open(tmp, "w") as f: f.write(json.dumps(rec, ensure_ascii=False) + "\n")

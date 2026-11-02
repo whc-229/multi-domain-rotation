@@ -1,0 +1,1 @@
+/home/hk/多域轮转/results/T17/jobs/m03-K1-05__frRw__m3__retry1.json	28800	cd /home/hk/多域轮转 && /home/hk/miniconda3/envs/ana/bin/python3 code/t17_job.py m03-K1-05 frRw 3 retry
