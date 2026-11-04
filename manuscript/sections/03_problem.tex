@@ -1,78 +1,80 @@
 \section{Problem Formulation}
 \label{sec:problem}
 
-% 证据：prior/.../多型号多地/mtms.py（时间网格、步长）、tools_model.py（工具占用）、freshlb.py（开班时刻）；
-%       研究笔记/01 §2、07。用户决定：多站点单基地（10-27）、提前大修只在启动窗口内（10-29）、单目标（10-30）。
-% 不能写：任何训练实例上的数字；"严格证明率"等内部检查。
+% 证据：prior/.../多型号多地/mtms.py（步长）、tools_model.py（工具占用）、freshlb.py（开班时刻）；研究笔记/01 §2、07。
+% 用户决定：多站点单基地（10-27）、提前大修只在启动窗口内（10-29）、单目标（10-30）。
+% 写法（11-04 用户意见）：公式按小节集中成块，块后统一解释；实例数值放实验一节。
 
-We study a fleet of robots that keeps several sites staffed forever.
-A new fleet is bought and put into service at one time.
-We want the smallest fleet of robots and tools that can do this.
+A new fleet of robots must keep several sites staffed without end.
+We seek the smallest fleet of robots and tools that can do so.
+Table~\ref{tab:notation} lists the notation.
 
-\subsection{Sites, Robots, and Tools}
+\begin{table}[t]
+  \centering
+  \caption{Notation}
+  \label{tab:notation}
+  \footnotesize
+  \begin{tabular}{@{}ll@{}}
+    \toprule
+    Symbol & Meaning \\
+    \midrule
+    $u$ & length of a time slot \\
+    $\mathcal{S}$, $K_s$ & sites; robots needed on duty at site $s$ \\
+    $\delta_s$ & travel time between the depot and site $s$ \\
+    $\mathcal{K}$, $\mathcal{E}_s$ & robot types; types allowed at site $s$ \\
+    $d_k$ & duty length of type $k$ (slots) \\
+    $L_k$ & duties in one maintenance cycle of type $k$ \\
+    $o_{k,i}$ & time a duty in phase $i$ occupies a type-$k$ robot \\
+    $\mathcal{J}$, $\mathcal{C}_k$, $q_k$ & tool types; types compatible with $k$; tools per duty \\
+    $W$ & length of the start-up window \\
+    $N_k$, $M_j$ & numbers of type-$k$ robots and type-$j$ tools \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Robots, Tools and Sites}
 \label{sec:problem:entities}
 
-Time is divided into slots of length $u$.
-All robots and tools are kept at one depot.
+A robot of type $k$ serves duties of $d_k$ slots and is maintained after every duty.
+The maintenance follows a cycle of $L_k$ duties: a short maintenance after each of the first $L_k - 1$ duties, and an overhaul after the last.
+The position of a duty in this cycle is its \emph{phase} $i \in \{0, \dots, L_k - 1\}$.
+The time $o_{k,i}$ runs from the start of a phase-$i$ duty until the robot is ready to leave for its next duty, without the trip back from the site; it covers the duty, tool removal, maintenance and the preparation of the next duty.
+A duty of type $k$ needs $q_k$ tools whose types are in $\mathcal{C}_k$.
+Site $s$ needs exactly $K_s$ robots of types in $\mathcal{E}_s$ on duty in every slot.
 
-\textbf{Sites.}
-Each site $s \in \mathcal{S}$ needs exactly $K_s$ robots on duty in every slot.
-Only robots of the types in $\mathcal{E}_s$ may serve site $s$.
-A trip from the depot to site $s$ takes $\delta_s$ hours more than a trip to a site next to the depot.
+Let a type-$k$ robot start a phase-$i$ duty at site $s$ in slot $D$, and let its next duty be at site $s'$ in slot $D'$.
+With
+\begin{gather}
+  \lambda_s = \left\lceil \frac{\delta_s}{u} \right\rceil, \qquad
+  \mu_{k,i,s} = \left\lceil \frac{o_{k,i} + \delta_s}{u} \right\rceil, \label{eq:slots}\\
+  D' \ge D + \mu_{k,i,s} + \lambda_{s'}, \label{eq:next}\\
+  B_{k,s,j}(D) = [\,D - \alpha_{k,s},\ D + \beta_{k,s,j}). \label{eq:tool}
+\end{gather}
+Equation~\eqref{eq:slots} converts the trip to site $s$ and the occupancy of a duty into slots.
+By \eqref{eq:next}, the robot is ready to leave $\mu_{k,i,s}$ slots after the duty starts and needs $\lambda_{s'}$ slots to reach the next site; it may also wait longer.
+The next duty is in phase $i + 1 \bmod L_k$.
+A type-$j$ tool of this duty is busy during $B_{k,s,j}(D)$ in \eqref{eq:tool}: from $\alpha_{k,s}$ slots before the duty, for installation and the trip, until $\beta_{k,s,j}$ slots after its start, when it has been removed and serviced.
+A tool serves one duty at a time and needs no maintenance cycle.
+All values are rounded up to slots, so every slot schedule is feasible in continuous time.
 
-\textbf{Robot types.}
-A robot of type $k \in \mathcal{K}$ serves duties of $d_k$ slots.
-Its maintenance follows a fixed cycle of $L_k$ duties, called \emph{phases} $0, \dots, L_k - 1$.
-The duty in phase $i$ occupies the robot for $o_{k,i}$ hours in total.
-This includes preparation, tool installation, travel, the duty, the return, tool removal, and the charging or maintenance that follows.
-The phase $L_k - 1$ is followed by an \emph{overhaul}, the longest maintenance; after it the robot is back in phase $0$.
-
-\textbf{Duty timing.}
-Let a type-$k$ robot in phase $i$ be ready at slot $v$.
-If it serves site $s$, its duty starts at $D = v + \lceil \delta_s / u \rceil$ and covers slots $[D, D + d_k)$.
-The robot is ready again at
-\begin{equation}
-  v' = D + \left\lceil \frac{o_{k,i} + \delta_s}{u} \right\rceil
-  \label{eq:step}
-\end{equation}
-in phase $i + 1 \bmod L_k$.
-A robot may also wait for any number of slots.
-Rounding up keeps every slot schedule feasible in continuous time.
-
-\textbf{Tools.}
-A duty of type $k$ needs $q_k$ tools of the compatible types $\mathcal{C}_k$.
-A tool of type $j$ is busy from shortly before the duty until its removal and upkeep are done:
-during $[D - \alpha_{k,s},\ D + d_k + \beta_{k,s,j})$, with $\alpha$ and $\beta$ fixed by the installation, travel, removal and upkeep times.
-A tool serves one duty at a time.
-Tools have no maintenance cycle.
-
-\subsection{Fresh Start and Early Overhaul}
+\subsection{Start-Up and Feasibility}
 \label{sec:problem:start}
 
-\textbf{Fresh start.}
-At time $0$ every robot is new: it is in phase $0$ and ready at the earliest slot $v_k^0$ that its preparation allows.
-Site $s$ opens at slot $c_0 + \lceil \delta_s / u \rceil$ with $c_0 = \max_k v_k^0$.
-A new robot is in exactly the same state as a robot that has just finished an overhaul.
-This fact is used in Section~\ref{sec:time}.
+At slot $0$ every robot is new and in phase $0$; a type-$k$ robot can leave the depot from slot $v_k^0$.
+A new robot is in the same state as a robot that has just finished an overhaul.
+In the start-up window $[0, W)$, a robot may take the overhaul after any duty instead of after phase $L_k - 1$; it then returns to phase $0$.
+After the window every robot follows its cycle.
 
-\textbf{Early overhaul.}
-In the start-up window $[0, W)$, a robot may go to overhaul after any duty, not only after phase $L_k - 1$.
-It then becomes ready after the overhaul time of its type and returns to phase $0$.
-After the window, every robot follows its maintenance cycle.
-
-\subsection{Objective and Feasibility}
-\label{sec:problem:objective}
-
-A \emph{schedule} gives every robot an infinite sequence of duties, waits and, within $[0, W)$, early overhauls, and gives every duty its tools.
-It is \emph{feasible} if every open site has exactly $K_s$ eligible robots on duty in every slot, forever, and no tool serves two duties at once.
-We minimize the number of resources,
-\begin{equation}
-  \min \; \sum_{k \in \mathcal{K}} N_k + \sum_{j} M_j ,
-  \label{eq:objective}
-\end{equation}
-where $N_k$ is the number of type-$k$ robots and $M_j$ the number of type-$j$ tools.
+A \emph{schedule} gives every robot an infinite sequence of duties, waits and early overhauls, and gives every duty its tools.
+Let $n_s(t)$ be the number of robots with types in $\mathcal{E}_s$ on duty at site $s$ in slot $t$.
+Site $s$ is staffed from slot $t_s = c_0 + \lambda_s$, where $c_0 = \max_k v_k^0$ is the first slot from which every type can leave.
+\begin{gather}
+  n_s(t) = K_s, \qquad s \in \mathcal{S},\ t \ge t_s, \label{eq:cover}\\
+  \min \quad \textstyle\sum_{k} N_k + \sum_{j} M_j . \label{eq:objective}
+\end{gather}
+A schedule is \emph{feasible} if every robot respects \eqref{eq:next}, no tool is busy for two duties at the same time under \eqref{eq:tool}, and every site is staffed as in \eqref{eq:cover}.
+The problem asks for a feasible schedule with the fewest resources \eqref{eq:objective}.
 We call this problem multi-domain rotation rostering (MDRR); a domain is a site.
 
-The horizon is infinite on purpose.
-A fleet is bought once and must keep the sites staffed for years.
-A schedule that is feasible for a finite planning horizon may run short later; Section~\ref{sec:experiments} shows how often this happens when a search optimizes a finite horizon.
+The horizon is infinite because a fleet is bought once and serves for years.
+A schedule that is feasible over a finite horizon can run short later; Section~\ref{sec:experiments} shows how often this happens when a search optimizes a finite horizon.

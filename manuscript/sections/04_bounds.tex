@@ -1,28 +1,39 @@
 \section{Rotation Relaxation and a Time Bound}
 \label{sec:bounds}
 
-% 证据：prior/.../超长周期_数学/第三轮_定理与证据.md（命题 1、2(i)，定理 8，引理 7）；研究笔记/06（接入定理、小例子）；
-%       code/t6_job.py（速率 LP，相位层面）、prior/.../多型号多地/freshlb.py（时间展开 LP）；code/theory/toy_connector.py（例子穷举）。
-% 不能写：训练实例上的数字；"最优解一定是接入形式"（未证）；多机型的"最多差 1 台"（只在单机型上有机证）。
+% 证据：prior/.../超长周期_数学/第三轮_定理与证据.md（命题 1、2(i)，定理 5、8）；研究笔记/06（接入定理、自覆盖命题、例子）；
+%       code/t6_job.py（相位层面速率 LP）、prior/.../多型号多地/freshlb.py（时间展开 LP）；
+%       code/theory/toy_connector.py、selfcover_check.py（穷举核对）。
+% 不能写：训练实例上的数字；"最优解一定是接入形式"（未证）；多机型的"最多差 1 台"（只在单机型上机证）。
+% 写法（11-04 用户意见）：每小节公式集中成块，块后统一解释。
 
 This section answers two questions.
 How many resources does MDRR need at least?
-And how long a start-up must a schedule optimize before it can simply repeat a rotation?
-Both answers come from the maintenance cycle of a robot, which we call its \emph{rotation}.
+And how much of the start-up must a schedule optimize before it can repeat a fixed rotation?
+Both answers follow from the maintenance cycle of a robot, which we call its \emph{rotation}.
 
 \subsection{Rate Relaxation}
 \label{sec:bounds:rate}
 
-Let $\tau_{k,i,s}$ be the number of slots between two ready times of a type-$k$ robot that serves site $s$ in phase $i$; by \eqref{eq:step}, $\tau_{k,i,s} = \lceil \delta_s/u \rceil + \lceil (o_{k,i}+\delta_s)/u \rceil$.
-Let $x_{k,i,s} \ge 0$ be the long-run number of phase-$i$ duties per slot that type-$k$ robots serve at site $s$.
+Let $x_{k,i,s}$ be the long-run number of phase-$i$ duties per slot that type-$k$ robots serve at site $s$, and $y_{k,s,j}$ the number of type-$j$ tools these duties use per slot.
+Let $\tau_{k,i,s} = \lambda_s + \mu_{k,i,s}$ and $\pi_{k,s,j} = \alpha_{k,s} + \beta_{k,s,j}$.
 The \emph{rate relaxation} is
-\begin{align}
-  R = \min \;& \textstyle\sum_k N_k + \sum_j M_j \label{eq:rate}\\
-  \text{s.t. }& \textstyle\sum_{k,i} d_k\, x_{k,i,s} = K_s, && s \in \mathcal{S}, \nonumber\\
-  & \textstyle\sum_s x_{k,i,s} = \sum_s x_{k,i+1,s}, && k \in \mathcal{K},\ i < L_k - 1, \nonumber\\
-  & \textstyle\sum_{i,s} \tau_{k,i,s}\, x_{k,i,s} \le N_k, && k \in \mathcal{K}, \nonumber
-\end{align}
-together with the analogous tool constraints: each duty assigns $q_k$ tool units, and a tool of type $j$ is busy for $\alpha_{k,s} + d_k + \beta_{k,s,j}$ slots per duty.
+\begin{equation}
+\begin{aligned}
+  R = \min\ & \textstyle\sum_k N_k + \sum_j M_j \\
+  \text{s.t. } & \textstyle\sum_{k,i} d_k x_{k,i,s} = K_s && \forall s\\
+  & \textstyle\sum_s x_{k,i,s} = \sum_s x_{k,0,s} && \forall k, i\\
+  & \textstyle\sum_{i,s} \tau_{k,i,s}\, x_{k,i,s} \le N_k && \forall k\\
+  & \textstyle\sum_{j} y_{k,s,j} = q_k \sum_i x_{k,i,s} && \forall k, s\\
+  & \textstyle\sum_{k,s} \pi_{k,s,j}\, y_{k,s,j} \le M_j && \forall j
+\end{aligned}
+\label{eq:rate}
+\end{equation}
+with $x, y \ge 0$ and $y_{k,s,j} = 0$ for $j \notin \mathcal{C}_k$.
+The first constraint fills every site.
+The second says that a robot serves all phases of its cycle equally often.
+The third counts robot time: a phase-$i$ duty at site $s$ keeps a robot away for $\tau_{k,i,s}$ slots, from leaving the depot until it can leave again.
+The last two do the same for tools.
 
 \begin{proposition}
 \label{prop:rate}
@@ -30,27 +41,31 @@ Every feasible schedule uses at least $\lceil R \rceil$ resources.
 \end{proposition}
 
 \begin{proof}
-Count over a window $[t, t + T)$ after the start-up window.
-Site $s$ needs $K_s T$ duty slots.
-A type-$k$ robot that serves $n_{i,s}$ phase-$i$ duties at site $s$ in the window is busy for at least $\sum_{i,s} \tau_{k,i,s} n_{i,s} - O(1)$ slots, and it serves the phases in cyclic order, so its phase counts differ by at most one.
-Divide all counts by $T$ and let $T \to \infty$.
-The limits satisfy the constraints of \eqref{eq:rate}, so the fleet is at least $R$.
-Tools are handled in the same way.
+Take a window of $T$ slots after the start-up window and count the duties each robot and tool serves in it.
+A robot that serves $n_{i,s}$ phase-$i$ duties at site $s$ is away for at least $\sum_{i,s} \tau_{k,i,s}\, n_{i,s} - O(1)$ slots, and its phase counts differ by at most one.
+Divide the counts by $T$ and let $T \to \infty$.
+The limits satisfy \eqref{eq:rate} with the numbers of robots and tools of the schedule.
 \end{proof}
-
-The rate relaxation ignores how the fleet starts.
-It is a lower bound for any schedule, but it is reached only if the robots are already spread over their cycles.
 
 \subsection{Start-Up Relaxation}
 \label{sec:bounds:startup}
 
-A new fleet is not spread over its cycles.
-All robots are in phase $0$ at time $0$, so their first overhauls come close together.
-To see this effect we expand time over a horizon $[0, H)$.
-Each robot is a path in a graph whose nodes are (type, phase, ready slot) and whose arcs are waits, duties at eligible sites by \eqref{eq:step}, and early overhauls inside $[0, W)$.
-Every site needs $K_s$ robots on duty in each open slot of $[0, H)$; arcs that end after $H$ are free.
-Tools are paths in a similar graph and are coupled to the duties they serve.
-Let $R_0(H)$ be the value of the linear program over these path flows.
+The rate relaxation assumes that the robots are already spread over their cycles.
+A new fleet is not: every robot starts in phase $0$, so the first overhauls come close together.
+To see this cost we follow the fleet from slot $0$ to a horizon $H$.
+A new type-$k$ robot is a path $p$ through the nodes (phase, slot); its arcs are waits, duties that respect \eqref{eq:next}, and early overhauls before $W$.
+Let $\mathcal{P}_k$ be the set of such paths, and let $a_p(s,t) = 1$ if path $p$ is on duty at site $s$ in slot $t$.
+With a flow $f_p \ge 0$ on each path,
+\begin{equation}
+\begin{aligned}
+  R_0(H) = \min\ & \textstyle\sum_k N_k + \sum_j M_j \\
+  \text{s.t. } & \textstyle\sum_{k}\sum_{p \in \mathcal{P}_k} a_p(s,t) f_p = K_s && \forall s, t\\
+  & \textstyle\sum_{p \in \mathcal{P}_k} f_p = N_k && \forall k
+\end{aligned}
+\label{eq:startup}
+\end{equation}
+where $t$ ranges over the open slots $t_s \le t < H$, together with tool paths that serve the duties of the robot paths, as in \eqref{eq:tool}.
+Arcs that end after $H$ cost nothing.
 
 \begin{proposition}
 \label{prop:startup}
@@ -59,122 +74,126 @@ For every $H$, every feasible schedule uses at least $\lceil R_0(H) \rceil$ reso
 
 \begin{proof}
 Cut a feasible schedule at $H$.
-Its robots and tools give integral flows that satisfy all constraints on $[0, H)$.
+Its robots and tools are integral path flows that satisfy \eqref{eq:startup}.
 A longer horizon only adds constraints.
 \end{proof}
 
-The dual of this linear program puts a price on every (site, slot).
-A price is high where many robots are away for their first overhaul at the same time.
-These prices show where in time the start-up is expensive, and we use them in Section~\ref{sec:experiments}.
+The dual of \eqref{eq:startup} gives each (site, slot) a price such that no single robot path collects more than one unit.
+The prices are high where many robots are away for their first overhaul at the same time.
+They show where in time a new fleet pays its extra cost.
 
-\subsection{One Robot Type: What the Bounds Mean}
+\subsection{One Robot Type}
 \label{sec:bounds:single}
 
-The following two results concern one robot type and $K$ posts at one site, with time counted in duties.
-After a duty in phase $i$, a robot must wait $g_i$ duties before its next one.
-Its cycle has length $S = \sum_i g_i$, and the rate bound is $\lceil K S / L \rceil$.
+For one robot type the bounds can be compared with exact values.
+Consider $K$ posts at one site, count time in duty slots, and let $g_i$ be the number of slots from the start of a phase-$i$ duty to the earliest start of the next duty.
+We use
+\begin{equation}
+  S = \sum_{i=0}^{L-1} g_i, \qquad
+  s_i = \sum_{h < i} g_h, \qquad
+  A = \{s_0, s_1, \dots, s_{L-1}\}.
+  \label{eq:single}
+\end{equation}
+A robot repeats its cycle every $S$ slots and serves at the $L$ slots of $A$ within it.
+The rate bound is $\lceil KS/L \rceil$.
 
-\begin{proposition}[Even rotation reaches the rate bound]
+\begin{proposition}[Even rotation]
 \label{prop:orbit}
-If $K = mL$ for an integer $m$, then $mS$ robots suffice, which equals the rate bound.
+If $K = mL$ for an integer $m$, then $mS$ robots suffice. This equals the rate bound.
 \end{proposition}
 
 \begin{proof}
-Let $A = \{0, g_0, g_0 + g_1, \dots\}$ be the duty times of one cycle, taken modulo $S$.
-Put $m$ robots at every offset $b \in \{0, \dots, S-1\}$ and let each repeat its cycle from $b$ without waiting.
-Slot $x$ is served by the robots with $x - b \in A \pmod S$.
-There are exactly $L$ such offsets, so $mL = K$ robots are on duty in every slot.
+Place $m$ robots at every offset $b \in \{0, \dots, S-1\}$ and let each repeat its cycle from $b$ without waiting.
+Slot $x$ is served by the robots with $x - b \in A \pmod{S}$, that is, by $mL = K$ robots.
 \end{proof}
 
-Without early overhaul, a new fleet can need many more robots than the rotation.
-
-\begin{proposition}[Start-up cost can grow with the number of posts]
+\begin{proposition}[Start-up cost without early overhaul]
 \label{prop:linear}
-Let $g = (1, 2k)$, so $S = 2k + 1$.
-Without early overhaul, a new fleet needs at least $K (S^2 + 1)/(2S)$ robots, while $\lceil K S / 2 \rceil$ robots suffice if the robots may start anywhere in their cycles.
+Let $g = (1, 2k)$, so $S = 2k+1$.
+Without early overhaul, a new fleet needs at least $K(S^2+1)/(2S)$ robots, while $\lceil KS/2 \rceil$ robots suffice when robots may start anywhere in their cycles.
 The difference grows linearly in $K$.
 \end{proposition}
 
-\begin{proof}[Proof sketch]
-Give slot $t$ the weight $w(t) = \lfloor t/2 \rfloor + 1$ for $t < 2k$, $w(2k) = k + 1$, $w(t) = \lceil (4k - t)/2 \rceil$ for $2k < t < 4k$, and $0$ otherwise.
-A new robot serves its first four duties at $t_1 < t_2 < t_3 < t_4$ with $t_2 \ge t_1 + 1$, $t_3 \ge t_2 + 2k$ and $t_4 \ge t_3 + 1$.
-A case check shows that the weights it collects sum to at most $S$.
-Every slot has $K$ robots on duty, so all robots together collect $K \sum_t w(t) = K(2k^2 + 2k + 1)$, and at least $K (2k^2+2k+1)/S = K(S^2+1)/(2S)$ robots are needed.
+\begin{proof}
+Give slot $t$ the price $w(t) = \lfloor t/2 \rfloor + 1$ for $t < 2k$, $w(2k) = k+1$, $w(t) = \lceil (4k-t)/2 \rceil$ for $2k < t < 4k$, and $w(t) = 0$ otherwise.
+A new robot serves its first four duties at $t_1 < t_2 < t_3 < t_4$ with $t_2 \ge t_1 + 1$, $t_3 \ge t_2 + 2k$ and $t_4 \ge t_3 + 1$; its fifth duty is after $4k$.
+A case check shows that it collects at most $S$.
+All robots together collect $K \sum_t w(t) = K(2k^2 + 2k + 1)$, so at least $K(2k^2+2k+1)/S = K(S^2+1)/(2S)$ robots are needed.
 For the second claim, even $K$ is Proposition~\ref{prop:orbit}.
-For odd $K$, serve $K-1$ posts as in Proposition~\ref{prop:orbit} and the last post with $(S+1)/2$ robots that wait one extra slot after each overhaul: their cycle $(1, 2k+1)$ has even length $S + 1$, and robots at offsets $0, 2, \dots, S-1$ cover every slot once.
+For odd $K$, serve $K-1$ posts by Proposition~\ref{prop:orbit} and the last post with $(S+1)/2$ robots that wait one extra slot after each overhaul: their cycle has length $S+1$, and offsets $0, 2, \dots, S-1$ cover every slot once.
 \end{proof}
-
-The weights in this proof are a dual solution of the start-up relaxation.
-They are large in the first $2S$ slots and zero afterwards: the extra cost of a new fleet is paid at the start.
 
 \subsection{A Time Bound: Entering a Rotation}
 \label{sec:time}
 
-The natural period of a good schedule can be very long, because the cycles of different types do not divide each other.
-Encoding one period is therefore not an option.
-The next result shows that this is not needed: any rotation can be entered from a fresh start within one maintenance interval.
+The cycles of different robot types do not divide each other, so a good schedule may repeat only after a very long period.
+Encoding one period is therefore not practical.
+The results below show that it is not needed.
 
-Let $\sigma$ be a feasible periodic schedule in which robots may start anywhere in their cycles.
-It uses $N_\sigma$ robots and $M_\sigma$ tools.
-Let $C_\sigma$ be the longest time, over all robots of $\sigma$, between two consecutive returns to phase $0$.
+Let $\sigma$ be a feasible periodic schedule in which robots may start anywhere in their cycles; it uses $N_\sigma$ robots and $M_\sigma$ tools.
+Let $C_\sigma$ be the longest time between two returns to phase $0$ of any robot of $\sigma$.
+For a robot $r$ of $\sigma$, let $b_r$ be its last return to phase $0$ before
+\begin{equation}
+  T_0 = c_0 + C_\sigma, \qquad\text{so that}\qquad T_0 - C_\sigma \le b_r < T_0 .
+  \label{eq:enter}
+\end{equation}
 
 \begin{theorem}[Entering a rotation]
 \label{thm:enter}
-Let $T_0 = c_0 + C_\sigma$.
-There is a fresh-start schedule that agrees with $\sigma$ in every slot $t \ge T_0$ and uses $N_\sigma + E$ robots and $M_\sigma + F$ tools.
-Here $E$ and $F$ are the resources needed to serve, from a fresh start, the duties of $\sigma$ in $[0, T_0)$ that the copied robots below do not serve.
+There is a fresh-start schedule that agrees with $\sigma$ in every slot $t \ge T_0$ and uses $N_\sigma + E$ robots and $M_\sigma + F$ tools, where $E$ robots and $F$ tools serve, from a fresh start, the duties of $\sigma$ in $[0, T_0)$ whose robots $r$ have $b_r$ later than the duty.
 \end{theorem}
 
 \begin{proof}
-For a robot $r$ of $\sigma$, let $b_r$ be its last return to phase $0$ before $T_0$; then $b_r \ge T_0 - C_\sigma \ge c_0$.
-Give $r$ a new robot $r'$.
-A new robot is in the same state as a robot that has just finished an overhaul, so $r'$ can wait in phase $0$ until $b_r$ and then repeat every action of $r$.
-Give every tool of $\sigma$ a new tool that repeats its duties when the robot of that duty has started copying, and stays idle otherwise.
-From $T_0$ on, every $r'$ copies $r$, so the schedule equals $\sigma$.
-Before $T_0$, the copies serve all duties of $\sigma$ except those of robots that have not started copying.
-The $E$ robots and $F$ tools serve these duties.
-No two copies conflict, because the robots and tools of $\sigma$ do not.
+Give each robot $r$ of $\sigma$ a new robot $r'$.
+A new robot is in the same state as a robot that has just finished an overhaul, so $r'$ can wait in phase $0$ until $b_r \ge c_0$ and then repeat every action of $r$.
+Each tool of $\sigma$ gets a new tool that serves the same duties once their robots have started copying.
+From $T_0$ on all robots copy $\sigma$.
+Before $T_0$ the copies serve every duty of $\sigma$ except those of robots that start copying later; the $E$ robots and $F$ tools serve these.
+The copies do not conflict because the robots and tools of $\sigma$ do not.
 \end{proof}
 
-The theorem bounds the start-up in time, and the bound does not depend on the number of sites, posts or robot types.
-It does not bound $E$.
-Without early overhaul, $E$ can grow with the number of posts, as Proposition~\ref{prop:linear} shows.
-Early overhaul lets the copies serve the missing duties themselves: before $b_r$, robot $r'$ may serve a few duties and then go to overhaul, as long as it is back in phase $0$ by $b_r$.
-Fig.~\ref{fig:enter} shows a case where this removes all extra robots.
-For one robot type the following condition makes the extra robots unnecessary.
+Theorem~\ref{thm:enter} bounds the start-up in time, independently of the numbers of sites, posts and robot types.
+Without early overhaul, $E$ can grow with the number of posts (Proposition~\ref{prop:linear}).
+With early overhaul, a robot $r'$ can serve some missing duties before $b_r$ and then take the overhaul, as long as it is back in phase $0$ at $b_r$.
+For one robot type the following condition makes $E = 0$.
 
 \begin{proposition}[Self-cover]
 \label{prop:selfcover}
-Consider one robot type and $K = mL$ posts at one site, with time counted in duties and early overhaul allowed in the start-up.
-If $g_p \le g_{i+p}$ for all $1 \le i \le L-1$ and $0 \le p \le L-2-i$, then a new fleet of $KS/L$ robots, the rate bound, enters the even rotation of Proposition~\ref{prop:orbit} within $S$ slots.
-In particular this holds if the gaps before the overhaul are nondecreasing, and always if $L = 2$.
+In the setting of Proposition~\ref{prop:orbit}, with early overhaul allowed in the start-up, assume
+\begin{equation}
+  g_p \le g_{i+p}, \qquad 1 \le i \le L-1,\ \ 0 \le p \le L-2-i .
+  \label{eq:selfcover}
+\end{equation}
+Then a new fleet of $KS/L$ robots, the rate bound, enters the even rotation within $S$ slots.
+Condition \eqref{eq:selfcover} holds whenever the gaps before the overhaul are nondecreasing, and always when $L = 2$.
 \end{proposition}
 
 \begin{proof}
-Let $s_i = g_0 + \dots + g_{i-1}$.
-In the even rotation, a robot with offset $b \in \{0, \dots, S-1\}$ is in phase $0$ at slot $b$; its copy enters there.
-Before $b$, the rotation still has this robot's previous cycle: its phase-$i$ duties at slots $t_i = b - S + s_i$ for $i \ge i^*$, where $i^* \ge 1$ is the smallest index with $s_i \ge S - b$.
-Let the new robot serve these duties itself, as its phases $0, 1, \dots$.
-Consecutive duties are $g_{i^*+p}$ slots apart, and the robot needs only $g_p \le g_{i^*+p}$ after its phase $p$.
-Its last such duty is at $b - g_{L-1}$, in phase $L - 1 - i^* \ne L-1$, so it may go to overhaul and is back in phase $0$ at $b$.
-Every slot is then served exactly as in the rotation.
+A robot with offset $b$ is in phase $0$ at slot $b$, where its copy enters.
+Before $b$ the rotation still contains the end of its previous cycle: its phase-$i$ duties at slots $b - S + s_i$ for $i \ge i^*$, where $i^* \ge 1$ is the smallest index with $s_i \ge S - b$.
+The new robot serves these duties itself as its phases $0, 1, \dots$.
+They are $g_{i^*+p}$ slots apart, and after its phase $p$ the robot needs only $g_p$, which is no more by \eqref{eq:selfcover}.
+The last of them is at $b - g_{L-1}$ in phase $L - 1 - i^* \ne L - 1$; the robot then takes the overhaul and is in phase $0$ at $b$.
+Every slot is served as in the rotation.
 \end{proof}
 
-The example of Fig.~\ref{fig:enter} is the case $L = 2$.
-An exhaustive search confirms there that without early overhaul a new fleet needs $7$ robots instead of $6$.
+Fig.~\ref{fig:enter} shows the case $g = (2, 4)$ with two posts.
+Six robots form the even rotation.
+New robots $4'$ and $5'$ serve slots $0$ and $1$, take the overhaul, and join at slots $4$ and $5$.
+An exhaustive search confirms that without early overhaul a new fleet needs seven robots.
 
 \begin{figure}[t]
   \centering
-  \figplaceholder{3.6cm}{Fig.~X (to draw): $g = (2, 4)$, two posts. Top: the even rotation with 6 robots (offsets 0--5). Bottom: a fresh fleet copies it; robots 4 and 5 serve slots 0 and 1, go to early overhaul, and join the rotation at slots 4 and 5. Without early overhaul 7 robots are needed (exhaustive check).}
-  \caption{Entering a rotation from a fresh start. One cycle of 6 slots, two duties per cycle, two posts. Early overhaul lets the fleet of the rotation fill the start-up gap.}
+  \figplaceholder{3.6cm}{Fig.~X (to draw): $g = (2, 4)$, two posts. Top: even rotation of 6 robots (offsets 0--5). Bottom: a new fleet copies it; robots $4'$ and $5'$ serve slots 0 and 1, take the overhaul, and join at slots 4 and 5.}
+  \caption{A new fleet enters the even rotation. Early overhaul lets the robots of the rotation fill the start-up gap themselves.}
   \label{fig:enter}
 \end{figure}
 
-\begin{corollary}[A short window suffices to represent the schedule]
+\begin{corollary}[A short window represents the schedule]
 \label{cor:window}
-For every rotation $\sigma$, the schedule of Theorem~\ref{thm:enter} differs from $\sigma$ only in $[0, c_0 + C_\sigma)$.
-An encoding that fixes the schedule after this window to a rotation, and searches only the decisions inside it, can therefore represent it.
+The schedule of Theorem~\ref{thm:enter} differs from $\sigma$ only in $[0, T_0)$.
+An encoding that searches the decisions in this window and repeats a rotation afterwards can represent it.
 \end{corollary}
 
-Corollary~\ref{cor:window} is the reason our method encodes only a short start-up window and replays a rule afterwards.
-How short the window can be in practice is measured in Section~\ref{sec:experiments}.
+Our method uses exactly this structure: it encodes decisions in a short start-up window and replays a rule derived from the relaxation afterwards.
+Section~\ref{sec:experiments} measures how short the window can be.
