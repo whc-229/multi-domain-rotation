@@ -128,6 +128,9 @@ static FILE* g_gaplog = nullptr; static FILE* g_sizelog = nullptr;
 // T15 小检查（11-02）：planxlate 时，按计划派在同一 (机型, 相位) 的就绪候选里取就绪时刻最晚的一台（相同时取原顺序靠前的）；
 // 整数解里同型同相位的机器人只差在就绪时刻，把早就绪的留给后面的计划条目才能照着整数解走。默认（不加）与原来相同。
 static bool g_planx_late = false;
+// T19 (b)（11-05）：devfirst 时偏离优先——先按计划派，再在偏离窗口内按偏离改派（以计划后的顺序为默认）；
+// 偏离改派到别的机器人时，这一班的计划条目作废（已取出、不再用），计划的本班后提前大修也取消；之后对不上的条目照常跳过，由规则补。不加时与原来相同。
+static bool g_devfirst = false;
 // T16：g_decrec 非空时，run 记录每个 RDD 窗口决策的 (站, 时刻, 派出机器人的值岗时长；缺岗为 1)，只记录、不改决策。
 // g_cdf 非空时，RDD 槽的位置基因 p 按这个累积分布映射到决策下标（第一个 cdf[i] > p 的 i），见 decode_geno；空时与原来相同（⌊p·N_dev⌋）。
 static vector<array<ll,3>>* g_decrec = nullptr; static vector<double> g_cdf;
@@ -282,7 +285,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                     rc.emplace_back(-lag[k][s], k, -phl[k][rph[r]], max(rv[r] - t, (ll)-CL), r);
                 }
                 sort(rc.begin(), rc.end());
-                if (dv >= 0) {
+                if (dv >= 0 && !g_devfirst) {
                     vector<int> order; for (auto& cr : rc) order.push_back(get<4>(cr));
                     int pk = pick_dev(order, s, dv);
                     if (pk == -2) force_reset = true;
@@ -301,6 +304,12 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                             it->second.erase(it->second.begin() + e); break;
                         }
                     }
+                }
+                if (dv >= 0 && g_devfirst) {   // T19 (b)：偏离优先
+                    vector<int> order; for (auto& cr : rc) order.push_back(get<4>(cr));
+                    int pk = pick_dev(order, s, dv);
+                    if (pk == -2) force_reset = true;
+                    else if (pk >= 0) { auto it = find_if(rc.begin(), rc.end(), [&](const tuple<ll,int,ll,ll,int>& x) { return get<4>(x) == pk; }); rotate(rc.begin(), it, it + 1); force_reset = false; }
                 }
                 bool done = false;
                 for (auto& cr : rc) {
@@ -371,7 +380,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                 cand.push_back({sc, r});
             }
             sort(cand.begin(), cand.end());
-            if (dv >= 0) {
+            if (dv >= 0 && !g_devfirst) {
                 vector<int> order; for (auto& cr : cand) order.push_back(cr.second);
                 int pk = pick_dev(order, s, dv);
                 if (pk == -2) force_reset = true;
@@ -390,6 +399,12 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                         it->second.erase(it->second.begin() + e); break;
                     }
                 }
+            }
+            if (dv >= 0 && g_devfirst) {   // T19 (b)：偏离优先
+                vector<int> order; for (auto& cr : cand) order.push_back(cr.second);
+                int pk = pick_dev(order, s, dv);
+                if (pk == -2) force_reset = true;
+                else if (pk >= 0) { auto it = find_if(cand.begin(), cand.end(), [&](const pair<double,int>& x) { return x.second == pk; }); rotate(cand.begin(), it, it + 1); force_reset = false; }
             }
             if (P.pd_mode) {   // T13：按解码器自己的顺序重排候选，窗口内按基因（或修复的强制选择）取一个可行候选
                 if (P.pd_mode == 1) sort(cand.begin(), cand.end(), [](const pair<double,int>& a, const pair<double,int>& b) { return a.second < b.second; });
@@ -801,6 +816,7 @@ Rule parse_rule(const Inst& I, int argc, char** argv, int a0) {
         else if (s.rfind("tree=", 0) == 0) U.P.tree = tree_parse(tree_arg(s.substr(5)));
         else if (s.rfind("planx=", 0) == 0) { static PlanX X; X = parse_planx(s.substr(6)); U.P.planx = &X; }
         else if (s == "planxlate") g_planx_late = true;
+        else if (s == "devfirst") g_devfirst = true;
         else if (s.rfind("N0=", 0) == 0 || s.rfind("M0=", 0) == 0) {   // T13：定台数起点（RH-MIP 用 MIP 的机队）
             vector<int> v; stringstream ss(s.substr(3)); string x; while (getline(ss, x, ',')) v.push_back(atoi(x.c_str()));
             if (s[0] == 'N') g_N0 = v; else g_M0 = v; }
@@ -895,6 +911,7 @@ int main(int argc, char** argv) {
                    else if (s.rfind("tree=", 0) == 0) P.tree = tree_parse(tree_arg(s.substr(5)));
                    else if (s.rfind("planx=", 0) == 0) { static PlanX X; X = parse_planx(s.substr(6)); P.planx = &X; }
                    else if (s == "planxlate") g_planx_late = true;
+                   else if (s == "devfirst") g_devfirst = true;
                    else if (s == "pd=rk") { P.pd_mode = 1; P.curdef = true; } else if (s == "pd=d5") { P.pd_mode = 2; P.repair = true; P.curdef = true; }
                    else if (s.rfind("pdW=", 0) == 0) P.pdW = atoll(s.c_str() + 4);
                    else if (s.rfind("pdg=", 0) == 0) { static vector<double> G; G.clear(); stringstream ss(s.substr(4)); string x; while (getline(ss, x, ',')) G.push_back(atof(x.c_str())); P.pdg = &G; }

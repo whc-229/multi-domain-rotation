@@ -1,0 +1,62 @@
+{"part": "new_path", "inst": "m04-K1-00", "case": 0, "rho": 0.1, "ndev": 60, "n_active": 7, "cpp": {"gaps": 8, "cert": 0, "period": 2100, "resets": 16}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-00", "case": 1, "rho": 0.4, "ndev": 60, "n_active": 20, "cpp": {"gaps": 3, "cert": 0, "period": 2100, "resets": 10}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-00", "case": 2, "rho": 0.4, "ndev": 60, "n_active": 21, "cpp": {"gaps": 35, "cert": 0, "period": 4200, "resets": 17}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K1-00", "case": 3, "rho": 0.4, "ndev": 60, "n_active": 19, "cpp": {"gaps": 0, "cert": 1, "period": 5250, "resets": 10}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K12-03", "case": 0, "rho": 0.4, "ndev": 126, "n_active": 43, "cpp": {"gaps": 86, "cert": -1, "period": -1, "resets": 17}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K12-03", "case": 1, "rho": 0.4, "ndev": 126, "n_active": 40, "cpp": {"gaps": 5, "cert": -1, "period": -1, "resets": 20}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K12-03", "case": 2, "rho": 0.4, "ndev": 126, "n_active": 39, "cpp": {"gaps": 4, "cert": -1, "period": -1, "resets": 15}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m04-K12-03", "case": 3, "rho": 0.1, "ndev": 126, "n_active": 10, "cpp": {"gaps": 0, "cert": 1, "period": 2160, "resets": 17}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m06-K12-04", "case": 0, "rho": 0.1, "ndev": 162, "n_active": 14, "cpp": {"gaps": 1369, "cert": -1, "period": -1, "resets": 30}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m06-K12-04", "case": 1, "rho": 0.1, "ndev": 162, "n_active": 17, "cpp": {"gaps": 316, "cert": -1, "period": -1, "resets": 26}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m06-K12-04", "case": 2, "rho": 0.4, "ndev": 162, "n_active": 56, "cpp": {"gaps": 26, "cert": -1, "period": -1, "resets": 23}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m06-K12-04", "case": 3, "rho": 0.1, "ndev": 162, "n_active": 15, "cpp": {"gaps": 4, "cert": -1, "period": -1, "resets": 29}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m08-K1-02", "case": 0, "rho": 0.4, "ndev": 144, "n_active": 47, "cpp": {"gaps": 39, "cert": -1, "period": -1, "resets": 26}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m08-K1-02", "case": 1, "rho": 0.1, "ndev": 144, "n_active": 14, "cpp": {"gaps": 0, "cert": -1, "period": -1, "resets": 26}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m08-K1-02", "case": 2, "rho": 0.4, "ndev": 144, "n_active": 44, "cpp": {"gaps": 53, "cert": -1, "period": -1, "resets": 22}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m08-K1-02", "case": 3, "rho": 0.4, "ndev": 144, "n_active": 45, "cpp": {"gaps": 8, "cert": -1, "period": -1, "resets": 26}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m10-K12-05", "case": 0, "rho": 0.4, "ndev": 288, "n_active": 88, "cpp": {"gaps": 39, "cert": -1, "period": -1, "resets": 45}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m10-K12-05", "case": 1, "rho": 0.4, "ndev": 288, "n_active": 92, "cpp": {"gaps": 45, "cert": -1, "period": -1, "resets": 41}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m10-K12-05", "case": 2, "rho": 0.1, "ndev": 288, "n_active": 24, "cpp": {"gaps": 6, "cert": -1, "period": -1, "resets": 45}, "same": 1, "diff": []}
+{"part": "new_path", "inst": "m10-K12-05", "case": 3, "rho": 0.1, "ndev": 288, "n_active": 33, "cpp": {"gaps": 5, "cert": -1, "period": -1, "resets": 45}, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "steady", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "steady", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "wcurdef", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "wcurdef", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "conn_rdd", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "conn_rdd", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "steady", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "steady", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "wcurdef", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "wcurdef", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "conn_rdd", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m06-K1-00", "path": "conn_rdd", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "steady", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "steady", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "wcurdef", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "wcurdef", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "conn_rdd", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m08-K12-03", "path": "conn_rdd", "case": 1, "same": 1, "diff": []}

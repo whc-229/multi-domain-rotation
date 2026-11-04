@@ -71,7 +71,7 @@ def decode_geno(g, W, ndev, qon, reset_opt, cdf=None):
     return dict(W=W, ndev=ndev, dev=dev, maxpos=maxpos, reset_opt=reset_opt)
 
 
-def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None, plan_until=None, pd=None, tree=None, planx=None, init=None):
+def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None, plan_until=None, pd=None, tree=None, planx=None, init=None, devfirst=False):
     """仿真一次。trace 不为 None 时（T3c 诊断用，dict）只做记录、不改变任何决策：
     trace["plan"] = 换算后的提前大修计划 {(k, i): [[t0, 次数], …]}；trace["disp"] = 每次派工
     (t, 站, 岗位, 机器人, 型, 相位, 是否按计划提前大修, 新的就绪基准 rv, 值岗结束时刻)；
@@ -81,7 +81,8 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
     pd（T13，对应 C++ 的逐决策编码）：dict(mode = 1 RK / 2 D5, W, g = 每个窗口决策的基因, f = 强制选择表, stop_dec, stop_wgap, wgap_from)；
     返回值另有 stop_ncand（停在第 stop_dec 个窗口决策时的可行候选数）与 gap_dec（停在第一个窗口缺岗的决策序号）。
     init（T19，只在 Python 里用，C++ 没有对应）：机器人初值 [(型, 相位, 就绪基准 rv)]，给了就代替全新启动 / 稳态初值（各型台数须与 Nk 一致）；
-    岗位、工具、规则计数仍按全新启动。trace["snap_ts"]（T19）：时刻表，第一次到达每个时刻时记下机器人状态到 trace["snaps"]。"""
+    岗位、工具、规则计数仍按全新启动。trace["snap_ts"]（T19）：时刻表，第一次到达每个时刻时记下机器人状态到 trace["snaps"]。
+    devfirst（T19 (b)，对应 C++ 的 devfirst）：偏离优先——先按计划派，再按偏离改派；改派到别的机器人时计划的本班后提前大修取消。"""
     TI = ToolInst(I)
     nk, ns, nt = len(I.T), len(I.sites), TI.nt
     v0 = [math.ceil(t["off_h"] / U - 1e-9) for t in I.T]; c0 = max(v0)
@@ -265,7 +266,7 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
                     return (sc, r)
                 cand = sorted(score(r) for r in range(nr) if s in elig[rk[r]] and rv[r] + lead[s] <= t)
                 order = [c[1] for c in cand]
-            if dv >= 0:
+            if dv >= 0 and not devfirst:
                 pk = pick_dev(order, s, dv)
                 if pk == -2: force = True
                 elif pk >= 0: order.remove(pk); order.insert(0, pk)
@@ -283,6 +284,10 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
                         order.remove(pk); order.insert(0, pk); force = (r2 == 1) and (plan_until is None or t < plan_until)
                         pl_r, pl_ac = pk, a2
                         del lst[ei]; break
+            if dv >= 0 and devfirst:     # T19 (b)：偏离优先（与 C++ 相同）
+                pk = pick_dev(order, s, dv)
+                if pk == -2: force = True
+                elif pk >= 0: order.remove(pk); order.insert(0, pk); force = False
             if pd is not None:     # T13：与 C++ 相同的重排与按基因取候选
                 if pd["mode"] == 1: order = sorted(order)
                 else:
