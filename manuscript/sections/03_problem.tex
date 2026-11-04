@@ -4,6 +4,7 @@
 % 证据：prior/.../多型号多地/mtms.py（步长）、tools_model.py（工具占用）、freshlb.py（开班时刻）；研究笔记/01 §2、07。
 % 用户决定：多站点单基地（10-27）、提前大修只在启动窗口内（10-29）、单目标（10-30）。
 % 写法（11-04 用户意见）：公式按小节集中成块，块后统一解释；实例数值放实验一节。
+% 11-04：问题直接在格上定义，去掉格长 u 和取整式；小时换算成格放实验一节。
 
 A new fleet of robots must keep several sites staffed without end.
 We seek the smallest fleet of robots and tools that can do so.
@@ -18,13 +19,13 @@ Table~\ref{tab:notation} lists the notation.
     \toprule
     Symbol & Meaning \\
     \midrule
-    $u$ & length of a time slot \\
     $\mathcal{S}$, $K_s$ & sites; robots needed on duty at site $s$ \\
-    $\delta_s$ & travel time between the depot and site $s$ \\
+    $\lambda_s$ & travel time from the depot to site $s$ \\
     $\mathcal{K}$, $\mathcal{E}_s$ & robot types; types allowed at site $s$ \\
-    $d_k$ & duty length of type $k$ (slots) \\
+    $d_k$ & duty length of type $k$ \\
     $L_k$ & duties in one maintenance cycle of type $k$ \\
-    $o_{k,i}$ & time a duty in phase $i$ occupies a type-$k$ robot \\
+    $\mu_{k,i,s}$ & time a phase-$i$ duty at site $s$ occupies a type-$k$ robot \\
+    $\alpha_{k,s}$, $\beta_{k,s,j}$ & tool busy time before and after the duty start \\
     $\mathcal{J}$, $\mathcal{C}_k$, $q_k$ & tool types; types compatible with $k$; tools per duty \\
     $W$ & length of the start-up window \\
     $N_k$, $M_j$ & numbers of type-$k$ robots and type-$j$ tools \\
@@ -35,27 +36,25 @@ Table~\ref{tab:notation} lists the notation.
 \subsection{Robots, Tools and Sites}
 \label{sec:problem:entities}
 
+Time is divided into slots of equal length, and all durations are integer numbers of slots.
+
 A robot of type $k$ serves duties of $d_k$ slots and is maintained after every duty.
 The maintenance follows a cycle of $L_k$ duties: a short maintenance after each of the first $L_k - 1$ duties, and an overhaul after the last.
 The position of a duty in this cycle is its \emph{phase} $i \in \{0, \dots, L_k - 1\}$.
-The time $o_{k,i}$ runs from the start of a phase-$i$ duty until the robot is ready to leave for its next duty, without the trip back from the site; it covers the duty, tool removal, maintenance and the preparation of the next duty.
 A duty of type $k$ needs $q_k$ tools whose types are in $\mathcal{C}_k$.
 Site $s$ needs exactly $K_s$ robots of types in $\mathcal{E}_s$ on duty in every slot.
 
 Let a type-$k$ robot start a phase-$i$ duty at site $s$ in slot $D$, and let its next duty be at site $s'$ in slot $D'$.
-With
+Then
 \begin{gather}
-  \lambda_s = \left\lceil \frac{\delta_s}{u} \right\rceil, \qquad
-  \mu_{k,i,s} = \left\lceil \frac{o_{k,i} + \delta_s}{u} \right\rceil, \label{eq:slots}\\
   D' \ge D + \mu_{k,i,s} + \lambda_{s'}, \label{eq:next}\\
   B_{k,s,j}(D) = [\,D - \alpha_{k,s},\ D + \beta_{k,s,j}). \label{eq:tool}
 \end{gather}
-Equation~\eqref{eq:slots} converts the trip to site $s$ and the occupancy of a duty into slots.
-By \eqref{eq:next}, the robot is ready to leave $\mu_{k,i,s}$ slots after the duty starts and needs $\lambda_{s'}$ slots to reach the next site; it may also wait longer.
+The occupancy $\mu_{k,i,s}$ runs from the start of the duty until the robot is back at the depot and ready to leave again; it covers the duty, the trip back, maintenance and preparation.
+The robot then needs $\lambda_{s'}$ slots to reach the next site, and it may also wait longer.
 The next duty is in phase $i + 1 \bmod L_k$.
-A type-$j$ tool of this duty is busy during $B_{k,s,j}(D)$ in \eqref{eq:tool}: from $\alpha_{k,s}$ slots before the duty, for installation and the trip, until $\beta_{k,s,j}$ slots after its start, when it has been removed and serviced.
+A type-$j$ tool of this duty is busy during $B_{k,s,j}(D)$: from $\alpha_{k,s}$ slots before the duty, for installation and the trip, until $\beta_{k,s,j}$ slots after its start, when it has been removed and serviced.
 A tool serves one duty at a time and needs no maintenance cycle.
-All values are rounded up to slots, so every slot schedule is feasible in continuous time.
 
 \subsection{Start-Up and Feasibility}
 \label{sec:problem:start}
