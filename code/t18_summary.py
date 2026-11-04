@@ -1,9 +1,11 @@
 """T18 汇总：时间界的编码一侧（RDD 偏离窗口 W 的扫描）。
 来源：W = 0 → 默认规则本身（m = 4、6：T12b 的严格窗口 base；m = 8、10：T12 的 base）；
-      W = 2·S_max → T16 的 β = 0（设置与 T18 相同，限时相同）；W = 0.5、1、3、4 倍 → T18（results/T18/jobs/）。
+      W = 2·S_max → T16 的 β = 0（设置与 T18 相同，限时相同）；W = 0.5、1、3、4 倍 → T18（results/T18/jobs/）；
+      11-02 审核补扫的短窗口：m = 4、6 加 0.125、0.25 倍，m = 8、10 加 0.25 倍（同一目录）。
 可行 = 严格证明或 60 万格复核 0 缺岗；只在可行解上比资源数。
 1. 每组 (m, 族) 的平均资源数随 W 的变化（实例 × 种子平均）；
 2. W₀（按实例）：每个 W 取 3 个种子里最少的资源数 R(W)，W₀ = R(W) 达到全部 W 中最小值的最小 W；另给"差 1 个以内"的版本；
+   W₀ 按该 m 实际扫过的各档算（mults_for）；另给只用原网格（0、0.5–4 倍，不含补扫）的 W₀ 作对照；
 3. W₀ 与 T17 的 H₀（LP_fr^Rw 达到 4S 值 99.5% 的最小 H）逐实例对照；
 4. 偏离落点：最终解里激活的偏离的时刻 t，按每 0.5·S_max 一段统计占比（W = 2S 的 T16 作业没有记，这里用 t18_job.dev_positions 补算）。
 输出 results/T18_window.jsonl（逐作业）与 markdown 表（打印）。
@@ -17,7 +19,20 @@ from mdrr import ROOT, train_names, load_train  # noqa: E402
 from freshlb import S_max  # noqa: E402
 from t18_job import dev_positions  # noqa: E402
 
-MULTS = (0.0, 0.5, 1.0, 2.0, 3.0, 4.0)
+MULTS = (0.0, 0.125, 0.25, 0.5, 1.0, 2.0, 3.0, 4.0)
+ORIG = (0.0, 0.5, 1.0, 2.0, 3.0, 4.0)          # 原网格（不含 11-02 补扫的短窗口）
+
+
+def mults_for(m):
+    """m 实际扫过的倍数：m = 8、10 没有补 0.125 倍。"""
+    return MULTS if m <= 6 else tuple(x for x in MULTS if x != 0.125)
+
+
+def w0_of(vals, grid):
+    """在 grid 上算 (W₀, 差 1 个以内的 W₀)；W = 0 不可行时当作无穷大，W > 0 各档缺一个就返回 (None, None)。"""
+    if not all(m in vals for m in grid if m > 0): return None, None
+    v = {m: vals[m] for m in grid if m in vals}; lo = min(v.values())
+    return min(m for m in v if v[m] == lo), min(m for m in v if v[m] <= lo + 1)
 
 
 def jl(p):
@@ -49,7 +64,7 @@ def main():
     for n in sorted(train_names(MS), key=lambda n: (int(n[1:3]), n)):
         I = load_train(n); S = S_max(I)
         best = {}
-        for mult in MULTS:
+        for mult in mults_for(I.meta["m"]):
             Rs = []
             for seed in ((None,) if mult == 0.0 else (0, 1, 2)):
                 d = job(n, mult, seed)
@@ -61,17 +76,15 @@ def main():
                 rows.append(dict(inst=n, m=I.meta["m"], family=I.meta["family"], S=S, mult=mult, seed=seed, R=R, status=d.get("status"),
                                  proven=int(d.get("verify_cert") == 1 and d.get("exact") == 1), n_active=d.get("n_active"), ndev=d.get("ndev"), K=d.get("K"),
                                  window_ok=int(d.get("last_reset", -1) < 2 * S), wall=d.get("wall"), check_judge=d.get("check_judge"),
+                                 gens=d.get("gens"), found_sec=(d["traj"][-1][3] if d.get("traj") else None),
                                  check_dump=(d.get("check_dump_same"), d.get("check_dump_n")), check_ndec=d.get("check_ndec"),
                                  dev_t=[p[2] for p in pos] if pos else []))
                 if R is not None: Rs.append(R)
             best[mult] = min(Rs) if Rs else None
         vals = {m: r for m, r in best.items() if r is not None}
-        w0 = w0_1 = None
-        # W = 0（规则本身）不可行时当作无穷大；W > 0 的各档都要有可行解才算完整
-        if all(m in vals for m in MULTS[1:]):
-            lo = min(vals.values())
-            w0 = min(m for m in vals if vals[m] == lo); w0_1 = min(m for m in vals if vals[m] <= lo + 1)
-        inst_rows.append(dict(inst=n, m=I.meta["m"], family=I.meta["family"], best={f"{m:g}": best[m] for m in MULTS}, W0=w0, W0_1=w0_1, H0=H0.get(n)))
+        w0, w0_1 = w0_of(vals, mults_for(I.meta["m"])); w0o, w0o_1 = w0_of(vals, ORIG)
+        inst_rows.append(dict(inst=n, m=I.meta["m"], family=I.meta["family"], best={f"{m:g}": best.get(m) for m in MULTS}, W0=w0, W0_1=w0_1,
+                              W0_orig=w0o, W0_1_orig=w0o_1, H0=H0.get(n)))
     tmp = os.path.join(ROOT, "results", "T18_window.jsonl.tmp")
     with open(tmp, "w") as f:
         for r in rows: f.write(json.dumps(r, ensure_ascii=False) + "\n")
@@ -85,21 +98,31 @@ def main():
         cols = []
         for mm in MULTS:
             ys = [x for x in xs if x["mult"] == mm]; ok = [x["R"] for x in ys if x["R"] is not None]
-            cols.append(f"{np.mean(ok):.1f}（{len(ok)}/{len(ys)}）" if ok else f"—（0/{len(ys)}）")
+            cols.append(f"{np.mean(ok):.1f}（{len(ok)}/{len(ys)}）" if ok else (f"—（0/{len(ys)}）" if ys else ""))
         L.append(f"| {m} | {fam} | " + " | ".join(cols) + " |")
     byi = defaultdict(list)
     for r in inst_rows: byi[(r["m"], r["family"])].append(r)
     L += ["", "### W₀（按实例；每个 W 取 3 个种子里的最少资源数）\n",
-          "| m | 族 | 完整实例 | W₀ 的分布（最好值） | W₀ 的分布（差 1 个以内） | 比 W = 0 少（个，最好种子，按 W） |", "|---|---|---|---|---|---|"]
+          "| m | 族 | 完整实例 | W₀ 的分布（最好值） | W₀ 的分布（差 1 个以内） | 原网格 W₀ 的分布（最好值） | 比 W = 0 少（个，最好种子，按 W） |", "|---|---|---|---|---|---|---|"]
     for (m, fam), xs in sorted(byi.items()):
         ok = [x for x in xs if x["W0"] is not None]
-        d0 = Counter(f"{x['W0']:g}S" for x in ok); d1 = Counter(f"{x['W0_1']:g}S" for x in ok)
+        d0 = Counter(f"{x['W0']:g}S" for x in ok); d1 = Counter(f"{x['W0_1']:g}S" for x in ok); do = Counter(f"{x['W0_orig']:g}S" for x in ok)
         imp = []
-        for mm in MULTS[1:]:
+        for mm in mults_for(m)[1:]:
             v = [x["best"]["0"] - x["best"][f"{mm:g}"] for x in ok if x["best"]["0"] is not None]
             imp.append(f"{mm:g}S: {np.mean(v):.1f}" if v else "—")
         L.append(f"| {m} | {fam} | {len(ok)}/{len(xs)} | " + ", ".join(f"{k} ×{v}" for k, v in sorted(d0.items(), key=lambda kv: float(kv[0][:-1]))) + " | "
-                 + ", ".join(f"{k} ×{v}" for k, v in sorted(d1.items(), key=lambda kv: float(kv[0][:-1]))) + " | " + "；".join(imp) + " |")
+                 + ", ".join(f"{k} ×{v}" for k, v in sorted(d1.items(), key=lambda kv: float(kv[0][:-1]))) + " | "
+                 + ", ".join(f"{k} ×{v}" for k, v in sorted(do.items(), key=lambda kv: float(kv[0][:-1]))) + " | " + "；".join(imp) + " |")
+    L += ["", "### 搜索规模（各档作业平均；W = 0 是规则本身，不列）\n",
+          "| m | W | 窗口决策数 | 槽数 K | 代数 | 最终解激活偏离数 | 找到最终解的时刻（中位 / 最大，秒） |", "|---|---|---|---|---|---|---|"]
+    for m in MS:
+        for mm in mults_for(m)[1:]:
+            ys = [x for x in rows if x["m"] == m and x["mult"] == mm and x["ndev"] is not None]
+            if not ys: continue
+            fs = [x["found_sec"] for x in ys if x["found_sec"] is not None]
+            L.append(f"| {m} | {mm:g}S | {np.mean([x['ndev'] for x in ys]):.0f} | {np.mean([x['K'] for x in ys]):.0f} | {np.mean([x['gens'] for x in ys]):,.0f} | "
+                     f"{np.mean([x['n_active'] for x in ys]):.1f} | {np.median(fs):.0f} / {max(fs):.0f} |")
     pairs = [(x["W0"], x["H0"]) for x in inst_rows if x["W0"] is not None and x["H0"] is not None]
     if pairs:
         L += ["", "### W₀ 与 T17 的 H₀（LP_fr^Rw）逐实例对照：行 = W₀，列 = H₀，格内为实例数\n"]
@@ -111,14 +134,14 @@ def main():
     L += ["", "### 偏离落点：激活的偏离按时刻每 0.5·S_max 一段的占比（全部作业合并，按 m、W）\n",
           "| m | W | 偏离数 | " + " | ".join(f"[{a / 2:g}, {(a + 1) / 2:g})S" for a in range(8)) + " |", "|---|---|---|" + "---|" * 8]
     for m in MS:
-        for mm in MULTS[2:]:
+        for mm in [x for x in mults_for(m) if x >= 1.0]:
             ts = [t / x["S"] for x in rows if x["m"] == m and x["mult"] == mm for t in x["dev_t"]]
             if not ts: continue
             h = np.histogram(ts, bins=np.arange(0, 4.01, 0.5))[0]
             L.append(f"| {m} | {mm:g}S | {len(ts)} | " + " | ".join(f"{100 * c / len(ts):.0f}%" if a < 2 * mm else "" for a, c in enumerate(h)) + " |")
     t18 = [r for r in rows if r["mult"] not in (0.0, 2.0)]
     cj = [r["check_judge"] for r in t18 if r["check_judge"] is not None]
-    L += ["", f"m = {', '.join(map(str, MS))}；T18 作业 {len(t18)} / {len(MS) * 12 * 4 * 3}。", "", f"核对（T18 作业）：最终解重新判定逐字段相同 {sum(cj)} / {len(cj)}；抽样缺岗与 eval 相同 {sum(r['check_dump'][0] or 0 for r in t18)} / {sum(r['check_dump'][1] or 0 for r in t18)}；"
+    L += ["", f"m = {', '.join(map(str, MS))}；T18 作业 {len(t18)} / {sum(12 * (len(mults_for(m)) - 2) * 3 for m in MS)}。", "", f"核对（T18 作业）：最终解重新判定逐字段相同 {sum(cj)} / {len(cj)}；抽样缺岗与 eval 相同 {sum(r['check_dump'][0] or 0 for r in t18)} / {sum(r['check_dump'][1] or 0 for r in t18)}；"
           f"参考实现数出的窗口决策数与 eval 相同 {sum(r['check_ndec'] == 1 for r in t18)} / {sum(r['check_ndec'] is not None for r in t18)}；"
           f"提前大修都在 [0, 2S) 内 {sum(r['window_ok'] for r in rows if r['R'] is not None)} / {sum(r['R'] is not None for r in rows)}。"]
     print("\n".join(L))

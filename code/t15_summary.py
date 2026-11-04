@@ -5,6 +5,9 @@
 (b) 只算机器人的完整整数模型（H = 2·S_max，HiGHS 单线程，2 小时）：记状态、整数解、对偶界；
     ⌈对偶界⌉ 与同一 H 的 ⌈LP(2S)⌉ 比，看整数性能否抬高下界；解到最优时与 ⌈LP(2S)⌉ 比。
 可行 = 严格证明或 60 万格复核 0 缺岗。
+(c) 11-02 审核的两项小检查：
+    - 长预算 RDD-FD（ub_fdl，每个作业 10 分钟、不限代数，种子 0–4）：最好可行资源数、比原上界降了多少、新差距；
+    - 2·S_max 整数最优解接规则（results/T15/plan/，code/t15b_plan.py）：计划期缺岗、接规则后能否永远可行、加 1 台补在哪。
 输出 results/T15_bound_diag.jsonl（逐实例）与 markdown 表（打印）。
 用法：python3 code/t15_summary.py"""
 import os, sys, json
@@ -14,6 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import ROOT, train_names  # noqa: E402
 
 UBK = ["ub_rlp"] + [f"ub_fd__s{s}" for s in range(3)] + [f"ub_es__s{s}" for s in range(3)]
+FDL = [f"ub_fdl__s{s}" for s in range(5)]          # 11-02 审核：长预算 RDD-FD
 
 
 def jl(n, k):
@@ -55,6 +59,11 @@ def main():
                          mip_status=mip and mip["status"], mip_obj=mip and mip["obj"], mip_bound=b, mip_LB=mip and mip["LB_int"], mip_sec=mip and mip["sec"],
                          mip_raises=int(mip is not None and mip["LB_int"] is not None and mip["LB_int"] > lp["LB2"]),
                          mip_opt_above=int(mip is not None and mip["status"] == "Optimal" and mip["obj"] is not None and round(mip["obj"]) > lp["LB2"])))
+        fl = [jl(n, k) for k in FDL]; fv = [feas(d) for d in fl if d is not None]; fok = [v for v in fv if v is not None]
+        UBl = min(fok) if fok else None; UBa = min(x for x in (UB, UBl) if x is not None)
+        rows[-1].update(r_UB_fdl=UBl, r_fdl_runs=len(fv), r_fdl_feasible=len(fok), r_fdl_seeds_best=sum(v == UBl for v in fok),
+                        r_fdl_proven=sum((d or {}).get("proven", 0) for d in fl), r_fdl_tools=max((d or {}).get("tools_in_sol", 0) for d in fl),
+                        r_UB_all=UBa, r_gap_all=UBa - lp["LB"])
     tmp = os.path.join(ROOT, "results", "T15_bound_diag.jsonl.tmp")
     with open(tmp, "w") as fh:
         for r in rows: fh.write(json.dumps(r, ensure_ascii=False) + "\n")
@@ -89,6 +98,34 @@ def main():
           f"解到最优且最优值 > ⌈LP(2S)⌉ 的实例 {sum(x['mip_opt_above'] for x in rows)}；"
           f"⌈LP(2S)⌉ = ⌈LP(4S)⌉ 的实例 {sum(x['r_LB2'] == x['r_LB'] for x in rows)} / {len(rows)}；"
           f"限时内的整数解比机器人上界差的实例 {sum(x['mip_obj'] is not None and x['mip_obj'] > x['r_UB'] for x in rows)}，没有整数解 {sum(x['mip_obj'] is None for x in rows)}。"]
+    fd = [x for x in rows if x["r_fdl_runs"] == len(FDL)]
+    if fd:
+        L += ["", "### (c1) 长预算 RDD-FD（每个作业 10 分钟，种子 0–4）\n",
+              "| m | 族 | 实例 | 原上界（平均） | 长预算 RDD-FD（各种子最好，平均） | 新上界（平均） | 上界降低的实例 | 新差距（平均） |", "|---|---|---|---|---|---|---|---|"]
+        for (m, fam), xs in sorted(by.items()):
+            xs = [x for x in xs if x in fd]
+            L.append(f"| {m} | {fam} | {len(xs)} | {np.mean([x['r_UB'] for x in xs]):.2f} | {np.mean([x['r_UB_fdl'] for x in xs]):.2f} | {np.mean([x['r_UB_all'] for x in xs]):.2f} | "
+                     f"{sum(x['r_UB_all'] < x['r_UB'] for x in xs)} / {len(xs)} | {np.mean([x['r_gap_all'] for x in xs]):.2f} |")
+        L.append(f"\n合计：上界降低 {sum(x['r_UB_all'] < x['r_UB'] for x in fd)} / {len(fd)}（"
+                 + "，".join(f"{x['inst']} {x['r_UB']}→{x['r_UB_all']}" for x in fd if x['r_UB_all'] < x['r_UB']) + "）；"
+                 f"差距平均 {np.mean([x['r_gap'] for x in fd]):.2f} → {np.mean([x['r_gap_all'] for x in fd]):.2f}；新差距分布 {dict(sorted(Counter(x['r_gap_all'] for x in fd).items()))}；"
+                 f"长预算比原 RDD-FD 好的实例 {sum(x['r_UB_fdl'] < x['r_UB_fd'] for x in fd)}，比原上界差的实例 {sum(x['r_UB_fdl'] > x['r_UB'] for x in fd)}；"
+                 f"5 个种子都到最好值的实例 {sum(x['r_fdl_seeds_best'] == len(FDL) for x in fd)}；可行 {sum(x['r_fdl_feasible'] for x in fd)} / {len(fd) * len(FDL)}，"
+                 f"其中严格证明 {sum(x['r_fdl_proven'] for x in fd)}；解里的工具台数最大 {max(x['r_fdl_tools'] for x in fd)}。")
+    pd = os.path.join(ROOT, "results", "T15", "plan")
+    pl = [json.load(open(os.path.join(pd, f))) for f in sorted(os.listdir(pd)) if f.endswith(".json")] if os.path.isdir(pd) else []
+    if pl:
+        L += ["", "### (c2) 2·S_max 整数解当启动期、之后接规则（只算机器人，不提前大修）\n",
+              "| 实例 | MIP（岗位开放前不值岗） | 整数解台数 | 不加限制的 T15 MIP | 计划期缺岗（取最晚 / 取最早） | 接规则 | 60 万格：缺岗 / 判环 | 只用规则：缺岗 | 加 1 台（按机型：缺岗，✓ = 可行） |",
+              "|---|---|---|---|---|---|---|---|---|"]
+        for d in pl:
+            mip = f"{'最优' if d['mip_status'] == 'Optimal' else '限时'} {d['mip_obj']:.0f}（界 {d['mip_bound']:.1f}，{d['mip_sec']:.0f} 秒）"
+            t15 = f"{'最优' if d['t15_mip']['status'] == 'Optimal' else '限时'} {d['t15_mip']['obj']:.0f}"
+            for rn, r in d["rules"].items():
+                add = "；".join(f"{k}：{v['gaps']}{' ✓' if v['feasible'] else ''}" for k, v in r.get("add_one", {}).items()) or "—（已可行）"
+                L.append(f"| {d['inst']} | {mip} | {d['R']} {d['Nk']} | {t15} | {r['plan_gaps']} / {r['plan_gaps_first']} | {rn} | "
+                         f"{r['eval']['gaps']} / {'证明' if r['eval']['cert'] == 1 else ('判出环（进入 t = ' + str(r['eval']['t_end'] - r['eval']['period']) + '，缺岗 > 0）' if r['eval']['cert'] == 0 else '未判出')} | {r['rule_only']['gaps']} | {add} |")
+        L.append("\n核对：" + "；".join(f"{d['inst']} 覆盖不符 {d['check_cover_bad']} 格、非整数 {d['check_int']:.1e}、台数 = 目标值 {d['check_obj']}、岗位开放前值岗 {d['check_early']}" for d in pl) + "。")
     print("\n".join(L))
 
 
