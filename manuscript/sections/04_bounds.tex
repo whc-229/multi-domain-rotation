@@ -141,6 +141,27 @@ It does not bound $E$.
 Without early overhaul, $E$ can grow with the number of posts, as Proposition~\ref{prop:linear} shows.
 Early overhaul lets the copies serve the missing duties themselves: before $b_r$, robot $r'$ may serve a few duties and then go to overhaul, as long as it is back in phase $0$ by $b_r$.
 Fig.~\ref{fig:enter} shows a case where this removes all extra robots.
+For one robot type the following condition makes the extra robots unnecessary.
+
+\begin{proposition}[Self-cover]
+\label{prop:selfcover}
+Consider one robot type and $K = mL$ posts at one site, with time counted in duties and early overhaul allowed in the start-up.
+If $g_p \le g_{i+p}$ for all $1 \le i \le L-1$ and $0 \le p \le L-2-i$, then a new fleet of $KS/L$ robots, the rate bound, enters the even rotation of Proposition~\ref{prop:orbit} within $S$ slots.
+In particular this holds if the gaps before the overhaul are nondecreasing, and always if $L = 2$.
+\end{proposition}
+
+\begin{proof}
+Let $s_i = g_0 + \dots + g_{i-1}$.
+In the even rotation, a robot with offset $b \in \{0, \dots, S-1\}$ is in phase $0$ at slot $b$; its copy enters there.
+Before $b$, the rotation still has this robot's previous cycle: its phase-$i$ duties at slots $t_i = b - S + s_i$ for $i \ge i^*$, where $i^* \ge 1$ is the smallest index with $s_i \ge S - b$.
+Let the new robot serve these duties itself, as its phases $0, 1, \dots$.
+Consecutive duties are $g_{i^*+p}$ slots apart, and the robot needs only $g_p \le g_{i^*+p}$ after its phase $p$.
+Its last such duty is at $b - g_{L-1}$, in phase $L - 1 - i^* \ne L-1$, so it may go to overhaul and is back in phase $0$ at $b$.
+Every slot is then served exactly as in the rotation.
+\end{proof}
+
+The example of Fig.~\ref{fig:enter} is the case $L = 2$.
+An exhaustive search confirms there that without early overhaul a new fleet needs $7$ robots instead of $6$.
 
 \begin{figure}[t]
   \centering
