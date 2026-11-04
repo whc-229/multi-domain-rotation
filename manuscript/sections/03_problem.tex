@@ -1,5 +1,78 @@
 \section{Problem Formulation}
 \label{sec:problem}
 
-% 证据来源与"不能写"的说法写在这里。
-% TODO
+% 证据：prior/.../多型号多地/mtms.py（时间网格、步长）、tools_model.py（工具占用）、freshlb.py（开班时刻）；
+%       研究笔记/01 §2、07。用户决定：多站点单基地（10-27）、提前大修只在启动窗口内（10-29）、单目标（10-30）。
+% 不能写：任何训练实例上的数字；"严格证明率"等内部检查。
+
+We study a fleet of robots that keeps several sites staffed forever.
+A new fleet is bought and put into service at one time.
+We want the smallest fleet of robots and tools that can do this.
+
+\subsection{Sites, Robots, and Tools}
+\label{sec:problem:entities}
+
+Time is divided into slots of length $u$ ($u = 2$\,h in our instances).
+All robots and tools are kept at one depot.
+
+\textbf{Sites.}
+Each site $s \in \mathcal{S}$ needs exactly $K_s$ robots on duty in every slot.
+Only robots of the types in $\mathcal{E}_s$ may serve site $s$.
+A trip from the depot to site $s$ takes $\delta_s$ hours more than a trip to a site next to the depot.
+
+\textbf{Robot types.}
+A robot of type $k \in \mathcal{K}$ serves duties of $d_k$ slots.
+Its maintenance follows a fixed cycle of $L_k$ duties, called \emph{phases} $0, \dots, L_k - 1$.
+The duty in phase $i$ occupies the robot for $o_{k,i}$ hours in total.
+This includes preparation, tool installation, travel, the duty, the return, tool removal, and the charging or maintenance that follows.
+The phase $L_k - 1$ is followed by an \emph{overhaul}, the longest maintenance; after it the robot is back in phase $0$.
+
+\textbf{Duty timing.}
+Let a type-$k$ robot in phase $i$ be ready at slot $v$.
+If it serves site $s$, its duty starts at $D = v + \lceil \delta_s / u \rceil$ and covers slots $[D, D + d_k)$.
+The robot is ready again at
+\begin{equation}
+  v' = D + \left\lceil \frac{o_{k,i} + \delta_s}{u} \right\rceil
+  \label{eq:step}
+\end{equation}
+in phase $i + 1 \bmod L_k$.
+A robot may also wait for any number of slots.
+Rounding up keeps every slot schedule feasible in continuous time.
+
+\textbf{Tools.}
+A duty of type $k$ needs $q_k$ tools of the compatible types $\mathcal{C}_k$.
+A tool of type $j$ is busy from shortly before the duty until its removal and upkeep are done:
+during $[D - \alpha_{k,s},\ D + d_k + \beta_{k,s,j})$, with $\alpha$ and $\beta$ fixed by the installation, travel, removal and upkeep times.
+A tool serves one duty at a time.
+Tools have no maintenance cycle.
+
+\subsection{Fresh Start and Early Overhaul}
+\label{sec:problem:start}
+
+\textbf{Fresh start.}
+At time $0$ every robot is new: it is in phase $0$ and ready at the earliest slot $v_k^0$ that its preparation allows.
+Site $s$ opens at slot $c_0 + \lceil \delta_s / u \rceil$ with $c_0 = \max_k v_k^0$.
+A new robot is in exactly the same state as a robot that has just finished an overhaul.
+This fact is used in Section~\ref{sec:time}.
+
+\textbf{Early overhaul.}
+In the start-up window $[0, W)$, a robot may go to overhaul after any duty, not only after phase $L_k - 1$.
+It then becomes ready after the overhaul time of its type and returns to phase $0$.
+After the window, every robot follows its maintenance cycle.
+
+\subsection{Objective and Feasibility}
+\label{sec:problem:objective}
+
+A \emph{schedule} gives every robot an infinite sequence of duties, waits and, within $[0, W)$, early overhauls, and gives every duty its tools.
+It is \emph{feasible} if every open site has exactly $K_s$ eligible robots on duty in every slot, forever, and no tool serves two duties at once.
+We minimize the number of resources,
+\begin{equation}
+  \min \; \sum_{k \in \mathcal{K}} N_k + \sum_{j} M_j ,
+  \label{eq:objective}
+\end{equation}
+where $N_k$ is the number of type-$k$ robots and $M_j$ the number of type-$j$ tools.
+We call this problem multi-domain rotation rostering (MDRR); a domain is a site.
+
+The horizon is infinite on purpose.
+A fleet is bought once and must keep the sites staffed for years.
+A schedule that is feasible for a planning horizon, such as 720\,h, may run short later; Section~\ref{sec:experiments} shows how often this happens when a search optimizes a finite horizon.
