@@ -75,7 +75,7 @@ struct RLP {
 };
 
 // T13 RH-MIP 的排班计划：e[(站, 值岗开始时刻)] = 若干个 (机型, 相位, 本班后提前大修)，每个是一台；end = 计划覆盖到的时刻（之后按默认规则）
-struct PlanX { ll end = 0; map<pair<int,ll>, vector<array<int,3>>> e; };
+struct PlanX { ll end = 0; map<pair<int,ll>, vector<array<int,4>>> e; };   // 条目 (机型, 相位, 本班后提前大修, 记账相位；−1 = 用实际相位)
 // RDD 解码数据（T7）：dev[c] = 第 c 个窗口决策上的 u ∈ [0, 1)，−1 表示不偏离；maxpos = 最后一个偏离决策的序号（无偏离为 −1）
 struct RDD { ll W = 0; int ndev = 0; vector<double> dev; int maxpos = -1; bool reset_opt = false; };
 
@@ -207,7 +207,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
     ll t = *min_element(fr.begin(), fr.end());
     const bool lin = P.tree.empty();
     const RDD* DV = P.rdd;
-    map<pair<int,ll>, vector<array<int,3>>> pxm; if (P.planx) pxm = P.planx->e;   // T13：本次运行里还没用掉的计划条目
+    map<pair<int,ll>, vector<array<int,4>>> pxm; if (P.planx) pxm = P.planx->e;   // T13：本次运行里还没用掉的计划条目
     // 机器人 r 此刻去 s 站是否有足够的空闲适配工具（与派工时的工具检查相同，但不改状态；RDD 构造备选表用）
     auto tool_ok = [&](int r, int s) -> bool {
         if (!use_tools) return true;
@@ -270,6 +270,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
         for (int pq : due) {
             const int s = I.psite[pq];
             double dv = -1; bool force_reset = false;      // RDD：本决策的 u（−1 不偏离）、是否强制本班后提前大修
+            int pl_r = -1, pl_ac = -1;                     // T19：按计划派的机器人与它的记账相位（规则的历史计数 D、phl 按记账相位记）
             ll recj = -1;
             if (DV && t < DV->W) { ll c = R.ndec_w++; if (c < DV->ndev) dv = DV->dev[c]; if (g_decrec) { recj = g_decrec->size(); g_decrec->push_back({s, t, 1}); } }
             ll pdc = -1; if (P.pd_mode && t < P.pdW) pdc = R.ndec_w++;   // T13：逐决策编码的窗口决策序号
@@ -296,6 +297,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                             if (pk < 0) continue;
                             auto jt = find_if(rc.begin(), rc.end(), [&](const tuple<ll,int,ll,ll,int>& x) { return get<4>(x) == pk; }); rotate(rc.begin(), jt, jt + 1);
                             force_reset = it->second[e][2] == 1 && (P.plan_until < 0 || t < P.plan_until);
+                            pl_r = pk; pl_ac = it->second[e][3];
                             it->second.erase(it->second.begin() + e); break;
                         }
                     }
@@ -325,9 +327,10 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                     if (nph == 0 && i != T.L - 1) R.last_reset = t;
                     rv[r] = t - ld + nx; rph[r] = nph;
                     cnt[k][i]--; cnt[k][nph]++; R.duties++;
-                    D[k][i]++; tot[k]++;
+                    const int ia = (r == pl_r && pl_ac >= 0 && pl_ac < T.L) ? pl_ac : i;   // T19：记账相位
+                    D[k][ia]++; tot[k]++;
                     lag[k][s] = clip(lag[k][s] - RL->Q[s], RL->CQ[k][s]);
-                    phl[k][i] -= T.L;
+                    phl[k][ia] -= T.L;
                     if (t >= RL->H) for (int i2 = 0; i2 < T.L; i2++) phl[k][i2] += 1;
                     for (int i2 = 0; i2 < T.L; i2++) phl[k][i2] = clip(phl[k][i2], RL->CP[k]);
                     fr[pq] = t + T.d; done = true; if (recj >= 0) (*g_decrec)[recj][2] = T.d; break;
@@ -383,6 +386,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                         if (pk < 0) continue;
                         auto jt = find_if(cand.begin(), cand.end(), [&](const pair<double,int>& x) { return x.second == pk; }); rotate(cand.begin(), jt, jt + 1);
                         force_reset = it->second[e][2] == 1 && (P.plan_until < 0 || t < P.plan_until);
+                        pl_r = pk; pl_ac = it->second[e][3];
                         it->second.erase(it->second.begin() + e); break;
                     }
                 }
@@ -447,7 +451,7 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
                 if (nph == 0 && i != T.L - 1) R.last_reset = t;
                 rv[r] = t - ld + nx; rph[r] = nph; att[r]++;
                 cnt[k][i]--; cnt[k][nph]++; R.duties++;
-                D[k][i]++; tot[k]++;
+                D[k][(r == pl_r && pl_ac >= 0 && pl_ac < T.L) ? pl_ac : i]++; tot[k]++;   // T19：记账相位
                 fr[pq] = t + T.d; done = true; if (recj >= 0) (*g_decrec)[recj][2] = T.d; break;
             }
             if (!done) {
@@ -658,10 +662,15 @@ vector<GPNode> tree_parse(const string& src) {
     };
     rec(); return t;
 }
-PlanX parse_planx(const string& fn) {   // 首行 "end T"，其余每行 "s D k i r"（一行一台）
+PlanX parse_planx(const string& fn) {   // 首行 "end T"，其余每行 "s D k i r [a]"（一行一台；T19 可选第 6 列 a = 记账相位，缺省 −1）
     PlanX X; ifstream f(fn); if (!f) { fprintf(stderr, "cannot open %s\n", fn.c_str()); exit(1); }
-    string tag; f >> tag >> X.end; int s, k, i, r; ll D;
-    while (f >> s >> D >> k >> i >> r) X.e[{s, D}].push_back({k, i, r});
+    string line; getline(f, line); { istringstream h(line); string tag; h >> tag >> X.end; }
+    while (getline(f, line)) {
+        istringstream a(line); int s, k, i, r, ac = -1; ll D;
+        if (!(a >> s >> D >> k >> i >> r)) continue;
+        if (!(a >> ac)) ac = -1;
+        X.e[{s, D}].push_back({k, i, r, ac});
+    }
     return X;
 }
 string tree_arg(const string& v) { if (!v.empty() && v[0] == '@') { ifstream f(v.substr(1)); stringstream b; b << f.rdbuf(); return b.str(); } return v; }

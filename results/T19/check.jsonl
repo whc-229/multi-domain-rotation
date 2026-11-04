@@ -1,0 +1,60 @@
+{"part": "new_path", "kind": "steady", "inst": "m02-K12-00", "case": 0, "plan": "acct", "rule": "rlp", "cpp": {"gaps": 0, "cert": 1, "period": 1200}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m02-K12-00", "case": 1, "plan": "rand", "rule": "rlp", "cpp": {"gaps": 802, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m02-K12-00", "case": 2, "plan": "acct", "rule": "rlp", "cpp": {"gaps": 0, "cert": 1, "period": 1200}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m02-K12-00", "case": 3, "plan": "five", "rule": "rlp", "cpp": {"gaps": 6, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m04-K12-00", "case": 0, "plan": "acct", "rule": "rlp", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m04-K12-00", "case": 1, "plan": "rand", "rule": "rlp", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m04-K12-00", "case": 2, "plan": "acct", "rule": "rlp", "cpp": {"gaps": 0, "cert": 1, "period": 15525}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m04-K12-00", "case": 3, "plan": "five", "rule": "rlp", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m06-K1-00", "case": 0, "plan": "acct", "rule": "rlp", "cpp": {"gaps": 0, "cert": 1, "period": 15600}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m06-K1-00", "case": 1, "plan": "rand", "rule": "rlp", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m06-K1-00", "case": 2, "plan": "acct", "rule": "rlp", "cpp": {"gaps": 0, "cert": 1, "period": 15600}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "steady", "inst": "m06-K1-00", "case": 3, "plan": "five", "rule": "rlp", "cpp": {"gaps": 394, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m04-K1-00", "case": 0, "plan": "acct", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m04-K1-00", "case": 1, "plan": "rand", "rule": "w", "cpp": {"gaps": 4, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m04-K1-00", "case": 2, "plan": "acct", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m04-K1-00", "case": 3, "plan": "rand", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m02-K12-00", "case": 0, "plan": "acct", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m02-K12-00", "case": 1, "plan": "rand", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m02-K12-00", "case": 2, "plan": "acct", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m02-K12-00", "case": 3, "plan": "rand", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m06-K1-00", "case": 0, "plan": "acct", "rule": "w", "cpp": {"gaps": 0, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m06-K1-00", "case": 1, "plan": "rand", "rule": "w", "cpp": {"gaps": 2, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m06-K1-00", "case": 2, "plan": "acct", "rule": "w", "cpp": {"gaps": 2, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "new_path", "kind": "best", "inst": "m06-K1-00", "case": 3, "plan": "rand", "rule": "w", "cpp": {"gaps": 4, "cert": -1, "period": -1}, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "steady", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "steady", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "wcurdef", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m02-K1-00", "path": "wcurdef", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "steady", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "steady", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "wcurdef", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m03-K12-00", "path": "wcurdef", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rhmip", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rhmip", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rlp", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "rlp", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "t12", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "t12", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "notools", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "notools", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "steady", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "steady", "case": 1, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "wcurdef", "case": 0, "same": 1, "diff": []}
+{"part": "old_path", "inst": "m04-K1-01", "path": "wcurdef", "case": 1, "same": 1, "diff": []}

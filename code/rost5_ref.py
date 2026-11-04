@@ -71,7 +71,7 @@ def decode_geno(g, W, ndev, qon, reset_opt, cdf=None):
     return dict(W=W, ndev=ndev, dev=dev, maxpos=maxpos, reset_opt=reset_opt)
 
 
-def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None, plan_until=None, pd=None, tree=None, planx=None):
+def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_log=None, trace=None, curdef=False, lpz=None, rdd=None, plan_until=None, pd=None, tree=None, planx=None, init=None):
     """仿真一次。trace 不为 None 时（T3c 诊断用，dict）只做记录、不改变任何决策：
     trace["plan"] = 换算后的提前大修计划 {(k, i): [[t0, 次数], …]}；trace["disp"] = 每次派工
     (t, 站, 岗位, 机器人, 型, 相位, 是否按计划提前大修, 新的就绪基准 rv, 值岗结束时刻)；
@@ -79,7 +79,9 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
     trace["robots"] = 各机器人的型。trace["light"] 为真时不记派工（长时域判环时省内存）。
     plan_until（T12，对应 C++ 的 planW=）：计划提前大修只在 t < plan_until 时执行；None 不限。
     pd（T13，对应 C++ 的逐决策编码）：dict(mode = 1 RK / 2 D5, W, g = 每个窗口决策的基因, f = 强制选择表, stop_dec, stop_wgap, wgap_from)；
-    返回值另有 stop_ncand（停在第 stop_dec 个窗口决策时的可行候选数）与 gap_dec（停在第一个窗口缺岗的决策序号）。"""
+    返回值另有 stop_ncand（停在第 stop_dec 个窗口决策时的可行候选数）与 gap_dec（停在第一个窗口缺岗的决策序号）。
+    init（T19，只在 Python 里用，C++ 没有对应）：机器人初值 [(型, 相位, 就绪基准 rv)]，给了就代替全新启动 / 稳态初值（各型台数须与 Nk 一致）；
+    岗位、工具、规则计数仍按全新启动。trace["snap_ts"]（T19）：时刻表，第一次到达每个时刻时记下机器人状态到 trace["snaps"]。"""
     TI = ToolInst(I)
     nk, ns, nt = len(I.T), len(I.sites), TI.nt
     v0 = [math.ceil(t["off_h"] / U - 1e-9) for t in I.T]; c0 = max(v0)
@@ -110,7 +112,10 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
         trace["disp"] = []; trace["gaps"] = []
     # 机器人
     rk, rph, rv = [], [], []
-    if R is not None and R["steady"]:
+    if init is not None:
+        assert all(sum(1 for e in init if e[0] == k) == Nk[k] for k in range(nk)), "init 的各型台数与 Nk 不一致"
+        for (k, i, v) in init: rk.append(k); rph.append(i); rv.append(v)
+    elif R is not None and R["steady"]:
         for k in range(nk):
             L = I.L[k]; W = sum(R["W"][k])
             n = [Nk[k] * R["W"][k][i] // W for i in range(L)]
@@ -193,6 +198,11 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
     while t < Tmax:
         if trace is not None and trace.get("snap_at") is not None and "snap" not in trace and t >= trace["snap_at"]:   # T13：第一次到达 snap_at 时的状态（只记录）
             trace["snap"] = dict(t=t, rph=list(rph), rv=list(rv), tf=[list(x) for x in tf], fr=list(fr), psite=list(psite))
+        if trace is not None and trace.get("snap_ts"):     # T19：多个时刻的机器人状态（只记录）
+            sn = trace.setdefault("snaps", [])
+            while len(sn) < len(trace["snap_ts"]) and t >= trace["snap_ts"][len(sn)]:
+                sn.append(dict(at=trace["snap_ts"][len(sn)], t=t, rk=list(rk), rph=list(rph), rv=list(rv),
+                               lag=[list(x) for x in lag], phl=[list(x) for x in phl]))
         if R is not None:
             for k in range(nk):
                 for s in I.elig[k]: lag[k][s] = clip(lag[k][s] + planQ(k, s, t) - planQ(k, s, tprev), R["CQ"][k][s])
@@ -225,6 +235,7 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
         for q in due:
             s = psite[q]
             dv = -1.0; force = False
+            pl_r, pl_ac = -1, -1      # T19：按计划派的机器人与它的记账相位（与 C++ 相同）
             if rdd is not None and t < rdd["W"]:
                 c = ndec; ndec += 1
                 if trace is not None: trace.setdefault("decs", []).append([s, t, 1])     # T16：窗口决策 (站, 时刻, 值岗时长；缺岗为 1)
@@ -261,7 +272,8 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
             if planx is not None and t < planx["end"]:     # T13 RH-MIP：与 C++ 相同的按计划派
                 lst = pxm.get((s, t))
                 if lst:
-                    for ei, (k2, i2, r2) in enumerate(lst):
+                    for ei, ent in enumerate(lst):
+                        k2, i2, r2 = ent[0], ent[1], ent[2]; a2 = ent[3] if len(ent) > 3 else -1     # RH-MIP 直接传 3 元组；T19 的第 4 项是记账相位
                         if planx.get("late"):     # T15 小检查：与 C++ planxlate 相同，同型同相位里取就绪最晚的（相同时取原顺序靠前的）
                             pk = -1
                             for r in order:
@@ -269,6 +281,7 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
                         else: pk = next((r for r in order if rk[r] == k2 and rph[r] == i2 and tool_ok(r, s)), -1)
                         if pk < 0: continue
                         order.remove(pk); order.insert(0, pk); force = (r2 == 1) and (plan_until is None or t < plan_until)
+                        pl_r, pl_ac = pk, a2
                         del lst[ei]; break
             if pd is not None:     # T13：与 C++ 相同的重排与按基因取候选
                 if pd["mode"] == 1: order = sorted(order)
@@ -313,10 +326,11 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
                 rv[r] = t - ld + nx; rph[r] = nph; cnt[k][i] -= 1; cnt[k][nph] += 1; att[r] += 1
                 if trace is not None and not trace.get("light"):    # T13 起多记 3 项：尾节点虚拟时刻 v = t − 前置、所用工具 [(类, 编号)]、本班后是否提前大修
                     trace["disp"].append((t, s, q, r, k, i, planned, rv[r], t + I.d[k], t - ld, [(c[2], c[3]) for c in ch], int(nph == 0 and i != I.L[k] - 1)))
-                D[k][i] += 1; tot[k] += 1
+                ia = pl_ac if (r == pl_r and 0 <= pl_ac < I.L[k]) else i     # T19：规则的历史计数按记账相位记
+                D[k][ia] += 1; tot[k] += 1
                 if R is not None:
                     lag[k][s] = clip(lag[k][s] - R["Q"][s], R["CQ"][k][s])
-                    phl[k][i] -= I.L[k]
+                    phl[k][ia] -= I.L[k]
                     if t >= H:
                         for i2 in range(I.L[k]): phl[k][i2] += 1
                     for i2 in range(I.L[k]): phl[k][i2] = clip(phl[k][i2], R["CP"][k])
@@ -340,11 +354,11 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
 
 
 def parse_planx(path):
-    """与 C++ parse_planx 相同：首行 "end T"，其余每行 "s D k i r"（一行一台），同一 (s, D) 内保持文件顺序。"""
+    """与 C++ parse_planx 相同：首行 "end T"，其余每行 "s D k i r [a]"（一行一台；T19 可选第 6 列 a = 记账相位，缺省 −1），同一 (s, D) 内保持文件顺序。"""
     lines = open(path).read().split("\n"); end = int(lines[0].split()[1]); e = {}
     for line in lines[1:]:
         a = line.split()
-        if len(a) == 5: s, D, k, i, r = map(int, a); e.setdefault((s, D), []).append((k, i, r))
+        if len(a) in (5, 6): s, D, k, i, r = map(int, a[:5]); e.setdefault((s, D), []).append((k, i, r, int(a[5]) if len(a) == 6 else -1))
     return dict(end=end, e=e)
 
 
