@@ -1,0 +1,1 @@
+(/ (min deficit (min (+ (* duty (+ flex -1.4475403861143112)) (min flex (/ -1.4475403861143112 duty))) (min deficit (/ flex duty)))) (/ 1.485778732732376 (min phase deficit)))

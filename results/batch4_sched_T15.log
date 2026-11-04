@@ -1,0 +1,204 @@
+11-01 07:27:03 启动 14 PGID 3609566 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-01
+11-01 07:27:09 启动 15 PGID 3609593 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-02
+11-01 07:27:46 启动 16 PGID 3609647 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-03
+11-01 07:27:52 启动 17 PGID 3609666 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-04
+11-01 07:57:31 启动 18 PGID 3614452 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K1-05
+11-01 08:03:04 启动 19 PGID 3615617 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-00
+11-01 08:04:07 启动 20 PGID 3615702 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-01
+11-01 08:16:44 启动 21 PGID 3616769 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-02
+11-01 08:22:18 启动 22 PGID 3618718 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-03
+11-01 08:31:28 启动 23 PGID 3619832 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-04
+11-01 08:41:41 启动 24 PGID 3623019 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py lp m03-K12-05
+11-01 08:48:44 启动 25 PGID 3623928 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-00
+11-01 08:49:23 启动 26 PGID 3624024 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-01
+11-01 08:49:29 启动 27 PGID 3624077 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-02
+11-01 08:50:08 启动 28 PGID 3624219 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-03
+11-01 08:51:48 启动 29 PGID 3624428 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-04
+11-01 08:52:24 启动 30 PGID 3624518 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K1-05
+11-01 08:54:36 启动 31 PGID 3624814 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-00
+11-01 08:54:42 启动 32 PGID 3624874 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-01
+11-01 08:54:48 启动 33 PGID 3624884 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-02
+11-01 08:55:24 启动 34 PGID 3625014 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-03
+11-01 08:55:30 启动 35 PGID 3625025 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-04
+11-01 08:57:42 启动 36 PGID 3626208 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m02-K12-05
+11-01 08:59:18 启动 37 PGID 3626569 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-00
+11-01 09:03:25 启动 38 PGID 3626855 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-01
+11-01 09:04:31 启动 39 PGID 3626975 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-02
+11-01 09:05:07 启动 40 PGID 3627151 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-03
+11-01 09:05:13 启动 41 PGID 3627172 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-04
+11-01 09:05:19 启动 42 PGID 3627182 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K1-05
+11-01 09:05:55 启动 43 PGID 3627313 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-00
+11-01 09:06:01 启动 44 PGID 3627324 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-01
+11-01 09:06:37 启动 45 PGID 3627419 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-02
+11-01 09:08:16 启动 46 PGID 3627630 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-03
+11-01 09:09:26 启动 47 PGID 3627759 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-04
+11-01 09:13:32 启动 48 PGID 3628083 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_rlp m03-K12-05
+11-01 09:14:38 启动 49 PGID 3628213 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-00 0
+11-01 09:14:41 启动 50 PGID 3628226 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-00 1
+11-01 09:15:17 启动 51 PGID 3628311 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-00 2
+11-01 09:15:23 启动 52 PGID 3628363 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-01 0
+11-01 09:15:29 启动 53 PGID 3628419 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-01 1
+11-01 09:16:05 启动 54 PGID 3628555 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-01 2
+11-01 09:16:11 启动 55 PGID 3628574 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-02 0
+11-01 09:16:47 启动 56 PGID 3628666 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-02 1
+11-01 09:17:23 启动 57 PGID 3628755 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-02 2
+11-01 09:18:29 启动 58 PGID 3628880 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-03 0
+11-01 09:19:36 启动 59 PGID 3629050 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-03 1
+11-01 09:19:42 启动 60 PGID 3629070 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-03 2
+11-01 09:23:48 启动 61 PGID 3629393 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-04 0
+11-01 09:24:54 启动 62 PGID 3629514 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-04 1
+11-01 09:25:33 启动 63 PGID 3629660 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-04 2
+11-01 09:25:39 启动 64 PGID 3629713 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-05 0
+11-01 09:26:15 启动 65 PGID 3629846 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-05 1
+11-01 09:26:21 启动 66 PGID 3629858 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K1-05 2
+11-01 09:26:57 启动 67 PGID 3629943 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-00 0
+11-01 09:27:30 启动 68 PGID 3630025 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-00 1
+11-01 09:27:36 启动 69 PGID 3630045 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-00 2
+11-01 09:28:42 启动 70 PGID 3630175 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-01 0
+11-01 09:29:49 启动 71 PGID 3630333 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-01 1
+11-01 09:29:55 启动 72 PGID 3630344 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-01 2
+11-01 09:35:04 启动 73 PGID 3630791 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-02 0
+11-01 09:35:40 启动 74 PGID 3630929 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-02 1
+11-01 09:35:46 启动 75 PGID 3630983 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-02 2
+11-01 09:35:52 启动 76 PGID 3630993 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-03 0
+11-01 09:36:28 启动 77 PGID 3631123 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-03 1
+11-01 09:36:34 启动 78 PGID 3631141 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-03 2
+11-01 09:39:47 启动 79 PGID 3631504 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-04 0
+11-01 09:40:23 启动 80 PGID 3631592 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-04 1
+11-01 09:40:56 启动 81 PGID 3631680 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-04 2
+11-01 09:41:02 启动 82 PGID 3631690 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-05 0
+11-01 09:44:08 启动 83 PGID 3631946 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-05 1
+11-01 09:45:44 启动 84 PGID 3632169 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m02-K12-05 2
+11-01 09:45:50 启动 85 PGID 3632180 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-00 0
+11-01 09:45:56 启动 86 PGID 3632274 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-00 1
+11-01 09:46:02 启动 87 PGID 3632284 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-00 2
+11-01 09:46:38 启动 88 PGID 3632420 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-01 0
+11-01 09:46:44 启动 89 PGID 3632444 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-01 1
+11-01 09:47:50 启动 90 PGID 3632560 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-01 2
+11-01 09:48:26 启动 91 PGID 3632649 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-02 0
+11-01 09:50:33 启动 92 PGID 3632834 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-02 1
+11-01 09:51:09 启动 93 PGID 3632926 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-02 2
+11-01 09:51:15 启动 94 PGID 3632987 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-03 0
+11-01 09:55:57 启动 95 PGID 3633449 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-03 1
+11-01 09:56:33 启动 96 PGID 3633542 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-03 2
+11-01 09:57:09 启动 97 PGID 3633670 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-04 0
+11-01 09:57:15 启动 98 PGID 3633691 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-04 1
+11-01 09:57:51 启动 99 PGID 3634447 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-04 2
+11-01 09:58:27 启动 100 PGID 3634571 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-05 0
+11-01 09:58:33 启动 101 PGID 3634630 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-05 1
+11-01 10:01:43 启动 102 PGID 3635148 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K1-05 2
+11-01 10:01:49 启动 103 PGID 3635202 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-00 0
+11-01 10:02:22 启动 104 PGID 3635241 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-00 1
+11-01 10:02:55 启动 105 PGID 3635283 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-00 2
+11-01 10:03:28 启动 106 PGID 3635328 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-01 0
+11-01 10:06:07 启动 107 PGID 3635601 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-01 1
+11-01 10:06:40 启动 108 PGID 3635691 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-01 2
+11-01 10:06:46 启动 109 PGID 3635703 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-02 0
+11-01 10:07:22 启动 110 PGID 3635828 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-02 1
+11-01 10:07:28 启动 111 PGID 3635841 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-02 2
+11-01 10:08:04 启动 112 PGID 3635941 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-03 0
+11-01 10:08:40 启动 113 PGID 3636078 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-03 1
+11-01 10:08:46 启动 114 PGID 3636129 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-03 2
+11-01 10:08:52 启动 115 PGID 3636139 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-04 0
+11-01 10:10:59 启动 116 PGID 3636332 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-04 1
+11-01 10:12:05 启动 117 PGID 3636457 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-04 2
+11-01 10:16:47 启动 118 PGID 3636915 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-05 0
+11-01 10:17:23 启动 119 PGID 3637010 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-05 1
+11-01 10:17:59 启动 120 PGID 3637097 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_fd m03-K12-05 2
+11-01 10:19:08 启动 121 PGID 3637354 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-00 0
+11-01 10:19:14 启动 122 PGID 3637374 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-00 1
+11-01 10:19:48 启动 123 PGID 3637455 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-00 2
+11-01 10:21:24 启动 124 PGID 3637568 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-01 0
+11-01 10:21:57 启动 125 PGID 3637649 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-01 1
+11-01 10:23:03 启动 126 PGID 3637772 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-01 2
+11-01 10:23:09 启动 127 PGID 3637789 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-02 0
+11-01 10:24:15 启动 128 PGID 3637917 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-02 1
+11-01 10:24:51 启动 129 PGID 3638007 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-02 2
+11-01 10:27:30 启动 130 PGID 3638234 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-03 0
+11-01 10:28:36 启动 131 PGID 3638410 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-03 1
+11-01 10:30:19 启动 132 PGID 3638626 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-03 2
+11-01 10:32:25 启动 133 PGID 3638857 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-04 0
+11-01 10:33:31 启动 134 PGID 3638979 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-04 1
+11-01 10:34:04 启动 135 PGID 3639067 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-04 2
+11-01 10:34:37 启动 136 PGID 3639149 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-05 0
+11-01 10:35:13 启动 137 PGID 3639245 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-05 1
+11-01 10:35:49 启动 138 PGID 3639335 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K1-05 2
+11-01 10:37:28 启动 139 PGID 3639453 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-00 0
+11-01 10:38:34 启动 140 PGID 3639583 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-00 1
+11-01 10:44:38 启动 141 PGID 3640002 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-00 2
+11-01 10:45:41 启动 142 PGID 3640082 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-01 0
+11-01 10:52:14 启动 143 PGID 3640531 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-01 1
+11-01 10:53:17 启动 144 PGID 3640612 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-01 2
+11-01 11:30:02 启动 145 PGID 3644306 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-02 0
+11-01 11:31:38 启动 146 PGID 3644508 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-02 1
+11-01 11:35:15 启动 147 PGID 3644844 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-02 2
+11-01 11:35:21 启动 148 PGID 3644903 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-03 0
+11-01 11:36:57 启动 149 PGID 3645060 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-03 1
+11-01 11:38:36 启动 150 PGID 3645276 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-03 2
+11-01 11:40:12 启动 151 PGID 3645647 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-04 0
+11-01 11:52:49 启动 152 PGID 3647021 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-04 1
+11-01 12:04:59 启动 153 PGID 3653499 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-04 2
+11-01 12:17:03 启动 154 PGID 3654366 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-05 0
+11-01 12:29:10 启动 155 PGID 3655252 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-05 1
+11-01 12:30:43 启动 156 PGID 3655408 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m02-K12-05 2
+11-01 12:33:49 启动 157 PGID 3655670 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-00 0
+11-01 12:35:25 启动 158 PGID 3655822 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-00 1
+11-01 12:37:31 启动 159 PGID 3656054 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-00 2
+11-01 12:38:37 启动 160 PGID 3656174 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-01 0
+11-01 12:41:47 启动 161 PGID 3656546 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-01 1
+11-01 12:42:20 启动 162 PGID 3656589 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-01 2
+11-01 12:46:26 启动 163 PGID 3656874 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-02 0
+11-01 12:49:32 启动 164 PGID 3657084 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-02 1
+11-01 12:59:39 启动 165 PGID 3660295 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-02 2
+11-01 13:01:15 启动 166 PGID 3660461 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-03 0
+11-01 13:04:18 启动 167 PGID 3660668 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-03 1
+11-01 13:24:26 启动 168 PGID 3662073 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-03 2
+11-01 13:35:36 启动 169 PGID 3662903 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-04 0
+11-01 13:37:09 启动 170 PGID 3663059 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-04 1
+11-01 13:39:15 启动 171 PGID 3663307 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-04 2
+11-01 13:45:21 启动 172 PGID 3663818 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-05 0
+11-01 13:48:28 启动 173 PGID 3664032 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-05 1
+11-01 13:51:04 启动 174 PGID 3664251 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K1-05 2
+11-01 13:52:40 启动 175 PGID 3664416 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-00 0
+11-01 14:00:47 启动 176 PGID 3666098 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-00 1
+11-01 14:28:34 启动 177 PGID 3668100 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-00 2
+11-01 14:34:07 启动 178 PGID 3668522 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-01 0
+11-01 14:40:47 启动 179 PGID 3669024 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-01 1
+11-01 14:45:23 启动 180 PGID 3669383 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-01 2
+11-01 14:50:29 启动 181 PGID 3669815 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-02 0
+11-01 14:51:02 启动 182 PGID 3669854 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-02 1
+11-01 14:52:05 启动 183 PGID 3669974 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-02 2
+11-01 14:53:39 启动 184 PGID 3670120 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-03 0
+11-01 14:57:12 启动 185 PGID 3670373 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-03 1
+11-01 15:00:48 启动 186 PGID 3672005 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-03 2
+11-01 15:01:54 启动 187 PGID 3672136 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-04 0
+11-01 15:05:30 启动 188 PGID 3672392 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-04 1
+11-01 15:12:07 启动 189 PGID 3672899 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-04 2
+11-01 15:13:10 启动 190 PGID 3673022 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-05 0
+11-01 15:15:13 启动 191 PGID 3673207 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-05 1
+11-01 15:20:17 启动 192 PGID 3673562 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py ub_es m03-K12-05 2
+11-01 15:24:53 启动 193 PGID 3675238 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-00 7200
+11-01 15:33:00 启动 194 PGID 3675798 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-01 7200
+11-01 15:39:33 启动 195 PGID 3676283 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-02 7200
+11-01 15:42:09 启动 196 PGID 3676551 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-03 7200
+11-01 17:24:56 启动 197 PGID 3687748 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-04 7200
+11-01 17:41:30 启动 198 PGID 3689057 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K1-05 7200
+11-01 17:48:04 启动 199 PGID 3689590 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-00 7200
+11-01 18:01:08 启动 200 PGID 3691671 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-01 7200
+11-01 19:05:22 启动 201 PGID 3703212 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-02 7200
+11-01 19:24:59 启动 202 PGID 3706343 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-03 7200
+11-01 19:36:06 启动 203 PGID 3707341 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-04 7200
+11-01 19:48:10 启动 204 PGID 3709216 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m02-K12-05 7200
+11-01 20:01:14 启动 205 PGID 3711366 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-00 7200
+11-01 21:11:53 启动 206 PGID 3717700 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-01 7200
+11-01 21:36:27 启动 207 PGID 3719594 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-02 7200
+11-01 21:52:32 启动 208 PGID 3720840 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-03 7200
+11-01 22:14:36 启动 209 PGID 3723545 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-04 7200
+11-01 23:28:18 启动 210 PGID 3731502 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K1-05 7200
+11-01 23:42:22 启动 211 PGID 3733892 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-00 7200
+11-02 00:04:57 启动 212 PGID 3741468 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-01 7200
+11-02 00:30:02 启动 213 PGID 3743411 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-02 7200
+11-02 01:37:40 启动 214 PGID 3748494 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-03 7200
+11-02 01:46:16 启动 215 PGID 3749131 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-04 7200
+11-02 02:05:21 启动 216 PGID 3750553 /home/hk/miniconda3/envs/ana/bin/python3 code/t15_job.py mip m03-K12-05 7200
+11-02 04:05:46 全部结束

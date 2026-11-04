@@ -1,0 +1,1 @@
+(min (min (/ (- nextocc (- flex phase)) (min (* -1.165757113875677 duty) -1.5206514465205982)) (/ (- (- (+ phase -1.4148046951645932) (- phase flex)) deficit) (* phase phase))) (* wait (max (* -1.165757113875677 duty) (max deficit phase))))

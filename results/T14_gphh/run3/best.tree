@@ -1,0 +1,1 @@
+(min (min (+ (min (* (max -0.8095197320477712 -0.8095197320477712) 1.1791138507391214) -0.8095197320477712) (max (/ (* wait phase) nextocc) wait)) (- (- phase duty) (min deficit phase))) (min (- phase duty) (+ (* (max phase -0.8095197320477712) (/ duty duty)) -0.8095197320477712)))
