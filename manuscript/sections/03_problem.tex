@@ -38,7 +38,6 @@ Table~\ref{tab:notation} lists the notation.
 A robot of type $k$ serves duties of $d_k$ slots and is maintained after every duty.
 The maintenance follows a cycle of $L_k$ duties: a short maintenance after each of the first $L_k - 1$ duties, and an overhaul after the last.
 The position of a duty in this cycle is its \emph{phase} $i \in \{0, \dots, L_k - 1\}$.
-Short maintenances may differ in length; only the overhaul returns the robot to the start of its cycle.
 The time $o_{k,i}$ runs from the start of a phase-$i$ duty until the robot is ready to leave for its next duty, without the trip back from the site; it covers the duty, tool removal, maintenance and the preparation of the next duty.
 A duty of type $k$ needs $q_k$ tools whose types are in $\mathcal{C}_k$.
 Site $s$ needs exactly $K_s$ robots of types in $\mathcal{E}_s$ on duty in every slot.
