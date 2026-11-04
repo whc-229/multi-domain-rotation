@@ -12,7 +12,7 @@ We want the smallest fleet of robots and tools that can do this.
 \subsection{Sites, Robots, and Tools}
 \label{sec:problem:entities}
 
-Time is divided into slots of length $u$ ($u = 2$\,h in our instances).
+Time is divided into slots of length $u$.
 All robots and tools are kept at one depot.
 
 \textbf{Sites.}
@@ -75,4 +75,4 @@ We call this problem multi-domain rotation rostering (MDRR); a domain is a site.
 
 The horizon is infinite on purpose.
 A fleet is bought once and must keep the sites staffed for years.
-A schedule that is feasible for a planning horizon, such as 720\,h, may run short later; Section~\ref{sec:experiments} shows how often this happens when a search optimizes a finite horizon.
+A schedule that is feasible for a finite planning horizon may run short later; Section~\ref{sec:experiments} shows how often this happens when a search optimizes a finite horizon.
