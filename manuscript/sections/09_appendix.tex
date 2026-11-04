@@ -1,9 +1,23 @@
-% 证据：prior/.../超长周期_数学/第三轮_定理与证据.md（命题 2(i) 的定价）；研究笔记/06。
+% 证据：prior/.../超长周期_数学/第三轮_定理与证据.md（命题 2(i) 的定价）；研究笔记/06；code/t6_job.py（工具约束）。
+\section{Tool Constraints of the Rate Relaxation}
+\label{app:tools}
+
+Let $y_{k,s,j}$ be the number of type-$j$ tools used per slot by the duties of type-$k$ robots at site $s$, with $y_{k,s,j} = 0$ if $j \notin \mathcal{J}_k$.
+The rate relaxation \eqref{eq:rate} also contains
+\begin{equation*}
+\begin{aligned}
+  & \textstyle\sum_{j} y_{k,s,j} = q_k \sum_i x_{k,i,s} && \forall k, s,\\
+  & \textstyle\sum_{k,s} \tau^{\mathrm{tool}}_{k,s,j}\, y_{k,s,j} \le M_j && \forall j,
+\end{aligned}
+\end{equation*}
+and $y \ge 0$.
+The first gives every duty its $q_k$ tools; the second counts tool time as \eqref{eq:rate} counts robot time.
+
 \section{Proof of the Bound in Proposition~\ref{prop:linear}}
 \label{app:linear}
 
-Let $g = (1, 2k)$ and $S = 2k+1$.
-Give slot $t$ the price
+Let $(\tau_0, \tau_1) = (1, 2k)$ and $P = 2k+1$.
+Give time $t$ the price
 \begin{equation*}
   w(t) =
   \begin{cases}
@@ -13,7 +27,7 @@ Give slot $t$ the price
     0, & \text{otherwise.}
   \end{cases}
 \end{equation*}
-A new robot serves its first four duties at slots $t_1 < t_2 < t_3 < t_4$ with $t_2 \ge t_1 + 1$, $t_3 \ge t_2 + 2k$ and $t_4 \ge t_3 + 1$, and its fifth duty after slot $4k$.
-Checking the cases shows that it collects at most $S$.
-Every slot must be served by $K$ robots, so the robots together collect $K \sum_t w(t) = K(2k^2 + 2k + 1)$.
-Hence at least $K(2k^2+2k+1)/S = K(S^2+1)/(2S)$ robots are needed.
+A new robot serves its first four duties at times $t_1 < t_2 < t_3 < t_4$ with $t_2 \ge t_1 + 1$, $t_3 \ge t_2 + 2k$ and $t_4 \ge t_3 + 1$, and its fifth duty after time $4k$.
+Checking the cases shows that it collects at most $P$.
+Every time unit must be served by $K$ robots, so the robots together collect $K \sum_t w(t) = K(2k^2 + 2k + 1)$.
+Hence at least $K(2k^2+2k+1)/P = K(P^2+1)/(2P)$ robots are needed.
