@@ -3,12 +3,9 @@
 
 % 证据：prior/.../多型号多地/mtms.py（步长）、tools_model.py（工具占用）、freshlb.py（开班时刻）；研究笔记/01 §2、07。
 % 用户决定：多站点单基地（10-27）、提前大修只在启动窗口内（10-29）、单目标（10-30）。
-% 写法（11-04 用户意见）：公式按小节集中成块，块后统一解释；实例数值放实验一节。
-% 11-04：问题直接在格上定义，去掉格长 u 和取整式；小时换算成格放实验一节。
-
-A new fleet of robots must keep several sites staffed without end.
-We seek the smallest fleet of robots and tools that can do so.
-Table~\ref{tab:notation} lists the notation.
+% 写法（11-04 用户意见）：实例数值放实验一节；问题直接在格上定义，小时换算成格放实验一节。
+% 11-04 第二次：仿照 RDD 稿第三节和 Bertsimas–Sethuraman 2002 的写法，问题用文字讲清，只保留目标式；
+%   时间原点取"所有机型都能出发的第一格"（原 c_0），于是站点 s 从 λ_s 开始值守。
 
 \begin{table}[t]
   \centering
@@ -25,55 +22,48 @@ Table~\ref{tab:notation} lists the notation.
     $d_k$ & duty length of type $k$ \\
     $L_k$ & duties in one maintenance cycle of type $k$ \\
     $\mu_{k,i,s}$ & time a phase-$i$ duty at site $s$ occupies a type-$k$ robot \\
-    $\alpha_{k,s}$, $\beta_{k,s,j}$ & tool busy time before and after the duty start \\
     $\mathcal{J}$, $\mathcal{C}_k$, $q_k$ & tool types; types compatible with $k$; tools per duty \\
+    $\alpha_{k,s}$, $\beta_{k,s,j}$ & tool busy time before and after the duty start \\
     $W$ & length of the start-up window \\
     $N_k$, $M_j$ & numbers of type-$k$ robots and type-$j$ tools \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\subsection{Robots, Tools and Sites}
-\label{sec:problem:entities}
-
+A new fleet of robots must keep several sites staffed without end.
+We seek the smallest fleet of robots and tools that can do so.
 Time is divided into slots of equal length, and all durations are integer numbers of slots.
+Table~\ref{tab:notation} lists the notation.
 
+\textbf{Sites.}
+The robots start from one depot.
+Site $s$ is $\lambda_s$ slots away and needs exactly $K_s$ robots on duty in every slot; only robots of types in $\mathcal{E}_s$ may serve there.
+
+\textbf{Robots.}
 A robot of type $k$ serves duties of $d_k$ slots and is maintained after every duty.
 The maintenance follows a cycle of $L_k$ duties: a short maintenance after each of the first $L_k - 1$ duties, and an overhaul after the last.
 The position of a duty in this cycle is its \emph{phase} $i \in \{0, \dots, L_k - 1\}$.
-A duty of type $k$ needs $q_k$ tools whose types are in $\mathcal{C}_k$.
-Site $s$ needs exactly $K_s$ robots of types in $\mathcal{E}_s$ on duty in every slot.
+A phase-$i$ duty at site $s$ occupies the robot for $\mu_{k,i,s}$ slots from its start: the duty, the trip back, the maintenance and the preparation of the next duty.
+The robot then travels to its next site, possibly after waiting, and serves its next duty in phase $i + 1 \bmod L_k$.
 
-Let a type-$k$ robot start a phase-$i$ duty at site $s$ in slot $D$, and let its next duty be at site $s'$ in slot $D'$.
-Then
-\begin{gather}
-  D' \ge D + \mu_{k,i,s} + \lambda_{s'}, \label{eq:next}\\
-  B_{k,s,j}(D) = [\,D - \alpha_{k,s},\ D + \beta_{k,s,j}). \label{eq:tool}
-\end{gather}
-The occupancy $\mu_{k,i,s}$ runs from the start of the duty until the robot is back at the depot and ready to leave again; it covers the duty, the trip back, maintenance and preparation.
-The robot then needs $\lambda_{s'}$ slots to reach the next site, and it may also wait longer.
-The next duty is in phase $i + 1 \bmod L_k$.
-A type-$j$ tool of this duty is busy during $B_{k,s,j}(D)$: from $\alpha_{k,s}$ slots before the duty, for installation and the trip, until $\beta_{k,s,j}$ slots after its start, when it has been removed and serviced.
+\textbf{Tools.}
+A duty of type $k$ needs $q_k$ tools whose types are in $\mathcal{C}_k$.
+A type-$j$ tool is busy from $\alpha_{k,s}$ slots before the duty starts, for installation and the trip, until $\beta_{k,s,j}$ slots after it starts, when it has been removed and serviced.
 A tool serves one duty at a time and needs no maintenance cycle.
 
-\subsection{Start-Up and Feasibility}
-\label{sec:problem:start}
-
-At slot $0$ every robot is new and in phase $0$; a type-$k$ robot can leave the depot from slot $v_k^0$.
-A new robot is in the same state as a robot that has just finished an overhaul.
-In the start-up window $[0, W)$, a robot may take the overhaul after any duty instead of after phase $L_k - 1$; it then returns to phase $0$.
-After the window every robot follows its cycle.
+\textbf{Start-up.}
+At slot $0$ every robot is new and in phase $0$, which is the state right after an overhaul.
+Site $s$ must be staffed from slot $\lambda_s$, the first slot a robot can reach it.
+In the start-up window $[0, W)$ a robot may take the overhaul after any duty and return to phase $0$; after the window it follows its cycle.
 
 A \emph{schedule} gives every robot an infinite sequence of duties, waits and early overhauls, and gives every duty its tools.
-Let $n_s(t)$ be the number of robots with types in $\mathcal{E}_s$ on duty at site $s$ in slot $t$.
-Site $s$ is staffed from slot $t_s = c_0 + \lambda_s$, where $c_0 = \max_k v_k^0$ is the first slot from which every type can leave.
-\begin{gather}
-  n_s(t) = K_s, \qquad s \in \mathcal{S},\ t \ge t_s, \label{eq:cover}\\
-  \min \quad \textstyle\sum_{k} N_k + \sum_{j} M_j . \label{eq:objective}
-\end{gather}
-A schedule is \emph{feasible} if every robot respects \eqref{eq:next}, no tool is busy for two duties at the same time under \eqref{eq:tool}, and every site is staffed as in \eqref{eq:cover}.
-The problem asks for a feasible schedule with the fewest resources \eqref{eq:objective}.
-We call this problem multi-domain rotation rostering (MDRR); a domain is a site.
+It is \emph{feasible} if no robot or tool is busy with two duties at once and every site is staffed as required.
+Multi-domain rotation rostering (MDRR) asks for a feasible schedule that minimizes
+\begin{equation}
+  \textstyle\sum_{k \in \mathcal{K}} N_k + \sum_{j \in \mathcal{J}} M_j ,
+  \label{eq:objective}
+\end{equation}
+the number of robots and tools; a domain is a site.
 
 The horizon is infinite because a fleet is bought once and serves for years.
 A schedule that is feasible over a finite horizon can run short later; Section~\ref{sec:experiments} shows how often this happens when a search optimizes a finite horizon.
