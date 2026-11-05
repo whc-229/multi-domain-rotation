@@ -12,7 +12,8 @@
     补救后的台数再用 rost5 judge 独立判定，字段与 size 输出相同。
 (D) 消融 shorteval 用的 finite 选项与 judge 的 rescue（新程序）：训练实例 m04-K1-00 上，ours 的规则 + finite，rddfd 限 40 代（360 格）；
     最终解用 judge（finite、360 格）重判逐字段相同；再按长期口径 judge，不可行时 judge 加 rescue，补救后的台数用 judge（不加 rescue）独立判定，字段相同。
-输出 results/T20/check0.jsonl，打印不一致数。用法：python3 code/t20_check.py <旧 rost5> <新 rost5>"""
+输出 results/T20/<文件名>（默认 check0.jsonl；改程序后重核对用新文件名，不覆盖旧结果），打印不一致数。
+用法：python3 code/t20_check.py <旧 rost5> <新 rost5> [输出文件名]"""
 import os, sys, json, random, subprocess, tempfile, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import ROOT, load_train, inst_paths  # noqa: E402
@@ -216,7 +217,8 @@ def main():
         bc = part_c(new, out)
         bd = part_d(new, tmpd, out)
     os.makedirs(os.path.join(ROOT, "results", "T20"), exist_ok=True)
-    with open(os.path.join(ROOT, "results", "T20", "check0.jsonl"), "w") as f:
+    fn = sys.argv[3] if len(sys.argv) > 3 else "check0.jsonl"
+    with open(os.path.join(ROOT, "results", "T20", fn), "w") as f:
         for r in out: f.write(json.dumps(r, ensure_ascii=False) + "\n")
     print(json.dumps(dict(new_path=sum(r["part"] == "new_path" for r in out), new_path_mismatch=ba,
                           old_path=sum(r["part"] == "old_path" for r in out), old_path_mismatch=bb, rescue_cases=3, rescue_judge_mismatch=bc, finite_mismatch=bd)))

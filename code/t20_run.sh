@@ -10,6 +10,6 @@ mkdir -p "$3"
 xargs -P "$2" -L 1 bash -c '
   to="$0"; kind="$1"; shift 1
   if [ "$kind" = job ]; then name="$2__$3__s$4__$1"; cmd=(code/t20_job.py "$@"); else name="lb__$1__$2__m$3${4:+__$4}"; cmd=(code/t20_lb_job.py "$@"); fi
-  timeout "$to" "$T20_PY" "${cmd[@]}" > "$T20_LOG/$name.log" 2>&1
-  echo "$(date "+%m-%d %H:%M:%S") $kind $* 退出码 $?"' < "$1" >> "$4"
+  timeout "$to" "$T20_PY" "${cmd[@]}" > "$T20_LOG/$name.log" 2>&1; rc=$?
+  echo "$(date "+%m-%d %H:%M:%S") $kind $* 退出码 $rc"' < "$1" >> "$4"
 echo "$(date "+%m-%d %H:%M:%S") 全部结束" >> "$4"

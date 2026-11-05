@@ -45,3 +45,8 @@ results/T7/geno/
 code/cpp/rost5.t16
 results/T16/dualw/
 results/T13/rules/
+
+# T20：作业日志、锁文件、调度 PID 不进仓库
+results/T20/**/logs/
+results/T20/**/*.lock
+results/T20/chain.pid

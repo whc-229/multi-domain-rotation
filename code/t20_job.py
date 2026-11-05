@@ -49,11 +49,11 @@ def gphh_tree(seed):
     return os.path.join(ROOT, "results", "T14_gphh", f"run{seed}", "best.tree")
 
 
-def py_check(I, rec, sp):
+def py_check(I, name, rec, sp):
     """本方法一类：Python 参考实现重跑最终解（T_eval 格），与 rost5 eval 比较缺岗、提前大修次数、窗口决策数。"""
     with tempfile.TemporaryDirectory(prefix="t20py_") as tmpd:
         gp = os.path.join(tmpd, "best.geno"); write_geno(gp, rec["W"], rec["ndev"], rec["qon"], rec["genes"], 1)
-        _, txt = inst_paths(rec["inst"], SPLIT)
+        _, txt = inst_paths(name, SPLIT)
         e = c_json(["eval", txt, rec["Teval"], "0"] + rec["Nk"] + ["|"] + rec["Mj"] + ["|", "|"] + sp["eval_opts"] + [f"rdd={gp}"])
     D = ref.decode_geno(rec["genes"], rec["W"], rec["ndev"], rec["qon"], True)
     p = ref.run(I, rec["Nk"], rec["Mj"], rec["Teval"], False, rdd=D, **sp["py"])
@@ -134,6 +134,7 @@ def main():
         import t20_ours
         pre = t20_ours.prepare(stage, name)                     # 按实例缓存；pre["wall"] 是预处理用时（扣出预算）
         pre_sec = pre["wall"]; extra["pre"] = {k: pre[k] for k in pre if k not in ("thetas",)}
+        t0 = time.time()                                        # 第一个作业在这里算了预处理，不重复计入作业用时
         if pre.get("sigma_R", -1) < 0: rec = dict(R=-1, status="fail", note="σ 定不出台数")
         else:
             sp = t20_ours.spec(stage, name, I, S, method); extra["spec_fallback"] = sp["fallback"]
@@ -155,13 +156,16 @@ def main():
                     if short: rec.update(short_checks(rec, txt, sp, dump, tmpd, Wd))
                     else: rec.update(t13_job.checks(rec, txt, sp["opts"], dump, tmpd, "ours", Wd))
                     rec["cmd"] = " ".join(args[:-1])
-                    if rec["R"] >= 0: rec.update(py_check(I, rec, sp))
+                    if rec["R"] >= 0: rec.update(py_check(I, name, rec, sp))
                 extra["search_tl"] = round(tl, 1)
     else:
         raise ValueError(method)
     rec.update(extra)
+    wall_job = time.time() - t0
+    # 方法用时（对照预算）：rost5 自己的计时（size / fd / rddfd 的 sec，含起点定台数）+ 预处理；RH-MIP 取整个子进程的用时。不含作业内核对。
+    msec = (wall_job if method == "rhmip" else (rec.get("sec") or 0.0)) + pre_sec
     rec.update(stage=stage, method=method, inst=name, m=m, family=I.meta["family"], seed=seed, S=S, W_reset=W, TL=TL,
-               pre_sec=round(pre_sec, 1), wall_job=round(time.time() - t0, 1), wall=round(time.time() - t0 + pre_sec, 1))
+               pre_sec=round(pre_sec, 1), wall_job=round(wall_job, 1), wall=round(wall_job + pre_sec, 1), method_sec=round(msec, 1))
     rec["proven"] = int(rec.get("verify_cert") == 1 and rec.get("exact") == 1)
     rec["feasible"] = int(rec.get("R", -1) >= 0 and (rec["proven"] == 1 or rec.get("verify_gaps") == 0))
     rec["window_ok"] = int(rec.get("last_reset", -1) < W)

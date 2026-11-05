@@ -4,7 +4,8 @@
 - ours（T20-3，等审核方说"开始"再派）：ours（种子 0–4，160 个）；消融（种子 0–2）noconn、shorteval（m = 4–10），conn_only（1 次，160 个）；
   窗口扫描 ours_w0.25 / ours_w1 / ours_w2（m = 4、6，种子 0–2）。
 作业超时（防卡死）= 2·预算 + 30 分钟。长作业排前面（按预算从大到小），同预算内按方法、实例、种子。
-用法：python3 code/t20_make_jobs.py <lb|opp|lbopp|ours> <输出文件>"""
+可选第 3 个参数：只取这些 m（逗号分隔，例如 2,3,4,6），只作用于 job 行（lb 行总是全部 160 个实例）。
+用法：python3 code/t20_make_jobs.py <lb|opp|lbopp|ours> <输出文件> [m 列表]"""
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mdrr import test_names  # noqa: E402
@@ -42,7 +43,9 @@ def job_lines(stage, plan):
 def main():
     """按种类写作业表。"""
     kind, out = sys.argv[1], sys.argv[2]
-    allt = test_names(); mid = test_names([4, 6, 8, 10]); small = test_names([4, 6])
+    ms = [int(x) for x in sys.argv[3].split(",")] if len(sys.argv) > 3 else None
+    keep = lambda L: [n for n in L if ms is None or m_of(n) in ms]
+    allt = keep(test_names()); mid = keep(test_names([4, 6, 8, 10])); small = keep(test_names([4, 6]))
     lines = []
     if kind in ("lb", "lbopp"): lines += lb_jobs()
     if kind in ("opp", "lbopp"):

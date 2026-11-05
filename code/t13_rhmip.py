@@ -199,8 +199,13 @@ def rolling(I, S, txt, tl, tot, tl0=None, extra=()):
     TI = ToolInst(I); W = 2 * S; Tplan = 4 * S; Lw = S; step = int(math.ceil(S / 2)); t0 = time.time()
     pb = json.loads(subprocess.run([R5, "size", txt, "365", "60000", "60000"] + TM.opts("pb", I.name if hasattr(I, "name") else "", S) + list(extra),
                                    capture_output=True, text=True, check=True).stdout)
-    if pb["R"] < 0: return {}, 0, None, None, [dict(step=-1, status="PB 定不出台数，无热启动")]
-    N, M = list(pb["Nk"]), list(pb["Mj"]); plan = defaultdict(list); log = []; j = 0
+    log = []
+    if pb["R"] < 0:
+        # T20（技术选择）：PB 定不出台数时，用定台数最后试的台数作热启动（有缺岗，模型里记在缺岗松弛上，仍是可行的初始解）；
+        # T13 里 PB 都定得出台数，不受影响
+        if not pb.get("Nk"): return {}, 0, None, None, [dict(step=-1, status="PB 定不出台数，也没有试过的台数，无热启动")]
+        log.append(dict(step=-1, status="PB 定不出台数，用最后试的台数作热启动", Nk=pb["Nk"], Mj=pb["Mj"]))
+    N, M = list(pb["Nk"]), list(pb["Mj"]); plan = defaultdict(list); j = 0
     while j * step < Tplan:
         ff = j * step; H = ff + Lw
         if time.time() - t0 > tot: log.append(dict(step=j, status="总限时到，之后按 PB")); break

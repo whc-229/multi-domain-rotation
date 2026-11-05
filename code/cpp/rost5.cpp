@@ -490,9 +490,13 @@ Res run_core(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const 
 // 按顺序找窗口内的缺岗决策 c（没有可行候选）；从 c−1 往回到 c−12，对每个决策 tt 依次试别的候选 alt（跳过 tt 上已有的强制选择），
 // tt 之后的强制选择清空、其余按基因重新推进到 c：若 [tt, c) 内没有缺岗且到 c 时有可行候选，就采用（强制 tt 取 alt）。都不行时 c 照常缺岗。
 // 返回强制选择表（下标 = 窗口决策序号，−1 = 不强制）。结果只取决于台数与基因，所以解码仍是确定性的。
+// T20：定台数限时到点时中止修复（只在 size_res 内、且用了 sizetl / rescue 时）；g_d5_abort 告诉 run 这次仿真作废。
+static bool size_late();
+bool g_in_size = false, g_d5_abort = false;
 vector<int> d5_repair(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Policy& P) {
     const int BT = 12; vector<int> f; Policy Q = P; Q.repair = false; ll from = 0;
     while (true) {
+        if (g_in_size && size_late()) { g_d5_abort = true; return f; }   // T20
         Q.pdf = &f; Q.stop_dec = -1; Q.stop_wgap = true; Q.wgap_from = from;
         Res r = run_core(I, Nk, Mj, Q, P.pdW, false);
         if (r.gap_dec < 0) break;
@@ -517,7 +521,9 @@ vector<int> d5_repair(const Inst& I, const vector<int>& Nk, const vector<int>& M
 }
 // 仿真入口：D5 带修复时先算强制选择表，再仿真；其余情况就是 run_core。
 Res run(const Inst& I, const vector<int>& Nk, const vector<int>& Mj, const Policy& P, ll Tmax, bool certify, ll stop_at = -1, vector<ll>* snap = nullptr, ll gap_cap = LLONG_MAX) {
-    if (P.pd_mode == 2 && P.repair) { vector<int> f = d5_repair(I, Nk, Mj, P); Policy Q = P; Q.repair = false; Q.pdf = &f; return run_core(I, Nk, Mj, Q, Tmax, certify, stop_at, snap, gap_cap); }
+    if (P.pd_mode == 2 && P.repair) { vector<int> f = d5_repair(I, Nk, Mj, P);
+        if (g_d5_abort) { g_d5_abort = false; Res a{LLONG_MAX / 8, 0, -1, -1, vector<ll>(I.nk, 0), vector<ll>(I.nt, 0)}; return a; }   // T20：限时到点，作废（缺岗记成极大值，调用方随后按超时判本档失败）
+        Policy Q = P; Q.repair = false; Q.pdf = &f; return run_core(I, Nk, Mj, Q, Tmax, certify, stop_at, snap, gap_cap); }
     return run_core(I, Nk, Mj, P, Tmax, certify, stop_at, snap, gap_cap);
 }
 
@@ -538,8 +544,11 @@ int g_certadd = 1; const int CERT_PATIENCE = 5;
 // T20：定台数的限时（sizetl=秒，0 = 不限）：放大起点的每一档最多用这么久，到时本档判失败、换下一档（D5-EA 的起点定台数用）。
 // g_size_deadline 由 size_rule_hs 在每档开始时设置；size_res 在每次仿真之间检查。
 double g_sizetl = 0; chrono::steady_clock::time_point g_size_deadline; bool g_size_timed = false; int g_size_timeouts = 0;
-static inline bool size_late() { return g_size_timed && chrono::steady_clock::now() > g_size_deadline; }
+// T20：fd / rddfd 在 rescue 时另设总限时 g_hard_deadline（= 命令开始 + 限时秒），起点与后备起点的定台数到点即停（判失败），整个作业不超预算
+bool g_hard_on = false; chrono::steady_clock::time_point g_hard_deadline;
+static bool size_late() { auto now = chrono::steady_clock::now(); return (g_size_timed && now > g_size_deadline) || (g_hard_on && now > g_hard_deadline); }
 SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tcert, int max_add = 60) {
+    struct InSize { InSize() { g_in_size = true; } ~InSize() { g_in_size = false; } } in_size_guard;   // T20：标记"在定台数内"，D5 修复据此响应限时
     vector<int> Nk = g_N0.empty() ? I.N0 : g_N0, Mj = g_M0.empty() ? I.M0 : g_M0; int nk = I.nk, nt = I.nt, nres = nk + nt;
     auto bump = [&](int idx, int d) { if (idx < nk) Nk[idx] += d; else Mj[idx - nk] += d; };
     auto tot = [&]() { int s = 0; for (int x : Nk) s += x; for (int x : Mj) s += x; return s; };
@@ -571,6 +580,7 @@ SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tc
         }
     }
     if (g_sizelog) fprintf(g_sizelog, "pruned Nk=%s Mj=%s\n", vec_s(Nk).c_str(), vec_s(Mj).c_str());
+    if (size_late()) { g_size_timeouts++; return {-1, Nk, Mj, "fail", -1}; }   // T20 限时（回删最后一步可能是作废的仿真）
     if (mode == "finite") return {tot(), Nk, Mj, "finite", -1};
     bool strict = (mode == "certs");
     ll best_g0 = LLONG_MAX; int stall = 0;      // g_certadd = 1 的停止条件：缺岗最低值与连续未刷新的次数
@@ -1112,6 +1122,7 @@ int main(int argc, char** argv) {
         vector<int> N0s = g_N0, M0s = g_M0;
         auto t0 = chrono::steady_clock::now();
         auto el = [&]() { return chrono::duration<double>(chrono::steady_clock::now() - t0).count(); };
+        if (g_rescue) { g_hard_on = true; g_hard_deadline = t0 + chrono::microseconds((long long)(tlim * 1e6)); }   // T20：总限时
         mt19937_64 rng(seed); uniform_real_distribution<double> U01(0, 1); normal_distribution<double> N01(0, 1);
         const int NW = (int)U.P.w.size();
         // 基因型 → 策略。Dec 持有 RDD 与基因的存储，不能复制
@@ -1303,6 +1314,7 @@ int main(int argc, char** argv) {
         vector<int> N0s = g_N0, M0s = g_M0;
         auto t0 = chrono::steady_clock::now();
         auto el = [&]() { return chrono::duration<double>(chrono::steady_clock::now() - t0).count(); };
+        if (g_rescue) { g_hard_on = true; g_hard_deadline = t0 + chrono::microseconds((long long)(tlim * 1e6)); }   // T20：总限时
         // 1) 默认规则本身（与 rdd 命令相同）：F0 = 默认规则定出的台数；N_dev、K 也相同
         int fac0 = 0; SizeRes s0 = size_rule(I, U.P, U.is_rlp, Hs, Tcert, &fac0, U.facloop); int base_hsfb = g_hsfb_used;
         g_N0 = N0s; g_M0 = M0s;

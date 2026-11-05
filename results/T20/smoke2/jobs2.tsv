@@ -1,0 +1,6 @@
+9000 job smoke2 d5 m15-K12-06 0
+9000 job smoke2 ours m15-K12-06 0
+9000 job smoke2 noconn m15-K12-06 0
+2400 job smoke2 ours m04-K12-06 0
+2400 job smoke2 noconn m04-K12-06 0
+2400 job smoke2 shorteval m04-K12-06 0

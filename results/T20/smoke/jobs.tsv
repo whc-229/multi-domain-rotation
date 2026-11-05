@@ -1,0 +1,24 @@
+9000 job smoke rhmip m15-K12-06 0
+9000 job smoke d5 m15-K12-06 0
+9000 job smoke esdw m15-K12-06 0
+9000 job smoke rk m15-K12-06 0
+9000 job smoke rddhand m15-K12-06 0
+9000 job smoke ours m15-K12-06 0
+9000 job smoke noconn m15-K12-06 0
+9000 job smoke conn_only m15-K12-06 0
+9000 job smoke pb m15-K12-06 0
+9000 job smoke gphh m15-K12-06 0
+2400 job smoke rhmip m04-K12-06 0
+2400 job smoke d5 m04-K12-06 0
+2400 job smoke esdw m04-K12-06 0
+2400 job smoke rk m04-K12-06 0
+2400 job smoke rddhand m04-K12-06 0
+2400 job smoke ours m04-K12-06 0
+2400 job smoke noconn m04-K12-06 0
+2400 job smoke conn_only m04-K12-06 0
+2400 job smoke pb m04-K12-06 0
+2400 job smoke gphh m04-K12-06 0
+2400 job smoke rhmip m02-K12-06 0
+7200 lb m04-K12-06 rate 0
+7200 lb m04-K12-06 fr 1
+7200 lb m04-K12-06 frRw 1
