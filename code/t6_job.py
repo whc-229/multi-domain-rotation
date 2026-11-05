@@ -161,7 +161,7 @@ def rate_job(I):
     return out
 
 
-def frRw_job(I, H, W, dual_path, perm=None, crossover="on"):
+def frRw_job(I, H, W, dual_path, perm=None, crossover="on", tl=6 * 3600):
     """LP_fr^Rw：删去 D ≥ W 的提前大修弧后求解，其余与 t2_job.fresh_job 相同（索引核对、对偶证书、保存流量）。
     perm / crossover 只在失败作业的重跑时改动（与 T2 的重跑设置相同：行列随机重排 + 关 crossover）。"""
     import t2_job
@@ -170,7 +170,7 @@ def frRw_job(I, H, W, dual_path, perm=None, crossover="on"):
     drop = [col for (col, k, i, v, s, r) in idx["arcs"] if r == 1 and v + I.lead(s) >= W]
     keep = {}
     t0 = time.time()
-    r = fresh_full(I, H, reset=True, solver="ipm", time_limit=6 * 3600, keep=keep, drop=drop, perm=perm, crossover=crossover)
+    r = fresh_full(I, H, reset=True, solver="ipm", time_limit=tl, keep=keep, drop=drop, perm=perm, crossover=crossover)   # tl：T20 每个 LP 限时 1 小时（默认值与原来相同）
     out = dict(obj=r["obj"], N=r.get("N"), M=r.get("M"), lp_status=keep.get("status"), n=r.get("n"), n_drop=len(drop), sec=round(time.time() - t0, 1))
     if r["obj"] is None or keep.get("row_dual") is None: return out
     x = keep["x"]; obj = float(keep["c"] @ x); out["obj_full"] = obj

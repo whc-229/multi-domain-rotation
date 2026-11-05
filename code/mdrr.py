@@ -46,6 +46,22 @@ def train_names(m_list=None, fam_list=None):
     return out
 
 
+def load_inst(name, split):
+    """T20（第五批，11-06 用户定：第一次使用测试实例）：按指定划分加载实例，并核对实例文件里记的划分相同。
+    训练 / 调参代码仍只用 load_train；只有第五批的正式实验代码调用本函数加载测试实例。"""
+    jp, _ = inst_paths(name, split)
+    I = load_json(jp)
+    assert I.meta["split"] == split, (name, split, I.meta["split"])
+    return I
+
+
+def test_names(m_list=None, fam_list=None):
+    """bench/split.json 里的测试实例名（按 m、族过滤）。只给第五批（T20）用。"""
+    sp = json.load(open(os.path.join(BENCH, "split.json")))
+    return [e["name"] for e in sp["instances"] if e["split"] == "test" and (m_list is None or e["m"] in m_list)
+            and (fam_list is None or e["family"] in fam_list)]
+
+
 def load_train(name):
     """只允许按名字加载训练实例；测试实例在第一批中不得读取。"""
     jp, _ = inst_paths(name, "train")

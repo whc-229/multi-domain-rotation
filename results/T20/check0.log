@@ -1,0 +1,60 @@
+新路径 pb m02-K12-00 0 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 pb m02-K12-00 1 一致 {'gaps': 14, 'cert': -1, 'period': -1, 'fg': [207, 0, -1]}
+新路径 pb m04-K1-00 0 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 pb m04-K1-00 1 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 esdw m02-K12-00 0 一致 {'gaps': 39, 'cert': -1, 'period': -1, 'fg': [282, 0, -1]}
+新路径 esdw m02-K12-00 1 一致 {'gaps': 5, 'cert': -1, 'period': -1, 'fg': [217, 0, -1]}
+新路径 esdw m04-K1-00 0 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 esdw m04-K1-00 1 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 gphh m02-K12-00 0 一致 {'gaps': 332, 'cert': 0, 'period': 305, 'fg': [297, 0, -1]}
+新路径 gphh m02-K12-00 1 一致 {'gaps': 681, 'cert': 0, 'period': 2820, 'fg': [242, 0, -1]}
+新路径 gphh m04-K1-00 0 一致 {'gaps': 2291, 'cert': -1, 'period': -1, 'fg': [131, 3, -1]}
+新路径 gphh m04-K1-00 1 一致 {'gaps': 25, 'cert': -1, 'period': -1, 'fg': [172, 2, -1]}
+新路径 rk m02-K12-00 0 一致 {'gaps': 17, 'cert': -1, 'period': -1, 'fg': [312, 0, -1]}
+新路径 rk m02-K12-00 1 一致 {'gaps': 32, 'cert': -1, 'period': -1, 'fg': [22, 0, 3]}
+新路径 rk m04-K1-00 0 一致 {'gaps': 1, 'cert': -1, 'period': -1, 'fg': [194, 1, 3]}
+新路径 rk m04-K1-00 1 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 d5 m02-K12-00 0 一致 {'gaps': 344, 'cert': 0, 'period': 920, 'fg': [257, 0, -1]}
+新路径 d5 m02-K12-00 1 一致 {'gaps': 681, 'cert': 0, 'period': 599, 'fg': [252, 0, -1]}
+新路径 d5 m04-K1-00 0 一致 {'gaps': 1236, 'cert': 0, 'period': 9301, 'fg': [222, 2, -1]}
+新路径 d5 m04-K1-00 1 一致 {'gaps': 2866, 'cert': -1, 'period': -1, 'fg': [201, 1, -1]}
+新路径 rhmip m02-K12-00 0 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 rhmip m02-K12-00 1 一致 {'gaps': 2, 'cert': -1, 'period': -1, 'fg': [222, 0, -1]}
+新路径 rhmip m04-K1-00 0 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 rhmip m04-K1-00 1 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 rddhand m02-K12-00 0 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 rddhand m02-K12-00 1 一致 {'gaps': 2, 'cert': -1, 'period': -1, 'fg': [22, 0, 3]}
+新路径 rddhand m04-K1-00 0 一致 {'gaps': 4, 'cert': -1, 'period': -1, 'fg': [37, 2, 1]}
+新路径 rddhand m04-K1-00 1 一致 {'gaps': 0, 'cert': -1, 'period': -1, 'fg': [-1, -1, -1]}
+新路径 ours m02-K12-00 0 一致 {'gaps': 0, 'cert': 1, 'period': 7200, 'fg': [-1, -1, -1]}
+新路径 ours m02-K12-00 1 一致 {'gaps': 2, 'cert': 0, 'period': 8400, 'fg': [292, 0, -1]}
+新路径 ours m04-K1-00 0 一致 {'gaps': 0, 'cert': 1, 'period': 13200, 'fg': [-1, -1, -1]}
+新路径 ours m04-K1-00 1 一致 {'gaps': 4, 'cert': 0, 'period': 8400, 'fg': [22, 2, 2]}
+旧路径 eval pb 3000 相同
+旧路径 eval pb 60000 相同
+旧路径 eval esdw 3000 相同
+旧路径 eval esdw 60000 相同
+旧路径 eval gphh 3000 相同
+旧路径 eval gphh 60000 相同
+旧路径 eval rk 3000 相同
+旧路径 eval rk 60000 相同
+旧路径 eval d5 3000 相同
+旧路径 eval d5 60000 相同
+旧路径 eval rhmip 3000 相同
+旧路径 eval rhmip 60000 相同
+旧路径 eval rddhand 3000 相同
+旧路径 eval rddhand 60000 相同
+旧路径 eval ours 3000 相同
+旧路径 eval ours 60000 相同
+旧路径 size fifo R 63 相同
+旧路径 size pb R 57 相同
+旧路径 size gphh R 57 相同
+旧路径 fd rk R 59 相同
+旧路径 fd esdw R 56 相同
+旧路径 rddfd rddhand R 56 相同
+旧路径 rddfd ours R 53 相同
+补救 m04-K12-00 fifo {"part": "rescue", "inst": "m04-K12-00", "method": "fifo", "extra": [], "without": {"R": -1, "status": "fail", "verify_gaps": -1, "factor": -1, "sec": 0.6}, "with_rescue": {"R": 108, "status": "uncert", "Nk": [2, 3, 50, 11, 0, 0], "Mj": [6, 0, 35, 1], "start_factor": 300, "verify_gaps": 0, "verify_cert": -1, "exact": -1, "rescue_add": 0, "size_timeouts": 0}, "sec": 4.5, "judge_feasible": 1, "judge_same": 1}
+补救 m04-K12-00 pb {"part": "rescue", "inst": "m04-K12-00", "method": "pb", "extra": [], "without": {"R": 85, "status": "uncert", "verify_gaps": 2, "factor": 130, "sec": 2.7}, "with_rescue": {"R": 93, "status": "uncert", "Nk": [4, 3, 26, 14, 1, 1], "Mj": [8, 2, 34, 0], "start_factor": 130, "verify_gaps": 0, "verify_cert": -1, "exact": -1, "rescue_add": 8, "size_timeouts": 0}, "sec": 9.3, "judge_feasible": 1, "judge_same": 1}
+补救 m04-K1-00 d5 {"part": "rescue", "inst": "m04-K1-00", "method": "d5", "extra": ["sizetl=20"], "without": {"R": -1, "status": "fail", "verify_gaps": -1, "factor": -1, "sec": 62.7}, "with_rescue": {"R": 69, "status": "cert", "Nk": [10, 0, 33, 0], "Mj": [0, 0, 26, 0], "start_factor": 200, "verify_gaps": 0, "verify_cert": 1, "exact": 1, "rescue_add": 0, "size_timeouts": 2}, "sec": 66.7, "judge_feasible": 1, "judge_same": 1}
+finite {"part": "finite", "inst": "m04-K1-00", "R_finite": 53, "base_R": 54, "gens": 40, "judge_finite_same": 1, "long_feasible": 0, "long": {"R": 53, "feasible": 0, "status": "fail", "gaps": 2, "cert": 0, "verify_gaps": -1, "verify_cert": -2, "verify_period": -1, "exact": -1, "resets": 0, "last_reset": -1, "sec": 0.01}, "rescue": {"R": 54, "feasible": 1, "status": "cert", "gaps": 0, "cert": 1, "verify_gaps": 0, "verify_cert": 1, "verify_period": 2100, "exact": 1, "resets": 15, "last_reset": 106, "sec": 0.02, "rescue_add": 1, "Nk": [7, 0, 21, 0], "Mj": [0, 3, 18, 5]}, "rescue_judge_same": 1}
+{"new_path": 32, "new_path_mismatch": 0, "old_path": 23, "old_path_mismatch": 0, "rescue_cases": 3, "rescue_judge_mismatch": 0, "finite_mismatch": 0}

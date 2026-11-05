@@ -175,8 +175,10 @@ def entries(per, rph0, mode, T0):
     return ent, gaps
 
 
-def construct(I, disp, rk, rph0, mode, C, c0, S):
-    """贪心接入：返回 dict（T₀、计划条目、各型额外台数、缺口数、各类执行者计数）。计划条目 (t, 站, 型, 相位, 提前大修, 派工序号)。"""
+def construct(I, disp, rk, rph0, mode, C, c0, S, win=None):
+    """贪心接入：返回 dict（T₀、计划条目、各型额外台数、缺口数、各类执行者计数）。计划条目 (t, 站, 型, 相位, 提前大修, 派工序号)。
+    win（T20）：提前大修窗口。None = T19 的做法（窗口放宽到 max(2·S_max, T_plan)）；给定时窗口固定为 [0, win)，
+    预工作需要的提前大修落在窗口外时这个新机器人不能用，缺口改由额外机器人补（自然大修不受窗口限制）。"""
     nr = len(rk); nk = len(I.T)
     per = robot_runs(I, disp, nr)
     T0 = c0 + C
@@ -184,7 +186,7 @@ def construct(I, disp, rk, rph0, mode, C, c0, S):
     e_times = [e[1] for e in ent if e[1] is not None]
     Tplan = max(e_times) + 1 if e_times else c0
     if mode == "last": Tplan = max(Tplan, T0)
-    planW = max(2 * S, Tplan)
+    planW = max(2 * S, Tplan) if win is None else win
     v0 = [math.ceil(t["off_h"] / U - 1e-9) for t in I.T]
     lead = [I.lead(s) for s in range(len(I.sites))]
     # 新机器人（每台 Y 机器人一台）：入场前的预工作状态

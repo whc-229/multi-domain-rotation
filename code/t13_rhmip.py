@@ -12,14 +12,15 @@
 最后用 rost5 size 定台数（起点 = 上面的机队，规则 = 按计划派 + PB 兜底，放大起点循环）+ 60 万格复核，与其他方法相同的判定。
 技术选择（写进报告）：L_w = S_max，Δ = ⌈S_max/2⌉，每步限时 TL 秒，总限时 TOT 秒（到了就停止滚动，之后按 PB）。
 结果写进 <输出目录>/<实例>.json（原子写入，已存在就跳过）。
-用法：python3 code/t13_rhmip.py <实例> [每步限时秒，默认 60] [总限时秒，默认 3600] [输出目录]"""
+T20（第五批）加的可选参数：划分（默认 train）、第 0 步限时（"-" = 同其余步）、追加给 rost5 定台数的选项（逗号分隔，例如 rescue）；不给时与 T13 相同。
+用法：python3 code/t13_rhmip.py <实例> [每步限时秒，默认 60] [总限时秒，默认 3600] [输出目录] [划分] [第 0 步限时] [追加选项]"""
 import os, sys, json, time, math, subprocess
 from collections import defaultdict
 import numpy as np
 import highspy
 from scipy.sparse import coo_matrix
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from mdrr import ROOT, U, ToolInst, load_train, inst_paths  # noqa: E402
+from mdrr import ROOT, U, ToolInst, load_train, load_inst, inst_paths  # noqa: E402
 from freshlb import S_max  # noqa: E402
 import rost5_ref as ref  # noqa: E402
 import t13_methods as TM  # noqa: E402
@@ -192,10 +193,11 @@ def simulate(I, Nk, Mj, plan, end, W, H, snap_at):
     return tr, r
 
 
-def rolling(I, S, txt, tl, tot):
-    """滚动求解，返回 (计划 dict, 终点, 机队 N、M, 逐步记录)。"""
+def rolling(I, S, txt, tl, tot, tl0=None, extra=()):
+    """滚动求解，返回 (计划 dict, 终点, 机队 N、M, 逐步记录)。
+    T20：tl0 = 第 0 步的限时（None 时与其余步相同，即 T13 的设置）；extra = 追加给 rost5 定台数的选项（第五批的 rescue）。"""
     TI = ToolInst(I); W = 2 * S; Tplan = 4 * S; Lw = S; step = int(math.ceil(S / 2)); t0 = time.time()
-    pb = json.loads(subprocess.run([R5, "size", txt, "365", "60000", "60000"] + TM.opts("pb", I.name if hasattr(I, "name") else "", S),
+    pb = json.loads(subprocess.run([R5, "size", txt, "365", "60000", "60000"] + TM.opts("pb", I.name if hasattr(I, "name") else "", S) + list(extra),
                                    capture_output=True, text=True, check=True).stdout)
     if pb["R"] < 0: return {}, 0, None, None, [dict(step=-1, status="PB 定不出台数，无热启动")]
     N, M = list(pb["Nk"]), list(pb["Mj"]); plan = defaultdict(list); log = []; j = 0
@@ -215,7 +217,8 @@ def rolling(I, S, txt, tl, tot):
         gaps = {(key[1], key[2]): int(round(Mo.b[r])) - covw[(key[1], key[2])] for key, r in Mo.rows.items() if key[0] == "c"}
         x0 = Mo.warm(tr["disp"], st0, gaps, (N, M))
         res0 = Mo.A @ x0 - Mo.b
-        t1 = time.time(); st, obj, x = Mo.solve(min(tl, max(1.0, tot - (time.time() - t0))), x0)
+        tl_j = tl0 if (j == 0 and tl0 is not None) else tl
+        t1 = time.time(); st, obj, x = Mo.solve(min(tl_j, max(1.0, tot - (time.time() - t0))), x0)
         warm_obj = float(Mo.cost @ x0)
         log.append(dict(step=j, from_=ff, H=H, n=len(Mo.keys), warm_obj=warm_obj, warm_resid=float(np.abs(res0).max()) if len(res0) else 0.0,
                         status=st, obj=obj, sec=round(time.time() - t1, 1)))
@@ -236,11 +239,14 @@ def rolling(I, S, txt, tl, tot):
 def main():
     name = sys.argv[1]; tl = float(sys.argv[2]) if len(sys.argv) > 2 else 60.0; tot = float(sys.argv[3]) if len(sys.argv) > 3 else 3600.0
     out = sys.argv[4] if len(sys.argv) > 4 else os.path.join(ROOT, "results", "T13", "rhmip")
+    split = sys.argv[5] if len(sys.argv) > 5 else "train"                    # T20：测试实例
+    tl0 = float(sys.argv[6]) if len(sys.argv) > 6 and sys.argv[6] != "-" else None   # T20：第 0 步限时
+    extra = sys.argv[7].split(",") if len(sys.argv) > 7 and sys.argv[7] else []       # T20：追加的 rost5 选项（rescue）
     os.makedirs(out, exist_ok=True); path = os.path.join(out, f"{name}.json")
     if os.path.exists(path): print("已完成，跳过", name); return
-    I = load_train(name); I.name = name; S = S_max(I); W = 2 * S; _, txt = inst_paths(name, "train")
+    I = load_train(name) if split == "train" else load_inst(name, split); I.name = name; S = S_max(I); W = 2 * S; _, txt = inst_paths(name, split)
     t0 = time.time()
-    plan, end, N, Mv, log = rolling(I, S, txt, tl, tot)
+    plan, end, N, Mv, log = rolling(I, S, txt, tl, tot, tl0, extra)
     sec_mip = time.time() - t0
     pf = os.path.join(out, f"{name}.planx")
     with open(pf + ".tmp", "w") as f:
@@ -248,10 +254,10 @@ def main():
         for (s, D) in sorted(plan, key=lambda x: (x[1], x[0])):
             for (k, i, r) in plan[(s, D)]: f.write(f"{s} {D} {k} {i} {r}\n")
     os.replace(pf + ".tmp", pf)
-    opts = TM.opts("pb", name, S) + [f"planx={pf}", f"planW={W}"]
+    opts = TM.opts("pb", name, S) + [f"planx={pf}", f"planW={W}"] + extra
     if N is not None: opts += ["N0=" + ",".join(map(str, N)), "M0=" + ",".join(map(str, Mv))]
     r = json.loads(subprocess.run([R5, "size", txt, "365", "60000", "600000"] + opts, capture_output=True, text=True, check=True).stdout)
-    rec = dict(inst=name, m=I.meta["m"], family=I.meta["family"], method="rhmip", S=S, W=W, tl_step=tl, tl_total=tot,
+    rec = dict(inst=name, m=I.meta["m"], family=I.meta["family"], method="rhmip", S=S, W=W, tl_step=tl, tl_total=tot, tl_step0=tl0, split=split, extra_opts=extra,
                mip_N=N, mip_M=Mv, mip_R=(sum(N) + sum(Mv)) if N else None, plan_end=end, plan_duties=sum(len(v) for v in plan.values()), steps=log,
                sec_mip=round(sec_mip, 1), wall=round(time.time() - t0, 1), cmd_opts=opts, **r)
     rec["proven"] = int(rec.get("verify_cert") == 1 and rec.get("exact") == 1)

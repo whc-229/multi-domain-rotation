@@ -167,6 +167,7 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
     clip = lambda x, c: c if x > c else (-c if x < -c else x)
     tprev = -1
     gaps = 0; resets = 0; seen = {}
+    fg = [-1, -1, -1]      # T20：第一次缺岗 [时刻, 站, 原因]（有候选机器人但工具不够时为该候选的型，否则 −1），与 C++ eval 的 fg 相同
     cnt = [[0] * I.L[k] for k in range(nk)]
     for k in range(nk): cnt[k][0] = Nk[k]
     why_r = [0] * nk; why_t = [0] * nt; ndec = 0
@@ -194,7 +195,7 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
     def out(**kw):
         """返回值：附上归因与窗口决策数。"""
         kw.setdefault("stop_ncand", -1); kw.setdefault("gap_dec", -1)
-        kw.update(why_r=why_r, why_t=why_t, ndec_w=ndec); return kw
+        kw.update(why_r=why_r, why_t=why_t, ndec_w=ndec, fg=list(fg)); return kw
     t = min(fr)
     while t < Tmax:
         if trace is not None and trace.get("snap_at") is not None and "snap" not in trace and t >= trace["snap_at"]:   # T13：第一次到达 snap_at 时的状态（只记录）
@@ -344,6 +345,7 @@ def run_core(I, Nk, Mj, Tmax, certify=True, rlp=None, planf=None, w=None, gap_lo
                 break
             if not done:
                 gaps += 1; fr[q] = t + 1
+                if fg[1] < 0: fg[:] = [t, s, rk[order[0]] if order else -1]
                 if order:
                     for j in TI.R[rk[order[0]]]["C"]: why_t[j] += 1
                 else:
