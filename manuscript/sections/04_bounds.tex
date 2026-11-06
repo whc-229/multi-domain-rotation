@@ -10,16 +10,16 @@
 %   单机型记号与 T_0 改为行内；命题 4 的定价细节移到附录。时间原点为原 c_0，故 T_0 = C_sigma。
 % 11-04 第三次：记号改直白——τ 周转时间（=旧 λ+μ）；工具约束移附录 B；单机型 g→τ、S→P（周期）、s_i→o_i（偏移）、A→O；
 %   接入定理 C_σ 去掉、b_r→e_r（接入时刻）、额外资源 E,F→ΔN,ΔM。
+% 11-06：不用 let/suppose/consider，改用 denotes/represents，句子精简；接入定理按 11-05 结论改为
+%   "第一次大修完成后入场"，σ 只需从任意相位出发可行（不必周期）。
 
-This section answers two questions.
-How many resources does MDRR need at least?
-And how much of the start-up must a schedule optimize before it can repeat a fixed rotation?
-Both answers follow from the maintenance cycle of a robot, which we call its \emph{rotation}.
+This section answers two questions: how many resources MDRR needs at least, and how much of the start-up a schedule must optimize before it can repeat a fixed rotation.
+Both answers come from the maintenance cycle of a robot, its \emph{rotation}.
 
 \subsection{Rate Relaxation}
 \label{sec:bounds:rate}
 
-Let $x_{k,i,s}$ be the long-run number of phase-$i$ duties per slot that type-$k$ robots serve at site $s$, with $x_{k,i,s} = 0$ if $k \notin \mathcal{K}_s$.
+The variable $x_{k,i,s}$ represents the long-run rate, in duties per slot, at which type-$k$ robots serve phase-$i$ duties at site $s$; it is $0$ if $k \notin \mathcal{K}_s$.
 The \emph{rate relaxation} is
 \begin{equation}
 \begin{aligned}
@@ -30,11 +30,11 @@ The \emph{rate relaxation} is
 \end{aligned}
 \label{eq:rate}
 \end{equation}
-together with the tool constraints in Appendix~\ref{app:tools}, and $x \ge 0$.
+with $x \ge 0$ and the tool constraints of Appendix~\ref{app:tools}.
 The first constraint fills every site.
-The second says that a robot serves all phases of its cycle equally often.
-The third counts robot time: each phase-$i$ duty at site $s$ takes a robot away for its turnaround time $\tau_{k,i,s}$, so the duties served per slot, weighted by their turnaround times, cannot exceed the number of robots.
-Tools are counted in the same way with their busy times.
+The second makes a robot serve all phases of its cycle equally often.
+The third counts robot time: a duty keeps a robot busy for its turnaround time, so the turnaround times of the duties served per slot add up to at most the number of robots.
+Tools are counted the same way with their busy times.
 
 \begin{proposition}
 \label{prop:rate}
@@ -42,20 +42,19 @@ Every feasible schedule uses at least $\lceil R \rceil$ resources.
 \end{proposition}
 
 \begin{proof}
-Take a window of $T$ slots after the start-up window and count the duties each robot and tool serves in it.
-A robot that serves $n_{i,s}$ phase-$i$ duties at site $s$ is away for at least $\sum_{i,s} \tau_{k,i,s}\, n_{i,s} - O(1)$ slots, and its phase counts differ by at most one.
-Divide the counts by $T$ and let $T \to \infty$.
-The limits satisfy \eqref{eq:rate} with the numbers of robots and tools of the schedule.
+Count the duties each robot and tool serves in $T$ slots after the start-up window.
+A robot with $n_{i,s}$ phase-$i$ duties at site $s$ is busy for at least $\sum_{i,s} \tau_{k,i,s}\, n_{i,s} - O(1)$ slots, and its phase counts differ by at most one.
+Dividing by $T$ and taking $T \to \infty$ gives a solution of \eqref{eq:rate} with the robots and tools of the schedule.
 \end{proof}
 
 \subsection{Start-Up Relaxation}
 \label{sec:bounds:startup}
 
-The rate relaxation assumes that the robots are already spread over their cycles.
-A new fleet is not: every robot starts in phase $0$, so the first overhauls come close together.
-To measure this cost, let $R_0(H)$ be the optimal value of the linear relaxation of MDRR cut at a horizon $H$.
-In this relaxation each robot is a path through the nodes (phase, slot), whose arcs are duties, waits and early overhauls; each tool is a path through its busy intervals.
-Paths carry fractional flow, sites must be staffed only in slots before $H$, and busy times that end after $H$ are ignored.
+The rate relaxation assumes robots already spread over their cycles.
+A new fleet is not spread: every robot starts in phase $0$, so the first overhauls fall close together.
+The optimum $R_0(H)$ of the linear relaxation of MDRR cut at horizon $H$ measures this cost.
+In this relaxation each robot is a path over the nodes (phase, slot) whose arcs are duties, waits and early overhauls, and each tool is a path over its busy intervals.
+Paths carry fractional flow, sites are staffed only before $H$, and busy time after $H$ is ignored.
 
 \begin{proposition}
 \label{prop:startup}
@@ -63,73 +62,68 @@ For every $H$, every feasible schedule uses at least $\lceil R_0(H) \rceil$ reso
 \end{proposition}
 
 \begin{proof}
-Cut a feasible schedule at $H$.
-Its robots and tools are integral paths that staff every site before $H$.
+A feasible schedule cut at $H$ gives integral paths that staff every site before $H$.
 A longer horizon only adds constraints.
 \end{proof}
 
 \subsection{One Robot Type}
 \label{sec:bounds:single}
 
-For one robot type the bounds can be compared with exact values.
-Consider $K$ posts at one site and measure time in duty lengths, so that each post needs a new robot in every time unit.
-Let $\tau_i$ be the turnaround time of a phase-$i$ duty in this unit.
-A robot that never waits repeats its cycle every $P = \sum_i \tau_i$ units.
-Within a cycle it serves at the offsets $o_i = \sum_{h<i} \tau_h$, $i = 0, \dots, L-1$; let $\mathcal{O}$ be the set of these offsets.
+With one robot type the bounds can be compared with exact values.
+The setting has $K$ posts at one site, and time is measured in duty lengths, so each post needs a new robot in every time unit.
+In this unit $\tau_i$ denotes the turnaround time of a phase-$i$ duty.
+A robot that never waits repeats its cycle every $P = \sum_i \tau_i$ units and serves at the offsets $o_i = \sum_{h<i} \tau_h$ of each cycle; $\mathcal{O}$ is the set of these offsets.
 The rate bound is $\lceil KP/L \rceil$.
 
 \begin{proposition}[Even rotation]
 \label{prop:orbit}
-If $K = mL$ for an integer $m$, then $mP$ robots suffice. This equals the rate bound.
+If $K = mL$ for an integer $m$, then $mP$ robots suffice, which equals the rate bound.
 \end{proposition}
 
 \begin{proof}
-Start $m$ robots at every offset $b \in \{0, \dots, P-1\}$ and let each repeat its cycle from $b$ without waiting.
-Time $t$ is served by the robots with $t - b \in \mathcal{O} \pmod{P}$, that is, by $mL = K$ robots.
+Start $m$ robots at every offset $b \in \{0, \dots, P-1\}$; each repeats its cycle without waiting.
+Time $t$ is then served by the robots with $t - b \in \mathcal{O} \pmod{P}$, that is, by $mL = K$ robots.
 \end{proof}
 
 \begin{proposition}[Start-up cost without early overhaul]
 \label{prop:linear}
-Let $L = 2$ and $(\tau_0, \tau_1) = (1, 2k)$, so $P = 2k+1$.
-Without early overhaul, a new fleet needs at least $K(P^2+1)/(2P)$ robots, while $\lceil KP/2 \rceil$ robots suffice when robots may start anywhere in their cycles.
+For $L = 2$ and $(\tau_0, \tau_1) = (1, 2k)$, so that $P = 2k+1$, a new fleet without early overhaul needs at least $K(P^2+1)/(2P)$ robots, whereas $\lceil KP/2 \rceil$ robots suffice when robots may start anywhere in their cycles.
 The difference grows linearly in $K$.
 \end{proposition}
 
 \begin{proof}
-We give each of the first $4k$ time units a price such that the duties of one new robot collect at most $P$; the prices sum to $K(2k^2+2k+1)$, which gives the bound (Appendix~\ref{app:linear}).
-For the second claim, even $K$ is Proposition~\ref{prop:orbit}.
-For odd $K$, serve $K-1$ posts by Proposition~\ref{prop:orbit} and the last post with $(P+1)/2$ robots that wait one extra unit after each overhaul: their cycle has length $P+1$, and offsets $0, 2, \dots, P-1$ cover every time unit once.
+Each of the first $4k$ time units gets a price such that one new robot collects at most $P$ with its duties; the prices sum to $K(2k^2+2k+1)$, which gives the bound (Appendix~\ref{app:linear}).
+For the second claim, even $K$ follows from Proposition~\ref{prop:orbit}.
+For odd $K$, Proposition~\ref{prop:orbit} serves $K-1$ posts, and $(P+1)/2$ robots serve the last post by waiting one extra unit after each overhaul: their cycle has length $P+1$, and the offsets $0, 2, \dots, P-1$ cover every time unit once.
 \end{proof}
 
 \subsection{A Time Bound: Entering a Rotation}
 \label{sec:time}
 
-The cycles of different robot types do not divide each other, so a good schedule may repeat only after a very long period.
-Encoding one period is therefore not practical.
+The cycles of different robot types do not divide each other, so a good schedule may repeat only after a very long period, and encoding one period is not practical.
 The results below show that it is not needed.
 
-Let $\sigma$ be a feasible periodic schedule in which robots may start anywhere in their cycles; it uses $N_\sigma$ robots and $M_\sigma$ tools.
-Let $T_0$ be the longest time between two overhauls of any robot in $\sigma$.
-Every robot $r$ of $\sigma$ then finishes an overhaul at some slot $e_r \in [0, T_0)$; we take the last one and call it the \emph{entry slot} of $r$.
+Here $\sigma$ represents a feasible schedule whose robots may start in any phase; it uses $N_\sigma$ robots and $M_\sigma$ tools.
+The \emph{entry slot} $e_r$ of a robot $r$ is the first slot at which $r$ finishes an overhaul in $\sigma$, and $T_0 = \max_r e_r$ is the latest entry slot.
+It is at most the longest time between two overhauls of a robot.
 
 \begin{theorem}[Entering a rotation]
 \label{thm:enter}
-There is a fresh-start schedule that agrees with $\sigma$ from slot $T_0$ on and uses $N_\sigma + \Delta N$ robots and $M_\sigma + \Delta M$ tools.
-Here $\Delta N$ robots and $\Delta M$ tools serve, from a fresh start, the duties of $\sigma$ in $[0, T_0)$ that come before the entry slot of their robot.
+A fresh-start schedule exists that agrees with $\sigma$ from slot $T_0$ on and uses $N_\sigma + \Delta N$ robots and $M_\sigma + \Delta M$ tools, where $\Delta N$ robots and $\Delta M$ tools serve, from a fresh start, the duties of $\sigma$ before the entry slots of their robots.
 \end{theorem}
 
 \begin{proof}
-Give each robot $r$ of $\sigma$ a new robot $r'$.
+Each robot $r$ of $\sigma$ gets a new robot $r'$.
 A new robot is in the same state as a robot that has just finished an overhaul, so $r'$ can wait until $e_r$ and then repeat every action of $r$.
-Each tool of $\sigma$ gets a new tool that serves the same duties once their robots have started copying.
-From $T_0$ on all robots copy $\sigma$.
-Before $T_0$ the copies serve every duty of $\sigma$ except those before the entry slot of their robot; the extra robots and tools serve these.
+Each tool of $\sigma$ gets a new tool that serves the same duties once their robots copy $\sigma$.
+From $T_0$ on, all robots copy $\sigma$.
+Before $T_0$, the copies serve every duty of $\sigma$ except those before the entry slots, and the extra robots and tools serve these.
 The copies do not conflict because the robots and tools of $\sigma$ do not.
 \end{proof}
 
 Theorem~\ref{thm:enter} bounds the start-up in time, independently of the numbers of sites, posts and robot types.
 Without early overhaul, $\Delta N$ can grow with the number of posts (Proposition~\ref{prop:linear}).
-With early overhaul, a robot $r'$ can serve some of the missing duties before $e_r$ and then take the overhaul, as long as it is back in phase $0$ at $e_r$.
+With early overhaul, a robot $r'$ can serve some missing duties before $e_r$ and then take the overhaul, as long as it is back in phase $0$ at $e_r$.
 For one robot type the following condition gives $\Delta N = 0$.
 
 \begin{proposition}[Self-cover]
@@ -144,8 +138,8 @@ Condition \eqref{eq:selfcover} holds whenever the turnaround times before the ov
 \end{proposition}
 
 \begin{proof}
-Take a robot of the rotation with offset $b$; it finishes an overhaul at time $b$, where its copy enters.
-Before $b$ the rotation still contains the end of its previous cycle: its phase-$i$ duties at times $b - P + o_i$ for $i \ge i^*$, where $i^* \ge 1$ is the smallest index with $o_i \ge P - b$.
+The robot of the rotation with offset $b$ finishes an overhaul at time $b$, where its copy enters.
+Before $b$, the rotation still holds the end of its previous cycle: its phase-$i$ duties at times $b - P + o_i$ for $i \ge i^*$, where $i^* \ge 1$ is the smallest index with $o_i \ge P - b$.
 The new robot serves these duties itself as its phases $0, 1, \dots$.
 They are $\tau_{i^*+p}$ apart, and after its phase $p$ the robot needs only $\tau_p$, which is no more by \eqref{eq:selfcover}.
 The last of them is at $b - \tau_{L-1}$ in phase $L - 1 - i^* \ne L - 1$; the robot then takes the overhaul and is in phase $0$ at $b$.
@@ -155,20 +149,19 @@ Every time unit is served as in the rotation.
 Fig.~\ref{fig:enter} shows the case $(\tau_0, \tau_1) = (2, 4)$ with two posts.
 Six robots form the even rotation.
 New robots $4'$ and $5'$ serve times $0$ and $1$, take the overhaul, and join at times $4$ and $5$.
-An exhaustive search confirms that without early overhaul a new fleet needs seven robots.
+Without early overhaul, an exhaustive search shows that a new fleet needs seven robots.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig_enter.pdf}
-  \caption{A new fleet enters the even rotation for $(\tau_0, \tau_1) = (2, 4)$ and two posts. Robots $4'$ and $5'$ serve the duties that come before their entry, take an early overhaul, and join the rotation.}
+  \caption{A new fleet enters the even rotation for $(\tau_0, \tau_1) = (2, 4)$ and two posts. Robots $4'$ and $5'$ serve the duties before their entry, take an early overhaul and join the rotation.}
   \label{fig:enter}
 \end{figure}
 
 \begin{corollary}[A short window represents the schedule]
 \label{cor:window}
-The schedule of Theorem~\ref{thm:enter} differs from $\sigma$ only in $[0, T_0)$.
-An encoding that searches the decisions in this window and repeats a rotation afterwards can represent it.
+The schedule of Theorem~\ref{thm:enter} differs from $\sigma$ only in $[0, T_0)$, so an encoding that searches the decisions in this window and repeats a rotation afterwards can represent it.
 \end{corollary}
 
-Our method uses exactly this structure: it encodes decisions in a short start-up window and replays a rule derived from the relaxation afterwards.
+Our method builds on this structure: it constructs the start-up by Theorem~\ref{thm:enter}, encodes a few deviations in a short window and replays a rule derived from the relaxation afterwards.
 Section~\ref{sec:experiments} measures how short the window can be.

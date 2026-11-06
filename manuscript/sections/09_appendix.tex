@@ -2,7 +2,7 @@
 \section{Tool Constraints of the Rate Relaxation}
 \label{app:tools}
 
-Let $y_{k,s,j}$ be the number of type-$j$ tools used per slot by the duties of type-$k$ robots at site $s$, with $y_{k,s,j} = 0$ if $j \notin \mathcal{J}_k$.
+The variable $y_{k,s,j}$ represents the number of type-$j$ tools used per slot by type-$k$ duties at site $s$; it is $0$ if $j \notin \mathcal{J}_k$.
 The rate relaxation \eqref{eq:rate} also contains
 \begin{equation*}
 \begin{aligned}
@@ -16,8 +16,7 @@ The first gives every duty its $q_k$ tools; the second counts tool time as \eqre
 \section{Proof of the Bound in Proposition~\ref{prop:linear}}
 \label{app:linear}
 
-Let $(\tau_0, \tau_1) = (1, 2k)$ and $P = 2k+1$.
-Give time $t$ the price
+For $(\tau_0, \tau_1) = (1, 2k)$ and $P = 2k+1$, time $t$ gets the price
 \begin{equation*}
   w(t) =
   \begin{cases}
@@ -28,6 +27,6 @@ Give time $t$ the price
   \end{cases}
 \end{equation*}
 A new robot serves its first four duties at times $t_1 < t_2 < t_3 < t_4$ with $t_2 \ge t_1 + 1$, $t_3 \ge t_2 + 2k$ and $t_4 \ge t_3 + 1$, and its fifth duty after time $4k$.
-Checking the cases shows that it collects at most $P$.
+A case check shows that it collects at most $P$.
 Every time unit must be served by $K$ robots, so the robots together collect $K \sum_t w(t) = K(2k^2 + 2k + 1)$.
 Hence at least $K(2k^2+2k+1)/P = K(P^2+1)/(2P)$ robots are needed.
