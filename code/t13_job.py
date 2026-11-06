@@ -18,9 +18,9 @@ R5 = os.environ.get("ROST5_BIN", os.path.join(ROOT, "code", "cpp", "rost5"))
 
 
 def eval_args(opts):
-    """rost5 eval 的第 3、4 段：权重（w=）放第 3 段，其余选项放第 4 段（去掉只对定台数有用的 facloop、hsfb、N0、M0，以及 T20 的 rescue、sizetl）。"""
+    """rost5 eval 的第 3、4 段：权重（w=）放第 3 段，其余选项放第 4 段（去掉只对定台数有用的 facloop、hsfb、N0、M0，以及 T20 的 rescue、sizetl、hardtl）。"""
     w = [o for o in opts if o.startswith("w=")]
-    rest = [o for o in opts if not o.startswith(("w=", "hsfb=", "N0=", "M0=", "sizetl=")) and o not in ("facloop", "rescue")]   # T20：rescue、sizetl 只对定台数有用
+    rest = [o for o in opts if not o.startswith(("w=", "hsfb=", "N0=", "M0=", "sizetl=", "hardtl=")) and o not in ("facloop", "rescue")]   # T20：rescue、sizetl、hardtl 只对定台数有用
     return (w[0][2:].split(",") if w else []) + ["|"] + rest
 
 

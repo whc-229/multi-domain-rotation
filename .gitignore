@@ -50,3 +50,4 @@ results/T13/rules/
 results/T20/**/logs/
 results/T20/**/*.lock
 results/T20/chain.pid
+results/T20/chain2.pid

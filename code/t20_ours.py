@@ -3,6 +3,7 @@
 1. 速率 LP（T2 的 rate_job，prior 的 tool_lb）：班率 y[k,s] 与 LP 台数 N、M；
 2. 稳态松弛规则 σ 的文件（T3 的 write_rlp，H = 0、steady 1，起点台数 ⌈N⌉、⌈M⌉）；
 3. σ 定台数：rost5 size（rlp=σ、rescue），与 T3 的 rlp 命令同一个定台数过程，加 11-05 的补救；
+   11-06 审核后补足阶段越过 60 次按缺岗是否还在刷新最低值决定是否继续，并以 hardtl = 预算 − 已用时限住总用时；
 4. 接入构造（code/t19_connector.py 的同一套函数）：8 个 θ × 2 种入场口径，提前大修窗口固定 [0, 2·S_max)
    （11-06 用户定：预工作需要的提前大修落在窗口外时，这个缺口改由额外机器人补；T19 放宽到 T_plan 的做法不再用）；
    取 60 万格可行且资源最少的（同资源取严格证明的，再按 θ、口径）；都不可行时取资源最少的，交给定台数（rescue）补；
@@ -64,7 +65,9 @@ def build(stage, name, split=SPLIT):
     t3_make_rlp.write_rlp(rp, I, 0, True, rate["N"], [ceil(v) for v in rate["N"]], [ceil(v) for v in rate["M"]], np.zeros((0, 6)), y)
     rec.update(R_rate=rate["R_rate"], rate_sec=rate["sec"])
     # 3
-    sg = c_json(["size", txt, 365, 60000, 600000, f"rlp={rp}", "rescue"])
+    from t20_job import TLIM                                 # 推迟导入（t20_job 也导入本模块）
+    hard = max(1.0, TLIM[I.meta["m"]] - (time.time() - t0))  # 11-06 审核：定台数受作业总预算约束（预处理计入预算）
+    sg = c_json(["size", txt, 365, 60000, 600000, f"rlp={rp}", "rescue", f"hardtl={hard:.1f}"])
     sig_feas = sg["R"] >= 0 and ((sg["verify_cert"] == 1 and sg["exact"] == 1) or sg["verify_gaps"] == 0)
     rec.update(sigma_R=sg["R"], sigma_status=sg["status"], sigma_Nk=sg["Nk"], sigma_Mj=sg["Mj"], sigma_feasible=int(sig_feas),
                sigma_factor=sg["start_factor"], sigma_rescue_add=sg.get("rescue_add"), sigma_sec=round(time.time() - t0, 1))

@@ -546,6 +546,13 @@ int g_certadd = 1; const int CERT_PATIENCE = 5;
 double g_sizetl = 0; chrono::steady_clock::time_point g_size_deadline; bool g_size_timed = false; int g_size_timeouts = 0;
 // T20：fd / rddfd 在 rescue 时另设总限时 g_hard_deadline（= 命令开始 + 限时秒），起点与后备起点的定台数到点即停（判失败），整个作业不超预算
 bool g_hard_on = false; chrono::steady_clock::time_point g_hard_deadline;
+// T20（11-06 审核）：size 命令的总限时（hardtl=秒，0 = 不限），到点定台数判失败；fd / rddfd 用自己的限时参数，不用这个。
+double g_hardtl = 0;
+// T20（11-06 审核）：补足阶段的停止条件（rescue 时）：至少补 max_add（60）次；之后只要 Hs 格缺岗在最近 FILL_PATIENCE 次补台里刷新过最低值就继续，否则本档失败。
+// 60 次以内定出的情形与原来逐位相同。g_fill_max 记本命令里各次定台数补足次数的最大值（输出用，看哪些作业越过了 60 次）。
+const int FILL_PATIENCE = 5; int g_fill_max = 0;
+int g_filladd = -1;   // 只为核对：filladd=次数 把补足的下限（及证书阶段的次数上限，即 max_add）改成这个值，用小值走到越过下限的分支；正式作业不用
+extern bool g_rescue;
 static bool size_late() { auto now = chrono::steady_clock::now(); return (g_size_timed && now > g_size_deadline) || (g_hard_on && now > g_hard_deadline); }
 SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tcert, int max_add = 60) {
     struct InSize { InSize() { g_in_size = true; } ~InSize() { g_in_size = false; } } in_size_guard;   // T20：标记"在定台数内"，D5 修复据此响应限时
@@ -553,7 +560,9 @@ SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tc
     auto bump = [&](int idx, int d) { if (idx < nk) Nk[idx] += d; else Mj[idx - nk] += d; };
     auto tot = [&]() { int s = 0; for (int x : Nk) s += x; for (int x : Mj) s += x; return s; };
     Res r = run(I, Nk, Mj, P, H, false); int added = 0;
-    while (r.gaps > 0 && added < max_add) {
+    if (g_filladd >= 0) max_add = g_filladd;   // 只为核对
+    ll fbest = r.gaps; int fstall = 0; const bool fpat = g_rescue;   // T20：补足的最低缺岗与连续未刷新的次数
+    while (r.gaps > 0 && (added < max_add || (fpat && fstall < FILL_PATIENCE))) {
         if (size_late()) { g_size_timeouts++; return {-1, Nk, Mj, "fail", -1}; }   // T20 限时
         vector<ll> sig = r.why_r; sig.insert(sig.end(), r.why_t.begin(), r.why_t.end());
         ll bg = LLONG_MAX, bsig = 0; int bi = -1;
@@ -563,6 +572,8 @@ SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tc
             if (bi < 0 || g < bg || (g == bg && sig[idx] > bsig)) { bg = g; bi = idx; bsig = sig[idx]; }
         }
         bump(bi, 1); added++; r = run(I, Nk, Mj, P, H, false);
+        if (r.gaps < fbest) { fbest = r.gaps; fstall = 0; } else fstall++;   // T20
+        g_fill_max = max(g_fill_max, added);
         if (g_sizelog) fprintf(g_sizelog, "fill add=%d gaps=%lld Nk=%s Mj=%s\n", bi, r.gaps, vec_s(Nk).c_str(), vec_s(Mj).c_str());
     }
     if (r.gaps > 0) { if (g_sizelog) fprintf(g_sizelog, "fail_fill\n"); return {-1, Nk, Mj, "fail", -1}; }
@@ -841,6 +852,8 @@ Rule parse_rule(const Inst& I, int argc, char** argv, int a0) {
         else if (s == "rescue") g_rescue = true;                              // T20
         else if (s == "finite") g_finite = true;                              // T20-3 消融
         else if (s.rfind("sizetl=", 0) == 0) g_sizetl = atof(s.c_str() + 7);  // T20
+        else if (s.rfind("hardtl=", 0) == 0) g_hardtl = atof(s.c_str() + 7);  // T20：size 命令的总限时
+        else if (s.rfind("filladd=", 0) == 0) g_filladd = atoi(s.c_str() + 8);  // 只为核对
         else if (s.rfind("N0=", 0) == 0 || s.rfind("M0=", 0) == 0) {   // T13：定台数起点（RH-MIP 用 MIP 的机队）
             vector<int> v; stringstream ss(s.substr(3)); string x; while (getline(ss, x, ',')) v.push_back(atoi(x.c_str()));
             if (s[0] == 'N') g_N0 = v; else g_M0 = v; }
@@ -1073,6 +1086,7 @@ int main(int argc, char** argv) {
         Rule U = parse_rule(I, argc, argv, 6); RDD DD;
         if (!U.geno.empty()) { Geno G = read_geno(U.geno); DD = decode_geno(G.g, G.W, G.ndev, G.qon, G.reset_opt); U.P.rdd = &DD; }
         auto t0 = chrono::steady_clock::now(); int fac = 0;
+        if (g_hardtl > 0) { g_hard_on = true; g_hard_deadline = t0 + chrono::microseconds((long long)(g_hardtl * 1e6)); }   // T20：作业总预算
         SizeRes sr = size_rule(I, U.P, U.is_rlp, Hs, Tcert, &fac, U.facloop);
         Res v = (sr.R < 0) ? Res{-1, -2, -1, -1, {}, {}} : run(I, sr.Nk, sr.Mj, U.P, Tver, true);
         int exact = (v.cert == 1) ? (exact_check(I, sr.Nk, sr.Mj, U.P, v.enter, v.period) ? 1 : 0) : -1;
@@ -1086,7 +1100,7 @@ int main(int argc, char** argv) {
         double sec = chrono::duration<double>(chrono::steady_clock::now() - t0).count();
         printf("{\"R\": %d, \"status\": \"%s\", \"Nk\": %s, \"Mj\": %s, \"start_factor\": %d, \"near_miss\": %lld, \"verify_gaps\": %lld, \"verify_cert\": %d, \"verify_period\": %lld, \"exact\": %d, \"resets\": %lld, \"last_reset\": %lld, \"ndec_w\": %lld, \"sec\": %.2f",
                sr.R, sr.status.c_str(), vec_s(sr.Nk).c_str(), vec_s(sr.Mj).c_str(), fac, nm, v.gaps, v.cert, v.period, exact, v.resets, v.last_reset, v.ndec_w, sec);
-        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d", n_rescue, g_size_timeouts);   // T20：只在用到新选项时多输出，旧命令输出不变
+        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue, g_size_timeouts, g_fill_max);   // T20：只在用到新选项时多输出，旧命令输出不变
         printf("}\n");
         return 0;
     }
@@ -1301,7 +1315,7 @@ int main(int argc, char** argv) {
                U.W, ndev, K, glen, rho, qon, seed, Teval, g_fdsel.c_str(), g_stall, g_swap,
                bestR, best_status.c_str(), vec_s(bN).c_str(), vec_s(bM).c_str(), bestJ.vgaps, bestJ.vcert, bestJ.vperiod, bestJ.exact, bestJ.resets, bestJ.last_reset, v0.resets, v0.last_reset,
                f0_src, sec_f0, nact, nrep, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str());
-        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d", n_rescue0, g_size_timeouts);   // T20
+        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
         printf("}\n");
         return 0;
     }
@@ -1482,7 +1496,7 @@ int main(int argc, char** argv) {
                U.W, ndev, K, rho, qon, seed, Teval, g_fdsel.c_str(), g_stall, g_swap,
                bestR, best_status.c_str(), vec_s(bN).c_str(), vec_s(bM).c_str(), bestJ.vgaps, bestJ.vcert, bestJ.vperiod, bestJ.exact, bestJ.resets, bestJ.last_reset, v0.resets, v0.last_reset,
                f0_src, sec_f0, nact, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str(), g_beta, dvec17(g_cdf).c_str(), dvec17(dw_used).c_str());
-        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d", n_rescue0, g_size_timeouts);   // T20
+        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
         printf("}\n");
         return 0;
     }

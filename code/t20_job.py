@@ -2,6 +2,8 @@
 预算（单核墙钟，方法自己的预处理都算在内）：m = 2、3、4：300 秒；m = 6：600 秒；m = 8、10：1800 秒；m = 15、20：3600 秒。
 所有方法共用同一个外壳（code/t13_methods.py）加 11-05 用户定的补救（rost5 的 rescue：定台数起点再加 200%、300%；起点复核不通过时
 按第一次缺岗逐个加资源再判定，最多 10 次）。提前大修窗口一律 [0, 2·S_max)。
+11-06 审核后：补足阶段至少补 60 次，之后只要 365 格缺岗在最近 5 次补台里刷新过最低值就继续（rost5 rescue 时）；
+size 命令另加 hardtl（总限时）让定台数受作业预算约束：pb / gphh 取预算，conn_only 取预算 − 预处理，RH-MIP 的两次定台数各取预算。
 
 方法：
 - 对手（T20-2）：
@@ -108,12 +110,12 @@ def main():
     common = ["365", "60000", "600000"]
     if method in ("pb", "gphh"):
         tree = gphh_tree(seed) if method == "gphh" else None
-        opts = TM.opts(method, name, S, tree) + ["rescue"]
+        opts = TM.opts(method, name, S, tree) + ["rescue", f"hardtl={TL}"]   # 11-06 审核：定台数受作业总预算约束
         rec = c_json(["size", txt] + common + opts); rec["cmd"] = " ".join([R5, "size", txt] + common + opts)
         if tree: extra["tree"] = os.path.relpath(tree, ROOT)
     elif method == "rhmip":
         d = os.path.join(ROOT, "results", "T20", stage, "rhmip"); os.makedirs(d, exist_ok=True)
-        args = [sys.executable, os.path.join(ROOT, "code", "t13_rhmip.py"), name, str(TL / 2 / 7), str(TL), d, SPLIT, str(TL / 2), "rescue"]
+        args = [sys.executable, os.path.join(ROOT, "code", "t13_rhmip.py"), name, str(TL / 2 / 7), str(TL), d, SPLIT, str(TL / 2), f"rescue,hardtl={TL}"]   # hardtl：PB 热启动与最后定台数各自最多一个预算（RH-MIP 不截断，11-06 审核）
         subprocess.run(args, capture_output=True, text=True, check=True, env=os.environ)
         rec = json.load(open(os.path.join(d, f"{name}.json"))); rec["cmd"] = " ".join(args)
     elif method in ("esdw", "rk", "d5", "rddhand"):
@@ -139,7 +141,7 @@ def main():
         else:
             sp = t20_ours.spec(stage, name, I, S, method); extra["spec_fallback"] = sp["fallback"]
             if method == "conn_only":
-                args = [R5, "size", txt] + common + sp["opts"] + ["rescue"]
+                args = [R5, "size", txt] + common + sp["opts"] + ["rescue", f"hardtl={max(1.0, TL - pre_sec):.1f}"]
                 rec = c_json(args[1:]); rec["cmd"] = " ".join(args)
             else:
                 Wd = int(SEARCH_W[method] * S); tl = max(1.0, TL - pre_sec)

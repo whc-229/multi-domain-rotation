@@ -433,25 +433,32 @@ def run(I, Nk, Mj, Tmax, certify=True, pd=None, **kw):
 
 
 CERT_PATIENCE = 5
+FILL_PATIENCE = 5   # T20（11-06 审核）：补足阶段越过 max_add 次后的停止条件，对应 C++ 的 FILL_PATIENCE（rescue 时）
 
 
-def size_res(I, pol, Hs, Tcert, N0, M0, certadd=1, max_add=60):
+def size_res(I, pol, Hs, Tcert, N0, M0, certadd=1, max_add=60, fillpat=False, trace=None):
     """逐步对应 C++ size_res(mode = certs)：补足（试加取缺岗最少）→ 回删 → 证书阶段。
     证书阶段补台：certadd=1（默认）试加取 Tcert 格内缺岗最少，当前台数的 Tcert 格缺岗连续 5 次没有刷新最低值时判失败；
     2 = 试加、不设停止条件；0 = 直接加归因最大。
-    pol 是传给 run 的策略参数（rlp / planf / w / curdef / lpz / rdd）。返回 (R, Nk, Mj, 状态, 周期)。"""
+    pol 是传给 run 的策略参数（rlp / planf / w / curdef / lpz / rdd）。返回 (R, Nk, Mj, 状态, 周期)。
+    T20：fillpat=True 对应 C++ 加 rescue——补足至少 max_add 次，之后只要 Hs 格缺岗在最近 FILL_PATIENCE 次补台里刷新过最低值就继续；
+    trace 给一个列表时，每次补足记 (加的资源下标, 加后的缺岗)，与 C++ sizelog 的 "fill add=… gaps=…" 行逐行对应。"""
     nk = len(I.T); Nk, Mj = list(N0), list(M0); nres = nk + len(Mj)
 
     def bump(idx, d):
         if idx < nk: Nk[idx] += d
         else: Mj[idx - nk] += d
     r = run(I, Nk, Mj, Hs, False, **pol); added = 0
-    while r["gaps"] > 0 and added < max_add:
+    fbest, fstall = r["gaps"], 0
+    while r["gaps"] > 0 and (added < max_add or (fillpat and fstall < FILL_PATIENCE)):
         sig = r["why_r"] + r["why_t"]; bg = bi = bs = None
         for idx in range(nres):
             bump(idx, 1); g = run(I, Nk, Mj, Hs, False, **pol)["gaps"]; bump(idx, -1)
             if bi is None or g < bg or (g == bg and sig[idx] > bs): bg, bi, bs = g, idx, sig[idx]
         bump(bi, 1); added += 1; r = run(I, Nk, Mj, Hs, False, **pol)
+        if r["gaps"] < fbest: fbest, fstall = r["gaps"], 0
+        else: fstall += 1
+        if trace is not None: trace.append((bi, r["gaps"]))
     if r["gaps"] > 0: return -1, Nk, Mj, "fail", -1
     improved = True
     while improved:
