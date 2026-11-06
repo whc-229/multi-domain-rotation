@@ -775,5 +775,13 @@ fresh_rlp_w + RDD-FD 复用 T18 的 W = 0.5·S_max。
 - **T20-2 全部 m 已排队**：4320 个作业，先 m ≤ 6、后 m ≥ 8，T20-1 跑完后自动开始。调度 `code/t20_chain2.sh`，PID 473733。
 - T20-3 仍未派。
 
+**执行状态（11-06 18:30，无人值守）：**
+- **总调度已启动**：`code/t20_master.sh`，PID 485213，日志 `results/T20/master.log`。
+  - 顺序：T20-1 剩余（等原进程 351119 跑完再过一遍表）→ q2 T20-2 m ≤ 6 → q3 m ≥ 8 确定性方法（PB、GPHH、RH-MIP、只用接入构造）→ q4 T20-3（先 m ≤ 6 后 m ≥ 8）→ q5 m ≥ 8 搜索型对手 → q6 (e) 装上后的队尾重跑。
+  - 作业表：`results/T20/queue/q2–q5.tsv`（`code/t20_make_queue.py`）；q6 由 `code/t20_requeue_e.py` 到时现生成。
+  - RH-MIP m ≥ 8 放在 q3：它不是搜索型方法，(e) 不涉及它。
+- **看门狗**：crontab 每 30 分钟跑 `code/t20_watchdog.sh`。总调度没在跑（锁空着）且没有 `results/T20/master.done` 就用同一条命令拉起，日志 `results/T20/watchdog.log`。
+- 第二版排队脚本 `code/t20_chain2.sh` 已停（它还没派出任何作业）。
+
 ## 待确认
 - （空。补足平台一项已在"审核结论（11-06 晚二）"中定。）

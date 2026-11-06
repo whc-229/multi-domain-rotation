@@ -134,12 +134,13 @@ def main():
             rec.update(t13_job.checks(rec, txt, opts, dump, tmpd, method, W)); rec["cmd"] = " ".join(args[:-1])
     elif method in OURS:
         import t20_ours
-        pre = t20_ours.prepare(stage, name)                     # 按实例缓存；pre["wall"] 是预处理用时（扣出预算）
+        pstage = stage[:-2] if stage.endswith("_e") else stage   # (e) 上线后的队尾重跑（阶段 ours_e）共用 ours 的预处理缓存
+        pre = t20_ours.prepare(pstage, name)                    # 按实例缓存；pre["wall"] 是预处理用时（扣出预算）
         pre_sec = pre["wall"]; extra["pre"] = {k: pre[k] for k in pre if k not in ("thetas",)}
         t0 = time.time()                                        # 第一个作业在这里算了预处理，不重复计入作业用时
         if pre.get("sigma_R", -1) < 0: rec = dict(R=-1, status="fail", note="σ 定不出台数")
         else:
-            sp = t20_ours.spec(stage, name, I, S, method); extra["spec_fallback"] = sp["fallback"]
+            sp = t20_ours.spec(pstage, name, I, S, method); extra["spec_fallback"] = sp["fallback"]
             if method == "conn_only":
                 args = [R5, "size", txt] + common + sp["opts"] + ["rescue", f"hardtl={max(1.0, TL - pre_sec):.1f}"]
                 rec = c_json(args[1:]); rec["cmd"] = " ".join(args)

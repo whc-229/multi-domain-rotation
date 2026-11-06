@@ -51,3 +51,6 @@ results/T20/**/logs/
 results/T20/**/*.lock
 results/T20/chain.pid
 results/T20/chain2.pid
+results/T20/master.lock
+results/T20/master.pid
+results/T20/queue/logs_*/
