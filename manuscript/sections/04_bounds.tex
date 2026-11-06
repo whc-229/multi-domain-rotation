@@ -12,9 +12,13 @@
 %   接入定理 C_σ 去掉、b_r→e_r（接入时刻）、额外资源 E,F→ΔN,ΔM。
 % 11-06：不用 let/suppose/consider，改用 denotes/represents，句子精简；接入定理按 11-05 结论改为
 %   "第一次大修完成后入场"，σ 只需从任意相位出发可行（不必周期）。
+% 11-06 老师意见：按"夹逼"组织——下界链（均匀维修的速率下界 → 启动下界），上界链（接入构造 → 搜索收紧）。不加新下界，不单列采样。
 
-This section answers two questions: how many resources MDRR needs at least, and how much of the start-up a schedule must optimize before it can repeat a fixed rotation.
-Both answers come from the maintenance cycle of a robot, its \emph{rotation}.
+This section brackets the optimum of MDRR.
+The rate relaxation assumes that maintenance is already spread evenly over the robots; the start-up relaxation adds the fresh start and gives a tighter lower bound.
+A construction gives an upper bound: a new fleet enters an even rotation.
+The same construction shows how much of the start-up a schedule must optimize.
+All results come from the maintenance cycle of a robot, its \emph{rotation}.
 
 \subsection{Rate Relaxation}
 \label{sec:bounds:rate}
@@ -121,7 +125,8 @@ Before $T_0$, the copies serve every duty of $\sigma$ except those before the en
 The copies do not conflict because the robots and tools of $\sigma$ do not.
 \end{proof}
 
-Theorem~\ref{thm:enter} bounds the start-up in time, independently of the numbers of sites, posts and robot types.
+Theorem~\ref{thm:enter} gives the upper bound $N_\sigma + \Delta N + M_\sigma + \Delta M$, and it bounds the start-up in time, independently of the numbers of sites, posts and robot types.
+The method in Section~\ref{sec:method} tightens this upper bound by search.
 Without early overhaul, $\Delta N$ can grow with the number of posts (Proposition~\ref{prop:linear}).
 With early overhaul, a robot $r'$ can serve some missing duties before $e_r$ and then take the overhaul, as long as it is back in phase $0$ at $e_r$.
 For one robot type the following condition gives $\Delta N = 0$.
