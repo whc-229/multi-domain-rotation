@@ -1,5 +1,106 @@
 \section{Method}
 \label{sec:method}
 
-% 证据来源与"不能写"的说法写在这里。
-% TODO
+% 证据：报告/T3（稳态松弛规则）、T7（RDD 解码）、T11（定台数下降 RDD-FD）、T19（接入构造，11-05 版本）；研究笔记/07（11-05 用户决定）。
+% 11-07：按 11-05 的方法重写——速率松弛 → 轮转规则 σ；接入定理 → 启动期构造；RDD 只在启动窗口内偏离；定台数下降搜索。
+%   启动 LP 只作下界，不用于规则。窗口长度、T_e 等数值放实验一节。
+
+The method follows the bracket of Section~\ref{sec:bounds}.
+The rate relaxation gives a rotation rule $\sigma$.
+Theorem~\ref{thm:enter} turns $\sigma$ into a fresh-start schedule, the first upper bound.
+An evolutionary algorithm then changes a few decisions in the start-up window $[0, W)$ and lowers the fleet.
+We call the method C-RDD: rule-deviation decoding (RDD) on a constructed start-up.
+Algorithm~\ref{alg:crdd} summarizes it.
+
+\subsection{Rotation Rule From the Rate Relaxation}
+\label{sec:method:rule}
+
+A solution $x$ of the rate relaxation \eqref{eq:rate} fixes the rate $r_{k,s} = \sum_i x_{k,i,s}$ at which type-$k$ robots serve site $s$.
+The rule keeps the actual dispatch close to these rates.
+For type $k$ at site $s$ in slot $t$, the lag is
+\begin{equation}
+  g_{k,s}(t) = \min\bigl\{C,\ \max\{-C,\ r_{k,s}\, t - D_{k,s}(t)\}\bigr\},
+  \label{eq:lag}
+\end{equation}
+where $D_{k,s}(t)$ denotes the number of duties type $k$ has started at $s$ before $t$ and $C$ is a clipping constant.
+
+When site $s$ needs a robot, the rule considers the ready robots of the allowed types and ranks them by three keys: the larger lag $g_{k,s}(t)$, the phase that type $k$ has served least often, and the earlier ready slot.
+The first robot serves the duty.
+Tools are assigned by a fixed rule, the same for every method in this paper.
+Because the lag is clipped, the rule has finitely many states.
+
+The rotation $\sigma$ runs this rule from a state in which the robots of each type are spread over their phases and their ready slots are staggered.
+Its fleet starts from $\lceil N_k \rceil$ and $\lceil M_j \rceil$ of the relaxation; resources are added while robots run short and removed while the schedule stays feasible.
+
+\subsection{Start-Up by Entering the Rotation}
+\label{sec:method:enter}
+
+The construction follows the proof of Theorem~\ref{thm:enter}.
+The rotation $\sigma$ is run until its state repeats, and its state is taken at several time origins spread over one maintenance cycle.
+Each origin gives a target schedule; for each target:
+\begin{enumerate}
+  \item Every robot $r$ gets a new robot $r'$ of the same type. Robot $r'$ enters at $e_r$, the slot at which $r$ first finishes an overhaul, and then copies $r$.
+  \item The duties of $r$ before $e_r$ are missing. They are filled in time order. A missing duty goes to an extra robot that is ready; otherwise to a new robot that has not entered yet, is ready, and can serve the duty, take an early overhaul and be back in phase $0$ by its own entry slot; otherwise a new extra robot is added.
+  \item The resulting plan fixes the dispatch until the last entry. After that the rule of $\sigma$ takes over; it counts the planned duties under their phases in $\sigma$, so it resumes exactly where $\sigma$ is.
+\end{enumerate}
+Every missing duty is served by a robot of the same type, so the sites and tools are used exactly as in $\sigma$, and no tool is added.
+The origin with the fewest resources is kept.
+This schedule is the start of the search.
+
+\subsection{Deviations in the Start-Up Window}
+\label{sec:method:rdd}
+
+RDD lets a few genes override the constructed start-up.
+A genotype is a list of $m$ slots, each with a position gene and an action gene:
+\begin{equation}
+\begin{gathered}
+  \mathbf{z} = \bigl((u_1, v_1), \dots, (u_m, v_m)\bigr) \in [0,1)^{2m},\\
+  j_r = \lfloor u_r N_W \rfloor, \qquad
+  a_r = \Bigl\lfloor \tfrac{v_r - 1 + q}{q}\, |A_{j_r}| \Bigr\rfloor \quad \text{if } v_r \ge 1 - q .
+\end{gathered}
+\label{eq:genotype}
+\end{equation}
+$N_W$ denotes the number of dispatch decisions in $[0, W)$, numbered in time order.
+Slot $r$ is active when $v_r \ge 1 - q$; it then acts on decision $j_r$ and picks option $a_r$ from the option list $A_{j_r}$.
+The list holds the other ready robots in the order of the rule, of any allowed type, and, if the default robot is not in its last phase, the option of serving the duty with the default robot and taking an early overhaul right after it.
+The number of slots is $m = \lceil \rho N_W / q \rceil$, so a random genotype changes about $\rho N_W$ decisions.
+
+An active slot overrides the plan.
+Plan entries that no longer fit are skipped, and the rule serves those duties.
+With all slots inactive the genotype decodes to the constructed start-up.
+After slot $W$ every decision follows $\sigma$, so the genotype length does not depend on the horizon.
+
+\subsection{Fixed-Count Descent}
+\label{sec:method:fd}
+
+The search lowers the fleet one resource at a time and, for each fleet, looks for a genotype that leaves no duty uncovered.
+The fitness of a genotype is the number of uncovered duty slots in $[0, T_e)$ under the current fleet.
+A genotype with fitness $0$ is checked for an infinite horizon: after $W$ the schedule is deterministic and has finitely many states, so it repeats a cycle, and it is feasible if the cycle has no uncovered slot~\cite{grolleau2013periodic}.
+A long run without the cycle test first rejects most of these candidates at low cost.
+
+\begin{algorithm}[t]
+  \caption{C-RDD}
+  \label{alg:crdd}
+  \begin{algorithmic}[1]
+    \State Solve the rate relaxation; build the rotation $\sigma$ (Section~\ref{sec:method:rule})
+    \State Build the start-up by entering $\sigma$; $F \gets$ its fleet, $\mathbf{z}^\ast \gets$ all slots inactive
+    \While{the budget is not used up}
+      \State For each resource $e$ not yet tried, evaluate $\mathbf{z}^\ast$ on $F - e$; remove the one with the fewest uncovered slots
+      \Repeat
+        \State Create $\lambda$ offspring, each from a random parent by resampling each gene with probability $1/(2m)$
+        \State In each offspring, with probability $1/2$, move one unit between two resources
+        \State Keep the $\mu$ best of parents and offspring; check every new genotype with fitness $0$
+      \Until{a genotype is certified or $s$ generations pass without one}
+      \If{certified} \State $\mathbf{z}^\ast \gets$ that genotype, $F \gets$ its fleet
+      \Else \State Mark the resource as tried; restore the last certified fleet
+      \EndIf
+    \EndWhile
+    \State \Return the last certified genotype and fleet
+  \end{algorithmic}
+\end{algorithm}
+
+Algorithm~\ref{alg:crdd} gives the loop.
+It removes the resource whose loss the current best genotype tolerates best, then runs a $(\mu + \lambda)$ evolution strategy on the reduced fleet.
+Offspring may also move one unit from one resource to another, so the fleet can change its composition and not only shrink.
+When a genotype is certified, the descent continues from its fleet; when the search stalls for $s$ generations, it tries another resource.
+The output is the last certified schedule.
