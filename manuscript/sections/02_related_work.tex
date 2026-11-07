@@ -4,6 +4,7 @@
 % 11-07：文献由两轮检索逐篇核实（出版方 / arXiv / Crossref 页面），条目在 refs.bib。
 % arXiv 预印本：zheng2026highmultiplicity、ramesh2026robust、prause2024iterative、grolleau2013periodic。
 % ding2025swevo、yang2025asoc 只取到题录，正文只按题目能确定的内容描述。
+% 11-07 审核改：去掉修饰词；RDD 首次出现时定义；behaviour → behavior。
 
 \subsection{Fluid Relaxations and Relaxation-Based Policies}
 
@@ -12,7 +13,7 @@ In job shops with many copies of each job, rounding or tracking the fluid soluti
 The same idea drives recent work on large stochastic systems.
 Fluid policies with reoptimization allocate shared resources across many subsystems with provable gaps~\cite{brown2025fluid}.
 Policies built on a linear program relaxation are asymptotically optimal for restless bandits under necessary and sufficient conditions~\cite{gast2024lp}, also without a global attractor assumption~\cite{hong2023restless}, and for weakly coupled Markov decision processes~\cite{goldsztajn2026weakly}.
-Closest to our structure, Zheng et al.~\cite{zheng2026highmultiplicity} turn a fractional fluid allocation into an exactly feasible repeating schedule for high-multiplicity flexible job shops and replay small templates to schedule finite horizons.
+Zheng et al.~\cite{zheng2026highmultiplicity} turn a fractional fluid allocation into an exactly feasible repeating schedule for high-multiplicity flexible job shops and replay small templates to schedule finite horizons.
 
 These works schedule jobs, not robots that age.
 In MDRR every robot carries a maintenance phase, the fleet starts with all phases equal, and the schedule must be feasible forever.
@@ -20,11 +21,11 @@ We use the relaxation as a lower bound and as the source of the rotation rule, a
 
 \subsection{Periodic Scheduling, Rotations and Persistent Robot Service}
 
-Cyclic staffing~\cite{bartholdi1980cyclic} and its descendants plan one repeating pattern.
-Crew rostering~\cite{breugem2023threephase,feng2024branchprice}, rolling stock rotation planning~\cite{wang2024rollingstock} and aircraft routing with maintenance~\cite{he2023aircraft} are solved by column generation over a cyclic or time-expanded network, and recent models add predictive maintenance states to the rotation graph~\cite{prause2024iterative}.
+Cyclic staffing~\cite{bartholdi1980cyclic} and its successors plan one repeating pattern.
+Crew rostering~\cite{breugem2023threephase,feng2024branchprice}, rolling stock rotation planning~\cite{wang2024rollingstock} and aircraft routing with maintenance~\cite{he2023aircraft} are solved by column generation over a cyclic or time-expanded network, and some models add predictive maintenance states to the rotation graph~\cite{prause2024iterative}.
 Periodic maintenance scheduling repeats a fixed maintenance cycle~\cite{maquirriain2024matheuristics}, and dynamic discretization discovery keeps large time-expanded models tractable~\cite{ojha2025crossdock}.
-On the combinatorial side, pinwheel and patrolling problems ask which visiting frequencies admit a periodic schedule~\cite{kawamura2020patrolling,kawamura2026pinwheel}.
-All of them optimize a steady state; the fleet is assumed to be already spread over its cycle.
+Pinwheel and patrolling problems ask which visiting frequencies admit a periodic schedule~\cite{kawamura2020patrolling,kawamura2026pinwheel}.
+All of them optimize a steady state in which the fleet is already spread over its cycle.
 
 Persistent multi-robot service is studied with recharging rather than multi-phase maintenance.
 Asghar et al.~\cite{asghar2025multirobot} minimize the number of robots that meet latency limits with depot recharging, Arribas et al.~\cite{arribas2023uav} compute resupply schedules that minimize the number of unmanned aerial vehicles for continuous service, Kumar et al.~\cite{kumar2025persistent} choose initial charge levels to minimize charging stations, and Naveed et al.~\cite{naveed2025mesch} schedule returns to a shared charger.
@@ -32,17 +33,17 @@ Ramesh and Thomas~\cite{ramesh2026robust} show that synchronized battery depleti
 MDRR has the same synchronization at start-up; we bound its cost and reduce it with early overhauls in the start-up window instead of spares.
 
 Deterministic, memoryless schedulers are eventually periodic, and the interval that contains the cycle can be bounded~\cite{grolleau2013periodic,goossens2016periodicity}.
-We use this property to certify a decoded schedule for an infinite horizon.
+We use this property to check a decoded schedule for the infinite horizon.
 
 \subsection{Evolved and Learned Dispatching Rules}
 
-Genetic programming hyper-heuristics evolve dispatching rules for dynamic scheduling~\cite{zhang2024survey}, with recent advances in selection for large-scale problems~\cite{xu2024lexicase}, rule representations with flow control~\cite{huang2025grammar,huang2025crossrep}, surrogate evaluation~\cite{zhang2023instancerotation} and actions for reinforcement learning~\cite{xu2026niching}.
+Genetic programming hyper-heuristics evolve dispatching rules for dynamic scheduling~\cite{zhang2024survey}, with work on selection for large-scale problems~\cite{xu2024lexicase}, rule representations with flow control~\cite{huang2025grammar,huang2025crossrep}, surrogate evaluation~\cite{zhang2023instancerotation} and actions for reinforcement learning~\cite{xu2026niching}.
 Rule representations matter for performance~\cite{branke2015representations}, and random-key decoders remain a common way to map genes to schedules~\cite{londe2025brkga}.
 Deep reinforcement learning learns dispatching policies with graph and attention encoders~\cite{song2023fjsp,wang2024dan}, improvement policies~\cite{zhang2024iclr}, self-supervised training~\cite{corsini2024selflabeling} and evolutionary training of Q-networks~\cite{liu2025trainer}.
-Large language models now generate heuristics inside evolutionary loops~\cite{romeraparedes2024funsearch,liu2024eoh,ye2024reevo,zheng2025mctsahd}, including dispatching rules for job shops~\cite{huang2026llmdjss,yu2026lsh}.
+Large language models also generate heuristics inside evolutionary loops~\cite{romeraparedes2024funsearch,liu2024eoh,ye2024reevo,zheng2025mctsahd}, including dispatching rules for job shops~\cite{huang2026llmdjss,yu2026lsh}.
 
-These rules are trained on instance distributions and evaluated by simulation over a finite horizon, which needs a warm-up to reach steady behaviour~\cite{hildebrandt2010towards}.
-RDD~\cite{rdd} takes a different route: a fixed rule makes every decision, and the genes encode only sparse deviations from it.
+These rules are trained on instance distributions and evaluated by simulation over a finite horizon, which needs a warm-up to reach steady behavior~\cite{hildebrandt2010towards}.
+Rule-deviation decoding (RDD)~\cite{rdd} takes a different route: a fixed rule makes every decision, and the genes encode only sparse deviations from it.
 This paper derives the rule from the rate relaxation of each instance, builds the start-up by the entering theorem and restricts the deviations to the start-up window.
 
 \subsection{Relaxations Inside Evolutionary Algorithms}
