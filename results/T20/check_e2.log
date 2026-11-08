@@ -1,0 +1,4 @@
+E2 41 个作业
+E2 {"inst": "m06-K12-05", "start": "rk", "method": "rk", "TL": 600, "base_R": -1, "f0_src": 4, "e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1, "R": 271, "status": "uncert", "gens": 50, "sec": 610.08, "judge_feasible": 1, "judge_same": 1}
+E2 {"inst": "m08-K12-01", "start": "pb", "method": "rddhand", "TL": 1800, "base_R": -1, "f0_src": -1, "e_fixed": 432, "e_gaps0": 1, "e_found_gen": 37, "R": 384, "status": "uncert", "gens": 114, "sec": 1808.77, "judge_feasible": 1, "judge_same": 1}
+E2 {"inst": "m08-K12-01", "start": "rk", "method": "rk", "TL": 1800, "base_R": -1, "f0_src": -1, "e_fixed": 308, "e_gaps0": 1, "e_found_gen": -1, "R": -1, "status": "fail", "gens": 6321, "sec": 1800.01, "judge_feasible": null, "judge_same": null}

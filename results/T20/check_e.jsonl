@@ -1,0 +1,21 @@
+{"part": "E1", "inst": "m04-K1-00", "cmd": "size", "method": "fifo", "R_old": 63, "R_new": 63, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "size", "method": "pb", "R_old": 57, "R_new": 57, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "size", "method": "gphh", "R_old": 57, "R_new": 57, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "size", "method": "sigma", "R_old": 53, "R_new": 53, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "size", "method": "conn_only", "R_old": 54, "R_new": 54, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "fd", "method": "rk", "R_old": 59, "R_new": 59, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "fd", "method": "esdw", "R_old": 56, "R_new": 56, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "fd", "method": "d5", "R_old": 66, "R_new": 66, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "rddfd", "method": "rddhand", "R_old": 56, "R_new": 56, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K1-00", "cmd": "rddfd", "method": "ours", "R_old": 53, "R_new": 53, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "size", "method": "fifo", "R_old": 108, "R_new": 108, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "size", "method": "pb", "R_old": 93, "R_new": 93, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "size", "method": "gphh", "R_old": 75, "R_new": 75, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "size", "method": "sigma", "R_old": 69, "R_new": 69, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "size", "method": "conn_only", "R_old": 69, "R_new": 69, "e": {}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "fd", "method": "rk", "R_old": 78, "R_new": 78, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "fd", "method": "esdw", "R_old": 86, "R_new": 86, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "fd", "method": "d5", "R_old": 124, "R_new": 124, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "rddfd", "method": "rddhand", "R_old": 90, "R_new": 90, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1", "inst": "m04-K12-00", "cmd": "rddfd", "method": "ours", "R_old": 69, "R_new": 69, "e": {"e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1}, "same": 1, "ok": 1, "diff": null}
+{"part": "E1b", "inst": "m04-K1-00", "method": "d5", "base_R": 69, "e_fixed": -1, "e_gaps0": -1, "e_found_gen": -1, "R": 66, "status": "cert", "gens": 298, "sec": 300.58, "judge_feasible": 1, "judge_same": 1, "ok": 0}

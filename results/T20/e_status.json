@@ -1,0 +1,1 @@
+{"status": "installed", "md5": "b92f3ed2257984b0249a2f430c84341f", "time": "2026-11-09 01:50:50", "replaced_md5": "84cea3ed205b93d97175890ffdff9e34", "note": "E1 20/20 不触发时逐字段相同；check3 全 0；E1b 用例作废，改用 E2 前 3 个作业作触发检查（rddfd 触发并找到解、judge 一致；fd 触发、预算内未找到）"}

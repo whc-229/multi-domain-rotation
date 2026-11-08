@@ -551,10 +551,17 @@ double g_hardtl = 0;
 // T20（11-06 审核）：补足阶段的停止条件（rescue 时）：至少补 max_add（60）次；之后只要 Hs 格缺岗在最近 FILL_PATIENCE 次补台里刷新过最低值就继续，否则本档失败。
 // 60 次以内定出的情形与原来逐位相同。g_fill_max 记本命令里各次定台数补足次数的最大值（输出用，看哪些作业越过了 60 次）。
 const int FILL_PATIENCE = 5; int g_fill_max = 0;
-int g_filladd = -1;   // 只为核对：filladd=次数 把补足的下限（及证书阶段的次数上限，即 max_add）改成这个值，用小值走到越过下限的分支；正式作业不用
+int g_filladd = -1;
+// T20 (e)（11-06 审核）：搜索型方法定台数失败时的搜索起点。rescue 时，记下本命令里每次补足停住（补足失败或限时到点）时的台数及其 Hs 格缺岗，
+// 保留缺岗最少的一组（同缺岗取先出现的）。fd / rddfd 在起点与后备都定不出台数时，以它为固定台数开始搜索。证书阶段的失败不记（补足已到 0 缺岗）。
+bool g_e_have = false; ll g_e_gaps = LLONG_MAX; vector<int> g_e_N, g_e_M;   // 只为核对：filladd=次数 把补足的下限（及证书阶段的次数上限，即 max_add）改成这个值，用小值走到越过下限的分支；正式作业不用
 extern bool g_rescue;
 static bool size_late() { auto now = chrono::steady_clock::now(); return (g_size_timed && now > g_size_deadline) || (g_hard_on && now > g_hard_deadline); }
 SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tcert, int max_add = 60) {
+    // T20 (e)：补足停住时记下台数（作废的仿真不记）
+    auto e_record = [&](const Res& r, const vector<int>& N, const vector<int>& M) {
+        if (!g_rescue || r.gaps <= 0 || r.gaps >= LLONG_MAX / 8) return;
+        if (r.gaps < g_e_gaps) { g_e_gaps = r.gaps; g_e_N = N; g_e_M = M; g_e_have = true; } };
     struct InSize { InSize() { g_in_size = true; } ~InSize() { g_in_size = false; } } in_size_guard;   // T20：标记"在定台数内"，D5 修复据此响应限时
     vector<int> Nk = g_N0.empty() ? I.N0 : g_N0, Mj = g_M0.empty() ? I.M0 : g_M0; int nk = I.nk, nt = I.nt, nres = nk + nt;
     auto bump = [&](int idx, int d) { if (idx < nk) Nk[idx] += d; else Mj[idx - nk] += d; };
@@ -563,11 +570,11 @@ SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tc
     if (g_filladd >= 0) max_add = g_filladd;   // 只为核对
     ll fbest = r.gaps; int fstall = 0; const bool fpat = g_rescue;   // T20：补足的最低缺岗与连续未刷新的次数
     while (r.gaps > 0 && (added < max_add || (fpat && fstall < FILL_PATIENCE))) {
-        if (size_late()) { g_size_timeouts++; return {-1, Nk, Mj, "fail", -1}; }   // T20 限时
+        if (size_late()) { g_size_timeouts++; e_record(r, Nk, Mj); return {-1, Nk, Mj, "fail", -1}; }   // T20 限时
         vector<ll> sig = r.why_r; sig.insert(sig.end(), r.why_t.begin(), r.why_t.end());
         ll bg = LLONG_MAX, bsig = 0; int bi = -1;
         for (int idx = 0; idx < nres; idx++) {
-            if (size_late()) { g_size_timeouts++; return {-1, Nk, Mj, "fail", -1}; }   // T20 限时
+            if (size_late()) { g_size_timeouts++; e_record(r, Nk, Mj); return {-1, Nk, Mj, "fail", -1}; }   // T20 限时
             bump(idx, 1); ll g = run(I, Nk, Mj, P, H, false, -1, nullptr, bg).gaps; bump(idx, -1);   // 超过当前最好值即停（不影响选择）
             if (bi < 0 || g < bg || (g == bg && sig[idx] > bsig)) { bg = g; bi = idx; bsig = sig[idx]; }
         }
@@ -576,7 +583,7 @@ SizeRes size_res(const Inst& I, const Policy& P, ll H, const string& mode, ll Tc
         g_fill_max = max(g_fill_max, added);
         if (g_sizelog) fprintf(g_sizelog, "fill add=%d gaps=%lld Nk=%s Mj=%s\n", bi, r.gaps, vec_s(Nk).c_str(), vec_s(Mj).c_str());
     }
-    if (r.gaps > 0) { if (g_sizelog) fprintf(g_sizelog, "fail_fill\n"); return {-1, Nk, Mj, "fail", -1}; }
+    if (r.gaps > 0) { e_record(r, Nk, Mj); if (g_sizelog) fprintf(g_sizelog, "fail_fill\n"); return {-1, Nk, Mj, "fail", -1}; }
     if (g_sizelog) fprintf(g_sizelog, "filled Nk=%s Mj=%s\n", vec_s(Nk).c_str(), vec_s(Mj).c_str());
     bool improved = true;
     while (improved) {
@@ -1236,6 +1243,13 @@ int main(int argc, char** argv) {
             }
             sec_f0 = chrono::duration<double>(chrono::steady_clock::now() - a0).count();
         }
+        // T20 (e)：起点与后备都定不出台数时，以补足停住时缺岗最少的台数为固定台数 F，直接搜索；第一次判定可行后照常进入定台数下降
+        int e_fixed = -1, e_found_gen = -1; ll e_gaps0 = -1; bool e_phase = false;
+        if (!base_feas && g_rescue && g_e_have && el() < tlim) {
+            for (int k = 0; k < I.nk; k++) F[k] = g_e_N[k];
+            for (int j = 0; j < I.nt; j++) F[I.nk + j] = g_e_M[j];
+            lastF = F; e_fixed = 0; for (int v : F) e_fixed += v; e_gaps0 = g_e_gaps; e_phase = true;
+        }
         string traj = "["; char buf[256];
         auto add_traj = [&](int gi) { snprintf(buf, 256, "%s[%d, %d, %lld, %.1f, \"%s\"]", traj.size() > 1 ? ", " : "", bestR, gi, nevals, el(), best_status.c_str()); traj += buf; };
         add_traj(-1);
@@ -1252,6 +1266,11 @@ int main(int argc, char** argv) {
         };
         bool alive = base_feas;
         if (alive) { pop.resize(mu + lam); alive = set_target(g_fdsel == "base" ? g0 : bestg); pop.resize(mu); }
+        else if (e_phase) {   // T20 (e)：种群在 F 上评价
+            pop.resize(mu + lam);
+            for (auto& x : pop) { x.fl = F; evalx(x, LLONG_MAX); }
+            stable_sort(pop.begin(), pop.end(), by_f); pop.resize(mu); alive = true;
+        }
         const double pm = RD == 0 ? 1.0 / (2.0 * K) : 1.0 / (double)glen;
         while (alive && gi < gens && el() < tlim) {
             vector<Ind> kids; ll cap = pop.back().f;
@@ -1289,13 +1308,13 @@ int main(int argc, char** argv) {
                 sec_judge += chrono::duration<double>(chrono::steady_clock::now() - a).count();
                 if (J.feas) {
                     found = true; bestR = 0; for (int v : x.fl) bestR += v; bestg = x.g; bestF = x.fl; best_status = J.status; bestJ = J;
-                    add_traj(gi); lastF = x.fl; tabu.clear();
+                    add_traj(gi); lastF = x.fl; tabu.clear(); if (e_phase) { e_phase = false; e_found_gen = gi; }
                     alive = set_target(g_fdsel == "base" ? g0 : bestg);
                 } else { njudge_fail++; x.f = J.gaps; }
             }
             if (!found) {
                 stable_sort(pop.begin(), pop.end(), by_f);
-                if (++stall >= g_stall) { tabu.insert(cur_r); nback++; alive = set_target(g_fdsel == "base" ? g0 : bestg); }
+                if (!e_phase && ++stall >= g_stall) { tabu.insert(cur_r); nback++; alive = set_target(g_fdsel == "base" ? g0 : bestg); }   // (e) 阶段不减台、不回退
             }
         }
         if (dump) fclose(dump);
@@ -1315,7 +1334,8 @@ int main(int argc, char** argv) {
                U.W, ndev, K, glen, rho, qon, seed, Teval, g_fdsel.c_str(), g_stall, g_swap,
                bestR, best_status.c_str(), vec_s(bN).c_str(), vec_s(bM).c_str(), bestJ.vgaps, bestJ.vcert, bestJ.vperiod, bestJ.exact, bestJ.resets, bestJ.last_reset, v0.resets, v0.last_reset,
                f0_src, sec_f0, nact, nrep, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str());
-        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
+        if (g_rescue || g_sizetl > 0) { printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
+              if (g_rescue) printf(", \"e_fixed\": %d, \"e_gaps0\": %lld, \"e_found_gen\": %d", e_fixed, e_gaps0, e_found_gen); }   // T20 (e)：e_fixed = −1 表示没触发
         printf("}\n");
         return 0;
     }
@@ -1410,6 +1430,13 @@ int main(int argc, char** argv) {
             }
             sec_f0 = chrono::duration<double>(chrono::steady_clock::now() - a0).count();
         }
+        // T20 (e)：起点与后备都定不出台数时，以补足停住时缺岗最少的台数为固定台数 F，直接搜索；第一次判定可行后照常进入定台数下降
+        int e_fixed = -1, e_found_gen = -1; ll e_gaps0 = -1; bool e_phase = false;
+        if (!base_feas && g_rescue && g_e_have && el() < tlim) {
+            for (int k = 0; k < I.nk; k++) F[k] = g_e_N[k];
+            for (int j = 0; j < I.nt; j++) F[I.nk + j] = g_e_M[j];
+            lastF = F; e_fixed = 0; for (int v : F) e_fixed += v; e_gaps0 = g_e_gaps; e_phase = true;
+        }
         string traj = "[";
         char buf[256];
         auto add_traj = [&](int gi) { snprintf(buf, 256, "%s[%d, %d, %lld, %.1f, \"%s\"]", traj.size() > 1 ? ", " : "", bestR, gi, nevals, el(), best_status.c_str()); traj += buf; };
@@ -1430,6 +1457,11 @@ int main(int argc, char** argv) {
             pop.resize(mu + lam);
             alive = set_target(g_fdsel == "base" ? vector<double>(2 * K, 0.0) : bestg);
             pop.resize(mu);
+        }
+        else if (e_phase) {   // T20 (e)：种群在 F 上评价
+            pop.resize(mu + lam);
+            for (auto& x : pop) { x.fl = F; evalx(x, LLONG_MAX); }
+            stable_sort(pop.begin(), pop.end(), by_f); pop.resize(mu); alive = true;
         }
         const double pm = 1.0 / (2.0 * K);
         while (alive && gi < gens && el() < tlim) {
@@ -1472,14 +1504,14 @@ int main(int argc, char** argv) {
                 sec_judge += chrono::duration<double>(chrono::steady_clock::now() - a).count();
                 if (J.feas) {
                     found = true; bestR = 0; for (int v : x.fl) bestR += v; bestg = x.g; bestF = x.fl; best_status = J.status; bestJ = J;
-                    add_traj(gi); lastF = x.fl; tabu.clear();
+                    add_traj(gi); lastF = x.fl; tabu.clear(); if (e_phase) { e_phase = false; e_found_gen = gi; }
                     vector<double> gsel = g_fdsel == "base" ? vector<double>(2 * K, 0.0) : bestg;
                     alive = set_target(gsel);
                 } else { njudge_fail++; x.f = J.gaps; }
             }
             if (!found) {
                 stable_sort(pop.begin(), pop.end(), by_f);
-                if (++stall >= g_stall) { tabu.insert(cur_r); nback++; alive = set_target(g_fdsel == "base" ? vector<double>(2 * K, 0.0) : bestg); }
+                if (!e_phase && ++stall >= g_stall) { tabu.insert(cur_r); nback++; alive = set_target(g_fdsel == "base" ? vector<double>(2 * K, 0.0) : bestg); }   // (e) 阶段不减台、不回退
             }
         }
         if (dump) fclose(dump);
@@ -1496,7 +1528,8 @@ int main(int argc, char** argv) {
                U.W, ndev, K, rho, qon, seed, Teval, g_fdsel.c_str(), g_stall, g_swap,
                bestR, best_status.c_str(), vec_s(bN).c_str(), vec_s(bM).c_str(), bestJ.vgaps, bestJ.vcert, bestJ.vperiod, bestJ.exact, bestJ.resets, bestJ.last_reset, v0.resets, v0.last_reset,
                f0_src, sec_f0, nact, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str(), g_beta, dvec17(g_cdf).c_str(), dvec17(dw_used).c_str());
-        if (g_rescue || g_sizetl > 0) printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
+        if (g_rescue || g_sizetl > 0) { printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
+              if (g_rescue) printf(", \"e_fixed\": %d, \"e_gaps0\": %lld, \"e_found_gen\": %d", e_fixed, e_gaps0, e_found_gen); }   // T20 (e)：e_fixed = −1 表示没触发
         printf("}\n");
         return 0;
     }
