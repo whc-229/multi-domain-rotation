@@ -57,3 +57,4 @@ results/T20/queue/logs_*/
 # T20-1 的对偶证书（1883 个文件，189 MB，压缩后仍 173 MB）留在服务器 results/T20/lb_duals/，不进仓库
 results/T20/lb_duals/
 code/cpp/rost5.t20f
+results/T20/lb/retry.pid
