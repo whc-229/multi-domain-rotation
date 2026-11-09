@@ -3,6 +3,10 @@
 - LP 值 = 原始目标与证书对偶目标中较小者；证书违反量 = max(路径、工具、等待、M)（同 code/t17_summary.py）。
 - 速率下界取 R_rate_g（网格口径 LP）与 R_rate_g_int（整数）。
 - H₀ = LP(H) ≥ 99.5%·LP(4S) 的最小倍数（只在 4S 有解时算），按 m 取中位数。
+- 11-09 审核加的两项：
+  - 逐实例检查同一 H 上 LP_fr^Rw(H) ≤ LP_fr(H)（允许提前大修只会放松），容差 1e-6·max(1, LP_fr)；反例逐个列出；
+  - 论文算差距用的下界 LB = ⌈max_H LP_fr^Rw(H) − 1e-6⌉（容差同 code/t17_summary.py），取有解的 H；
+    记取到最大值的倍数、6 个 H 是否都有解（缺的那个 H 若有解只可能使 LB 更大，此时 LB 仍是有效下界，只是可能偏松）。
 输出 results/T20/lb_summary.jsonl（逐实例）与 markdown 表（打印）。
 用法：python3 code/t20_lb_summary.py"""
 import os, sys, json, math, statistics as st
@@ -29,6 +33,16 @@ def inst_row(n):
         h0 = None if top is None else next((mu for mu in MULTS if vals[mu] is not None and vals[mu] >= 0.995 * top), None)
         row[kind] = {f"{mu:g}": vals[mu] for mu in MULTS}; row[kind + "_src"] = {f"{mu:g}": src[mu] for mu in MULTS}
         row[kind + "_viol"] = viol; row[kind + "_H0"] = h0
+    fr, rw = row["fr"], row["frRw"]
+    row["rw_gt_fr"] = [dict(H=k, fr=fr[k], frRw=rw[k], diff=rw[k] - fr[k]) for k in fr
+                       if fr[k] is not None and rw[k] is not None and rw[k] > fr[k] + 1e-6 * max(1.0, fr[k])]
+    row["rw_minus_fr_max"] = max((rw[k] - fr[k] for k in fr if fr[k] is not None and rw[k] is not None), default=None)
+    ok = {k: v for k, v in rw.items() if v is not None}
+    if ok:
+        kmax = max(ok, key=lambda k: ok[k])
+        row.update(LB=math.ceil(ok[kmax] - 1e-6), LB_LP=ok[kmax], LB_H=kmax, LB_complete=int(len(ok) == len(MULTS)))
+    else:
+        row.update(LB=None, LB_LP=None, LB_H=None, LB_complete=0)
     return row
 
 
@@ -71,6 +85,18 @@ def main():
             h = [r[kind + "_H0"] for r in by[m] if r[kind + "_H0"] is not None]
             cs.append(f"{st.median(h):g} ({len(h)})" if h else "— (0)")
         print(f"| {m} | {cs[0]} | {cs[1]} |")
+    bad = [(r["inst"], x) for r in rows for x in r["rw_gt_fr"]]
+    print(f"\n逐实例检查 LP_fr^Rw(H) ≤ LP_fr(H)：两者都有解的 (实例, H) 共 "
+          f"{sum(r['fr'][k] is not None and r['frRw'][k] is not None for r in rows for k in r['fr'])} 个，反例 {len(bad)} 个；"
+          f"LP_fr^Rw − LP_fr 的最大值 {max(r['rw_minus_fr_max'] for r in rows if r['rw_minus_fr_max'] is not None):.2e}")
+    for n, x in bad: print(f"- {n} H = {x['H']}S：LP_fr = {x['fr']:.6f}，LP_fr^Rw = {x['frRw']:.6f}，差 {x['diff']:.2e}")
+    print("\n差距用的下界 LB = ⌈max_H LP_fr^Rw(H)⌉：平均值；取到最大值的倍数（个数）；6 个 H 不全有解的实例数")
+    print("| m | 实例 | 平均 LB | 平均 ⌈R_rate_g⌉ | 最大值所在倍数 | H 不全 |"); print("|---|---|---|---|---|---|")
+    for m in MS:
+        R = by[m]; hs = defaultdict(int)
+        for r in R: hs[r["LB_H"]] += 1
+        print(f"| {m} | {len(R)} | {fmt(mean(r['LB'] for r in R))} | {fmt(mean(math.ceil(r['R_rate_g'] - 1e-6) for r in R))} | "
+              + "、".join(f"{k}S:{hs[k]}" for k in sorted(hs, key=float)) + f" | {sum(1 - r['LB_complete'] for r in R)} |")
 
 
 if __name__ == "__main__":

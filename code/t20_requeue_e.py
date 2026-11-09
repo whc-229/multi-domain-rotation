@@ -1,7 +1,11 @@
 """T20 队尾重跑表（总调度第 6 段，TASKS"无人值守安排"中 (e) 的上线规则）。
 (e) 的状态记在 results/T20/e_status.json：{"status": "installed" | "rejected", "md5": …, "time": …}；没有这个文件 = 还没定。
 - 已装上（installed）：扫 results/T20/opp/jobs 与 results/T20/ours/jobs 里搜索型方法的结果，
-  凡是"记无解"（R < 0）且不是用装了 (e) 的程序跑的（rost5 输出里没有 e_fixed 字段），排进队尾重跑。
+  凡是"因定台数失败记无解"且不是用装了 (e) 的程序跑的（rost5 输出里没有 e_fixed 字段），排进队尾重跑。
+  "因定台数失败"（11-09 审核：只重跑装了 (e) 会触发的作业，别的原因记"—"的不重跑）= R < 0、起点定不出（base_R < 0）、
+  原有后备也没定出（f0_src < 0），也就是 fd / rddfd 里 (e) 的触发条件。
+  例：shorteval m06-K12-13 s1 起点定出 109 个，失败在长期复核，不进重跑表。
+  汇总时（11-09 审核）：重跑里 (e) 实际没触发（e_fixed = −1）的仍用旧结果，并在备查表注明。
   重跑的结果写新阶段目录 opp_e / ours_e（不覆盖旧结果）；ours_e 共用 ours 的预处理缓存（见 code/t20_job.py）。
 - 没装或不装：写空表。
 用法：python3 code/t20_requeue_e.py <输出作业表>     生成 q6
@@ -22,7 +26,7 @@ def e_status():
 
 
 def to_redo():
-    """装上 (e) 之前跑的、搜索型方法记无解的作业：[(阶段, 方法, 实例, 种子)]。"""
+    """装上 (e) 之前跑的、搜索型方法因定台数失败记无解的作业：[(阶段, 方法, 实例, 种子)]。"""
     out = []
     for stage, meths in SEARCH.items():
         for f in sorted(glob.glob(os.path.join(T20, stage, "jobs", "*.json"))):
@@ -30,7 +34,8 @@ def to_redo():
             if meth not in meths: continue
             try: r = json.load(open(f))
             except Exception: continue
-            if r.get("R", -1) < 0 and "e_fixed" not in r: out.append((stage, meth, inst, int(s[1:])))
+            if r.get("R", -1) < 0 and "e_fixed" not in r and r.get("base_R", 0) < 0 and r.get("f0_src", 0) < 0:
+                out.append((stage, meth, inst, int(s[1:])))
     return out
 
 
