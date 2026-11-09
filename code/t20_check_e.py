@@ -51,6 +51,7 @@ def e1(old, new, tmpd, out):
         for cmd, meth, a in runs:
             a = a + ["rescue"]
             eo = strip_time(c_json(old, a)); en = strip_time(c_json(new, a)); ev = {k: en.pop(k) for k in E_KEYS if k in en}
+            for k in E_KEYS: eo.pop(k, None)   # 现装程序若已带 (e)，它的 e_* 字段也去掉（11-09 后备上限核对 G1 时发现漏了这一步）
             trig = ev.get("e_fixed", -1) >= 0
             same = eo == en; ok = same and not trig; bad += not ok
             rec = dict(part="E1", inst=n, cmd=cmd, method=meth, R_old=eo.get("R"), R_new=en.get("R"), e=ev, same=int(same), ok=int(ok),
