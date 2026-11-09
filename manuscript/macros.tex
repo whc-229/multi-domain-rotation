@@ -15,3 +15,8 @@
 
 % ---------- 图占位 ----------
 \newcommand{\figplaceholder}[2]{\fbox{\parbox[c][#1][c]{0.96\linewidth}{\centering\footnotesize\textcolor{black!60}{#2}}}}
+
+% 表格行由 code/paper/t20_tables.py 生成；tabular 里不能用 \input，改用原语 \@@input。
+\makeatletter
+\newcommand{\tabinput}[1]{\@@input #1 }
+\makeatother

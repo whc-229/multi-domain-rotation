@@ -1,7 +1,206 @@
 \section{Experiments}
 \label{sec:experiments}
 
-% 证据来源与"不能写"的说法写在这里。
-% 实例换算（11-04 用户同意）：原始数据是小时；路程、占用、工具忙时都向上取整成格（实例格长 2 h），
-% 所以格上可行的排班在真实时间里也可行。在实例一小节用一句话交代。
-% TODO
+% 证据：报告/T20_0、T20_1、T20_2、T20_3（第五批，测试实例）；表与图由 code/t20_paper_tables.py 生成（manuscript/tables、figures）。
+% 口径（用户定）：差距下界 = ceil(max_H LP_fr^Rw)；按配对比较（11-09）；无解另报求解率，Friedman 里按最差（11-05）。
+% 实例换算（11-04 用户同意）：小时向上取整成 2 h 的格，所以格上可行即真实可行。
+% 写作（11-09 用户）：简单易懂，不绕弯子，不防御，少修饰。没跑完的不写数字（表里 pending、正文 TODO）。
+% TODO（等 q5、q6 与本方法 m = 8、10 跑完）：重跑 t20_tables.py；补 m = 8–20 的对比、m = 8、10 的消融与区间图；补机器型号。
+
+The experiments answer three questions.
+How tight are the bounds, and how short can the start-up window be?
+How does C-RDD compare with other methods?
+Does each part of C-RDD help?
+
+\subsection{Instances and Settings}
+\label{sec:exp:setup}
+
+\textbf{Instances.}
+Each instance has $m \in \{2, 3, 4, 6, 8, 10, 15, 20\}$ sites served from one depot.
+Six robot types serve duties of $6$ or $10$ hours and have maintenance cycles of $2$ to $7$ duties.
+Each site allows two or three random types and lies $0$, $1$, $2$ or $4$ hours from the depot.
+In family K1 every site needs one robot; in family K12 a site needs one or two.
+All durations are rounded up to slots of $2$ hours, so a schedule that is feasible on slots is feasible in real time.
+For each $m$ and family we generated $16$ instances: $6$ for training and $10$ for testing.
+All parameters were set on the training instances; this section reports only the $160$ test instances.
+
+\textbf{Methods.}
+C-RDD uses the settings of Section~\ref{sec:method}: early overhauls in $[0, 2S_{\max})$, a deviation window of $0.5 S_{\max}$, $\rho = 0.1$, $\gamma = 0.4$, a $(4 + 12)$ evolution strategy, $T_{\mathrm{fit}} = 6 S_{\max}$ and $G_{\mathrm{stall}} = 30$.
+Here $S_{\max}$ is the longest maintenance cycle among the robot types, about two weeks in our instances.
+We compare C-RDD with seven methods.
+\begin{itemize}
+  \item Dispatching rules: phase balance (PB), which sends the robot whose phase is least served; five rules evolved by genetic programming (GPHH)~\cite{zhang2024survey} on the training instances; and an evolution strategy (ES) that tunes the weights of a dispatching rule for each instance.
+  \item Decoders: a random-key evolutionary algorithm (RK-EA)~\cite{londe2025brkga}, an evolutionary algorithm with one gene per dispatch decision (DD-EA), and RDD with a hand-written rule~\cite{rdd}.
+  \item A rolling-horizon mixed-integer program (RH-MIP) that fixes the fleet in its first step and then plans eight overlapping horizons.
+\end{itemize}
+All methods share the simulator, the tool assignment rule and the fleet search: start from a fleet, add resources while sites run short, and remove resources while the schedule stays feasible.
+
+\textbf{Evaluation.}
+Every final schedule is checked for the infinite horizon: it must repeat a cycle with no uncovered slot, or run $600{,}000$ slots (about $137$ years) with none.
+A run that ends without such a schedule counts as unsolved.
+Each run has a wall-clock limit on one core: $300$\,s for $m \le 4$, $600$\,s for $m = 6$, $1800$\,s for $m = 8, 10$ and $3600$\,s for $m = 15, 20$.
+The limit includes all preprocessing, such as the linear program and the entering construction.
+% TODO：补机器型号与编译器。
+Search methods run five seeds per instance; PB, RH-MIP and the entering construction run once, and each GPHH rule runs once.
+Results are averaged over the solved runs of an instance.
+The gap is the excess over the lower bound $\lceil \max_H R_0(H) \rceil$, in percent.
+A method is compared with C-RDD on the instances that both solve, by the Wilcoxon signed-rank test with Holm correction.
+For the Friedman ranks, an unsolved instance takes the worst rank.
+
+\subsection{Bounds and the Time Bound}
+\label{sec:exp:bounds}
+
+Table~\ref{tab:bounds} lists the bounds.
+The start-up bound lies $2.4$--$8.3\%$ above the rate bound.
+Without early overhaul the start-up cost is $4.1$--$11.4\%$; early overhaul in the start-up window removes $27$--$45\%$ of it.
+The start-up cost is largest on small instances, where a few posts cannot be staggered well.
+
+\begin{table}[t]
+  \centering
+  \caption{Lower Bounds (Means Over 20 Instances)}
+  \label{tab:bounds}
+  \footnotesize
+  \begin{tabular}{@{}rrrrrr@{}}
+    \toprule
+    & Rate & Start-up & \multicolumn{2}{c}{Start-up cost (\%)} & \\
+    \cmidrule(lr){4-5}
+    $m$ & bound & bound & no early & early & $H_0$ \\
+    & $R$ & LB & overhaul & overhaul & ($S_{\max}$) \\
+    \midrule
+    \tabinput{tables/tab_bounds.tex}
+    \bottomrule
+  \end{tabular}
+  \\[2pt]
+  \parbox{\linewidth}{\scriptsize LB $= \lceil \max_H R_0(H) \rceil$. Start-up cost: $\max_H R_0(H)$ over $R$. $H_0$: median of the smallest $H$ with $R_0(H) \ge 99.5\%$ of $R_0(4S_{\max})$.}
+\end{table}
+
+Fig.~\ref{fig:lpconv} shows how the start-up bound grows with the horizon $H$.
+It reaches $97$--$99\%$ of its final value at $H = S_{\max}$ and more than $99\%$ at $1.5 S_{\max}$, for every $m$.
+The start-up cost is therefore decided within about one maintenance cycle, as Theorem~\ref{thm:enter} suggests.
+For $m = 20$ the bound still grows slightly between $3 S_{\max}$ and $4 S_{\max}$.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_lpconv.pdf}
+  \caption{Start-up bound $R_0(H)$ relative to its value at $H = 4 S_{\max}$ (medians over 20 instances).}
+  \label{fig:lpconv}
+\end{figure}
+
+Table~\ref{tab:window} varies the deviation window on the instances with $m = 4$ and $6$.
+A window of $0.25 S_{\max}$ or $0.5 S_{\max}$ gives the same results.
+Longer windows give worse results: with the same $\rho$, more genes act on later decisions.
+A deviation window of about one week is enough.
+
+\begin{table}[t]
+  \centering
+  \caption{Deviation Window ($m = 4, 6$; 40 Instances)}
+  \label{tab:window}
+  \footnotesize
+  \begin{tabular}{@{}lrc@{}}
+    \toprule
+    $W_{\mathrm{dev}}$ ($S_{\max}$) & Gap (\%) & Better/same/worse than $0.5$ \\
+    \midrule
+    \tabinput{tables/tab_window.tex}
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Fig.~\ref{fig:bracket} follows the bracket of Section~\ref{sec:bounds} from both sides.
+The rate bound lies below the start-up bound.
+A single entering construction gives the first upper bound, $12$--$16\%$ above the start-up bound.
+Trying several time origins lowers it, and the search of C-RDD lowers it further, to $7$--$13\%$.
+The rotation $\sigma$ itself, which needs a fleet already spread over its cycles, lies close to the best construction: the entering costs only a few extra robots.
+% TODO：m = 8、10 跑完后重画，核对上面的区间。
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_bracket.pdf}
+  \caption{The bracket from both sides: mean excess over the start-up bound. Dashed: lower side; solid: upper side.}
+  \label{fig:bracket}
+\end{figure}
+
+\subsection{Comparison}
+\label{sec:exp:compare}
+
+Table~\ref{tab:compare} compares C-RDD with each method.
+On the instances with $m \le 6$, C-RDD is better than every method on most instances, and no method beats it on more than three of the $20$ instances of any size.
+ES is the strongest competitor; its gap is $2.5$--$3.6$ points larger.
+RDD with a hand-written rule is next, $3.3$--$7.0$ points behind, and its distance grows with $m$.
+The rules (PB, GPHH) and RH-MIP are $9.5$--$19$ points behind.
+DD-EA needs one gene per decision; its fleet search often runs out of time before the search starts, so it solves only $24\%$ of the runs at $m = 6$.
+% TODO：m = 8–20 跑完后补一段：大实例上的差距与求解率（目前已知 PB、GPHH、RH-MIP 在 m = 15、20 上常无解）。
+Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-RDD has the best Friedman rank (Table~\ref{tab:rank}).
+
+\begin{table*}[t]
+  \centering
+  \caption{C-RDD Against Other Methods: Gap of C-RDD (\%) and Excess Gap of Each Method in Percentage Points (Better/Same/Worse for C-RDD)}
+  \label{tab:compare}
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{@{}rcccccccc@{}}
+    \toprule
+    $m$ & C-RDD & PB & GPHH & ES & RK-EA & DD-EA & RDD & RH-MIP \\
+    \midrule
+    \tabinput{tables/tab_compare.tex}
+    \bottomrule
+  \end{tabular}
+  \\[2pt]
+  \parbox{\textwidth}{\scriptsize Each method is compared with C-RDD on the instances that both solve (counted in parentheses). $p$: Wilcoxon signed-rank test over all such instances, Holm-corrected.}
+\end{table*}
+
+\begin{table}[t]
+  \centering
+  \caption{Solved Runs (\%)}
+  \label{tab:solve}
+  \footnotesize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}lrrrrrrrr@{}}
+    \toprule
+    $m$ & 2 & 3 & 4 & 6 & 8 & 10 & 15 & 20 \\
+    \midrule
+    \tabinput{tables/tab_solve.tex}
+    \bottomrule
+  \end{tabular}
+  \\[2pt]
+  \parbox{\linewidth}{\scriptsize $\cdot$: still running.}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Friedman Average Ranks}
+  \label{tab:rank}
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{@{}cccccccc@{}}
+    \toprule
+    \tabinput{tables/tab_rank.tex}
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Ablation}
+\label{sec:exp:ablation}
+
+Table~\ref{tab:ablation} removes one part of C-RDD at a time.
+\begin{itemize}
+  \item \emph{Without the relaxation rule}, the deviations act on a hand-written rule (RDD). The gap grows by $3.3$--$7.0$ points.
+  \item \emph{Without the entering construction}, the rotation rule runs from the fresh start and the search must fix the start-up alone. The gap grows by $2.3$--$3.2$ points.
+  \item \emph{Without the search}, the best entering construction is returned. The gap grows by $1.3$--$2.7$ points. The construction alone is better than the search without the construction.
+  \item \emph{With a short fitness horizon} of $720$ hours, the search sees too little of the start-up and stops at larger fleets. The gap grows by $1.8$--$1.9$ points.
+\end{itemize}
+% TODO：短适应度时域的最终解是否都长期可行（stat_shorteval：补救加资源 0/120）——请服务器确认这一组仍在搜索中做无限时域检查，再决定这一条怎么写。
+% TODO：m = 8、10 跑完后补"去掉接入构造""去掉搜索"两行。
+
+\begin{table}[t]
+  \centering
+  \caption{Ablation: Excess Gap Over C-RDD in Percentage Points (Better/Same/Worse for C-RDD)}
+  \label{tab:ablation}
+  \footnotesize
+  \begin{tabular}{@{}lrc@{}}
+    \toprule
+    Variant & $m$ & Excess gap \\
+    \midrule
+    \tabinput{tables/tab_ablation.tex}
+    \bottomrule
+  \end{tabular}
+\end{table}
