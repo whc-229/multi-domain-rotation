@@ -6,6 +6,9 @@
   原有后备也没定出（f0_src < 0），也就是 fd / rddfd 里 (e) 的触发条件。
   例：shorteval m06-K12-13 s1 起点定出 109 个，失败在长期复核，不进重跑表。
   汇总时（11-09 审核）：重跑里 (e) 实际没触发（e_fixed = −1）的仍用旧结果，并在备查表注明。
+- 后备上限（11-09 下午审核 (b)：后备最多用预算的一半）装上后（e_status.json 里 "f0cap": "installed"），另把
+  "装了 (e)、没装上限时跑的（输出有 e_fixed、没有 f0_capped），后备没定出、(e) 没触发、gens = 0"的作业排进来，规则同上
+  （新结果写 _e，旧结果备查；重跑中没走到 (e) 的用旧结果）。
   重跑的结果写新阶段目录 opp_e / ours_e（不覆盖旧结果）；ours_e 共用 ours 的预处理缓存（见 code/t20_job.py）。
 - 没装或不装：写空表。
 用法：python3 code/t20_requeue_e.py <输出作业表>     生成 q6
@@ -25,17 +28,29 @@ def e_status():
     return json.load(open(p))["status"] if os.path.exists(p) else None
 
 
+def f0cap_installed():
+    """后备上限是否已装上。"""
+    p = os.path.join(T20, "e_status.json")
+    return os.path.exists(p) and json.load(open(p)).get("f0cap") == "installed"
+
+
+def need_redo(r, cap):
+    """一个结果是否要重跑：(i) 装 (e) 前跑的、因定台数失败记无解；(ii) 上限已装时，装上限前跑的、后备用完预算 (e) 没触发。"""
+    if r.get("R", -1) >= 0 or r.get("base_R", 0) >= 0 or r.get("f0_src", 0) >= 0: return False
+    if "e_fixed" not in r: return True
+    return cap and "f0_capped" not in r and r["e_fixed"] < 0 and r.get("gens", -1) == 0
+
+
 def to_redo():
-    """装上 (e) 之前跑的、搜索型方法因定台数失败记无解的作业：[(阶段, 方法, 实例, 种子)]。"""
-    out = []
+    """要重跑的搜索型作业（见 need_redo）：[(阶段, 方法, 实例, 种子)]。"""
+    out = []; cap = f0cap_installed()
     for stage, meths in SEARCH.items():
         for f in sorted(glob.glob(os.path.join(T20, stage, "jobs", "*.json"))):
             meth, inst, s = os.path.basename(f)[:-5].split("__")
             if meth not in meths: continue
             try: r = json.load(open(f))
             except Exception: continue
-            if r.get("R", -1) < 0 and "e_fixed" not in r and r.get("base_R", 0) < 0 and r.get("f0_src", 0) < 0:
-                out.append((stage, meth, inst, int(s[1:])))
+            if need_redo(r, cap): out.append((stage, meth, inst, int(s[1:])))
     return out
 
 

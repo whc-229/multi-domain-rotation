@@ -1228,10 +1228,15 @@ int main(int argc, char** argv) {
         }
         int bestR = base_feas ? s0.R : -1; vector<double> bestg = g0; vector<int> bestF = F; string best_status = s0.status;
         Judge bestJ; bestJ.feas = base_feas; bestJ.status = s0.status; bestJ.vgaps = v0.gaps; bestJ.vcert = v0.cert; bestJ.vperiod = v0.period; bestJ.exact = ex0; bestJ.resets = v0.resets; bestJ.last_reset = v0.last_reset;
-        int f0_src = base_feas ? 0 : -1; double sec_f0 = 0;
+        int f0_src = base_feas ? 0 : -1; double sec_f0 = 0; bool f0_capped = false;   // f0_capped：后备被一半预算的上限截停
         if (!base_feas) {   // 默认（或基础个体）定不出台数：按顺序对初始种群的其余个体完整定台数，取第一个可行的
             auto a0 = chrono::steady_clock::now();
-            for (int a = (RD == 1 ? 3 : 1); a < mu + lam && el() < tlim; a++) {
+            // T20（11-09 下午审核 (b)）：rescue 时后备最多用"后备开始时剩余预算"的一半，另一半留给 (e)。
+            // 这样后备用时不超过预算的一半，(e) 至少有和后备一样多的时间；起点定台数本身就很慢的方法（D5 在 m = 15 上起点约用 52%）也照样留出时间给 (e)。
+            // 做法：把总截止时刻临时提前到"后备开始 + 剩余/2"（只会提前、不会推后），正在进行的定台数到点也判失败；后备结束后恢复。
+            auto hard_save = g_hard_deadline; auto f0_cap = a0 + chrono::microseconds((long long)(0.5 * max(0.0, tlim - el()) * 1e6));
+            if (g_rescue && f0_cap < g_hard_deadline) g_hard_deadline = f0_cap;
+            for (int a = (RD == 1 ? 3 : 1); a < mu + lam && el() < tlim && !(g_rescue && (f0_capped = chrono::steady_clock::now() >= f0_cap)); a++) {
                 Dec d; build(d, pop[a].g);
                 g_N0 = N0s; g_M0 = M0s; SizeRes sa = size_rule(I, d.P, U.is_rlp, Hs, Tcert, nullptr, U.facloop); g_N0 = N0s; g_M0 = M0s;
                 if (sa.R < 0) continue;
@@ -1241,6 +1246,8 @@ int main(int argc, char** argv) {
                 for (int j = 0; j < I.nt; j++) F[I.nk + j] = sa.Mj[j];
                 lastF = F; bestF = F; bestR = sa.R; bestg = pop[a].g; best_status = J.status; bestJ = J; base_feas = true; f0_src = a; break;
             }
+            g_hard_deadline = hard_save;
+            if (g_rescue && !base_feas && chrono::steady_clock::now() >= f0_cap) f0_capped = true;   // 最后一个个体的定台数被上限截停
             sec_f0 = chrono::duration<double>(chrono::steady_clock::now() - a0).count();
         }
         // T20 (e)：起点与后备都定不出台数时，以补足停住时缺岗最少的台数为固定台数 F，直接搜索；第一次判定可行后照常进入定台数下降
@@ -1335,7 +1342,7 @@ int main(int argc, char** argv) {
                bestR, best_status.c_str(), vec_s(bN).c_str(), vec_s(bM).c_str(), bestJ.vgaps, bestJ.vcert, bestJ.vperiod, bestJ.exact, bestJ.resets, bestJ.last_reset, v0.resets, v0.last_reset,
                f0_src, sec_f0, nact, nrep, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str());
         if (g_rescue || g_sizetl > 0) { printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
-              if (g_rescue) printf(", \"e_fixed\": %d, \"e_gaps0\": %lld, \"e_found_gen\": %d", e_fixed, e_gaps0, e_found_gen); }   // T20 (e)：e_fixed = −1 表示没触发
+              if (g_rescue) printf(", \"e_fixed\": %d, \"e_gaps0\": %lld, \"e_found_gen\": %d, \"f0_capped\": %d", e_fixed, e_gaps0, e_found_gen, (int)f0_capped); }   // T20 (e)：e_fixed = −1 表示没触发
         printf("}\n");
         return 0;
     }
@@ -1415,10 +1422,15 @@ int main(int argc, char** argv) {
         Judge bestJ; bestJ.feas = base_feas; bestJ.status = s0.status; bestJ.vgaps = v0.gaps; bestJ.vcert = v0.cert; bestJ.vperiod = v0.period; bestJ.exact = ex0; bestJ.resets = v0.resets; bestJ.last_reset = v0.last_reset;
         // F0 的来源：0 = 默认规则；默认规则定不出台数时，按顺序对初始种群的个体 1, 2, … 完整定台数（与 rdd 命令的初始评价相同），
         // 取第一个定出台数且完整判定可行的个体 a（f0_src = a）；都不行时为 −1，搜索不进行。
-        int f0_src = base_feas ? 0 : -1; double sec_f0 = 0;
+        int f0_src = base_feas ? 0 : -1; double sec_f0 = 0; bool f0_capped = false;   // f0_capped：后备被一半预算的上限截停
         if (!base_feas) {
             auto a0 = chrono::steady_clock::now();
-            for (int a = 1; a < mu + lam && el() < tlim; a++) {
+            // T20（11-09 下午审核 (b)）：rescue 时后备最多用"后备开始时剩余预算"的一半，另一半留给 (e)。
+            // 这样后备用时不超过预算的一半，(e) 至少有和后备一样多的时间；起点定台数本身就很慢的方法（D5 在 m = 15 上起点约用 52%）也照样留出时间给 (e)。
+            // 做法：把总截止时刻临时提前到"后备开始 + 剩余/2"（只会提前、不会推后），正在进行的定台数到点也判失败；后备结束后恢复。
+            auto hard_save = g_hard_deadline; auto f0_cap = a0 + chrono::microseconds((long long)(0.5 * max(0.0, tlim - el()) * 1e6));
+            if (g_rescue && f0_cap < g_hard_deadline) g_hard_deadline = f0_cap;
+            for (int a = 1; a < mu + lam && el() < tlim && !(g_rescue && (f0_capped = chrono::steady_clock::now() >= f0_cap)); a++) {
                 RDD D = decode_geno(pop[a].g, U.W, ndev, qon, U.reset_opt); Policy P = U.P; P.rdd = &D;
                 g_N0 = N0s; g_M0 = M0s; SizeRes sa = size_rule(I, P, U.is_rlp, Hs, Tcert, nullptr, U.facloop); g_N0 = N0s; g_M0 = M0s;
                 if (sa.R < 0) continue;
@@ -1428,6 +1440,8 @@ int main(int argc, char** argv) {
                 for (int j = 0; j < I.nt; j++) F[I.nk + j] = sa.Mj[j];
                 lastF = F; bestF = F; bestR = sa.R; bestg = pop[a].g; best_status = J.status; bestJ = J; base_feas = true; f0_src = a; break;
             }
+            g_hard_deadline = hard_save;
+            if (g_rescue && !base_feas && chrono::steady_clock::now() >= f0_cap) f0_capped = true;   // 最后一个个体的定台数被上限截停
             sec_f0 = chrono::duration<double>(chrono::steady_clock::now() - a0).count();
         }
         // T20 (e)：起点与后备都定不出台数时，以补足停住时缺岗最少的台数为固定台数 F，直接搜索；第一次判定可行后照常进入定台数下降
@@ -1529,7 +1543,7 @@ int main(int argc, char** argv) {
                bestR, best_status.c_str(), vec_s(bN).c_str(), vec_s(bM).c_str(), bestJ.vgaps, bestJ.vcert, bestJ.vperiod, bestJ.exact, bestJ.resets, bestJ.last_reset, v0.resets, v0.last_reset,
                f0_src, sec_f0, nact, gens_done, nevals, nreuse, njudge, njudge_fail, nquick, ndec_steps, nback, sec_eval, sec_judge, sec_dec, el(), traj.c_str(), gs.c_str(), g_beta, dvec17(g_cdf).c_str(), dvec17(dw_used).c_str());
         if (g_rescue || g_sizetl > 0) { printf(", \"rescue_add\": %d, \"size_timeouts\": %d, \"fill_max\": %d", n_rescue0, g_size_timeouts, g_fill_max);   // T20
-              if (g_rescue) printf(", \"e_fixed\": %d, \"e_gaps0\": %lld, \"e_found_gen\": %d", e_fixed, e_gaps0, e_found_gen); }   // T20 (e)：e_fixed = −1 表示没触发
+              if (g_rescue) printf(", \"e_fixed\": %d, \"e_gaps0\": %lld, \"e_found_gen\": %d, \"f0_capped\": %d", e_fixed, e_gaps0, e_found_gen, (int)f0_capped); }   // T20 (e)：e_fixed = −1 表示没触发
         printf("}\n");
         return 0;
     }
