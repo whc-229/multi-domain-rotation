@@ -128,7 +128,9 @@ ES is the strongest competitor; its gap is $2.5$--$3.6$ points larger.
 RDD with a hand-written rule is next, $3.3$--$7.0$ points behind, and its distance grows with $m$.
 The rules (PB, GPHH) and RH-MIP are $9.5$--$19$ points behind.
 DD-EA needs one gene per decision; its fleet search often runs out of time before the search starts, so it solves only $24\%$ of the runs at $m = 6$.
-% TODO：m = 8–20 跑完后补一段：大实例上的差距与求解率（目前已知 PB、GPHH、RH-MIP 在 m = 15、20 上常无解）。
+On the instances with $m \ge 8$, C-RDD solves every run, and its gap stays at $11$--$12\%$.
+PB, GPHH and RH-MIP are $13$--$21$ points behind on the instances they solve, and at $m = 15$ and $20$ they solve only $30$--$70\%$ of the runs.
+% TODO：q5、q6 跑完后补 ES、RK-EA、DD-EA、RDD 在 m ≥ 8 上的结果，并删掉 t20_paper_tables.py 里的 HOLD。
 Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-RDD has the best Friedman rank (Table~\ref{tab:rank}).
 
 \begin{table*}[t]
@@ -181,15 +183,15 @@ Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-
 \subsection{Ablation}
 \label{sec:exp:ablation}
 
+\input{tables/stat_shorteval}
+
 Table~\ref{tab:ablation} removes one part of C-RDD at a time.
 \begin{itemize}
   \item \emph{Without the relaxation rule}, the deviations act on a hand-written rule (RDD). The gap grows by $3.3$--$7.0$ points.
   \item \emph{Without the entering construction}, the rotation rule runs from the fresh start and the search must fix the start-up alone. The gap grows by $2.3$--$3.2$ points.
-  \item \emph{Without the search}, the best entering construction is returned. The gap grows by $1.3$--$2.7$ points. The construction alone is better than the search without the construction.
-  \item \emph{With a short fitness horizon} of $720$ hours, the search sees too little of the start-up and stops at larger fleets. The gap grows by $1.8$--$1.9$ points.
+  \item \emph{Without the search}, the best entering construction is returned. The gap grows by $1.1$--$2.7$ points. The construction alone is better than the search without the construction.
+  \item \emph{Without the long-run evaluation}, the fitness and the fleet search look only at the first $720$ hours, and the final schedule is checked afterwards. Of the \SEn{} final schedules, \SEshort{} (\SEpct\%) run short later. Adding \SEaddmin--\SEaddmax{} resources repairs all but \SEfail{} of them, and the repaired fleets are $1.1$--$1.9$ points larger than those of C-RDD.
 \end{itemize}
-% TODO：短适应度时域的最终解是否都长期可行（stat_shorteval：补救加资源 0/120）——请服务器确认这一组仍在搜索中做无限时域检查，再决定这一条怎么写。
-% TODO：m = 8、10 跑完后补"去掉接入构造""去掉搜索"两行。
 
 \begin{table}[t]
   \centering

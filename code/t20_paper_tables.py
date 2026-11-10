@@ -41,9 +41,13 @@ for f in glob.glob(R('results/T20/opp/rhmip/*.json')):
 for d in ('opp_e', 'ours_e'):
     for f in glob.glob(R('results/T20', d, 'jobs', '*.json')):
         meth, inst, key = os.path.basename(f)[:-5].split('__'); rec = json.load(open(f))
-        if rec.get('e_triggered', 1): put(meth, inst, key, rec)
+        if rec.get('e_fixed', -1) >= 0: put(meth, inst, key, rec)   # (e) 实际触发才用新结果（11-09 审核）
+
+# q6 会用 (e) 重跑这些 (方法, m) 的一部分作业，跑完前按 pending 处理（q6 结束后删掉对应项）
+HOLD = {('d5', 15), ('d5', 20)}
 
 def complete(meth, m):
+    if (meth, m) in HOLD: return False
     ins = [i for i in lb if mof(i) == m]
     return all(len(runs[meth].get(i, {})) >= RUNS[meth] for i in ins)
 
@@ -151,10 +155,15 @@ for meth in ['ours_w0.25', 'ours', 'ours_w1', 'ours_w2']:
     rows.append(f'{NAME[meth]} & {g:.1f} & {w}/{len(ins)-w-l}/{l} \\\\')
 open(R('manuscript/tables/tab_window.tex'), 'w').write('\n'.join(rows) + '\n')
 
-# ---------- 长期可行评价消融：有限时域判可行、长期复核缺岗的比例 ----------
+# ---------- 长期可行评价消融：只看 720 h 选出的解，长期复核缺岗的比例与补救量 ----------
 se = [json.load(open(f)) for f in glob.glob(R('results/T20/ours/jobs/shorteval__*.json'))]
-n_add = sum(1 for r in se if r.get('rescue_add', 0) > 0)
-open(R('manuscript/tables/stat_shorteval.tex'), 'w').write(f'% shorteval 作业 {len(se)} 个，补救加过资源的 {n_add} 个\n\\newcommand{{\\SEn}}{{{len(se)}}}\\newcommand{{\\SEadd}}{{{n_add}}}\n')
+short = [r for r in se if r.get('long_feasible') == 0]
+add = [r['rescue_long'].get('rescue_add', 0) for r in short if r.get('rescue_long')]
+nfail = sum(r.get('status') not in ('cert', 'uncert') for r in se)
+open(R('manuscript/tables/stat_shorteval.tex'), 'w').write(
+    f'% shorteval 作业 {len(se)} 个；只看 720 h 选出的最终解长期复核缺岗 {len(short)} 个；补救加 {min(add) if add else 0}–{max(add) if add else 0} 个；补救后仍不可行 {nfail} 个\n'
+    f'\\newcommand{{\\SEn}}{{{len(se)}}}\\newcommand{{\\SEshort}}{{{len(short)}}}\\newcommand{{\\SEpct}}{{{round(100*len(short)/max(1,len(se)))}}}'
+    f'\\newcommand{{\\SEaddmin}}{{{min(add) if add else 0}}}\\newcommand{{\\SEaddmax}}{{{max(add) if add else 0}}}\\newcommand{{\\SEfail}}{{{nfail}}}\n')
 
 # ---------- 图：启动下界随 H 收敛 ----------
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
@@ -202,5 +211,6 @@ if ms_ok:
     [ax.spines[s].set_visible(False) for s in ('top', 'right')]
     ax.legend(fontsize=6, frameon=False, ncol=2, loc='upper center', bbox_to_anchor=(0.5, 1.28), handlelength=1.8)
     fig.tight_layout(); fig.savefig(R('manuscript/figures/fig_bracket.pdf')); fig.savefig(R('manuscript/figures/fig_bracket.png'), dpi=200)
+print('bracket series:', {k: [round(x, 1) for x in v] for k, v in series.items()})
 print('complete m (ours):', [m for m in MS if complete('ours', m)], '; Friedman instances:', nrank, '; bracket m:', ms_ok)
 print('holm', {o: holm[o] for o in OPP})
