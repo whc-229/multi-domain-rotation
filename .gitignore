@@ -59,3 +59,6 @@ results/T20/lb_duals/
 code/cpp/rost5.t20f
 results/T20/lb/retry.pid
 code/cpp/rost5.t20g
+# T20 自动推送的标记与 git 锁（code/t20_autopush.sh）
+results/T20/queue/pushed_*
+results/T20/git.lock
