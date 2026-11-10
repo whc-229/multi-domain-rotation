@@ -56,7 +56,7 @@ def imean(meth, i):
     return st.mean(v) if v else None
 
 gap = lambda x, i: 100.0 * (x - lb[i]) / lb[i]
-os.makedirs(R('manuscript/tables'), exist_ok=True)
+GEN = {}   # 生成的表格行，最后写进 06_experiments.tex 的标记之间（Overleaf 只需同步这一个文件）
 PEND = r'\textit{pending}'
 
 # ---------- 表：下界与启动代价 ----------
@@ -70,7 +70,7 @@ for m in MS:
     c_fr = st.mean(100 * (a - b) / b for a, b in zip(fr, rate))
     c_rw = st.mean(100 * (a - b) / b for a, b in zip(rw, rate))
     rows.append(f'{m} & {st.mean(rate):.1f} & {st.mean(lb[i] for i in ins):.1f} & {c_fr:.1f} & {c_rw:.1f} & {h0:g} \\\\')
-open(R('manuscript/tables/tab_bounds.tex'), 'w').write('\n'.join(rows) + '\n')
+GEN['tab_bounds'] = ('\n'.join(rows) + '\n')
 
 # ---------- 表：对比（配对） ----------
 pv = {}
@@ -101,7 +101,7 @@ for m in MS:
     rows.append(f'{m} & ' + ' & '.join(cells) + r' \\')
 rows.append(r'\midrule')
 rows.append(r'$p$ (Holm) & & ' + ' & '.join('--' if math.isnan(holm[o]) else (r'$<10^{-4}$' if holm[o] < 1e-4 else f'{holm[o]:.1e}') for o in OPP) + r' \\')
-open(R('manuscript/tables/tab_compare.tex'), 'w').write('\n'.join(rows) + '\n')
+GEN['tab_compare'] = ('\n'.join(rows) + '\n')
 
 # ---------- 表：求解率 ----------
 rows = []
@@ -112,7 +112,7 @@ for meth in ['ours'] + OPP:
         v = [x for i in lb if mof(i) == m for x in runs[meth][i].values()]
         cells.append(f'{100*sum(x is not None for x in v)/len(v):.0f}')
     rows.append(f'{NAME[meth]} & ' + ' & '.join(cells) + r' \\')
-open(R('manuscript/tables/tab_solve.tex'), 'w').write('\n'.join(rows) + '\n')
+GEN['tab_solve'] = ('\n'.join(rows) + '\n')
 
 # ---------- Friedman 平均秩（无解按最差；只用全部方法都跑完的 m） ----------
 meths = ['ours'] + OPP; ranks = collections.defaultdict(list); nrank = 0
@@ -122,7 +122,7 @@ for i in lb:
     for x, r in zip(meths, rankdata(vals)): ranks[x].append(r)
     nrank += 1
 fr_line = ' & '.join(f'{st.mean(ranks[x]):.2f}' if ranks[x] else '--' for x in meths)
-open(R('manuscript/tables/tab_rank.tex'), 'w').write(
+GEN['tab_rank'] = (
     f'% Friedman 平均秩，实例数 {nrank}\n' + ' & '.join(NAME[x] for x in meths) + r' \\' + '\n' + fr_line + r' \\' + '\n')
 
 # ---------- 表：消融 ----------
@@ -142,7 +142,7 @@ for meth in ['rddhand', 'noconn', 'conn_only', 'shorteval']:
     for m, c in abl(meth, NAME[meth]):
         rows.append(f'{NAME[meth] if meth != "rddhand" else "w/o relaxation rule"} & {m} & {c if c else PEND} \\\\')
     rows.append(r'\midrule')
-open(R('manuscript/tables/tab_ablation.tex'), 'w').write('\n'.join(rows[:-1]) + '\n')
+GEN['tab_ablation'] = ('\n'.join(rows[:-1]) + '\n')
 
 # ---------- 表：偏离窗口长度 ----------
 rows = []
@@ -153,14 +153,14 @@ for meth in ['ours_w0.25', 'ours', 'ours_w1', 'ours_w2']:
     if meth == 'ours': rows.append(f'$0.5$ & {g:.1f} & -- \\\\'); continue
     w = sum(imean(meth, i) < imean('ours', i) - 1e-9 for i in ins); l = sum(imean(meth, i) > imean('ours', i) + 1e-9 for i in ins)
     rows.append(f'{NAME[meth]} & {g:.1f} & {w}/{len(ins)-w-l}/{l} \\\\')
-open(R('manuscript/tables/tab_window.tex'), 'w').write('\n'.join(rows) + '\n')
+GEN['tab_window'] = ('\n'.join(rows) + '\n')
 
 # ---------- 长期可行评价消融：只看 720 h 选出的解，长期复核缺岗的比例与补救量 ----------
 se = [json.load(open(f)) for f in glob.glob(R('results/T20/ours/jobs/shorteval__*.json'))]
 short = [r for r in se if r.get('long_feasible') == 0]
 add = [r['rescue_long'].get('rescue_add', 0) for r in short if r.get('rescue_long')]
 nfail = sum(r.get('status') not in ('cert', 'uncert') for r in se)
-open(R('manuscript/tables/stat_shorteval.tex'), 'w').write(
+GEN['stat_shorteval'] = (
     f'% shorteval 作业 {len(se)} 个；只看 720 h 选出的最终解长期复核缺岗 {len(short)} 个；补救加 {min(add) if add else 0}–{max(add) if add else 0} 个；补救后仍不可行 {nfail} 个\n'
     f'\\newcommand{{\\SEn}}{{{len(se)}}}\\newcommand{{\\SEshort}}{{{len(short)}}}\\newcommand{{\\SEpct}}{{{round(100*len(short)/max(1,len(se)))}}}'
     f'\\newcommand{{\\SEaddmin}}{{{min(add) if add else 0}}}\\newcommand{{\\SEaddmax}}{{{max(add) if add else 0}}}\\newcommand{{\\SEfail}}{{{nfail}}}\n')
@@ -178,7 +178,7 @@ for c, m in zip(cols, MS):
 ax.set_xlabel(r'Horizon $H$ ($\times S_{\max}$)'); ax.set_ylabel(r'$R_0(H)$ / $R_0(4S_{\max})$ (%)')
 ax.set_xticks(hx); ax.grid(axis='y', color='#e5e5e5', lw=0.5); [ax.spines[s].set_visible(False) for s in ('top', 'right')]
 ax.legend(ncol=2, fontsize=6, frameon=False, loc='lower right', handlelength=1.5)
-fig.tight_layout(); fig.savefig(R('manuscript/figures/fig_lpconv.pdf')); fig.savefig(R('manuscript/figures/fig_lpconv.png'), dpi=200)
+fig.tight_layout(); fig.savefig(R('manuscript/figures/fig_lpconv.pdf'), metadata={'CreationDate': None}); fig.savefig(R('manuscript/figures/fig_lpconv.png'), dpi=200)
 
 # ---------- 图：区间收紧（每个 m 的平均，以 LB 为 0） ----------
 pre = {}
@@ -210,7 +210,17 @@ if ms_ok:
     ax.set_ylabel('Above the start-up bound (%)'); ax.grid(axis='y', color='#e5e5e5', lw=0.5)
     [ax.spines[s].set_visible(False) for s in ('top', 'right')]
     ax.legend(fontsize=6, frameon=False, ncol=2, loc='upper center', bbox_to_anchor=(0.5, 1.28), handlelength=1.8)
-    fig.tight_layout(); fig.savefig(R('manuscript/figures/fig_bracket.pdf')); fig.savefig(R('manuscript/figures/fig_bracket.png'), dpi=200)
+    fig.tight_layout(); fig.savefig(R('manuscript/figures/fig_bracket.pdf'), metadata={'CreationDate': None}); fig.savefig(R('manuscript/figures/fig_bracket.png'), dpi=200)
 print('bracket series:', {k: [round(x, 1) for x in v] for k, v in series.items()})
 print('complete m (ours):', [m for m in MS if complete('ours', m)], '; Friedman instances:', nrank, '; bracket m:', ms_ok)
 print('holm', {o: holm[o] for o in OPP})
+
+# ---------- 把生成的内容写进 06_experiments.tex 的 "% BEGIN 名" 与 "% END 名" 之间 ----------
+import re as _re
+sec = R('manuscript/sections/06_experiments.tex'); txt = open(sec).read()
+for k, v in GEN.items():
+    pat = _re.compile(r'([ \t]*)% BEGIN ' + k + r'\n.*?% END ' + k, _re.S)
+    if not pat.search(txt): print('缺少标记', k); continue
+    txt = pat.sub(lambda mo: f"{mo.group(1)}% BEGIN {k}\n{v.rstrip()}\n{mo.group(1)}% END {k}", txt)
+open(sec, 'w').write(txt)
+print('已写入', sec, sorted(GEN))
