@@ -1,7 +1,7 @@
 \section{Experiments}
 \label{sec:experiments}
 
-% 证据：报告/T20_0、T20_1、T20_2、T20_3（第五批，测试实例）；表与图由 code/t20_paper_tables.py 生成（manuscript/tables、figures）。
+% 证据：报告/T20_0、T20_1、T20_2、T20_3（第五批，测试实例）；表格行与图由 code/t20_paper_tables.py 生成：表格行直接写在本文件的 BEGIN/END 标记之间（不要手改），图在 figures/。
 % 口径（用户定）：差距下界 = ceil(max_H LP_fr^Rw)；按配对比较（11-09）；无解另报求解率，Friedman 里按最差（11-05）。
 % 实例换算（11-04 用户同意）：小时向上取整成 2 h 的格，所以格上可行即真实可行。
 % 写作（11-09 用户）：简单易懂，不绕弯子，不防御，少修饰。没跑完的不写数字（表里 pending、正文 TODO）。
@@ -67,7 +67,16 @@ The start-up cost is largest on small instances, where a few posts cannot be sta
     $m$ & bound & bound & no early & early & $H_0$ \\
     & $R$ & LB & overhaul & overhaul & ($S_{\max}$) \\
     \midrule
-    \tabinput{tables/tab_bounds.tex}
+    % BEGIN tab_bounds
+2 & 30.9 & 34.0 & 11.4 & 8.3 & 1.5 \\
+3 & 48.9 & 52.1 & 7.7 & 5.3 & 1.5 \\
+4 & 63.3 & 66.3 & 6.7 & 4.3 & 1.5 \\
+6 & 85.9 & 89.2 & 5.6 & 3.1 & 1.5 \\
+8 & 118.3 & 123.0 & 5.4 & 3.5 & 1.5 \\
+10 & 148.5 & 153.3 & 4.6 & 2.8 & 1.75 \\
+15 & 222.3 & 228.2 & 4.3 & 2.5 & 1.5 \\
+20 & 295.5 & 302.9 & 4.1 & 2.4 & 2.5 \\
+    % END tab_bounds
     \bottomrule
   \end{tabular}
   \\[2pt]
@@ -100,7 +109,12 @@ A deviation window of about one week is enough.
     \toprule
     $W_{\mathrm{dev}}$ ($S_{\max}$) & Gap (\%) & Better/same/worse than $0.5$ \\
     \midrule
-    \tabinput{tables/tab_window.tex}
+    % BEGIN tab_window
+$0.25$ & 12.5 & 7/27/6 \\
+$0.5$ & 12.4 & -- \\
+$1$ & 12.7 & 3/21/16 \\
+$2$ & 13.2 & 0/13/27 \\
+    % END tab_window
     \bottomrule
   \end{tabular}
 \end{table}
@@ -128,7 +142,9 @@ ES is the strongest competitor; its gap is $2.5$--$3.6$ points larger.
 RDD with a hand-written rule is next, $3.3$--$7.0$ points behind, and its distance grows with $m$.
 The rules (PB, GPHH) and RH-MIP are $9.5$--$19$ points behind.
 DD-EA needs one gene per decision; its fleet search often runs out of time before the search starts, so it solves only $24\%$ of the runs at $m = 6$.
-% TODO：m = 8–20 跑完后补一段：大实例上的差距与求解率（目前已知 PB、GPHH、RH-MIP 在 m = 15、20 上常无解）。
+On the instances with $m \ge 8$, C-RDD solves every run, and its gap stays at $11$--$12\%$.
+PB, GPHH and RH-MIP are $13$--$21$ points behind on the instances they solve, and at $m = 15$ and $20$ they solve only $30$--$70\%$ of the runs.
+% TODO：q5、q6 跑完后补 ES、RK-EA、DD-EA、RDD 在 m ≥ 8 上的结果，并删掉 t20_paper_tables.py 里的 HOLD。
 Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-RDD has the best Friedman rank (Table~\ref{tab:rank}).
 
 \begin{table*}[t]
@@ -141,7 +157,18 @@ Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-
     \toprule
     $m$ & C-RDD & PB & GPHH & ES & RK-EA & DD-EA & RDD & RH-MIP \\
     \midrule
-    \tabinput{tables/tab_compare.tex}
+    % BEGIN tab_compare
+2 & 7.0 & +9.7 (20/0/0) & +15.8 (20/0/0) & +3.6 (19/1/0) & +5.6 (19/1/0) & +37.5 (19/0/0) & +3.3 (17/3/0) & +12.0 (20/0/0) \\
+3 & 10.1 & +10.0 (20/0/0) & +14.2 (20/0/0) & +2.6 (16/2/2) & +7.0 (19/1/0) & +38.2 (18/0/0) & +3.3 (18/2/0) & +9.5 (20/0/0) \\
+4 & 11.8 & +12.0 (20/0/0) & +18.9 (20/0/0) & +2.5 (16/1/3) & +7.6 (20/0/0) & +39.8 (12/0/0) & +4.7 (20/0/0) & +10.9 (20/0/0) \\
+6 & 13.1 & +13.6 (19/0/0) & +17.9 (20/0/0) & +3.0 (17/0/3) & +9.3 (20/0/0) & +43.1 (7/0/0) & +7.0 (20/0/0) & +13.5 (20/0/0) \\
+8 & 11.1 & +16.5 (18/0/0) & +19.5 (20/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +16.6 (20/0/0) \\
+10 & 11.8 & +13.1 (14/0/0) & +17.6 (19/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +17.2 (18/0/0) \\
+15 & 12.0 & +15.3 (6/0/0) & +19.4 (17/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +20.3 (13/0/0) \\
+20 & 11.8 & +16.8 (10/0/0) & +19.3 (18/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +21.2 (14/0/0) \\
+\midrule
+$p$ (Holm) & & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ \\
+    % END tab_compare
     \bottomrule
   \end{tabular}
   \\[2pt]
@@ -158,7 +185,16 @@ Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-
     \toprule
     $m$ & 2 & 3 & 4 & 6 & 8 & 10 & 15 & 20 \\
     \midrule
-    \tabinput{tables/tab_solve.tex}
+    % BEGIN tab_solve
+C-RDD & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+PB & 100 & 100 & 100 & 95 & 90 & 70 & 30 & 50 \\
+GPHH & 100 & 99 & 93 & 92 & 81 & 68 & 36 & 35 \\
+ES & 100 & 100 & 100 & 100 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+RK-EA & 100 & 100 & 100 & 100 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+DD-EA & 95 & 76 & 51 & 24 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+RDD & 100 & 100 & 100 & 100 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+RH-MIP & 100 & 100 & 100 & 100 & 100 & 90 & 65 & 70 \\
+    % END tab_solve
     \bottomrule
   \end{tabular}
   \\[2pt]
@@ -173,7 +209,11 @@ Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-
   \setlength{\tabcolsep}{3pt}
   \begin{tabular}{@{}cccccccc@{}}
     \toprule
-    \tabinput{tables/tab_rank.tex}
+    % BEGIN tab_rank
+% Friedman 平均秩，实例数 80
+C-RDD & PB & GPHH & ES & RK-EA & DD-EA & RDD & RH-MIP \\
+1.17 & 5.54 & 6.53 & 2.36 & 4.11 & 7.99 & 2.83 & 5.47 \\
+    % END tab_rank
     \bottomrule
   \end{tabular}
 \end{table}
@@ -181,15 +221,18 @@ Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-
 \subsection{Ablation}
 \label{sec:exp:ablation}
 
+% BEGIN stat_shorteval
+% shorteval 作业 240 个；只看 720 h 选出的最终解长期复核缺岗 157 个；补救加 1–10 个；补救后仍不可行 8 个
+\newcommand{\SEn}{240}\newcommand{\SEshort}{157}\newcommand{\SEpct}{65}\newcommand{\SEaddmin}{1}\newcommand{\SEaddmax}{10}\newcommand{\SEfail}{8}
+% END stat_shorteval
+
 Table~\ref{tab:ablation} removes one part of C-RDD at a time.
 \begin{itemize}
   \item \emph{Without the relaxation rule}, the deviations act on a hand-written rule (RDD). The gap grows by $3.3$--$7.0$ points.
   \item \emph{Without the entering construction}, the rotation rule runs from the fresh start and the search must fix the start-up alone. The gap grows by $2.3$--$3.2$ points.
-  \item \emph{Without the search}, the best entering construction is returned. The gap grows by $1.3$--$2.7$ points. The construction alone is better than the search without the construction.
-  \item \emph{With a short fitness horizon} of $720$ hours, the search sees too little of the start-up and stops at larger fleets. The gap grows by $1.8$--$1.9$ points.
+  \item \emph{Without the search}, the best entering construction is returned. The gap grows by $1.1$--$2.7$ points. The construction alone is better than the search without the construction.
+  \item \emph{Without the long-run evaluation}, the fitness and the fleet search look only at the first $720$ hours, and the final schedule is checked afterwards. Of the \SEn{} final schedules, \SEshort{} (\SEpct\%) run short later. Adding \SEaddmin--\SEaddmax{} resources repairs all but \SEfail{} of them, and the repaired fleets are $1.1$--$1.9$ points larger than those of C-RDD.
 \end{itemize}
-% TODO：短适应度时域的最终解是否都长期可行（stat_shorteval：补救加资源 0/120）——请服务器确认这一组仍在搜索中做无限时域检查，再决定这一条怎么写。
-% TODO：m = 8、10 跑完后补"去掉接入构造""去掉搜索"两行。
 
 \begin{table}[t]
   \centering
@@ -200,7 +243,31 @@ Table~\ref{tab:ablation} removes one part of C-RDD at a time.
     \toprule
     Variant & $m$ & Excess gap \\
     \midrule
-    \tabinput{tables/tab_ablation.tex}
+    % BEGIN tab_ablation
+w/o relaxation rule & 2 & +3.3 (17/3/0) \\
+w/o relaxation rule & 3 & +3.3 (18/2/0) \\
+w/o relaxation rule & 4 & +4.7 (20/0/0) \\
+w/o relaxation rule & 6 & +7.0 (20/0/0) \\
+\midrule
+w/o entering & 4 & +2.3 (17/3/0) \\
+w/o entering & 6 & +3.2 (20/0/0) \\
+w/o entering & 8 & +2.8 (20/0/0) \\
+w/o entering & 10 & +2.6 (19/0/1) \\
+\midrule
+w/o search & 2 & +2.7 (13/7/0) \\
+w/o search & 3 & +2.1 (14/6/0) \\
+w/o search & 4 & +1.7 (13/7/0) \\
+w/o search & 6 & +2.4 (20/0/0) \\
+w/o search & 8 & +1.1 (15/5/0) \\
+w/o search & 10 & +1.6 (20/0/0) \\
+w/o search & 15 & +1.3 (19/1/0) \\
+w/o search & 20 & +1.5 (20/0/0) \\
+\midrule
+w/o long-run eval. & 4 & +1.8 (15/5/0) \\
+w/o long-run eval. & 6 & +1.9 (17/0/3) \\
+w/o long-run eval. & 8 & +1.1 (15/5/0) \\
+w/o long-run eval. & 10 & +1.7 (19/0/0) \\
+    % END tab_ablation
     \bottomrule
   \end{tabular}
 \end{table}
