@@ -7,6 +7,9 @@
 # 与手动的 git 操作互斥：flock results/T20/git.lock。远端有新提交时先合并（不 stash，不 rebase）；合并冲突就放弃，留给人工处理。
 # 用法：bash code/t20_autopush.sh（crontab：*/30 * * * *）
 cd "$(dirname "$0")/.." || exit 1
+# cron 里没有交互终端的代理变量，直连 GitHub 会证书校验失败（11-13 夜 q5、q6 的推送都因此没上去）：沿用交互终端的代理
+: "${https_proxy:=http://192.168.1.93:10808}" "${http_proxy:=http://192.168.1.93:10808}" "${no_proxy:=localhost,192.168.1.93,::1}"
+export https_proxy http_proxy no_proxy
 Q=results/T20/queue
 log() { echo "$(date "+%m-%d %H:%M:%S") autopush: $*"; }
 
@@ -37,11 +40,14 @@ push_event() {
         [ -e "$p" ] && paths+=("$p")   # 不存在的路径会让整条 git add 失败
     done
     git add -- "${paths[@]}" || { log "$ev：git add 失败"; return 1; }
-    if git diff --cached --quiet; then log "$ev：没有新结果"; return 0; fi
-    git commit -q -m "T20 自动推送：$ev 跑完的结果与运行日志$miss
+    if ! git diff --cached --quiet; then
+        git commit -q -m "T20 自动推送：$ev 跑完的结果与运行日志$miss
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" || { log "$ev：commit 失败"; return 1; }
+    fi
+    # 没有新改动时也要推：上一轮可能已提交但没推上去（只有本地 HEAD 已在远端时才算推完）
     git fetch -q origin || { log "$ev：fetch 失败"; return 1; }
+    if git merge-base --is-ancestor HEAD origin/main; then log "$ev：没有要推的提交"; return 0; fi
     if ! git merge -q --no-edit origin/main; then git merge --abort; log "$ev：合并冲突，已放弃合并，留给人工"; return 1; fi
     git push -q origin HEAD:main || { log "$ev：push 失败"; return 1; }
     log "$ev：已推送 $(git rev-parse --short HEAD)$miss"
