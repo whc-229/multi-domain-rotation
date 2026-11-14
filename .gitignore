@@ -62,3 +62,7 @@ code/cpp/rost5.t20g
 # T20 自动推送的标记与 git 锁（code/t20_autopush.sh）
 results/T20/queue/pushed_*
 results/T20/git.lock
+# T21：作业日志与调度 PID 不进仓库
+results/T21/logs/
+results/T21/logs_smoke/
+results/T21/run.pid

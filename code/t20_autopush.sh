@@ -29,14 +29,20 @@ events() {
         grep -q "全部结束" "$Q/run_$q.log" && echo "$q"
     done
     [ -f results/T20/master.done ] && [ ! -f "$Q/pushed_done" ] && echo done
+    # T21（11-14）：作业表 results/T21/queue.tsv，进度 results/T21/run.log
+    [ -f results/T21/run.log ] && [ ! -f "$Q/pushed_t21" ] && grep -q "全部结束" results/T21/run.log && echo t21
 }
 
 # 提交并推送一个事件；成功返回 0
 push_event() {
     local ev="$1" miss=""
-    [ "$ev" != done ] && miss="；没有结果的作业 $(n_missing "$Q/$ev.tsv") 个"
+    case "$ev" in
+        done) ;;
+        t21) miss="；没有结果的作业 $(n_missing results/T21/queue.tsv) 个" ;;
+        *) miss="；没有结果的作业 $(n_missing "$Q/$ev.tsv") 个" ;;
+    esac
     local p paths=()
-    for p in results/T20/opp results/T20/ours results/T20/opp_e results/T20/ours_e results/T20/queue results/T20/master.log results/T20/e_status.json; do
+    for p in results/T20/opp results/T20/ours results/T20/opp_e results/T20/ours_e results/T20/queue results/T20/master.log results/T20/e_status.json results/T21; do
         [ -e "$p" ] && paths+=("$p")   # 不存在的路径会让整条 git add 失败
     done
     git add -- "${paths[@]}" || { log "$ev：git add 失败"; return 1; }

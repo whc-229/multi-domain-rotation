@@ -18,6 +18,7 @@ size 命令另加 hardtl（总限时）让定台数受作业预算约束：pb / 
   - ours_w<倍数>：窗口扫描，偏离窗口 ⌊倍数·S_max⌋（0.25、1、2），其余同 ours；
   - conn_only：只用接入构造的规则（rost5 size，确定性）；
   - noconn：σ 规则（H = 0 形式）直接从全新启动跑，不构造启动期，其余同 ours；
+  - pbnoconn（T21，11-14）：与 noconn 只差默认规则——σ 规则换成 PB（对手 PB 的权重，加 facloop 使定台数外壳相同），没有预处理；
   - shorteval：去掉长期可行评价。rddfd 加 finite，定台数、判定、适应度都只看 360 格（720 h）；
     最后按长期口径（rost5 judge 6 万 / 60 万格，不加 finite）判定最终解，不可行时按共用外壳补救（judge 加 rescue），记补救后的资源数。
 作业内核对（搜索型方法，同 T19 (b)）：最终解 rost5 judge 重判逐字段相同；抽样的 T_eval 缺岗与 rost5 eval 相同；
@@ -36,14 +37,22 @@ import rost5_ref as ref  # noqa: E402
 R5 = os.environ.get("ROST5_BIN", os.path.join(ROOT, "code", "cpp", "rost5"))     # 环境变量只用于安装前的核对
 TLIM = {2: 300, 3: 300, 4: 300, 6: 600, 8: 1800, 10: 1800, 15: 3600, 20: 3600}
 SPLIT = "test"
-OURS = ("ours", "ours_w0.25", "ours_w1", "ours_w2", "conn_only", "noconn", "shorteval")
-SEARCH_W = {"ours": 0.5, "ours_w0.25": 0.25, "ours_w1": 1.0, "ours_w2": 2.0, "noconn": 0.5, "shorteval": 0.5}
+OURS = ("ours", "ours_w0.25", "ours_w1", "ours_w2", "conn_only", "noconn", "shorteval", "pbnoconn")
+SEARCH_W = {"ours": 0.5, "ours_w0.25": 0.25, "ours_w1": 1.0, "ours_w2": 2.0, "noconn": 0.5, "shorteval": 0.5, "pbnoconn": 0.5}
 T_SHORT = 360          # 消融"去掉长期可行评价"：720 h
 
 
 def c_json(args):
     """运行 rost5，返回 JSON。"""
     return json.loads(subprocess.run([R5] + [str(a) for a in args], capture_output=True, text=True, check=True).stdout)
+
+
+def pb_spec():
+    """T21 pbnoconn 的规则选项：默认规则换成 PB（与对手 PB、RDD-hand 相同的权重），其余与 noconn 相同。
+    facloop 让线性权重规则也走"放大起点倍数循环"（松弛规则自带这个循环），这样定台数外壳与 noconn 相同；起点基数用实例默认台数。
+    Python 参考实现的权重是 14 维（PB 的 8 维后补 0），与 code/t13_check.py 相同。"""
+    opts = [TM.wstr(TM.W_PB), "facloop"]
+    return dict(opts=opts, eval_opts=opts, py=dict(w=[float(x) for x in TM.W_PB] + [0.0] * 6), fallback=0)
 
 
 def gphh_tree(seed):
@@ -56,7 +65,8 @@ def py_check(I, name, rec, sp):
     with tempfile.TemporaryDirectory(prefix="t20py_") as tmpd:
         gp = os.path.join(tmpd, "best.geno"); write_geno(gp, rec["W"], rec["ndev"], rec["qon"], rec["genes"], 1)
         _, txt = inst_paths(name, SPLIT)
-        e = c_json(["eval", txt, rec["Teval"], "0"] + rec["Nk"] + ["|"] + rec["Mj"] + ["|", "|"] + sp["eval_opts"] + [f"rdd={gp}"])
+        # eval 的权重要放第 3 段（选项里的 w= 会被 eval 忽略），用 t13_job.eval_args 拆；原有方法的选项没有 w= 等，命令与原来逐字相同（T21 加，11-14）
+        e = c_json(["eval", txt, rec["Teval"], "0"] + rec["Nk"] + ["|"] + rec["Mj"] + ["|"] + t13_job.eval_args(sp["eval_opts"]) + [f"rdd={gp}"])
     D = ref.decode_geno(rec["genes"], rec["W"], rec["ndev"], rec["qon"], True)
     p = ref.run(I, rec["Nk"], rec["Mj"], rec["Teval"], False, rdd=D, **sp["py"])
     return dict(check_py=int(p["gaps"] == e["gaps"] and p["resets"] == e["resets"] and p["ndec_w"] == e["ndec_w"]),
@@ -135,12 +145,16 @@ def main():
     elif method in OURS:
         import t20_ours
         pstage = stage[:-2] if stage.endswith("_e") else stage   # (e) 上线后的队尾重跑（阶段 ours_e）共用 ours 的预处理缓存
-        pre = t20_ours.prepare(pstage, name)                    # 按实例缓存；pre["wall"] 是预处理用时（扣出预算）
-        pre_sec = pre["wall"]; extra["pre"] = {k: pre[k] for k in pre if k not in ("thetas",)}
+        if method == "pbnoconn":                                # T21：PB 不用 σ 规则，没有预处理，预算全给搜索
+            pre = dict(wall=0.0, sigma_R=0)
+        else:
+            pre = t20_ours.prepare(pstage, name)                # 按实例缓存；pre["wall"] 是预处理用时（扣出预算）
+            extra["pre"] = {k: pre[k] for k in pre if k not in ("thetas",)}
+        pre_sec = pre["wall"]
         t0 = time.time()                                        # 第一个作业在这里算了预处理，不重复计入作业用时
         if pre.get("sigma_R", -1) < 0: rec = dict(R=-1, status="fail", note="σ 定不出台数")
         else:
-            sp = t20_ours.spec(pstage, name, I, S, method); extra["spec_fallback"] = sp["fallback"]
+            sp = pb_spec() if method == "pbnoconn" else t20_ours.spec(pstage, name, I, S, method); extra["spec_fallback"] = sp["fallback"]
             if method == "conn_only":
                 args = [R5, "size", txt] + common + sp["opts"] + ["rescue", f"hardtl={max(1.0, TL - pre_sec):.1f}"]
                 rec = c_json(args[1:]); rec["cmd"] = " ".join(args)

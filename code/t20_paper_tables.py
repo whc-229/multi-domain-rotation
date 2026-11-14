@@ -194,7 +194,7 @@ for c, m in zip(cols, MS):
 ax.set_xlabel(r'Horizon $H$ ($\times S_{\max}$)'); ax.set_ylabel(r'$R_0(H)$ / $R_0(4S_{\max})$ (%)')
 ax.set_xticks(hx); ax.grid(axis='y', color='#e5e5e5', lw=0.5); [ax.spines[s].set_visible(False) for s in ('top', 'right')]
 ax.legend(ncol=2, fontsize=6, frameon=False, loc='lower right', handlelength=1.5)
-fig.tight_layout(); fig.savefig(R('manuscript/figures/fig_lpconv.pdf'), metadata={'CreationDate': None}); fig.savefig(R('manuscript/figures/fig_lpconv.png'), dpi=200)
+fig.tight_layout(); (STRICT or fig.savefig(R('manuscript/figures/fig_lpconv.pdf'), metadata={'CreationDate': None})); (STRICT or fig.savefig(R('manuscript/figures/fig_lpconv.png'), dpi=200))   # --strict 不改论文的图（11-14 服务器加）
 
 # ---------- 图：区间收紧（每个 m 的平均，以 LB 为 0） ----------
 pre = {}
@@ -226,7 +226,7 @@ if ms_ok:
     ax.set_ylabel('Above the start-up bound (%)'); ax.grid(axis='y', color='#e5e5e5', lw=0.5)
     [ax.spines[s].set_visible(False) for s in ('top', 'right')]
     ax.legend(fontsize=6, frameon=False, ncol=2, loc='upper center', bbox_to_anchor=(0.5, 1.28), handlelength=1.8)
-    fig.tight_layout(); fig.savefig(R('manuscript/figures/fig_bracket.pdf'), metadata={'CreationDate': None}); fig.savefig(R('manuscript/figures/fig_bracket.png'), dpi=200)
+    fig.tight_layout(); (STRICT or fig.savefig(R('manuscript/figures/fig_bracket.pdf'), metadata={'CreationDate': None})); (STRICT or fig.savefig(R('manuscript/figures/fig_bracket.png'), dpi=200))   # --strict 不改论文的图（11-14 服务器加）
 print('bracket series:', {k: [round(x, 1) for x in v] for k, v in series.items()})
 print('complete m (ours):', [m for m in MS if complete('ours', m)], '; Friedman instances:', nrank, '; bracket m:', ms_ok)
 print('holm', {o: holm[o] for o in OPP})
