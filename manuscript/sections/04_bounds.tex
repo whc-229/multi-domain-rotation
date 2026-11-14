@@ -105,11 +105,11 @@ For odd $K$, Proposition~\ref{prop:orbit} serves $K-1$ posts, and $(P+1)/2$ robo
 \label{sec:time}
 
 The cycles of different robot types do not divide each other, so a good schedule may repeat only after a very long period, and encoding one period is not practical.
-The results below show that it is not needed.
+The results below build a fresh-start schedule that joins a given rotation after a start-up of finite length.
 
-Here $\sigma$ represents a feasible schedule whose robots may start in any phase; it uses $N_\sigma$ robots and $M_\sigma$ tools.
+Here $\sigma$ represents a feasible schedule whose robots may start in any phase and in which every robot finishes an overhaul at some slot; it uses $N_\sigma$ robots and $M_\sigma$ tools.
 The \emph{entry slot} $e_r$ of a robot $r$ is the first slot at which $r$ finishes an overhaul in $\sigma$, and $T_0 = \max_r e_r$ is the latest entry slot.
-It is at most the longest time between two overhauls of a robot.
+$T_0$ depends on $\sigma$, including its waits; for the rotations used by our method it is about one maintenance cycle (Section~\ref{sec:experiments}).
 
 \begin{theorem}[Entering a rotation]
 \label{thm:enter}
@@ -125,7 +125,7 @@ Before $T_0$, the copies serve every duty of $\sigma$ except those before the en
 The copies do not conflict because the robots and tools of $\sigma$ do not.
 \end{proof}
 
-Theorem~\ref{thm:enter} gives the upper bound $N_\sigma + \Delta N + M_\sigma + \Delta M$, and it bounds the start-up in time, independently of the numbers of sites, posts and robot types.
+If $\sigma$ is feasible for the infinite horizon, Theorem~\ref{thm:enter} gives the upper bound $N_\sigma + \Delta N + M_\sigma + \Delta M$, and the fresh-start schedule differs from $\sigma$ only before $T_0$.
 The method in Section~\ref{sec:method} tightens this upper bound by search.
 Without early overhaul, $\Delta N$ can grow with the number of posts (Proposition~\ref{prop:linear}).
 With early overhaul, a robot $r'$ can serve some missing duties before $e_r$ and then take the overhaul, as long as it is back in phase $0$ at $e_r$.
@@ -168,5 +168,6 @@ Without early overhaul, an exhaustive search shows that a new fleet needs seven 
 The schedule of Theorem~\ref{thm:enter} differs from $\sigma$ only in $[0, T_0)$, so an encoding that searches the decisions in this window and repeats a rotation afterwards can represent it.
 \end{corollary}
 
-Our method builds on this structure: it constructs the start-up by Theorem~\ref{thm:enter}, encodes a few deviations in a short window and replays a rule derived from the relaxation afterwards.
+Corollary~\ref{cor:window} does not say that an optimal schedule lies in this family.
+Our method uses the family as a search space: it constructs the start-up by Theorem~\ref{thm:enter}, encodes a few deviations in a short window and replays a rule derived from the relaxation afterwards.
 Section~\ref{sec:experiments} measures how short the window can be.

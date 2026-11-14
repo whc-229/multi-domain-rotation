@@ -29,10 +29,10 @@ Dispatching rules evolved by genetic programming~\cite{zhang2024survey,xu2024lex
 This paper brackets the optimum of MDRR and builds the method from the bracket.
 On the lower side, a rate relaxation assumes that maintenance is spread evenly over the robots, and a start-up relaxation adds the fresh start.
 On the upper side, an entering theorem lets a new fleet join any feasible rotation: each new robot waits until the robot it copies finishes its first overhaul, and a few extra robots serve the duties before that.
-The theorem also bounds the start-up in time, so only a short window has to be optimized.
+After the start-up, the schedule repeats the rotation, so the search can focus on the start-up; Section~\ref{sec:experiments} shows that a window of about one week is enough.
 The method follows the bracket step by step.
 The rate relaxation gives a rotation rule, the entering theorem gives the start-up, and an evolutionary algorithm changes a few decisions in a short start-up window and lowers the fleet.
-Every returned schedule is checked for the infinite horizon.
+Every returned schedule passes a long-run feasibility check.
 
 The contributions are as follows.
 \begin{enumerate}

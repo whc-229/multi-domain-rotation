@@ -10,14 +10,19 @@
 import json, glob, math, os, sys, statistics as st, collections
 from scipy.stats import wilcoxon, rankdata
 
-ROOT = sys.argv[1] if len(sys.argv) > 1 else '.'
+ARGS = [a for a in sys.argv[1:] if not a.startswith('--')]
+ROOT = ARGS[0] if ARGS else '.'
+# --strict：超预算口径 (b)（用户 11-14：主口径用 (a)，(b) 的数据保留备查、以后可能换）。
+# 读服务器生成的 results/T20/strict_budget.jsonl（每行 method, inst, seed, R_b；R_b 为 null 表示预算内无解），
+# 只写备查文件 results/T20/tables_strict_budget.tex，不改论文。
+STRICT = '--strict' in sys.argv
 R = lambda *p: os.path.join(ROOT, *p)
 MS = [2, 3, 4, 6, 8, 10, 15, 20]
 NAME = {'ours': 'C-RDD', 'pb': 'PB', 'gphh': 'GPHH', 'esdw': 'ES', 'rk': 'RK-EA', 'd5': 'DD-EA',
         'rddhand': 'RDD', 'rhmip': 'RH-MIP', 'conn_only': 'w/o search', 'noconn': 'w/o entering',
-        'shorteval': 'w/o long-run eval.', 'ours_w0.25': '$0.25$', 'ours_w1': '$1$', 'ours_w2': '$2$'}
+        'shorteval': 'w/o long-run eval.', 'pbnoconn': 'PB rule', 'ours_w0.25': '$0.25$', 'ours_w1': '$1$', 'ours_w2': '$2$'}
 RUNS = {'ours': 5, 'pb': 1, 'gphh': 5, 'esdw': 5, 'rk': 5, 'd5': 5, 'rddhand': 5, 'rhmip': 1,
-        'conn_only': 1, 'noconn': 3, 'shorteval': 3, 'ours_w0.25': 3, 'ours_w1': 3, 'ours_w2': 3}
+        'conn_only': 1, 'noconn': 3, 'pbnoconn': 3, 'shorteval': 3, 'ours_w0.25': 3, 'ours_w1': 3, 'ours_w2': 3}
 OPP = ['pb', 'gphh', 'esdw', 'rk', 'd5', 'rddhand', 'rhmip']
 
 # ---------- 读数据 ----------
@@ -44,7 +49,13 @@ for d in ('opp_e', 'ours_e'):
         if rec.get('e_fixed', -1) >= 0: put(meth, inst, key, rec)   # (e) 实际触发才用新结果（11-09 审核）
 
 # q6 会用 (e) 重跑这些 (方法, m) 的一部分作业，跑完前按 pending 处理（q6 结束后删掉对应项）
-HOLD = {('d5', 15), ('d5', 20)}
+HOLD = set()   # q6 已于 11-14 跑完
+
+if STRICT:
+    for l in open(R('results/T20/strict_budget.jsonl')):
+        d = json.loads(l); key = d['seed'] if str(d['seed']).startswith(('s', 'r')) else f"s{d['seed']}"
+        if d['inst'] in runs[d['method']] and key in runs[d['method']][d['inst']]:
+            runs[d['method']][d['inst']][key] = d['R_b']
 
 def complete(meth, m):
     if (meth, m) in HOLD: return False
@@ -127,20 +138,25 @@ GEN['tab_rank'] = (
 
 # ---------- 表：消融 ----------
 rows = []
-def abl(meth, label):
+def abl(meth, ref='ours'):
     out = []
     for m in MS:
         if meth not in runs or not any(mof(i) == m for i in runs[meth]): continue
-        if not (complete(meth, m) and complete('ours', m)): out.append((m, None)); continue
-        ins = [i for i in lb if mof(i) == m and imean(meth, i) is not None]
-        dg = st.mean(gap(imean(meth, i), i) - gap(imean('ours', i), i) for i in ins)
-        w = sum(imean('ours', i) < imean(meth, i) - 1e-9 for i in ins)
-        l = sum(imean('ours', i) > imean(meth, i) + 1e-9 for i in ins)
+        if not (complete(meth, m) and complete(ref, m)): out.append((m, None)); continue
+        ins = [i for i in lb if mof(i) == m and imean(meth, i) is not None and imean(ref, i) is not None]
+        dg = st.mean(gap(imean(meth, i), i) - gap(imean(ref, i), i) for i in ins)
+        w = sum(imean(ref, i) < imean(meth, i) - 1e-9 for i in ins)
+        l = sum(imean(ref, i) > imean(meth, i) + 1e-9 for i in ins)
         out.append((m, f'{dg:+.1f} ({w}/{len(ins)-w-l}/{l})'))
     return out
-for meth in ['rddhand', 'noconn', 'conn_only', 'shorteval']:
-    for m, c in abl(meth, NAME[meth]):
-        rows.append(f'{NAME[meth] if meth != "rddhand" else "w/o relaxation rule"} & {m} & {c if c else PEND} \\\\')
+# 规则来源（11-14，按审查意见）：PB 规则 vs 松弛规则，两边都不接入、偏离窗口都是 0.5·S_max，只差规则；参照是 noconn。
+for meth, ref, label in [('pbnoconn', 'noconn', 'PB rule (vs. relaxation rule, no entering)'),
+                         ('noconn', 'ours', 'w/o entering'), ('conn_only', 'ours', 'w/o search'),
+                         ('shorteval', 'ours', 'w/o long-run eval.')]:
+    res_ab = abl(meth, ref)
+    if not res_ab: res_ab = [(m, None) for m in (4, 6, 8, 10)]
+    for m, c in res_ab:
+        rows.append(f'{label} & {m} & {c if c else PEND} \\\\')
     rows.append(r'\midrule')
 GEN['tab_ablation'] = ('\n'.join(rows[:-1]) + '\n')
 
@@ -217,6 +233,10 @@ print('holm', {o: holm[o] for o in OPP})
 
 # ---------- 把生成的内容写进 06_experiments.tex 的 "% BEGIN 名" 与 "% END 名" 之间 ----------
 import re as _re
+if STRICT:
+    out = R('results/T20/tables_strict_budget.tex')
+    open(out, 'w').write('% 超预算口径 (b) 的表格行（备查，不进论文）\n' + '\n'.join(f'% === {k}\n{v}' for k, v in GEN.items()))
+    print('已写备查', out); sys.exit(0)
 sec = R('manuscript/sections/06_experiments.tex'); txt = open(sec).read()
 for k, v in GEN.items():
     pat = _re.compile(r'([ \t]*)% BEGIN ' + k + r'\n.*?% END ' + k, _re.S)

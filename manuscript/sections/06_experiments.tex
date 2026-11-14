@@ -5,7 +5,9 @@
 % 口径（用户定）：差距下界 = ceil(max_H LP_fr^Rw)；按配对比较（11-09）；无解另报求解率，Friedman 里按最差（11-05）。
 % 实例换算（11-04 用户同意）：小时向上取整成 2 h 的格，所以格上可行即真实可行。
 % 写作（11-09 用户）：简单易懂，不绕弯子，不防御，少修饰。没跑完的不写数字（表里 pending、正文 TODO）。
-% TODO（等 q5、q6 与本方法 m = 8、10 跑完）：重跑 t20_tables.py；补 m = 8–20 的对比、m = 8、10 的消融与区间图；补机器型号。
+% 11-14：q5、q6 已跑完；超预算口径用 (a)（最终解），(b) 的表另存备查：python3 code/t20_paper_tables.py . --strict。
+% 11-14：按外部审查改——接入定理加前提、去掉"与规模无关"；长期检查区分证明与复核；规则来源消融改为 PB vs 松弛规则（都不接入）。
+% 11-14 用户定：11-11 起部分对手作业与别的项目共用机器，不重跑，汇总报告注明。
 
 The experiments answer three questions.
 How tight are the bounds, and how short can the start-up window be?
@@ -36,11 +38,14 @@ We compare C-RDD with seven methods.
 All methods share the simulator, the tool assignment rule and the fleet search: start from a fleet, add resources while sites run short, and remove resources while the schedule stays feasible.
 
 \textbf{Evaluation.}
-Every final schedule is checked for the infinite horizon: it must repeat a cycle with no uncovered slot, or run $600{,}000$ slots (about $137$ years) with none.
+Every final schedule passes a long-run check: it either repeats a cycle with no uncovered slot, which proves infinite-horizon feasibility, or runs $600{,}000$ slots (about $137$ years) with none.
+% TODO：服务器给出各规模"有循环证明 / 只有长时域复核"的正式个数后填入下一句（按最终 judge 重判）。
+For C-RDD, a cycle proves feasibility in \textit{pending} of the $800$ runs; the share falls as $m$ grows.
 A run that ends without such a schedule counts as unsolved.
 Each run has a wall-clock limit on one core: $300$\,s for $m \le 4$, $600$\,s for $m = 6$, $1800$\,s for $m = 8, 10$ and $3600$\,s for $m = 15, 20$.
 The limit includes all preprocessing, such as the linear program and the entering construction.
-% TODO：补机器型号与编译器。
+A search checks the limit before each generation and finishes the last one; the overrun stays below $300$\,s except for DD-EA, whose generations are slow (up to $4458$\,s).
+The experiments ran on an Intel i7-10700KF (8 cores, 16 threads) with 12 runs in parallel; the code is C++ (g++ 11.4, \texttt{-O2}) and Python 3.10 with HiGHS 1.15 for the linear programs.
 Search methods run five seeds per instance; PB, RH-MIP and the entering construction run once, and each GPHH rule runs once.
 Results are averaged over the solved runs of an instance.
 The gap is the excess over the lower bound $\lceil \max_H R_0(H) \rceil$, in percent.
@@ -85,7 +90,7 @@ The start-up cost is largest on small instances, where a few posts cannot be sta
 
 Fig.~\ref{fig:lpconv} shows how the start-up bound grows with the horizon $H$.
 It reaches $97$--$99\%$ of its final value at $H = S_{\max}$ and more than $99\%$ at $1.5 S_{\max}$, for every $m$.
-The start-up cost is therefore decided within about one maintenance cycle, as Theorem~\ref{thm:enter} suggests.
+The start-up cost is therefore decided within about one maintenance cycle, which matches the start-up length of Theorem~\ref{thm:enter} for our rotations.
 For $m = 20$ the bound still grows slightly between $3 S_{\max}$ and $4 S_{\max}$.
 
 \begin{figure}[t]
@@ -121,15 +126,14 @@ $2$ & 13.2 & 0/13/27 \\
 
 Fig.~\ref{fig:bracket} follows the bracket of Section~\ref{sec:bounds} from both sides.
 The rate bound lies below the start-up bound.
-A single entering construction gives the first upper bound, $12$--$16\%$ above the start-up bound.
+On the upper side, all schedules pass the long-run check. A single entering construction lies $12$--$16\%$ above the start-up bound.
 Trying several time origins lowers it, and the search of C-RDD lowers it further, to $7$--$13\%$.
 The rotation $\sigma$ itself, which needs a fleet already spread over its cycles, lies close to the best construction: the entering costs only a few extra robots.
-% TODO：m = 8、10 跑完后重画，核对上面的区间。
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig_bracket.pdf}
-  \caption{The bracket from both sides: mean excess over the start-up bound. Dashed: lower side; solid: upper side.}
+  \caption{The bracket from both sides: mean excess over the start-up bound. Dashed: lower bounds; solid: schedules found, all passing the long-run check.}
   \label{fig:bracket}
 \end{figure}
 
@@ -137,15 +141,17 @@ The rotation $\sigma$ itself, which needs a fleet already spread over its cycles
 \label{sec:exp:compare}
 
 Table~\ref{tab:compare} compares C-RDD with each method.
-On the instances with $m \le 6$, C-RDD is better than every method on most instances, and no method beats it on more than three of the $20$ instances of any size.
-ES is the strongest competitor; its gap is $2.5$--$3.6$ points larger.
-RDD with a hand-written rule is next, $3.3$--$7.0$ points behind, and its distance grows with $m$.
-The rules (PB, GPHH) and RH-MIP are $9.5$--$19$ points behind.
-DD-EA needs one gene per decision; its fleet search often runs out of time before the search starts, so it solves only $24\%$ of the runs at $m = 6$.
-On the instances with $m \ge 8$, C-RDD solves every run, and its gap stays at $11$--$12\%$.
-PB, GPHH and RH-MIP are $13$--$21$ points behind on the instances they solve, and at $m = 15$ and $20$ they solve only $30$--$70\%$ of the runs.
-% TODO：q5、q6 跑完后补 ES、RK-EA、DD-EA、RDD 在 m ≥ 8 上的结果，并删掉 t20_paper_tables.py 里的 HOLD。
-Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-RDD has the best Friedman rank (Table~\ref{tab:rank}).
+C-RDD solves every run, and its gap stays between $7\%$ and $13\%$ at all sizes.
+No method beats it on more than three of the $20$ instances of any size, and every difference is significant.
+
+ES is the strongest competitor.
+On the instances with $m \le 6$ its gap is $2.5$--$3.6$ points larger than that of C-RDD; at $m \ge 8$ the distance grows to $4.2$--$13.3$ points, and C-RDD is better on all $80$ instances.
+ES tunes the weights of a dispatching rule but does not plan the start-up.
+RDD with a hand-written rule is next on small instances, $3.3$--$7.0$ points behind, but falls $22$--$59$ points behind at $m \ge 8$, where it also fails on up to $35\%$ of the runs.
+RK-EA behaves in the same way.
+The rules (PB, GPHH) and RH-MIP are $9.5$--$21$ points behind and solve only $30$--$70\%$ of the runs at $m = 15$ and $20$.
+DD-EA needs one gene per decision; its fleet search often runs out of time before the search starts, so it solves only $29\%$ of the runs at $m = 6$ and at most $19\%$ at $m \ge 8$.
+Table~\ref{tab:solve} gives the solve rates, and C-RDD has the best Friedman rank (Table~\ref{tab:rank}).
 
 \begin{table*}[t]
   \centering
@@ -159,13 +165,13 @@ Table~\ref{tab:solve} gives the solve rates. On the instances with $m \le 6$, C-
     \midrule
     % BEGIN tab_compare
 2 & 7.0 & +9.7 (20/0/0) & +15.8 (20/0/0) & +3.6 (19/1/0) & +5.6 (19/1/0) & +37.5 (19/0/0) & +3.3 (17/3/0) & +12.0 (20/0/0) \\
-3 & 10.1 & +10.0 (20/0/0) & +14.2 (20/0/0) & +2.6 (16/2/2) & +7.0 (19/1/0) & +38.2 (18/0/0) & +3.3 (18/2/0) & +9.5 (20/0/0) \\
-4 & 11.8 & +12.0 (20/0/0) & +18.9 (20/0/0) & +2.5 (16/1/3) & +7.6 (20/0/0) & +39.8 (12/0/0) & +4.7 (20/0/0) & +10.9 (20/0/0) \\
-6 & 13.1 & +13.6 (19/0/0) & +17.9 (20/0/0) & +3.0 (17/0/3) & +9.3 (20/0/0) & +43.1 (7/0/0) & +7.0 (20/0/0) & +13.5 (20/0/0) \\
-8 & 11.1 & +16.5 (18/0/0) & +19.5 (20/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +16.6 (20/0/0) \\
-10 & 11.8 & +13.1 (14/0/0) & +17.6 (19/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +17.2 (18/0/0) \\
-15 & 12.0 & +15.3 (6/0/0) & +19.4 (17/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +20.3 (13/0/0) \\
-20 & 11.8 & +16.8 (10/0/0) & +19.3 (18/0/0) & \textit{pending} & \textit{pending} & \textit{pending} & \textit{pending} & +21.2 (14/0/0) \\
+3 & 10.1 & +10.0 (20/0/0) & +14.2 (20/0/0) & +2.6 (16/2/2) & +7.0 (19/1/0) & +38.4 (18/0/0) & +3.3 (18/2/0) & +9.5 (20/0/0) \\
+4 & 11.8 & +12.0 (20/0/0) & +18.9 (20/0/0) & +2.5 (16/1/3) & +7.6 (20/0/0) & +42.7 (14/0/0) & +4.7 (20/0/0) & +10.9 (20/0/0) \\
+6 & 13.1 & +13.6 (19/0/0) & +17.9 (20/0/0) & +3.0 (17/0/3) & +9.3 (20/0/0) & +44.6 (8/0/0) & +7.0 (20/0/0) & +13.5 (20/0/0) \\
+8 & 11.1 & +16.5 (18/0/0) & +19.5 (20/0/0) & +4.2 (20/0/0) & +9.5 (20/0/0) & +48.4 (3/0/0) & +21.6 (20/0/0) & +16.6 (20/0/0) \\
+10 & 11.8 & +13.1 (14/0/0) & +17.6 (19/0/0) & +5.2 (20/0/0) & +18.2 (18/0/0) & +113.9 (5/0/0) & +36.2 (19/0/0) & +17.2 (18/0/0) \\
+15 & 12.0 & +15.3 (6/0/0) & +19.4 (17/0/0) & +8.2 (20/0/0) & +35.0 (18/0/0) & +154.8 (3/0/0) & +59.1 (15/0/0) & +20.3 (13/0/0) \\
+20 & 11.8 & +16.8 (10/0/0) & +19.3 (18/0/0) & +13.3 (20/0/0) & +42.5 (15/0/0) & +152.9 (4/0/0) & +43.7 (16/0/0) & +21.2 (14/0/0) \\
 \midrule
 $p$ (Holm) & & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ \\
     % END tab_compare
@@ -189,10 +195,10 @@ $p$ (Holm) & & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & $<10^{-4}$ & 
 C-RDD & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
 PB & 100 & 100 & 100 & 95 & 90 & 70 & 30 & 50 \\
 GPHH & 100 & 99 & 93 & 92 & 81 & 68 & 36 & 35 \\
-ES & 100 & 100 & 100 & 100 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
-RK-EA & 100 & 100 & 100 & 100 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
-DD-EA & 95 & 76 & 51 & 24 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
-RDD & 100 & 100 & 100 & 100 & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+ES & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+RK-EA & 100 & 100 & 100 & 100 & 100 & 90 & 83 & 66 \\
+DD-EA & 95 & 80 & 61 & 29 & 8 & 17 & 11 & 19 \\
+RDD & 100 & 100 & 100 & 100 & 100 & 89 & 65 & 71 \\
 RH-MIP & 100 & 100 & 100 & 100 & 100 & 90 & 65 & 70 \\
     % END tab_solve
     \bottomrule
@@ -210,9 +216,9 @@ RH-MIP & 100 & 100 & 100 & 100 & 100 & 90 & 65 & 70 \\
   \begin{tabular}{@{}cccccccc@{}}
     \toprule
     % BEGIN tab_rank
-% Friedman 平均秩，实例数 80
+% Friedman 平均秩，实例数 160
 C-RDD & PB & GPHH & ES & RK-EA & DD-EA & RDD & RH-MIP \\
-1.17 & 5.54 & 6.53 & 2.36 & 4.11 & 7.99 & 2.83 & 5.47 \\
+1.08 & 5.88 & 5.88 & 2.39 & 4.24 & 7.70 & 3.42 & 5.40 \\
     % END tab_rank
     \bottomrule
   \end{tabular}
@@ -226,9 +232,11 @@ C-RDD & PB & GPHH & ES & RK-EA & DD-EA & RDD & RH-MIP \\
 \newcommand{\SEn}{240}\newcommand{\SEshort}{157}\newcommand{\SEpct}{65}\newcommand{\SEaddmin}{1}\newcommand{\SEaddmax}{10}\newcommand{\SEfail}{8}
 % END stat_shorteval
 
-Table~\ref{tab:ablation} removes one part of C-RDD at a time.
+Table~\ref{tab:ablation} removes or replaces one part of C-RDD at a time.
 \begin{itemize}
-  \item \emph{Without the relaxation rule}, the deviations act on a hand-written rule (RDD). The gap grows by $3.3$--$7.0$ points.
+  \item \emph{Rule source.} Both variants skip the entering construction and use the same deviation window; one follows the relaxation rule, the other the hand-written rule PB.
+% TODO：pbnoconn 跑完后填写差距。
+  The relaxation rule is \textit{pending} points better.
   \item \emph{Without the entering construction}, the rotation rule runs from the fresh start and the search must fix the start-up alone. The gap grows by $2.3$--$3.2$ points.
   \item \emph{Without the search}, the best entering construction is returned. The gap grows by $1.1$--$2.7$ points. The construction alone is better than the search without the construction.
   \item \emph{Without the long-run evaluation}, the fitness and the fleet search look only at the first $720$ hours, and the final schedule is checked afterwards. Of the \SEn{} final schedules, \SEshort{} (\SEpct\%) run short later. Adding \SEaddmin--\SEaddmax{} resources repairs all but \SEfail{} of them, and the repaired fleets are $1.1$--$1.9$ points larger than those of C-RDD.
@@ -244,10 +252,10 @@ Table~\ref{tab:ablation} removes one part of C-RDD at a time.
     Variant & $m$ & Excess gap \\
     \midrule
     % BEGIN tab_ablation
-w/o relaxation rule & 2 & +3.3 (17/3/0) \\
-w/o relaxation rule & 3 & +3.3 (18/2/0) \\
-w/o relaxation rule & 4 & +4.7 (20/0/0) \\
-w/o relaxation rule & 6 & +7.0 (20/0/0) \\
+PB rule (vs. relaxation rule, no entering) & 4 & \textit{pending} \\
+PB rule (vs. relaxation rule, no entering) & 6 & \textit{pending} \\
+PB rule (vs. relaxation rule, no entering) & 8 & \textit{pending} \\
+PB rule (vs. relaxation rule, no entering) & 10 & \textit{pending} \\
 \midrule
 w/o entering & 4 & +2.3 (17/3/0) \\
 w/o entering & 6 & +3.2 (20/0/0) \\
