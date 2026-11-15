@@ -1,5 +1,14 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-% 证据来源与"不能写"的说法写在这里。
-% TODO
+This paper studied the resource requirements of multi-domain rotation rostering from a fresh start.
+The rate relaxation gives a lower bound from the maintenance cycles, and the start-up relaxation adds the cost of starting all robots in phase $0$.
+The entering theorem constructs a fresh-start schedule that joins a given feasible rotation.
+C-RDD uses these results to derive a dispatching rule, construct the start-up and search a short window of deviations.
+Its genotype length is independent of the scheduling horizon.
+
+On $160$ test instances, all $800$ C-RDD runs pass the long-run check, and the mean gap at each size ranges from $7.0\%$ to $13.1\%$.
+C-RDD has the lowest average rank among the eight methods.
+The ablations show that the entering construction and the deviation search both reduce resource use, while the finite-horizon evaluation often accepts schedules that run short later.
+These results support using a rotation to organize the long horizon and concentrating evolutionary search on the fresh start.
+Future work will study the joint choice of the rotation and its entering schedule, and extend the construction to varying duty and maintenance durations.

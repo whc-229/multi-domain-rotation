@@ -1,5 +1,23 @@
 \section{Discussion}
 \label{sec:discussion}
 
-% 证据来源与"不能写"的说法写在这里。
-% TODO
+The relaxation and the entering construction serve different parts of the search.
+The rate relaxation allocates duties across robot types and sites, while the construction brings a fresh fleet into that rotation.
+Removing the construction raises the gap by $2.3$--$3.2$ percentage points, and removing the search raises it by $1.1$--$2.7$ points (Table~\ref{tab:ablation}).
+Thus, the construction supplies a starting schedule, and the deviations reduce the resources needed to run it.
+The search changes both the fleet and the decisions that determine its initial phase distribution.
+
+The deviation window and the evaluation horizon have different roles.
+On the $40$ instances used for the window experiment, extending the window from $0.5S_{\max}$ to $2S_{\max}$ raises the mean gap from $12.4\%$ to $13.2\%$ under the same time budget.
+At a fixed deviation rate, the longer window adds genes and spreads the search over more decisions.
+The shorter window concentrates those decisions near the fresh start.
+Their effects continue after the genes stop acting because they change which robots are ready and where they are in their maintenance cycles.
+Evaluation must follow those effects: $157$ of the $240$ schedules selected using only the first $720$ hours run short later.
+A short encoding therefore works together with a long-run check.
+
+The remaining gap combines the relaxation of the resource counts and trajectories with the quality of the schedules found.
+The start-up LP allows fractional paths and stops coverage at $H$; C-RDD assigns whole robots and tools and follows the resulting schedule beyond that horizon.
+Fig.~\ref{fig:bracket} shows that the rotation and the entering construction use similar numbers of resources, so much of the gap is already present before the fresh fleet enters.
+This points to the choice of rotation as a place for further improvement.
+Searching over several duty allocations from the rate relaxation could change both the steady fleet and the cost of entering it.
+On the lower side, linking the terminal state of the start-up relaxation to a continuing rotation could account for coverage after $H$.
