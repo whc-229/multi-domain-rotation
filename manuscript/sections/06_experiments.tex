@@ -39,14 +39,17 @@ All methods share the simulator, the tool assignment rule and the fleet search: 
 
 \textbf{Evaluation.}
 Every final schedule passes a long-run check: it either repeats a cycle with no uncovered slot, which proves infinite-horizon feasibility, or runs $600{,}000$ slots (about $137$ years) with none.
-% TODO：服务器给出各规模"有循环证明 / 只有长时域复核"的正式个数后填入下一句（按最终 judge 重判）。
-For C-RDD, a cycle proves feasibility in \textit{pending} of the $800$ runs; the share falls as $m$ grows.
+For C-RDD, cycles prove feasibility in $509$ of the $800$ runs; the remaining $291$ pass the $600{,}000$-slot check without a detected cycle.
 A run that ends without such a schedule counts as unsolved.
 Each run has a wall-clock limit on one core: $300$\,s for $m \le 4$, $600$\,s for $m = 6$, $1800$\,s for $m = 8, 10$ and $3600$\,s for $m = 15, 20$.
 The limit includes all preprocessing, such as the linear program and the entering construction.
-A search checks the limit before each generation and finishes the last one; the overrun stays below $300$\,s except for DD-EA, whose generations are slow (up to $4458$\,s).
+A search checks the limit before each generation and finishes the last one; the largest search overrun is $4458$\,s for DD-EA and $97$\,s for the other search methods.
+RH-MIP completes its final solve and fleet check, with an overrun of up to $923$\,s.
+Using only solutions obtained before the time limit leaves the main comparison conclusions unchanged.
 The experiments ran on an Intel i7-10700KF (8 cores, 16 threads) with 12 runs in parallel; the code is C++ (g++ 11.4, \texttt{-O2}) and Python 3.10 with HiGHS 1.15 for the linear programs.
+Some competitor runs and the PB rule-source runs shared the machine with other workloads.
 Search methods run five seeds per instance; PB, RH-MIP and the entering construction run once, and each GPHH rule runs once.
+The search-based ablations and window variants use three seeds per instance.
 Results are averaged over the solved runs of an instance.
 The gap is the excess over the lower bound $\lceil \max_H R_0(H) \rceil$, in percent.
 A method is compared with C-RDD on the instances that both solve, by the Wilcoxon signed-rank test with Holm correction.
@@ -101,7 +104,7 @@ For $m = 20$ the bound still grows slightly between $3 S_{\max}$ and $4 S_{\max}
 \end{figure}
 
 Table~\ref{tab:window} varies the deviation window on the instances with $m = 4$ and $6$.
-A window of $0.25 S_{\max}$ or $0.5 S_{\max}$ gives the same results.
+A window of $0.25 S_{\max}$ or $0.5 S_{\max}$ gives similar results.
 Longer windows give worse results: with the same $\rho$, more genes act on later decisions.
 A deviation window of about one week is enough.
 
@@ -142,7 +145,7 @@ The rotation $\sigma$ itself, which needs a fleet already spread over its cycles
 
 Table~\ref{tab:compare} compares C-RDD with each method.
 C-RDD solves every run, and its gap stays between $7\%$ and $13\%$ at all sizes.
-No method beats it on more than three of the $20$ instances of any size, and every difference is significant.
+No method beats it on more than three of the $20$ instances of any size, and the pooled comparison with each competitor is significant after Holm correction.
 
 ES is the strongest competitor.
 On the instances with $m \le 6$ its gap is $2.5$--$3.6$ points larger than that of C-RDD; at $m \ge 8$ the distance grows to $4.2$--$13.3$ points, and C-RDD is better on all $80$ instances.
@@ -203,8 +206,6 @@ RH-MIP & 100 & 100 & 100 & 100 & 100 & 90 & 65 & 70 \\
     % END tab_solve
     \bottomrule
   \end{tabular}
-  \\[2pt]
-  \parbox{\linewidth}{\scriptsize $\cdot$: still running.}
 \end{table}
 
 \begin{table}[t]
@@ -235,8 +236,9 @@ C-RDD & PB & GPHH & ES & RK-EA & DD-EA & RDD & RH-MIP \\
 Table~\ref{tab:ablation} removes or replaces one part of C-RDD at a time.
 \begin{itemize}
   \item \emph{Rule source.} Both variants skip the entering construction and use the same deviation window; one follows the relaxation rule, the other the hand-written rule PB.
-% TODO：pbnoconn 跑完后填写差距。
-  The relaxation rule is \textit{pending} points better.
+  The relaxation rule lowers the gap by $1.8$ and $3.1$ percentage points at $m=4$ and $6$, and by $19.1$ and $31.5$ points at $m=8$ and $10$.
+  At the two larger sizes, PB fails to size an initial fleet in $20$ runs; the fallback search often starts from much larger fleets.
+  PB passes the long-run check in $233$ of $240$ runs, compared with $240$ for the relaxation rule.
   \item \emph{Without the entering construction}, the rotation rule runs from the fresh start and the search must fix the start-up alone. The gap grows by $2.3$--$3.2$ points.
   \item \emph{Without the search}, the best entering construction is returned. The gap grows by $1.1$--$2.7$ points. The construction alone is better than the search without the construction.
   \item \emph{Without the long-run evaluation}, the fitness and the fleet search look only at the first $720$ hours, and the final schedule is checked afterwards. Of the \SEn{} final schedules, \SEshort{} (\SEpct\%) run short later. Adding \SEaddmin--\SEaddmax{} resources repairs all but \SEfail{} of them, and the repaired fleets are $1.1$--$1.9$ points larger than those of C-RDD.
@@ -244,7 +246,7 @@ Table~\ref{tab:ablation} removes or replaces one part of C-RDD at a time.
 
 \begin{table}[t]
   \centering
-  \caption{Ablation: Excess Gap Over C-RDD in Percentage Points (Better/Same/Worse for C-RDD)}
+  \caption{Ablation: Excess Gap in Percentage Points (Reference Better/Same/Worse)}
   \label{tab:ablation}
   \footnotesize
   \begin{tabular}{@{}lrc@{}}
@@ -252,10 +254,10 @@ Table~\ref{tab:ablation} removes or replaces one part of C-RDD at a time.
     Variant & $m$ & Excess gap \\
     \midrule
     % BEGIN tab_ablation
-PB rule (vs. relaxation rule, no entering) & 4 & \textit{pending} \\
-PB rule (vs. relaxation rule, no entering) & 6 & \textit{pending} \\
-PB rule (vs. relaxation rule, no entering) & 8 & \textit{pending} \\
-PB rule (vs. relaxation rule, no entering) & 10 & \textit{pending} \\
+PB rule (vs. relaxation rule, no entering) & 4 & +1.8 (12/4/4) \\
+PB rule (vs. relaxation rule, no entering) & 6 & +3.1 (16/1/3) \\
+PB rule (vs. relaxation rule, no entering) & 8 & +19.1 (17/0/3) \\
+PB rule (vs. relaxation rule, no entering) & 10 & +31.5 (17/0/2) \\
 \midrule
 w/o entering & 4 & +2.3 (17/3/0) \\
 w/o entering & 6 & +3.2 (20/0/0) \\
@@ -278,4 +280,6 @@ w/o long-run eval. & 10 & +1.7 (19/0/0) \\
     % END tab_ablation
     \bottomrule
   \end{tabular}
+  \\[2pt]
+  \parbox{\linewidth}{\scriptsize Reference: the relaxation rule without entering for the PB rows, and C-RDD for all other rows. Each comparison uses instances solved by both variants.}
 \end{table}

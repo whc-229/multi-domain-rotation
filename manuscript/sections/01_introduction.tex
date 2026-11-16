@@ -39,10 +39,10 @@ The contributions are as follows.
   \item Bounds and a time bound for MDRR.
   The rate and start-up relaxations give lower bounds.
   For one robot type, an even rotation attains the rate bound, the start-up cost without early overhaul grows linearly with the number of posts, and early overhaul removes it when the turnaround times meet a simple condition.
-  The entering theorem gives an upper bound and a start-up window whose length does not depend on the numbers of sites, posts and robot types.
+  The entering theorem gives an upper bound and a finite start-up window determined by the target rotation.
   \item A method derived from these results, rule-deviation decoding on a constructed start-up (C-RDD).
   It reads a rotation rule from the rate relaxation, builds the start-up by the entering theorem and encodes only a few deviations inside a short start-up window, so the genotype length does not depend on the horizon.
-  \item Experiments that compare C-RDD with dispatching rules, other decoders and a rolling-horizon integer program under the same infinite-horizon evaluation, and ablations of the rule, the construction, the search and the evaluation.
+  \item Experiments that compare C-RDD with dispatching rules, other decoders and a rolling-horizon integer program under the same long-run feasibility check, and ablations of the rule, the construction, the search and the evaluation.
 \end{enumerate}
 
 Section~\ref{sec:related} reviews related work.
