@@ -1,7 +1,17 @@
 \begin{abstract}
-% TODO
+Multi-domain rotation rostering keeps several sites staffed by robots that alternate between duties and maintenance at a depot.
+The aim is to minimize the total number of robots and shared tools needed for continuous service from a fresh start.
+Different maintenance cycles produce long scheduling periods, while starting all robots together causes their first overhauls to overlap.
+We derive two lower bounds: a rate relaxation that counts resource use over maintenance cycles and a start-up relaxation that adds the fresh-start conditions.
+An entering theorem shows how a fresh fleet can join a given feasible rotation after a finite start-up, with extra resources covering the duties before entry.
+We use these results to develop rule-deviation decoding on a constructed start-up (C-RDD).
+The rate relaxation supplies a dispatching rule, the entering construction supplies the initial schedule, and an evolutionary algorithm changes a few decisions in a short window to reduce resource use.
+The genotype length does not grow with the scheduling horizon.
+On $160$ test instances with up to $20$ sites, all $800$ C-RDD runs pass the long-run feasibility check.
+Mean resource counts at each size are $7.0\%$--$13.1\%$ above the lower bound, and C-RDD has the best average rank against seven competing methods.
+Ablations show that the construction and deviation search both reduce resource use, while evaluation limited to $720$ hours often selects schedules that run short later.
 \end{abstract}
 
 \begin{IEEEkeywords}
-% TODO
+Robot scheduling, resource allocation, maintenance, linear programming relaxation, evolutionary computation, rule-deviation decoding.
 \end{IEEEkeywords}
